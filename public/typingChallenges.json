@@ -1,0 +1,822 @@
+{
+  "easy": {
+    "30": [
+      [
+        "The quick brown fox jumps over the lazy dog.",
+        "Hello world! This is a simple typing test.",
+        "Practice makes perfect in everything you do."
+      ],
+      [
+        "Sunshine brings happiness to everyone around.",
+        "Learning new skills is always exciting and fun.",
+        "The early bird catches the worm every morning."
+      ],
+      [
+        "A journey of a thousand miles begins with one step.",
+        "Every cloud has a silver lining somewhere above.",
+        "Time flies when you are having fun with friends."
+      ],
+      [
+        "Success comes to those who work hard and never give up.",
+        "Dreams become reality when you take action.",
+        "Every expert was once a beginner."
+      ],
+      [
+        "Technology connects people across the world instantly.",
+        "Innovation drives progress in every industry.",
+        "The future belongs to those who adapt quickly."
+      ],
+      [
+        "Nature provides endless beauty and inspiration.",
+        "Fresh air and sunshine improve your mood.",
+        "Take time to appreciate the world around you."
+      ],
+      [
+        "Reading expands your mind and vocabulary.",
+        "Books are windows to different worlds and ideas.",
+        "Knowledge is the most powerful tool you can have."
+      ],
+      [
+        "Exercise keeps your body healthy and strong.",
+        "Physical activity improves both body and mind.",
+        "A healthy lifestyle leads to a happy life."
+      ],
+      [
+        "Music has the power to heal and inspire.",
+        "Different genres speak to different souls.",
+        "Artists express emotions through their craft."
+      ],
+      [
+        "Friendship is one of life's greatest treasures.",
+        "True friends support you through thick and thin.",
+        "Quality relationships matter more than quantity."
+      ],
+      [
+        "Travel broadens your perspective on life.",
+        "New cultures teach us valuable lessons.",
+        "Adventure awaits those who seek it."
+      ],
+      [
+        "Creativity flows when you let your mind wander.",
+        "Art comes in many different forms and styles.",
+        "Express yourself through your unique talents."
+      ],
+      [
+        "Patience is a virtue that brings great rewards.",
+        "Good things come to those who wait.",
+        "Rushing often leads to mistakes and regrets."
+      ],
+      [
+        "Kindness costs nothing but means everything.",
+        "Small acts of compassion can change lives.",
+        "Be the reason someone smiles today."
+      ],
+      [
+        "Learning never stops throughout your lifetime.",
+        "Curiosity keeps your mind young and active.",
+        "Every day offers new opportunities to grow."
+      ],
+      [
+        "Family provides unconditional love and support.",
+        "Home is where your heart feels most comfortable.",
+        "Cherish the moments you spend together."
+      ],
+      [
+        "Challenges make you stronger and more resilient.",
+        "Overcoming obstacles builds character and confidence.",
+        "Difficult times don't last, but tough people do."
+      ],
+      [
+        "Gratitude transforms ordinary moments into blessings.",
+        "Count your blessings, not your problems.",
+        "Appreciate what you have while pursuing what you want."
+      ],
+      [
+        "Honesty builds trust in all relationships.",
+        "Integrity is doing the right thing when no one watches.",
+        "Truth always finds a way to surface eventually."
+      ],
+      [
+        "Hope keeps us moving forward during dark times.",
+        "Believe in yourself and your ability to succeed.",
+        "Tomorrow brings new possibilities and fresh starts."
+      ]
+    ],
+    "60": [
+      [
+        "The quick brown fox jumps over the lazy dog.",
+        "This sentence contains every letter of the alphabet.",
+        "Practice typing this text to improve your speed.",
+        "Keep your fingers on the home row and maintain rhythm.",
+        "The more you practice, the better you become."
+      ],
+      [
+        "Hello world! This is a simple typing test.",
+        "The more you type, the better you become.",
+        "Focus on accuracy first, then speed will follow.",
+        "Take your time and enjoy the process.",
+        "Every expert was once a beginner like you."
+      ],
+      [
+        "Practice makes perfect in everything you do.",
+        "Whether it's playing an instrument or learning to type.",
+        "Consistent practice is the key to success.",
+        "Start slow and build up your confidence gradually.",
+        "Don't get discouraged if you make mistakes at first."
+      ],
+      [
+        "Sunshine brings happiness to everyone around.",
+        "A beautiful day can lift your spirits high.",
+        "Take time to appreciate the simple joys in life.",
+        "Spread positivity wherever you go each day.",
+        "Sometimes the smallest acts make the biggest difference."
+      ],
+      [
+        "Learning new skills is always exciting and fun.",
+        "Every expert was once a beginner just like you.",
+        "Don't be afraid to start something completely new.",
+        "The journey of learning is just as important.",
+        "Embrace challenges as opportunities for growth."
+      ],
+      [
+        "Technology has transformed how we communicate daily.",
+        "Social media connects people across vast distances.",
+        "Digital tools make work more efficient and productive.",
+        "The internet provides endless learning opportunities.",
+        "Smart devices help us stay organized and informed."
+      ],
+      [
+        "Nature offers countless benefits for mental health.",
+        "Spending time outdoors reduces stress and anxiety.",
+        "Fresh air and sunlight boost your energy levels.",
+        "Natural environments inspire creativity and focus.",
+        "Regular outdoor activities improve overall well-being."
+      ],
+      [
+        "Reading develops critical thinking and imagination.",
+        "Books transport you to different times and places.",
+        "Literature teaches valuable life lessons and wisdom.",
+        "Regular reading expands your vocabulary significantly.",
+        "Stories help you understand different perspectives."
+      ],
+      [
+        "Exercise releases endorphins that improve mood.",
+        "Physical activity strengthens both body and mind.",
+        "Regular workouts increase energy and confidence.",
+        "Sports teach teamwork and perseverance skills.",
+        "Healthy habits lead to a longer, happier life."
+      ],
+      [
+        "Music has universal power to connect all people.",
+        "Different genres evoke various emotions and memories.",
+        "Learning instruments improves coordination and focus.",
+        "Singing releases tension and expresses inner feelings.",
+        "Concerts create shared experiences and community bonds."
+      ],
+      [
+        "Friendship provides emotional support and companionship.",
+        "True friends accept you for who you really are.",
+        "Shared experiences create lasting bonds and memories.",
+        "Good friends challenge you to become better versions.",
+        "Quality relationships require effort and understanding."
+      ],
+      [
+        "Travel exposes you to new cultures and perspectives.",
+        "Exploring different countries broadens your worldview.",
+        "Meeting people from other places teaches tolerance.",
+        "Adventure travel builds confidence and independence.",
+        "Memories from trips last a lifetime and inspire growth."
+      ],
+      [
+        "Creativity allows you to express unique ideas.",
+        "Art comes in many forms including painting and writing.",
+        "Innovation drives progress in science and technology.",
+        "Creative thinking solves problems in unexpected ways.",
+        "Expressing yourself through art brings personal fulfillment."
+      ],
+      [
+        "Patience helps you make better decisions in life.",
+        "Rushing important choices often leads to regrets.",
+        "Waiting for the right moment brings better results.",
+        "Patient people tend to be happier and less stressed.",
+        "Good things truly come to those who wait wisely."
+      ],
+      [
+        "Kindness creates positive ripple effects everywhere.",
+        "Small acts of compassion can change someone's day.",
+        "Helping others brings joy and personal satisfaction.",
+        "Kind people attract positive relationships and opportunities.",
+        "Being nice costs nothing but means everything to others."
+      ],
+      [
+        "Continuous learning keeps your mind sharp and active.",
+        "Curiosity drives innovation and personal development.",
+        "New skills open doors to exciting career opportunities.",
+        "Education doesn't end when you finish formal schooling.",
+        "Lifelong learners stay relevant and adaptable always."
+      ],
+      [
+        "Family provides unconditional love and emotional support.",
+        "Home is where you feel most comfortable and accepted.",
+        "Family traditions create lasting memories and bonds.",
+        "Parents sacrifice much to provide for their children.",
+        "Cherish family moments because time passes quickly."
+      ],
+      [
+        "Challenges build character and mental resilience.",
+        "Overcoming obstacles makes you stronger and wiser.",
+        "Difficult experiences teach valuable life lessons.",
+        "Facing fears helps you grow beyond your comfort zone.",
+        "Every challenge overcome prepares you for future success."
+      ],
+      [
+        "Gratitude shifts your focus from problems to blessings.",
+        "Counting your blessings improves mental health significantly.",
+        "Thankful people tend to be happier and more optimistic.",
+        "Expressing gratitude strengthens relationships with others.",
+        "Appreciating what you have attracts more positive things."
+      ],
+      [
+        "Honesty builds trust and strengthens all relationships.",
+        "Integrity means doing right even when no one watches.",
+        "Truthful people earn respect and admiration from others.",
+        "Lies create stress and damage your reputation over time.",
+        "Honest communication prevents misunderstandings and conflicts."
+      ]
+    ],
+    "120": [
+      [
+        "The quick brown fox jumps over the lazy dog.",
+        "This sentence contains every letter of the alphabet.",
+        "Practice typing this text to improve your speed and accuracy.",
+        "Keep your fingers on the home row and maintain a steady rhythm.",
+        "The more you practice, the better you become at typing quickly.",
+        "Remember to take breaks and stretch your hands regularly.",
+        "Typing is a fundamental skill in today's digital world.",
+        "Mastering it will save you time and effort in all tasks."
+      ],
+      [
+        "Hello world! This is a simple typing test designed to help you.",
+        "The more you type, the better you become at this skill.",
+        "Focus on accuracy first, then speed will naturally follow.",
+        "Take your time and enjoy the process of learning.",
+        "Typing is a skill that will serve you well throughout life.",
+        "Whether you're writing emails, creating documents, or coding.",
+        "Good typing skills make everything much easier to do.",
+        "Start with the basics and gradually increase your speed."
+      ],
+      [
+        "Practice makes perfect in everything you do each day.",
+        "Whether it's playing an instrument or learning a new language.",
+        "Improving your typing skills requires consistent practice.",
+        "Start slow and build up your confidence gradually over time.",
+        "Don't get discouraged if you make mistakes at first.",
+        "Every expert was once a beginner just like you are now.",
+        "Every mistake is an opportunity to learn and improve yourself.",
+        "The key is to practice regularly and maintain a positive attitude."
+      ],
+      [
+        "Sunshine brings happiness to everyone around you today.",
+        "A beautiful day can lift your spirits and make everything possible.",
+        "Take time to appreciate the simple joys in life each moment.",
+        "Spread positivity wherever you go and make a difference.",
+        "Sometimes the smallest acts of kindness make the biggest impact.",
+        "Be the light that brightens the world around you always.",
+        "Remember that your attitude and energy can influence others.",
+        "Choose to be a positive force in the world every single day."
+      ],
+      [
+        "Learning new skills is always exciting and fun to do.",
+        "Every expert was once a beginner, so don't be afraid to start.",
+        "The journey of learning is just as important as the destination.",
+        "Embrace challenges as opportunities for growth and improvement.",
+        "Remember that progress, not perfection, is the ultimate goal.",
+        "Whether you're learning to type, play an instrument, or speak.",
+        "The process of improvement makes the experience rewarding.",
+        "Keep practicing and you will see amazing results over time."
+      ],
+      [
+        "Technology continues to evolve at an incredible pace today.",
+        "Artificial intelligence is transforming industries across the globe.",
+        "Smartphones have become essential tools for daily communication.",
+        "Social media platforms connect billions of people worldwide.",
+        "Digital transformation affects every aspect of modern life.",
+        "Cybersecurity has become crucial for protecting personal data.",
+        "Cloud computing enables flexible and scalable business solutions.",
+        "The internet of things connects everyday devices to the web."
+      ],
+      [
+        "Nature provides countless benefits for human health and happiness.",
+        "Spending time outdoors reduces stress and improves mental clarity.",
+        "Fresh air and natural light boost energy levels significantly.",
+        "Green spaces in cities improve air quality and reduce pollution.",
+        "Gardening connects people with the earth and growing cycles.",
+        "Wildlife conservation protects biodiversity for future generations.",
+        "Sustainable living practices help preserve our planet's resources.",
+        "Natural environments inspire creativity and provide peace of mind."
+      ],
+      [
+        "Reading books expands your knowledge and improves vocabulary.",
+        "Literature from different cultures broadens your worldview.",
+        "Fiction develops empathy by showing different life perspectives.",
+        "Non-fiction books teach practical skills and historical knowledge.",
+        "Regular reading improves focus and concentration abilities.",
+        "Book clubs create communities of people who love learning.",
+        "Libraries provide free access to thousands of educational resources.",
+        "Digital reading platforms make books accessible anywhere anytime."
+      ],
+      [
+        "Physical exercise benefits both your body and mental health.",
+        "Regular workouts release endorphins that improve your mood.",
+        "Strength training builds muscle and increases bone density.",
+        "Cardiovascular exercise strengthens your heart and lungs.",
+        "Flexibility training prevents injuries and improves mobility.",
+        "Team sports teach cooperation and build lasting friendships.",
+        "Individual activities like running provide time for reflection.",
+        "Consistent exercise routines lead to long-term health benefits."
+      ],
+      [
+        "Music has the power to heal and inspire people universally.",
+        "Different musical genres evoke various emotions and memories.",
+        "Learning to play instruments improves coordination and focus.",
+        "Singing releases tension and expresses inner feelings naturally.",
+        "Concerts create shared experiences and build community bonds.",
+        "Music therapy helps patients recover from various conditions.",
+        "Composing original music allows creative self-expression.",
+        "Music education enhances cognitive development in children."
+      ],
+      [
+        "Friendship provides emotional support and meaningful companionship.",
+        "True friends accept you for who you really are inside.",
+        "Shared experiences create lasting bonds and cherished memories.",
+        "Good friends challenge you to become better versions of yourself.",
+        "Quality relationships require effort, understanding, and patience.",
+        "Long-distance friendships can remain strong with regular contact.",
+        "Making new friends keeps life interesting and prevents isolation.",
+        "Supporting friends through difficult times strengthens relationships."
+      ],
+      [
+        "Travel exposes you to new cultures and different ways of living.",
+        "Exploring foreign countries broadens your worldview significantly.",
+        "Meeting people from other places teaches tolerance and understanding.",
+        "Adventure travel builds confidence and independence in individuals.",
+        "Memories from trips last a lifetime and inspire personal growth.",
+        "Learning local languages enhances travel experiences and connections.",
+        "Travel photography captures moments and preserves precious memories.",
+        "Budget travel teaches resourcefulness and creative problem-solving."
+      ],
+      [
+        "Creativity allows you to express unique ideas and perspectives.",
+        "Art comes in many forms including painting, writing, and music.",
+        "Innovation drives progress in science, technology, and business.",
+        "Creative thinking solves problems in unexpected and effective ways.",
+        "Expressing yourself through art brings personal fulfillment and joy.",
+        "Collaborative projects combine different creative talents beautifully.",
+        "Creative hobbies provide stress relief and mental stimulation.",
+        "Supporting artists and creators enriches cultural communities."
+      ],
+      [
+        "Patience helps you make better decisions and avoid costly mistakes.",
+        "Rushing important life choices often leads to regrets later.",
+        "Waiting for the right moment brings better results and outcomes.",
+        "Patient people tend to be happier and experience less stress.",
+        "Good things truly come to those who wait wisely and thoughtfully.",
+        "Patience with others builds stronger relationships and understanding.",
+        "Learning patience takes practice but brings significant benefits.",
+        "Impatience often creates unnecessary conflict and missed opportunities."
+      ],
+      [
+        "Kindness creates positive ripple effects throughout communities.",
+        "Small acts of compassion can completely change someone's day.",
+        "Helping others brings joy and personal satisfaction to givers.",
+        "Kind people attract positive relationships and career opportunities.",
+        "Being nice costs nothing but means everything to recipients.",
+        "Random acts of kindness inspire others to pay it forward.",
+        "Kindness to yourself is equally important as kindness to others.",
+        "Teaching children kindness creates a better future for everyone."
+      ],
+      [
+        "Continuous learning keeps your mind sharp and adaptable.",
+        "Curiosity drives innovation and personal development throughout life.",
+        "New skills open doors to exciting career opportunities and growth.",
+        "Education doesn't end when you finish formal schooling programs.",
+        "Lifelong learners stay relevant and competitive in changing markets.",
+        "Online courses make learning accessible to people everywhere.",
+        "Learning from mistakes provides valuable experience and wisdom.",
+        "Sharing knowledge with others reinforces your own understanding."
+      ],
+      [
+        "Family provides unconditional love and emotional support always.",
+        "Home is where you feel most comfortable and truly accepted.",
+        "Family traditions create lasting memories and strengthen bonds.",
+        "Parents sacrifice much to provide opportunities for their children.",
+        "Cherish family moments because time passes quickly and irreversibly.",
+        "Extended family connections provide additional support networks.",
+        "Family meals create opportunities for meaningful conversations.",
+        "Supporting family members through difficulties strengthens relationships."
+      ],
+      [
+        "Challenges build character and develop mental resilience over time.",
+        "Overcoming obstacles makes you stronger and wiser for future tests.",
+        "Difficult experiences teach valuable life lessons and perspectives.",
+        "Facing fears helps you grow beyond your comfort zone boundaries.",
+        "Every challenge overcome prepares you for future success and growth.",
+        "Seeking challenges voluntarily builds confidence and self-esteem.",
+        "Supporting others through challenges strengthens relationships.",
+        "Reflecting on past challenges helps you appreciate your growth."
+      ],
+      [
+        "Gratitude shifts your focus from problems to blessings in life.",
+        "Counting your blessings improves mental health and happiness.",
+        "Thankful people tend to be happier and more optimistic overall.",
+        "Expressing gratitude strengthens relationships with family and friends.",
+        "Appreciating what you have attracts more positive things to you.",
+        "Gratitude journals help you recognize daily blessings and joys.",
+        "Thanking others for their help encourages continued kindness.",
+        "Gratitude practices reduce stress and improve sleep quality."
+      ],
+      [
+        "Honesty builds trust and strengthens all types of relationships.",
+        "Integrity means doing the right thing even when no one watches.",
+        "Truthful people earn respect and admiration from their peers.",
+        "Lies create stress and damage your reputation over time.",
+        "Honest communication prevents misunderstandings and conflicts.",
+        "Admitting mistakes shows courage and builds trust with others.",
+        "Honesty with yourself is the foundation of personal growth.",
+        "Teaching children honesty creates a more trustworthy society."
+      ]
+    ],
+    "180": [
+      [
+        "The quick brown fox jumps over the lazy dog.",
+        "This sentence contains every letter of the alphabet.",
+        "Practice typing this text to improve your speed and accuracy.",
+        "Keep your fingers on the home row and maintain a steady rhythm.",
+        "The more you practice, the better you become at typing quickly.",
+        "Remember to take breaks and stretch your hands regularly.",
+        "Typing is a fundamental skill in today's digital world.",
+        "Mastering it will save you time and effort in all tasks.",
+        "Start with the basics and gradually increase your speed.",
+        "Every expert was once a beginner just like you are now.",
+        "Don't get discouraged if you make mistakes at first.",
+        "Consistent practice is the key to success in typing."
+      ],
+      [
+        "Hello world! This is a simple typing test designed to help you.",
+        "The more you type, the better you become at this valuable skill.",
+        "Focus on accuracy first, then speed will naturally follow.",
+        "Take your time and enjoy the process of learning to type.",
+        "Typing is a skill that will serve you well throughout your life.",
+        "Whether you're writing emails, creating documents, or coding.",
+        "Good typing skills make everything much easier to accomplish.",
+        "Start with the basics and gradually increase your speed.",
+        "As you become more comfortable with the keyboard layout.",
+        "You will notice your typing speed improving significantly.",
+        "The key is to practice regularly and maintain consistency.",
+        "Every session brings you closer to becoming a typing expert."
+      ],
+      [
+        "Practice makes perfect in everything you do each day.",
+        "Whether it's playing an instrument or learning a new language.",
+        "Improving your typing skills requires consistent daily practice.",
+        "Start slow and build up your confidence gradually over time.",
+        "Don't get discouraged if you make mistakes at first.",
+        "Every expert was once a beginner just like you are now.",
+        "Every mistake is an opportunity to learn and improve yourself.",
+        "The key is to practice regularly and maintain a positive attitude.",
+        "Throughout your learning journey, remember to stay patient.",
+        "Progress comes gradually, but it will be worth the effort.",
+        "Keep practicing and you will see amazing results over time.",
+        "Consistency is more important than perfection in the beginning."
+      ],
+      [
+        "Sunshine brings happiness to everyone around you today.",
+        "A beautiful day can lift your spirits and make everything possible.",
+        "Take time to appreciate the simple joys in life each moment.",
+        "Spread positivity wherever you go and make a real difference.",
+        "Sometimes the smallest acts of kindness make the biggest impact.",
+        "Be the light that brightens the world around you always.",
+        "Remember that your attitude and energy can influence others.",
+        "Choose to be a positive force in the world every single day.",
+        "Your positive energy can inspire others to do the same.",
+        "Small gestures of kindness can create ripples of happiness.",
+        "Make it a habit to spread joy wherever you go.",
+        "The world becomes a better place when we choose kindness."
+      ],
+      [
+        "Learning new skills is always exciting and fun to do.",
+        "Every expert was once a beginner, so don't be afraid to start.",
+        "The journey of learning is just as important as the destination.",
+        "Embrace challenges as opportunities for growth and improvement.",
+        "Remember that progress, not perfection, is the ultimate goal.",
+        "Whether you're learning to type, play an instrument, or speak.",
+        "The process of improvement makes the experience rewarding.",
+        "Keep practicing and you will see amazing results over time.",
+        "Every small step forward is a victory worth celebrating.",
+        "Don't compare your progress to others, focus on your own journey.",
+        "The most important thing is to keep moving forward consistently.",
+        "Success comes to those who persist through challenges and difficulties."
+      ],
+      [
+        "Technology continues to evolve at an incredible pace today.",
+        "Artificial intelligence is transforming industries across the globe.",
+        "Smartphones have become essential tools for daily communication.",
+        "Social media platforms connect billions of people worldwide.",
+        "Digital transformation affects every aspect of modern life.",
+        "Cybersecurity has become crucial for protecting personal data.",
+        "Cloud computing enables flexible and scalable business solutions.",
+        "The internet of things connects everyday devices to the web.",
+        "Machine learning algorithms improve efficiency in many fields.",
+        "Virtual reality creates immersive experiences for entertainment.",
+        "Blockchain technology provides secure and transparent transactions.",
+        "Quantum computing promises revolutionary advances in processing power."
+      ],
+      [
+        "Nature provides countless benefits for human health and happiness.",
+        "Spending time outdoors reduces stress and improves mental clarity.",
+        "Fresh air and natural light boost energy levels significantly.",
+        "Green spaces in cities improve air quality and reduce pollution.",
+        "Gardening connects people with the earth and growing cycles.",
+        "Wildlife conservation protects biodiversity for future generations.",
+        "Sustainable living practices help preserve our planet's resources.",
+        "Natural environments inspire creativity and provide peace of mind.",
+        "Forest bathing has proven therapeutic effects on mental health.",
+        "Ocean waves create calming sounds that reduce anxiety levels.",
+        "Mountain hiking provides physical exercise and stunning views.",
+        "Desert landscapes offer unique beauty and spiritual reflection."
+      ],
+      [
+        "Reading books expands your knowledge and improves vocabulary.",
+        "Literature from different cultures broadens your worldview.",
+        "Fiction develops empathy by showing different life perspectives.",
+        "Non-fiction books teach practical skills and historical knowledge.",
+        "Regular reading improves focus and concentration abilities.",
+        "Book clubs create communities of people who love learning.",
+        "Libraries provide free access to thousands of educational resources.",
+        "Digital reading platforms make books accessible anywhere anytime.",
+        "Audiobooks allow you to enjoy literature while multitasking.",
+        "Reading aloud to children develops their language skills.",
+        "Classic literature provides timeless wisdom and entertainment.",
+        "Contemporary authors reflect current social issues and trends."
+      ],
+      [
+        "Physical exercise benefits both your body and mental health.",
+        "Regular workouts release endorphins that improve your mood.",
+        "Strength training builds muscle and increases bone density.",
+        "Cardiovascular exercise strengthens your heart and lungs.",
+        "Flexibility training prevents injuries and improves mobility.",
+        "Team sports teach cooperation and build lasting friendships.",
+        "Individual activities like running provide time for reflection.",
+        "Consistent exercise routines lead to long-term health benefits.",
+        "Yoga combines physical movement with mindfulness practices.",
+        "Swimming provides low-impact exercise for all fitness levels.",
+        "Dancing combines physical activity with creative expression.",
+        "Outdoor activities like hiking offer exercise and nature connection."
+      ],
+      [
+        "Music has the power to heal and inspire people universally.",
+        "Different musical genres evoke various emotions and memories.",
+        "Learning to play instruments improves coordination and focus.",
+        "Singing releases tension and expresses inner feelings naturally.",
+        "Concerts create shared experiences and build community bonds.",
+        "Music therapy helps patients recover from various conditions.",
+        "Composing original music allows creative self-expression.",
+        "Music education enhances cognitive development in children.",
+        "Classical music has been shown to improve concentration.",
+        "Jazz improvisation develops creativity and quick thinking.",
+        "Rock music energizes listeners and builds community spirit.",
+        "Folk music preserves cultural traditions and storytelling."
+      ],
+      [
+        "Friendship provides emotional support and meaningful companionship.",
+        "True friends accept you for who you really are inside.",
+        "Shared experiences create lasting bonds and cherished memories.",
+        "Good friends challenge you to become better versions of yourself.",
+        "Quality relationships require effort, understanding, and patience.",
+        "Long-distance friendships can remain strong with regular contact.",
+        "Making new friends keeps life interesting and prevents isolation.",
+        "Supporting friends through difficult times strengthens relationships.",
+        "Childhood friendships often last a lifetime with proper care.",
+        "Workplace friendships make jobs more enjoyable and productive.",
+        "Online friendships can be just as meaningful as in-person ones.",
+        "Mentor relationships provide guidance and professional development."
+      ],
+      [
+        "Travel exposes you to new cultures and different ways of living.",
+        "Exploring foreign countries broadens your worldview significantly.",
+        "Meeting people from other places teaches tolerance and understanding.",
+        "Adventure travel builds confidence and independence in individuals.",
+        "Memories from trips last a lifetime and inspire personal growth.",
+        "Learning local languages enhances travel experiences and connections.",
+        "Travel photography captures moments and preserves precious memories.",
+        "Budget travel teaches resourcefulness and creative problem-solving.",
+        "Solo travel builds self-reliance and personal confidence.",
+        "Group travel creates shared memories and strengthens bonds.",
+        "Cultural immersion provides deeper understanding of local customs.",
+        "Travel planning develops organizational and research skills."
+      ],
+      [
+        "Creativity allows you to express unique ideas and perspectives.",
+        "Art comes in many forms including painting, writing, and music.",
+        "Innovation drives progress in science, technology, and business.",
+        "Creative thinking solves problems in unexpected and effective ways.",
+        "Expressing yourself through art brings personal fulfillment and joy.",
+        "Collaborative projects combine different creative talents beautifully.",
+        "Creative hobbies provide stress relief and mental stimulation.",
+        "Supporting artists and creators enriches cultural communities.",
+        "Digital art opens new possibilities for creative expression.",
+        "Creative writing develops imagination and communication skills.",
+        "Design thinking applies creativity to solve practical problems.",
+        "Art therapy uses creativity to promote healing and well-being."
+      ],
+      [
+        "Patience helps you make better decisions and avoid costly mistakes.",
+        "Rushing important life choices often leads to regrets later.",
+        "Waiting for the right moment brings better results and outcomes.",
+        "Patient people tend to be happier and experience less stress.",
+        "Good things truly come to those who wait wisely and thoughtfully.",
+        "Patience with others builds stronger relationships and understanding.",
+        "Learning patience takes practice but brings significant benefits.",
+        "Impatience often creates unnecessary conflict and missed opportunities.",
+        "Patience in learning allows for deeper understanding and retention.",
+        "Patient leadership inspires confidence and trust in teams.",
+        "Patience with children helps them develop at their own pace.",
+        "Patience in relationships prevents hasty decisions and conflicts."
+      ],
+      [
+        "Kindness creates positive ripple effects throughout communities.",
+        "Small acts of compassion can completely change someone's day.",
+        "Helping others brings joy and personal satisfaction to givers.",
+        "Kind people attract positive relationships and career opportunities.",
+        "Being nice costs nothing but means everything to recipients.",
+        "Random acts of kindness inspire others to pay it forward.",
+        "Kindness to yourself is equally important as kindness to others.",
+        "Teaching children kindness creates a better future for everyone.",
+        "Kindness in the workplace improves morale and productivity.",
+        "Volunteering provides opportunities to practice kindness regularly.",
+        "Kindness to animals reflects compassion and empathy.",
+        "Kindness during difficult times shows true character strength."
+      ],
+      [
+        "Continuous learning keeps your mind sharp and adaptable.",
+        "Curiosity drives innovation and personal development throughout life.",
+        "New skills open doors to exciting career opportunities and growth.",
+        "Education doesn't end when you finish formal schooling programs.",
+        "Lifelong learners stay relevant and competitive in changing markets.",
+        "Online courses make learning accessible to people everywhere.",
+        "Learning from mistakes provides valuable experience and wisdom.",
+        "Sharing knowledge with others reinforces your own understanding.",
+        "Professional development keeps careers fresh and exciting.",
+        "Learning new languages opens doors to different cultures.",
+        "Technical skills training keeps workers competitive in job markets.",
+        "Learning from mentors accelerates personal and professional growth."
+      ],
+      [
+        "Family provides unconditional love and emotional support always.",
+        "Home is where you feel most comfortable and truly accepted.",
+        "Family traditions create lasting memories and strengthen bonds.",
+        "Parents sacrifice much to provide opportunities for their children.",
+        "Cherish family moments because time passes quickly and irreversibly.",
+        "Extended family connections provide additional support networks.",
+        "Family meals create opportunities for meaningful conversations.",
+        "Supporting family members through difficulties strengthens relationships.",
+        "Family vacations create shared memories and bonding experiences.",
+        "Grandparents provide wisdom and unconditional love to grandchildren.",
+        "Family celebrations mark important milestones and achievements.",
+        "Family history connects generations and preserves cultural heritage."
+      ],
+      [
+        "Challenges build character and develop mental resilience over time.",
+        "Overcoming obstacles makes you stronger and wiser for future tests.",
+        "Difficult experiences teach valuable life lessons and perspectives.",
+        "Facing fears helps you grow beyond your comfort zone boundaries.",
+        "Every challenge overcome prepares you for future success and growth.",
+        "Seeking challenges voluntarily builds confidence and self-esteem.",
+        "Supporting others through challenges strengthens relationships.",
+        "Reflecting on past challenges helps you appreciate your growth.",
+        "Academic challenges develop critical thinking and problem-solving.",
+        "Physical challenges build strength and endurance.",
+        "Emotional challenges develop empathy and emotional intelligence.",
+        "Professional challenges advance careers and build expertise."
+      ],
+      [
+        "Gratitude shifts your focus from problems to blessings in life.",
+        "Counting your blessings improves mental health and happiness.",
+        "Thankful people tend to be happier and more optimistic overall.",
+        "Expressing gratitude strengthens relationships with family and friends.",
+        "Appreciating what you have attracts more positive things to you.",
+        "Gratitude journals help you recognize daily blessings and joys.",
+        "Thanking others for their help encourages continued kindness.",
+        "Gratitude practices reduce stress and improve sleep quality.",
+        "Gratitude in the workplace improves job satisfaction and relationships.",
+        "Teaching children gratitude helps them develop positive attitudes.",
+        "Gratitude during difficult times provides perspective and strength.",
+        "Gratitude meditation practices promote mindfulness and well-being."
+      ],
+      [
+        "Honesty builds trust and strengthens all types of relationships.",
+        "Integrity means doing the right thing even when no one watches.",
+        "Truthful people earn respect and admiration from their peers.",
+        "Lies create stress and damage your reputation over time.",
+        "Honest communication prevents misunderstandings and conflicts.",
+        "Admitting mistakes shows courage and builds trust with others.",
+        "Honesty with yourself is the foundation of personal growth.",
+        "Teaching children honesty creates a more trustworthy society.",
+        "Honest feedback helps people improve and grow professionally.",
+        "Honesty in business builds long-term customer relationships.",
+        "Honest self-reflection leads to personal development.",
+        "Honesty during conflicts prevents escalation and promotes resolution."
+      ]
+    ]
+  },
+  "hard": {
+    "30": [
+      "The quick brown fox jumps over the lazy dog. This sentence contains every letter of the alphabet. Practice typing this text to improve your speed and accuracy.",
+      "Technology has revolutionized the way we live, work, and interact. From smartphones to artificial intelligence, advancements continue to reshape our world at an unprecedented pace.",
+      "The art of cooking combines creativity with precision. Every ingredient tells a story, and every technique has been perfected over centuries of culinary tradition.",
+      "Music transcends language barriers and connects people across cultures. A simple melody can evoke powerful emotions and create lasting memories.",
+      "Nature provides endless inspiration for innovation. Scientists study biological systems to develop new technologies that benefit humanity.",
+      "Success comes to those who work hard and never give up on their dreams. Every expert was once a beginner who refused to quit.",
+      "Reading expands your mind and vocabulary while providing endless entertainment. Books are windows to different worlds and perspectives.",
+      "Exercise releases endorphins that improve mood and energy levels. Regular physical activity benefits both body and mental health.",
+      "Friendship provides emotional support and meaningful companionship. True friends accept you for who you really are inside.",
+      "Travel exposes you to new cultures and broadens your worldview. Exploring different countries teaches tolerance and understanding.",
+      "Creativity allows you to express unique ideas and solve problems. Art comes in many forms including painting, writing, and music.",
+      "Patience helps you make better decisions and avoid costly mistakes. Good things truly come to those who wait wisely.",
+      "Kindness creates positive ripple effects throughout communities. Small acts of compassion can completely change someone's day.",
+      "Learning never stops throughout your lifetime. Curiosity drives innovation and personal development in every field.",
+      "Family provides unconditional love and emotional support always. Home is where you feel most comfortable and accepted.",
+      "Challenges build character and develop mental resilience over time. Overcoming obstacles makes you stronger and wiser.",
+      "Gratitude shifts your focus from problems to blessings in life. Counting your blessings improves mental health and happiness.",
+      "Honesty builds trust and strengthens all types of relationships. Integrity means doing the right thing even when no one watches.",
+      "Hope keeps us moving forward during dark times. Believe in yourself and your ability to succeed against all odds.",
+      "Wisdom comes from experience and reflection on life's lessons. Older generations have valuable knowledge to share with younger ones."
+    ],
+    "60": [
+      "The quick brown fox jumps over the lazy dog. This sentence contains every letter of the alphabet. Practice typing this text to improve your speed and accuracy. Keep your fingers on the home row and maintain a steady rhythm. The more you practice, the better you become at typing quickly and accurately.",
+      "Technology has revolutionized the way we live, work, and interact. From smartphones to artificial intelligence, advancements continue to reshape our world at an unprecedented pace. These innovations have transformed communication, education, healthcare, and countless other industries.",
+      "The art of cooking combines creativity with precision. Every ingredient tells a story, and every technique has been perfected over centuries of culinary tradition. Professional chefs understand that cooking is both an art and a science, requiring both intuition and technical knowledge.",
+      "Music transcends language barriers and connects people across cultures. A simple melody can evoke powerful emotions and create lasting memories. From classical symphonies to modern pop songs, music has the power to unite people and express the deepest human experiences.",
+      "Nature provides endless inspiration for innovation. Scientists study biological systems to develop new technologies that benefit humanity. Biomimicry has led to breakthroughs in engineering, medicine, and sustainable design.",
+      "Success comes to those who work hard and never give up on their dreams. Every expert was once a beginner who refused to quit despite facing numerous obstacles. The journey to mastery requires dedication, persistence, and a willingness to learn from failures.",
+      "Reading expands your mind and vocabulary while providing endless entertainment and knowledge. Books are windows to different worlds, cultures, and perspectives. Literature from various authors and time periods offers insights into human nature and society.",
+      "Exercise releases endorphins that improve mood and energy levels throughout the day. Regular physical activity benefits both body and mental health significantly. Whether it's running, swimming, or yoga, finding an enjoyable form of exercise is key to maintaining consistency.",
+      "Friendship provides emotional support and meaningful companionship throughout life's journey. True friends accept you for who you really are inside, flaws and all. Quality relationships require effort, understanding, and mutual respect to flourish over time.",
+      "Travel exposes you to new cultures and broadens your worldview in ways that books cannot. Exploring different countries teaches tolerance, understanding, and appreciation for diversity. Memories from trips last a lifetime and inspire personal growth.",
+      "Creativity allows you to express unique ideas and solve problems in innovative ways. Art comes in many forms including painting, writing, music, and digital media. Creative thinking is essential for progress in science, technology, and business.",
+      "Patience helps you make better decisions and avoid costly mistakes in both personal and professional life. Good things truly come to those who wait wisely and thoughtfully. Rushing important choices often leads to regrets and missed opportunities.",
+      "Kindness creates positive ripple effects throughout communities and makes the world a better place. Small acts of compassion can completely change someone's day and inspire them to pay it forward. Being nice costs nothing but means everything to recipients.",
+      "Learning never stops throughout your lifetime and keeps your mind sharp and adaptable. Curiosity drives innovation and personal development in every field of study. New skills open doors to exciting career opportunities and personal fulfillment.",
+      "Family provides unconditional love and emotional support that cannot be found elsewhere. Home is where you feel most comfortable and truly accepted for who you are. Family traditions create lasting memories and strengthen bonds between generations.",
+      "Challenges build character and develop mental resilience that serves you throughout life. Overcoming obstacles makes you stronger and wiser for future tests. Difficult experiences teach valuable lessons that cannot be learned through easy times.",
+      "Gratitude shifts your focus from problems to blessings and improves overall mental health. Counting your blessings regularly helps you appreciate what you have rather than focusing on what you lack. Thankful people tend to be happier and more optimistic.",
+      "Honesty builds trust and strengthens all types of relationships in personal and professional settings. Integrity means doing the right thing even when no one is watching. Truthful people earn respect and admiration from their peers and colleagues.",
+      "Hope keeps us moving forward during dark times and provides the strength to persevere. Believe in yourself and your ability to succeed against all odds. Tomorrow brings new possibilities and fresh starts for those who maintain optimism.",
+      "Wisdom comes from experience and reflection on life's lessons learned over time. Older generations have valuable knowledge to share with younger ones about navigating challenges. Learning from others' experiences can help avoid common pitfalls."
+    ],
+    "120": [
+      "The quick brown fox jumps over the lazy dog. This sentence contains every letter of the alphabet. Practice typing this text to improve your speed and accuracy. Keep your fingers on the home row and maintain a steady rhythm. The more you practice, the better you become at typing quickly and accurately. Remember to take breaks and stretch your hands regularly to avoid fatigue. Typing is a fundamental skill in today's digital world, and mastering it will save you time and effort in all your computer-related tasks.",
+      "Technology has revolutionized the way we live, work, and interact. From smartphones to artificial intelligence, advancements continue to reshape our world at an unprecedented pace. These innovations have transformed communication, education, healthcare, and countless other industries. The digital revolution has created new opportunities while also presenting unique challenges that society must navigate carefully.",
+      "The art of cooking combines creativity with precision. Every ingredient tells a story, and every technique has been perfected over centuries of culinary tradition. Professional chefs understand that cooking is both an art and a science, requiring both intuition and technical knowledge. The kitchen becomes a laboratory where flavors, textures, and aromas are carefully balanced to create memorable dining experiences.",
+      "Music transcends language barriers and connects people across cultures. A simple melody can evoke powerful emotions and create lasting memories. From classical symphonies to modern pop songs, music has the power to unite people and express the deepest human experiences. Musicians spend years perfecting their craft, learning to communicate through sound in ways that words cannot capture.",
+      "Nature provides endless inspiration for innovation. Scientists study biological systems to develop new technologies that benefit humanity. Biomimicry has led to breakthroughs in engineering, medicine, and sustainable design. By observing how nature solves complex problems, researchers have developed everything from Velcro to advanced medical devices.",
+      "Success comes to those who work hard and never give up on their dreams despite facing numerous obstacles along the way. Every expert was once a beginner who refused to quit when things got difficult. The journey to mastery requires dedication, persistence, and a willingness to learn from failures and setbacks. Those who persevere through challenges often discover strengths they never knew they possessed.",
+      "Reading expands your mind and vocabulary while providing endless entertainment and knowledge that enriches your life. Books are windows to different worlds, cultures, and perspectives that you might never encounter otherwise. Literature from various authors and time periods offers profound insights into human nature and society. Regular reading improves focus, concentration, and critical thinking skills.",
+      "Exercise releases endorphins that improve mood and energy levels throughout the day while strengthening your body and mind. Regular physical activity benefits both physical and mental health significantly, reducing stress and anxiety. Whether it's running, swimming, yoga, or weightlifting, finding an enjoyable form of exercise is key to maintaining consistency and long-term health benefits.",
+      "Friendship provides emotional support and meaningful companionship throughout life's journey that cannot be replicated by other relationships. True friends accept you for who you really are inside, flaws and all, without judgment or conditions. Quality relationships require effort, understanding, and mutual respect to flourish over time and through various life changes.",
+      "Travel exposes you to new cultures and broadens your worldview in ways that books and media simply cannot replicate. Exploring different countries teaches tolerance, understanding, and appreciation for diversity that enriches your perspective. Memories from trips last a lifetime and inspire personal growth, creativity, and a deeper understanding of humanity.",
+      "Creativity allows you to express unique ideas and solve problems in innovative ways that conventional thinking might miss. Art comes in many forms including painting, writing, music, digital media, and countless other expressions. Creative thinking is essential for progress in science, technology, business, and personal development throughout life.",
+      "Patience helps you make better decisions and avoid costly mistakes in both personal and professional life that could have lasting consequences. Good things truly come to those who wait wisely and thoughtfully rather than rushing into decisions. Rushing important choices often leads to regrets and missed opportunities that could have been avoided with careful consideration.",
+      "Kindness creates positive ripple effects throughout communities and makes the world a better place for everyone involved. Small acts of compassion can completely change someone's day and inspire them to pay it forward to others. Being nice costs nothing but means everything to recipients who may be struggling or having a difficult time.",
+      "Learning never stops throughout your lifetime and keeps your mind sharp and adaptable to changing circumstances. Curiosity drives innovation and personal development in every field of study and profession. New skills open doors to exciting career opportunities and personal fulfillment that enrich your life in unexpected ways.",
+      "Family provides unconditional love and emotional support that cannot be found elsewhere in the world. Home is where you feel most comfortable and truly accepted for who you are without pretense. Family traditions create lasting memories and strengthen bonds between generations that provide stability and continuity.",
+      "Challenges build character and develop mental resilience that serves you throughout life's various trials and tribulations. Overcoming obstacles makes you stronger and wiser for future tests that life will inevitably present. Difficult experiences teach valuable lessons that cannot be learned through easy times or comfortable situations.",
+      "Gratitude shifts your focus from problems to blessings and improves overall mental health and life satisfaction. Counting your blessings regularly helps you appreciate what you have rather than focusing on what you lack or desire. Thankful people tend to be happier and more optimistic about their future prospects and relationships.",
+      "Honesty builds trust and strengthens all types of relationships in personal and professional settings where integrity matters most. Integrity means doing the right thing even when no one is watching or when it might be easier to take shortcuts. Truthful people earn respect and admiration from their peers and colleagues who value authenticity.",
+      "Hope keeps us moving forward during dark times and provides the strength to persevere when giving up seems like the easier option. Believe in yourself and your ability to succeed against all odds and obstacles that life presents. Tomorrow brings new possibilities and fresh starts for those who maintain optimism and determination.",
+      "Wisdom comes from experience and reflection on life's lessons learned over time through both successes and failures. Older generations have valuable knowledge to share with younger ones about navigating challenges and making important decisions. Learning from others' experiences can help avoid common pitfalls and accelerate personal growth."
+    ],
+    "180": [
+      "The quick brown fox jumps over the lazy dog. This sentence contains every letter of the alphabet. Practice typing this text to improve your speed and accuracy. Keep your fingers on the home row and maintain a steady rhythm. The more you practice, the better you become at typing quickly and accurately. Remember to take breaks and stretch your hands regularly to avoid fatigue. Typing is a fundamental skill in today's digital world, and mastering it will save you time and effort in all your computer-related tasks.",
+      "Technology has revolutionized the way we live, work, and interact. From smartphones to artificial intelligence, advancements continue to reshape our world at an unprecedented pace. These innovations have transformed communication, education, healthcare, and countless other industries. The digital revolution has created new opportunities while also presenting unique challenges that society must navigate carefully. As we move forward, it's crucial to balance technological progress with ethical considerations and human well-being.",
+      "The art of cooking combines creativity with precision. Every ingredient tells a story, and every technique has been perfected over centuries of culinary tradition. Professional chefs understand that cooking is both an art and a science, requiring both intuition and technical knowledge. The kitchen becomes a laboratory where flavors, textures, and aromas are carefully balanced to create memorable dining experiences. Culinary arts reflect the culture and history of civilizations, preserving traditions while embracing innovation.",
+      "Music transcends language barriers and connects people across cultures. A simple melody can evoke powerful emotions and create lasting memories. From classical symphonies to modern pop songs, music has the power to unite people and express the deepest human experiences. Musicians spend years perfecting their craft, learning to communicate through sound in ways that words cannot capture. Music therapy has proven effective in treating various conditions, demonstrating the profound impact of sound on human psychology and well-being.",
+      "Nature provides endless inspiration for innovation. Scientists study biological systems to develop new technologies that benefit humanity. Biomimicry has led to breakthroughs in engineering, medicine, and sustainable design. By observing how nature solves complex problems, researchers have developed everything from Velcro to advanced medical devices. This approach to innovation not only creates effective solutions but also promotes environmental sustainability and harmony with natural systems.",
+      "Success comes to those who work hard and never give up on their dreams despite facing numerous obstacles along the way that test their resolve and determination. Every expert was once a beginner who refused to quit when things got difficult and overwhelming. The journey to mastery requires dedication, persistence, and a willingness to learn from failures and setbacks that inevitably occur. Those who persevere through challenges often discover strengths they never knew they possessed and develop resilience that serves them throughout life.",
+      "Reading expands your mind and vocabulary while providing endless entertainment and knowledge that enriches your life in countless ways. Books are windows to different worlds, cultures, and perspectives that you might never encounter otherwise in your daily routine. Literature from various authors and time periods offers profound insights into human nature and society that help you understand yourself and others better. Regular reading improves focus, concentration, and critical thinking skills that are valuable in all aspects of life.",
+      "Exercise releases endorphins that improve mood and energy levels throughout the day while strengthening your body and mind in ways that benefit every aspect of your life. Regular physical activity benefits both physical and mental health significantly, reducing stress and anxiety while improving overall well-being. Whether it's running, swimming, yoga, or weightlifting, finding an enjoyable form of exercise is key to maintaining consistency and achieving long-term health benefits that extend far beyond physical appearance.",
+      "Friendship provides emotional support and meaningful companionship throughout life's journey that cannot be replicated by other relationships or connections. True friends accept you for who you really are inside, flaws and all, without judgment or conditions that might exist in other relationships. Quality relationships require effort, understanding, and mutual respect to flourish over time and through various life changes that test the strength of bonds between people.",
+      "Travel exposes you to new cultures and broadens your worldview in ways that books and media simply cannot replicate or provide through secondhand experiences. Exploring different countries teaches tolerance, understanding, and appreciation for diversity that enriches your perspective and makes you a more well-rounded individual. Memories from trips last a lifetime and inspire personal growth, creativity, and a deeper understanding of humanity that shapes your worldview forever.",
+      "Creativity allows you to express unique ideas and solve problems in innovative ways that conventional thinking might miss or overlook entirely. Art comes in many forms including painting, writing, music, digital media, and countless other expressions that allow for personal fulfillment and communication. Creative thinking is essential for progress in science, technology, business, and personal development throughout life, making it one of the most valuable skills to cultivate.",
+      "Patience helps you make better decisions and avoid costly mistakes in both personal and professional life that could have lasting consequences and negative impacts. Good things truly come to those who wait wisely and thoughtfully rather than rushing into decisions that might seem appealing in the moment. Rushing important choices often leads to regrets and missed opportunities that could have been avoided with careful consideration and thoughtful planning.",
+      "Kindness creates positive ripple effects throughout communities and makes the world a better place for everyone involved in ways that extend far beyond the initial act. Small acts of compassion can completely change someone's day and inspire them to pay it forward to others, creating a chain reaction of positivity. Being nice costs nothing but means everything to recipients who may be struggling or having a difficult time and need encouragement.",
+      "Learning never stops throughout your lifetime and keeps your mind sharp and adaptable to changing circumstances that require new skills and knowledge. Curiosity drives innovation and personal development in every field of study and profession, making it essential for continued growth. New skills open doors to exciting career opportunities and personal fulfillment that enrich your life in unexpected ways you might never have anticipated.",
+      "Family provides unconditional love and emotional support that cannot be found elsewhere in the world and serves as the foundation for personal development. Home is where you feel most comfortable and truly accepted for who you are without pretense or the need to impress others. Family traditions create lasting memories and strengthen bonds between generations that provide stability and continuity throughout life's changes.",
+      "Challenges build character and develop mental resilience that serves you throughout life's various trials and tribulations that everyone must face eventually. Overcoming obstacles makes you stronger and wiser for future tests that life will inevitably present in different forms and circumstances. Difficult experiences teach valuable lessons that cannot be learned through easy times or comfortable situations that don't push your boundaries.",
+      "Gratitude shifts your focus from problems to blessings and improves overall mental health and life satisfaction in ways that transform your entire perspective on life. Counting your blessings regularly helps you appreciate what you have rather than focusing on what you lack or desire, leading to greater contentment. Thankful people tend to be happier and more optimistic about their future prospects and relationships with others.",
+      "Honesty builds trust and strengthens all types of relationships in personal and professional settings where integrity matters most for long-term success and fulfillment. Integrity means doing the right thing even when no one is watching or when it might be easier to take shortcuts that compromise your values. Truthful people earn respect and admiration from their peers and colleagues who value authenticity and reliability above all else.",
+      "Hope keeps us moving forward during dark times and provides the strength to persevere when giving up seems like the easier option that requires less effort and emotional investment. Believe in yourself and your ability to succeed against all odds and obstacles that life presents in various forms throughout your journey. Tomorrow brings new possibilities and fresh starts for those who maintain optimism and determination despite current challenges.",
+      "Wisdom comes from experience and reflection on life's lessons learned over time through both successes and failures that provide valuable insights and understanding. Older generations have valuable knowledge to share with younger ones about navigating challenges and making important decisions that affect the course of their lives. Learning from others' experiences can help avoid common pitfalls and accelerate personal growth in ways that would otherwise take years to achieve."
+    ]
+  }
+}

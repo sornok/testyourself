@@ -1,0 +1,234 @@
+[
+  {
+    "id": 1,
+    "title": "The Rubin Vase",
+    "description": "Look at this image. What do you see first?",
+    "image": "../assets/images/optical-illusions/rubin-vase.png",
+    "question": "What do you see first?",
+    "options": [
+      { 
+        "text": "A vase in the center", 
+        "interpretation": "You focus on the central object and have a structured, organized way of thinking. You prefer clear boundaries and defined shapes.",
+        "personality": "Analytical and detail-oriented"
+      },
+      { 
+        "text": "Two faces looking at each other", 
+        "interpretation": "You notice relationships and connections between elements. You're socially aware and good at reading people.",
+        "personality": "Social and relationship-focused"
+      },
+      { 
+        "text": "Both at the same time", 
+        "interpretation": "You have excellent cognitive flexibility and can see multiple perspectives simultaneously. You're adaptable and creative.",
+        "personality": "Flexible and creative"
+      },
+      { 
+        "text": "Something else entirely", 
+        "interpretation": "You have a unique perspective and think outside conventional patterns. You're innovative and original.",
+        "personality": "Innovative and original"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "The Necker Cube",
+    "description": "Look at this cube. Which face appears to be in front?",
+    "image": "../assets/images/optical-illusions/necker-cube.png",
+    "question": "Which face of the cube appears to be in front?",
+    "options": [
+      { 
+        "text": "The top face", 
+        "interpretation": "You tend to see things from an elevated perspective. You're strategic and think about the bigger picture.",
+        "personality": "Strategic and big-picture thinker"
+      },
+      { 
+        "text": "The bottom face", 
+        "interpretation": "You have a grounded, practical approach. You focus on foundations and stability in your thinking.",
+        "personality": "Practical and grounded"
+      },
+      { 
+        "text": "It keeps switching", 
+        "interpretation": "You have excellent mental flexibility and can adapt your perspective quickly. You're open-minded and adaptable.",
+        "personality": "Adaptable and open-minded"
+      },
+      { 
+        "text": "I can't tell", 
+        "interpretation": "You're honest about uncertainty and prefer clarity. You're thoughtful and don't rush to conclusions.",
+        "personality": "Thoughtful and honest"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "The Müller-Lyer Illusion",
+    "description": "Look at these two lines. Which one appears longer?",
+    "image": "../assets/images/optical-illusions/muller-lyer.png",
+    "question": "Which line appears longer to you?",
+    "options": [
+      { 
+        "text": "The top line", 
+        "interpretation": "You're influenced by context and surroundings. You consider environmental factors in your decisions.",
+        "personality": "Context-aware and considerate"
+      },
+      { 
+        "text": "The bottom line", 
+        "interpretation": "You focus on the core elements and aren't easily swayed by external influences. You're independent in your thinking.",
+        "personality": "Independent and focused"
+      },
+      { 
+        "text": "They look the same", 
+        "interpretation": "You have excellent analytical skills and can see through illusions. You're logical and precise.",
+        "personality": "Logical and precise"
+      },
+      { 
+        "text": "It's hard to tell", 
+        "interpretation": "You're cautious and don't make snap judgments. You prefer to take time to analyze situations.",
+        "personality": "Cautious and analytical"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "The Ponzo Illusion",
+    "description": "Look at these two horizontal lines. Which one appears longer?",
+    "image": "../assets/images/optical-illusions/ponzo-illusion.png",
+    "question": "Which horizontal line appears longer?",
+    "options": [
+      { 
+        "text": "The top line", 
+        "interpretation": "You're influenced by perspective and depth cues. You consider spatial relationships in your thinking.",
+        "personality": "Spatial and perspective-aware"
+      },
+      { 
+        "text": "The bottom line", 
+        "interpretation": "You focus on the foreground elements and immediate details. You're present-focused and detail-oriented.",
+        "personality": "Present-focused and detail-oriented"
+      },
+      { 
+        "text": "They're the same length", 
+        "interpretation": "You have excellent spatial reasoning and can see through visual tricks. You're methodical and accurate.",
+        "personality": "Methodical and accurate"
+      },
+      { 
+        "text": "I'm not sure", 
+        "interpretation": "You're honest about visual uncertainty and prefer to verify rather than assume. You're thorough and careful.",
+        "personality": "Thorough and careful"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "The Kanizsa Triangle",
+    "description": "Look at this image. What do you see?",
+    "image": "../assets/images/optical-illusions/kanizsa-triangle.png",
+    "question": "What shape do you see in this image?",
+    "options": [
+      { 
+        "text": "A white triangle", 
+        "interpretation": "You have strong pattern recognition skills and can see shapes that aren't explicitly drawn. You're intuitive and perceptive.",
+        "personality": "Intuitive and perceptive"
+      },
+      { 
+        "text": "Three circles with gaps", 
+        "interpretation": "You focus on the individual elements rather than the whole. You're analytical and break things down into components.",
+        "personality": "Analytical and component-focused"
+      },
+      { 
+        "text": "Both the triangle and circles", 
+        "interpretation": "You can see multiple interpretations simultaneously. You're flexible and can hold multiple perspectives.",
+        "personality": "Flexible and multi-perspective"
+      },
+      { 
+        "text": "Just random shapes", 
+        "interpretation": "You don't impose patterns where none exist. You're realistic and don't see connections that aren't there.",
+        "personality": "Realistic and grounded"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "The Zöllner Illusion",
+    "description": "Look at these lines. Do they appear parallel?",
+    "image": "../assets/images/optical-illusions/zollner-illusion.png",
+    "question": "Do these lines appear parallel to you?",
+    "options": [
+      { 
+        "text": "Yes, they're parallel", 
+        "interpretation": "You can see through visual distractions and focus on the essential truth. You're focused and determined.",
+        "personality": "Focused and determined"
+      },
+      { 
+        "text": "No, they're not parallel", 
+        "interpretation": "You're influenced by surrounding context and patterns. You consider the full environment in your judgments.",
+        "personality": "Context-aware and comprehensive"
+      },
+      { 
+        "text": "It's hard to tell", 
+        "interpretation": "You're honest about visual uncertainty and prefer clarity. You don't make assumptions about unclear situations.",
+        "personality": "Honest and clarity-seeking"
+      },
+      { 
+        "text": "They seem to converge", 
+        "interpretation": "You notice directional patterns and trends. You're observant of how things change over time or space.",
+        "personality": "Observant and trend-aware"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "The Checker Shadow Illusion",
+    "description": "Look at this checkerboard. Are squares A and B the same color?",
+    "image": "../assets/images/optical-illusions/checker-shadow.png",
+    "question": "Are squares A and B the same color?",
+    "options": [
+      { 
+        "text": "Yes, they're the same", 
+        "interpretation": "You can see through contextual illusions and focus on objective reality. You're logical and objective.",
+        "personality": "Logical and objective"
+      },
+      { 
+        "text": "No, A is darker", 
+        "interpretation": "You're influenced by lighting and shadow context. You consider environmental factors in your perceptions.",
+        "personality": "Environmentally aware"
+      },
+      { 
+        "text": "No, B is darker", 
+        "interpretation": "You focus on the foreground elements and immediate visual cues. You're present-focused and detail-oriented.",
+        "personality": "Present-focused and detail-oriented"
+      },
+      { 
+        "text": "I can't tell", 
+        "interpretation": "You're honest about visual uncertainty and prefer to verify rather than assume. You're thorough and careful.",
+        "personality": "Thorough and careful"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "The Ames Room",
+    "description": "Look at this room. What seems unusual about it?",
+    "image": "../assets/images/optical-illusions/ames-room.png",
+    "question": "What seems unusual about this room?",
+    "options": [
+      { 
+        "text": "The people are different sizes", 
+        "interpretation": "You notice size relationships and proportions. You're observant of relative measurements and scales.",
+        "personality": "Observant and proportion-aware"
+      },
+      { 
+        "text": "The room shape is wrong", 
+        "interpretation": "You can see through spatial illusions and understand architectural principles. You're spatially intelligent.",
+        "personality": "Spatially intelligent"
+      },
+      { 
+        "text": "The perspective is distorted", 
+        "interpretation": "You understand visual perspective and how it can be manipulated. You're perceptive about visual tricks.",
+        "personality": "Perceptive and perspective-aware"
+      },
+      { 
+        "text": "Nothing seems unusual", 
+        "interpretation": "You accept what you see at face value and don't look for hidden meanings. You're straightforward and honest.",
+        "personality": "Straightforward and honest"
+      }
+    ]
+  }
+]

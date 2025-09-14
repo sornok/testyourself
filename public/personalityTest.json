@@ -1,0 +1,1058 @@
+[
+  {
+    "id": 1,
+    "question": "At a party, you would rather:",
+    "options": [
+      {
+        "text": "Meet new people and have deep conversations",
+        "type": "E"
+      },
+      {
+        "text": "Spend time with close friends in a quiet corner",
+        "type": "I"
+      },
+      {
+        "text": "Organize activities and make sure everyone has fun",
+        "type": "E"
+      },
+      {
+        "text": "Observe the crowd and people-watch",
+        "type": "I"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "In your free time, you would rather:",
+    "options": [
+      {
+        "text": "Read a book or watch a documentary",
+        "type": "I"
+      },
+      {
+        "text": "Go to a social event or party",
+        "type": "E"
+      },
+      {
+        "text": "Work on a creative project alone",
+        "type": "I"
+      },
+      {
+        "text": "Play team sports or group activities",
+        "type": "E"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "When meeting new people, you:",
+    "options": [
+      {
+        "text": "Feel energized and excited",
+        "type": "E"
+      },
+      {
+        "text": "Feel drained and need time to recharge",
+        "type": "I"
+      },
+      {
+        "text": "Enjoy the interaction but need breaks",
+        "type": "E"
+      },
+      {
+        "text": "Prefer one-on-one conversations",
+        "type": "I"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "In a group discussion, you:",
+    "options": [
+      {
+        "text": "Speak up frequently and share ideas",
+        "type": "E"
+      },
+      {
+        "text": "Listen more and speak when you have something important to say",
+        "type": "I"
+      },
+      {
+        "text": "Take the lead and guide the conversation",
+        "type": "E"
+      },
+      {
+        "text": "Think before speaking and choose words carefully",
+        "type": "I"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "After a long day, you prefer to:",
+    "options": [
+      {
+        "text": "Go out with friends or family",
+        "type": "E"
+      },
+      {
+        "text": "Stay home and relax quietly",
+        "type": "I"
+      },
+      {
+        "text": "Call someone to talk about your day",
+        "type": "E"
+      },
+      {
+        "text": "Spend time alone to recharge",
+        "type": "I"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "When working on a project, you:",
+    "options": [
+      {
+        "text": "Prefer to collaborate and brainstorm with others",
+        "type": "E"
+      },
+      {
+        "text": "Work best alone and focus deeply",
+        "type": "I"
+      },
+      {
+        "text": "Like to discuss ideas as you work",
+        "type": "E"
+      },
+      {
+        "text": "Need quiet time to think and process",
+        "type": "I"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "At work meetings, you:",
+    "options": [
+      {
+        "text": "Actively participate and share your thoughts",
+        "type": "E"
+      },
+      {
+        "text": "Listen carefully and speak when necessary",
+        "type": "I"
+      },
+      {
+        "text": "Enjoy the energy and interaction",
+        "type": "E"
+      },
+      {
+        "text": "Find them draining and prefer smaller groups",
+        "type": "I"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "question": "When you have good news, you:",
+    "options": [
+      {
+        "text": "Immediately want to tell everyone",
+        "type": "E"
+      },
+      {
+        "text": "Share it with a few close people",
+        "type": "I"
+      },
+      {
+        "text": "Get excited and want to celebrate with others",
+        "type": "E"
+      },
+      {
+        "text": "Keep it private and savor it quietly",
+        "type": "I"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "question": "In a new environment, you:",
+    "options": [
+      {
+        "text": "Quickly adapt and start conversations",
+        "type": "E"
+      },
+      {
+        "text": "Take time to observe and get comfortable",
+        "type": "I"
+      },
+      {
+        "text": "Feel energized by the new social opportunities",
+        "type": "E"
+      },
+      {
+        "text": "Need time to process before engaging",
+        "type": "I"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "question": "When making phone calls, you:",
+    "options": [
+      {
+        "text": "Don't mind calling and enjoy the conversation",
+        "type": "E"
+      },
+      {
+        "text": "Prefer texting or email when possible",
+        "type": "I"
+      },
+      {
+        "text": "Use phone calls as a way to connect",
+        "type": "E"
+      },
+      {
+        "text": "Find phone calls draining and prefer written communication",
+        "type": "I"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "question": "Your ideal weekend involves:",
+    "options": [
+      {
+        "text": "Social activities with friends or family",
+        "type": "E"
+      },
+      {
+        "text": "Quiet time at home or in nature",
+        "type": "I"
+      },
+      {
+        "text": "Going out and being around people",
+        "type": "E"
+      },
+      {
+        "text": "Pursuing personal hobbies alone",
+        "type": "I"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "question": "When you're stressed, you:",
+    "options": [
+      {
+        "text": "Talk to others about what's bothering you",
+        "type": "E"
+      },
+      {
+        "text": "Need alone time to process your feelings",
+        "type": "I"
+      },
+      {
+        "text": "Seek support and comfort from people",
+        "type": "E"
+      },
+      {
+        "text": "Withdraw and work through it internally",
+        "type": "I"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "question": "When making decisions, you typically:",
+    "options": [
+      {
+        "text": "Rely on facts, data, and logical analysis",
+        "type": "T"
+      },
+      {
+        "text": "Consider how it will affect people's feelings",
+        "type": "F"
+      },
+      {
+        "text": "Weigh pros and cons systematically",
+        "type": "T"
+      },
+      {
+        "text": "Go with your gut feeling and intuition",
+        "type": "F"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "question": "When someone is upset, you:",
+    "options": [
+      {
+        "text": "Try to understand their feelings and offer comfort",
+        "type": "F"
+      },
+      {
+        "text": "Look for practical solutions to their problem",
+        "type": "T"
+      },
+      {
+        "text": "Listen empathetically and validate their emotions",
+        "type": "F"
+      },
+      {
+        "text": "Analyze the situation objectively",
+        "type": "T"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "question": "In a conflict, you prefer to:",
+    "options": [
+      {
+        "text": "Focus on the facts and logical arguments",
+        "type": "T"
+      },
+      {
+        "text": "Consider everyone's feelings and find harmony",
+        "type": "F"
+      },
+      {
+        "text": "Get to the bottom of the issue quickly",
+        "type": "T"
+      },
+      {
+        "text": "Ensure no one's feelings are hurt",
+        "type": "F"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "question": "When giving feedback, you:",
+    "options": [
+      {
+        "text": "Be direct and honest about what needs improvement",
+        "type": "T"
+      },
+      {
+        "text": "Focus on positive aspects and gentle suggestions",
+        "type": "F"
+      },
+      {
+        "text": "Provide clear, objective analysis",
+        "type": "T"
+      },
+      {
+        "text": "Consider how the person will receive the feedback",
+        "type": "F"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "question": "When choosing a career, you prioritize:",
+    "options": [
+      {
+        "text": "Logical fit with your skills and interests",
+        "type": "T"
+      },
+      {
+        "text": "How it aligns with your values and helps others",
+        "type": "F"
+      },
+      {
+        "text": "Growth opportunities and intellectual challenge",
+        "type": "T"
+      },
+      {
+        "text": "Making a meaningful difference in people's lives",
+        "type": "F"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "question": "In a team project, you focus on:",
+    "options": [
+      {
+        "text": "Efficiency and achieving the best results",
+        "type": "T"
+      },
+      {
+        "text": "Team harmony and everyone's well-being",
+        "type": "F"
+      },
+      {
+        "text": "Meeting objectives and deadlines",
+        "type": "T"
+      },
+      {
+        "text": "Ensuring everyone feels valued and included",
+        "type": "F"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "question": "When someone asks for your opinion, you:",
+    "options": [
+      {
+        "text": "Give them the honest truth, even if it's harsh",
+        "type": "T"
+      },
+      {
+        "text": "Consider their feelings and soften your response",
+        "type": "F"
+      },
+      {
+        "text": "Provide objective analysis and facts",
+        "type": "T"
+      },
+      {
+        "text": "Focus on encouragement and positive aspects",
+        "type": "F"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "question": "When making purchases, you:",
+    "options": [
+      {
+        "text": "Research thoroughly and compare features",
+        "type": "T"
+      },
+      {
+        "text": "Consider how it will make you feel",
+        "type": "F"
+      },
+      {
+        "text": "Focus on value and functionality",
+        "type": "T"
+      },
+      {
+        "text": "Choose what resonates with you emotionally",
+        "type": "F"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "question": "In relationships, you value:",
+    "options": [
+      {
+        "text": "Intellectual compatibility and shared interests",
+        "type": "T"
+      },
+      {
+        "text": "Emotional connection and understanding",
+        "type": "F"
+      },
+      {
+        "text": "Honest communication and mutual respect",
+        "type": "T"
+      },
+      {
+        "text": "Deep empathy and emotional support",
+        "type": "F"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "question": "When someone makes a mistake, you:",
+    "options": [
+      {
+        "text": "Point out what went wrong and how to fix it",
+        "type": "T"
+      },
+      {
+        "text": "Focus on how they're feeling about it",
+        "type": "F"
+      },
+      {
+        "text": "Analyze the situation and provide solutions",
+        "type": "T"
+      },
+      {
+        "text": "Offer comfort and reassurance",
+        "type": "F"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "question": "Your ideal work environment has:",
+    "options": [
+      {
+        "text": "Clear structure and logical processes",
+        "type": "T"
+      },
+      {
+        "text": "Supportive colleagues and positive atmosphere",
+        "type": "F"
+      },
+      {
+        "text": "Challenging problems to solve",
+        "type": "T"
+      },
+      {
+        "text": "Opportunities to help and support others",
+        "type": "F"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "question": "When learning something new, you prefer:",
+    "options": [
+      {
+        "text": "Step-by-step logical explanations",
+        "type": "T"
+      },
+      {
+        "text": "Stories and examples that resonate emotionally",
+        "type": "F"
+      },
+      {
+        "text": "Clear facts and systematic approach",
+        "type": "T"
+      },
+      {
+        "text": "Personal connections and meaningful context",
+        "type": "F"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "question": "You prefer to:",
+    "options": [
+      {
+        "text": "Have a detailed plan before starting anything",
+        "type": "J"
+      },
+      {
+        "text": "Keep your options open and be flexible",
+        "type": "P"
+      },
+      {
+        "text": "Follow a structured routine",
+        "type": "J"
+      },
+      {
+        "text": "Adapt as you go and see what happens",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "question": "You work best when:",
+    "options": [
+      {
+        "text": "You have clear deadlines and structure",
+        "type": "J"
+      },
+      {
+        "text": "You can work at your own pace",
+        "type": "P"
+      },
+      {
+        "text": "Everything is organized and planned out",
+        "type": "J"
+      },
+      {
+        "text": "You have freedom to explore different approaches",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "question": "When planning a vacation, you:",
+    "options": [
+      {
+        "text": "Create a detailed itinerary with reservations",
+        "type": "J"
+      },
+      {
+        "text": "Keep it flexible and see what happens",
+        "type": "P"
+      },
+      {
+        "text": "Research thoroughly and book everything in advance",
+        "type": "J"
+      },
+      {
+        "text": "Pack light and go with the flow",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "question": "Your workspace is typically:",
+    "options": [
+      {
+        "text": "Organized and everything has its place",
+        "type": "J"
+      },
+      {
+        "text": "A bit messy but you know where everything is",
+        "type": "P"
+      },
+      {
+        "text": "Clean and structured",
+        "type": "J"
+      },
+      {
+        "text": "Creative chaos that works for you",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "question": "When approaching deadlines, you:",
+    "options": [
+      {
+        "text": "Start early and work steadily to finish ahead of time",
+        "type": "J"
+      },
+      {
+        "text": "Work best under pressure and close to the deadline",
+        "type": "P"
+      },
+      {
+        "text": "Plan your time carefully and stick to schedule",
+        "type": "J"
+      },
+      {
+        "text": "Let inspiration strike and work in bursts",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "question": "Your ideal schedule is:",
+    "options": [
+      {
+        "text": "Well-planned with specific times for activities",
+        "type": "J"
+      },
+      {
+        "text": "Flexible with room for spontaneity",
+        "type": "P"
+      },
+      {
+        "text": "Structured and predictable",
+        "type": "J"
+      },
+      {
+        "text": "Open and adaptable to opportunities",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "question": "When making decisions, you:",
+    "options": [
+      {
+        "text": "Make them quickly and stick to them",
+        "type": "J"
+      },
+      {
+        "text": "Keep your options open as long as possible",
+        "type": "P"
+      },
+      {
+        "text": "Prefer closure and finality",
+        "type": "J"
+      },
+      {
+        "text": "Enjoy exploring all possibilities",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "question": "Your approach to new projects is:",
+    "options": [
+      {
+        "text": "Plan everything out before starting",
+        "type": "J"
+      },
+      {
+        "text": "Dive in and figure it out as you go",
+        "type": "P"
+      },
+      {
+        "text": "Create detailed timelines and milestones",
+        "type": "J"
+      },
+      {
+        "text": "Stay open to new ideas and changes",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "question": "When shopping, you:",
+    "options": [
+      {
+        "text": "Make a list and stick to it",
+        "type": "J"
+      },
+      {
+        "text": "Browse and see what catches your eye",
+        "type": "P"
+      },
+      {
+        "text": "Research prices and compare options beforehand",
+        "type": "J"
+      },
+      {
+        "text": "Enjoy the discovery process",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "question": "Your ideal workday has:",
+    "options": [
+      {
+        "text": "Clear goals and structured tasks",
+        "type": "J"
+      },
+      {
+        "text": "Variety and unexpected opportunities",
+        "type": "P"
+      },
+      {
+        "text": "Predictable routine and organization",
+        "type": "J"
+      },
+      {
+        "text": "Flexibility to follow your interests",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "question": "When learning a new skill, you:",
+    "options": [
+      {
+        "text": "Follow a structured curriculum step by step",
+        "type": "J"
+      },
+      {
+        "text": "Explore different methods and find what works",
+        "type": "P"
+      },
+      {
+        "text": "Set specific goals and track your progress",
+        "type": "J"
+      },
+      {
+        "text": "Experiment and learn through trial and error",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "question": "Your ideal living space is:",
+    "options": [
+      {
+        "text": "Well-organized with everything in its place",
+        "type": "J"
+      },
+      {
+        "text": "Flexible and adaptable to different needs",
+        "type": "P"
+      },
+      {
+        "text": "Clean, structured, and predictable",
+        "type": "J"
+      },
+      {
+        "text": "Dynamic and open to change",
+        "type": "P"
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "question": "When learning something new, you:",
+    "options": [
+      {
+        "text": "Focus on the big picture and overall concept",
+        "type": "N"
+      },
+      {
+        "text": "Pay attention to specific details and facts",
+        "type": "S"
+      },
+      {
+        "text": "Look for patterns and possibilities",
+        "type": "N"
+      },
+      {
+        "text": "Prefer concrete, practical examples",
+        "type": "S"
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "question": "When solving problems, you:",
+    "options": [
+      {
+        "text": "Think about future possibilities and implications",
+        "type": "N"
+      },
+      {
+        "text": "Focus on what's happening right now",
+        "type": "S"
+      },
+      {
+        "text": "Consider multiple creative solutions",
+        "type": "N"
+      },
+      {
+        "text": "Use proven methods and past experience",
+        "type": "S"
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "question": "You're more interested in:",
+    "options": [
+      {
+        "text": "What could be and future possibilities",
+        "type": "N"
+      },
+      {
+        "text": "What is and current reality",
+        "type": "S"
+      },
+      {
+        "text": "Theoretical concepts and ideas",
+        "type": "N"
+      },
+      {
+        "text": "Practical applications and results",
+        "type": "S"
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "question": "When reading, you prefer:",
+    "options": [
+      {
+        "text": "Books that explore new ideas and concepts",
+        "type": "N"
+      },
+      {
+        "text": "Books with practical, actionable information",
+        "type": "S"
+      },
+      {
+        "text": "Stories that make you think about possibilities",
+        "type": "N"
+      },
+      {
+        "text": "Stories based on real events and facts",
+        "type": "S"
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "question": "Your ideal job involves:",
+    "options": [
+      {
+        "text": "Creating new solutions and innovative approaches",
+        "type": "N"
+      },
+      {
+        "text": "Working with concrete, tangible results",
+        "type": "S"
+      },
+      {
+        "text": "Exploring abstract concepts and theories",
+        "type": "N"
+      },
+      {
+        "text": "Handling practical, hands-on tasks",
+        "type": "S"
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "question": "When making decisions, you rely on:",
+    "options": [
+      {
+        "text": "Intuition and gut feelings",
+        "type": "N"
+      },
+      {
+        "text": "Past experience and proven methods",
+        "type": "S"
+      },
+      {
+        "text": "Future possibilities and potential outcomes",
+        "type": "N"
+      },
+      {
+        "text": "Current facts and available data",
+        "type": "S"
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "question": "Your ideal vacation involves:",
+    "options": [
+      {
+        "text": "Exploring new cultures and ideas",
+        "type": "N"
+      },
+      {
+        "text": "Relaxing and enjoying familiar comforts",
+        "type": "S"
+      },
+      {
+        "text": "Learning about different ways of thinking",
+        "type": "N"
+      },
+      {
+        "text": "Experiencing specific activities and sights",
+        "type": "S"
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "question": "When working on a project, you:",
+    "options": [
+      {
+        "text": "Start with the overall vision and work down",
+        "type": "N"
+      },
+      {
+        "text": "Begin with specific details and build up",
+        "type": "S"
+      },
+      {
+        "text": "Focus on the end goal and work backwards",
+        "type": "N"
+      },
+      {
+        "text": "Take it step by step from the beginning",
+        "type": "S"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "question": "Your ideal learning environment has:",
+    "options": [
+      {
+        "text": "Open discussions and theoretical exploration",
+        "type": "N"
+      },
+      {
+        "text": "Clear instructions and practical exercises",
+        "type": "S"
+      },
+      {
+        "text": "Room for creative thinking and innovation",
+        "type": "N"
+      },
+      {
+        "text": "Structured activities and concrete examples",
+        "type": "S"
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "question": "When meeting new people, you notice:",
+    "options": [
+      {
+        "text": "Their potential and what they could become",
+        "type": "N"
+      },
+      {
+        "text": "Their current situation and immediate needs",
+        "type": "S"
+      },
+      {
+        "text": "Their ideas and way of thinking",
+        "type": "N"
+      },
+      {
+        "text": "Their appearance and immediate characteristics",
+        "type": "S"
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "question": "Your ideal hobby involves:",
+    "options": [
+      {
+        "text": "Exploring new concepts and ideas",
+        "type": "N"
+      },
+      {
+        "text": "Working with your hands and creating tangible results",
+        "type": "S"
+      },
+      {
+        "text": "Learning about abstract theories",
+        "type": "N"
+      },
+      {
+        "text": "Practicing specific skills and techniques",
+        "type": "S"
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "question": "When choosing a career, you prioritize:",
+    "options": [
+      {
+        "text": "Opportunities for growth and innovation",
+        "type": "N"
+      },
+      {
+        "text": "Stability and proven career paths",
+        "type": "S"
+      },
+      {
+        "text": "Creative freedom and intellectual challenge",
+        "type": "N"
+      },
+      {
+        "text": "Clear job duties and practical skills",
+        "type": "S"
+      }
+    ]
+  }
+]

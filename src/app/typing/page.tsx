@@ -1,0 +1,1017 @@
+'use client'
+
+import { useState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
+import { getRandomTypingChallenge, calculateTypingStats } from '@/lib/typingChallenges'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+
+interface TypingChallenge {
+  id: string;
+  difficulty: string;
+  duration: number;
+  text: string;
+  segments: string[] | null;
+  texts: string[];
+  totalWords: number;
+  totalCharacters: number;
+}
+
+interface TypingStats {
+  accuracy: number;
+  wpm: number;
+  cpm: number;
+  duration: number;
+  wordsTyped: number;
+  totalWords: number;
+  charactersTyped: number;
+  totalCharacters: number;
+  correctCharacters: number;
+  errors: number;
+  wordErrors: number;
+  missingWords: number;
+  score: number;
+  performance: string;
+}
+
+export default function TypingTest() {
+  const [challenge, setChallenge] = useState<TypingChallenge | null>(null)
+  const [userText, setUserText] = useState('')
+  const [corrections, setCorrections] = useState(0)
+  const [previousText, setPreviousText] = useState('')
+  const [timeLeft, setTimeLeft] = useState(60)
+  const [isActive, setIsActive] = useState(false)
+  const [isComplete, setIsComplete] = useState(false)
+  const [showResults, setShowResults] = useState(false)
+  const [stats, setStats] = useState<TypingStats | null>(null)
+  const [selectedTime, setSelectedTime] = useState(60)
+  const [selectedDifficulty, setSelectedDifficulty] = useState('easy')
+  const [showSettings, setShowSettings] = useState(true)
+  const [hasBegun, setHasBegun] = useState(false)
+  const [showReview, setShowReview] = useState(false)
+  const [showShareDropdown, setShowShareDropdown] = useState(false)
+  const [showShare, setShowShare] = useState(false)
+  const [needsTopButtons, setNeedsTopButtons] = useState(false)
+  const [currentSegment, setCurrentSegment] = useState(0)
+  const [userSegments, setUserSegments] = useState<string[]>([])
+  const router = useRouter()
+  const reviewRef = useRef<HTMLDivElement>(null)
+  const bottomButtonsRef = useRef<HTMLDivElement>(null)
+
+  // Generate random challenge when settings change
+  useEffect(() => {
+    if (!showSettings) {
+      const loadChallenge = async () => {
+        try {
+          const newChallenge = await getRandomTypingChallenge(selectedDifficulty, selectedTime)
+          console.log('Generated challenge:', newChallenge)
+          setChallenge(newChallenge)
+          setTimeLeft(selectedTime)
+        } catch (error) {
+          console.error('Error loading typing challenge:', error)
+        }
+      }
+      loadChallenge()
+    }
+  }, [selectedDifficulty, selectedTime, showSettings])
+
+  // Timer effect
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null
+    if (isActive && hasBegun && timeLeft > 0) {
+      interval = setInterval(() => {
+        setTimeLeft(timeLeft => timeLeft - 1)
+      }, 1000)
+    } else if (timeLeft === 0 && isActive && hasBegun) {
+      handleTimeUp()
+    }
+    return () => {
+      if (interval) clearInterval(interval)
+    }
+  }, [isActive, hasBegun, timeLeft])
+
+  // Check if bottom buttons are visible in viewport
+  const checkBottomButtonsVisibility = () => {
+    if (!bottomButtonsRef.current) return false
+    
+    const rect = bottomButtonsRef.current.getBoundingClientRect()
+    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight
+    
+    return !isVisible // Show top buttons when bottom buttons are NOT visible
+  }
+
+  // Update needsTopButtons when showReview or showShare changes
+  useEffect(() => {
+    // If either review or share is shown, check if we need top buttons
+    if (showReview || showShare) {
+      // Use a small delay to ensure DOM is updated
+      setTimeout(() => {
+        setNeedsTopButtons(checkBottomButtonsVisibility())
+      }, 100)
+    } else {
+      setNeedsTopButtons(false)
+    }
+  }, [showReview, showShare])
+
+  // Add scroll and resize listeners to update button visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      if (showReview || showShare) { // Only check when review/share is active
+        setNeedsTopButtons(checkBottomButtonsVisibility())
+      }
+    }
+
+    const handleResize = () => {
+      if (showReview || showShare) { // Only check when review/share is active
+        setNeedsTopButtons(checkBottomButtonsVisibility())
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [showReview, showShare])
+
+  const startTest = () => {
+    console.log('Starting test with:', { selectedDifficulty, selectedTime, challenge })
+    setIsActive(true)
+    setUserText('')
+    setTimeLeft(selectedTime)
+    setShowSettings(false)
+  }
+
+  const beginTyping = () => {
+    setHasBegun(true)
+    // Auto-focus the first input after a short delay to ensure it's rendered
+    setTimeout(() => {
+      if (challenge?.segments) {
+        const firstInput = document.querySelector('input[data-line-index="0"]') as HTMLInputElement
+        if (firstInput) {
+          firstInput.focus()
+        }
+      } else {
+        const textarea = document.querySelector('textarea') as HTMLTextAreaElement
+        if (textarea) {
+          textarea.focus()
+        }
+      }
+    }, 100)
+  }
+
+  const handleTimeUp = () => {
+    setIsActive(false)
+    setIsComplete(true)
+    calculateResults()
+  }
+
+  const calculateResults = () => {
+    if (!challenge) return
+    
+    const timeUsed = selectedTime - timeLeft
+    const inputData = challenge.segments ? userSegments.join(' ') : userText
+    
+    // Create challenge object with timing data for stats calculation
+    const challengeWithTiming = {
+      ...challenge,
+      startTime: Date.now() - (timeUsed * 1000),
+      endTime: Date.now()
+    }
+    
+    const results = calculateTypingStats(inputData, challengeWithTiming)
+    setStats(results)
+    setShowResults(true)
+  }
+
+  const retakeTest = async () => {
+    try {
+      const newChallenge = await getRandomTypingChallenge(selectedDifficulty, selectedTime)
+      setChallenge(newChallenge)
+      setUserText('')
+      setUserSegments([])
+      setCurrentSegment(0)
+      setCorrections(0)
+      setPreviousText('')
+      setTimeLeft(selectedTime)
+      setIsActive(false)
+      setIsComplete(false)
+      setShowResults(false)
+      setStats(null)
+    } catch (error) {
+      console.error('Error loading typing challenge:', error)
+    }
+    setHasBegun(false)
+    setShowSettings(true)
+    setShowReview(false)
+    setShowShare(false)
+    setShowShareDropdown(false)
+    setNeedsTopButtons(false)
+  }
+
+  const handleReviewToggle = () => {
+    if (!showReview) {
+      setShowShare(false)
+      setShowShareDropdown(false)
+    }
+    setShowReview(!showReview)
+  }
+
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (isActive && !isComplete) {
+      const newText = e.target.value
+      const oldText = userText
+      
+      // Detect if this is a correction
+      if (newText.length < oldText.length || (newText.length === oldText.length && newText !== oldText)) {
+        setCorrections(prev => prev + 1)
+      }
+      
+      setUserText(newText)
+      setPreviousText(oldText)
+    }
+  }
+
+  const handleSegmentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isActive && !isComplete && challenge?.segments) {
+      const newText = e.target.value
+      const oldText = userSegments[currentSegment] || ''
+      
+      // Detect if this is a correction
+      if (newText.length < oldText.length || (newText.length === oldText.length && newText !== oldText)) {
+        setCorrections(prev => prev + 1)
+      }
+      
+      // Update the current segment
+      const newUserSegments = [...userSegments]
+      newUserSegments[currentSegment] = newText
+      setUserSegments(newUserSegments)
+      
+      // Check if segment is complete and auto-advance
+      const currentSegmentText = challenge.segments[currentSegment]
+      if (newText.trim() === currentSegmentText.trim()) {
+        setTimeout(() => {
+          if (challenge.segments && currentSegment < challenge.segments.length - 1) {
+            setCurrentSegment(currentSegment + 1)
+          } else {
+            // All segments completed - finish the test
+            handleTimeUp()
+          }
+        }, 300)
+      }
+    }
+  }
+
+  const handleShareToggle = () => {
+    if (!showShare) {
+      setShowReview(false)
+    }
+    setShowShare(!showShare)
+    setShowShareDropdown(false)
+  }
+
+  // Analyze text for review
+  const analyzeText = () => {
+    if (!challenge || !stats) return null
+
+    const originalText = challenge.text
+    const userTextToAnalyze = challenge.segments ? userSegments.join(' ') : userText
+    
+    // Split into words for word-based analysis (consistent with original stats)
+    const originalWords = originalText.split(' ').filter(word => word.length > 0)
+    const userWords = userTextToAnalyze.trim().split(' ').filter(word => word.length > 0)
+    
+    const analysis = {
+      originalText,
+      userText: userTextToAnalyze,
+      originalWords,
+      userWords,
+      errors: [] as any[],
+      correctWords: 0,
+      totalWords: originalWords.length,
+      errorRate: 0,
+      correctionRate: 0,
+      completionRate: 0
+    }
+
+    // Word-by-word comparison (consistent with original stats calculation)
+    const maxLength = Math.max(originalWords.length, userWords.length)
+    for (let i = 0; i < maxLength; i++) {
+      const originalWord = originalWords[i] || ''
+      const userWord = userWords[i] || ''
+      
+      if (originalWord.toLowerCase() === userWord.toLowerCase()) {
+        analysis.correctWords++
+      } else if (!userWord) {
+        // Missing word due to time running out - not an error
+        analysis.errors.push({
+          position: i,
+          original: originalWord,
+          user: userWord,
+          isMissing: true,
+          isExtra: false,
+          isTimeOut: true
+        })
+      } else if (!originalWord) {
+        // Extra word - this is an error
+        analysis.errors.push({
+          position: i,
+          original: originalWord,
+          user: userWord,
+          isMissing: false,
+          isExtra: true,
+          isTimeOut: false
+        })
+      } else {
+        // Wrong word - this is an error
+        analysis.errors.push({
+          position: i,
+          original: originalWord,
+          user: userWord,
+          isMissing: false,
+          isExtra: false,
+          isTimeOut: false
+        })
+      }
+    }
+
+    // Calculate error rate excluding missing words (only actual typing errors)
+    const actualErrors = analysis.errors.filter(e => !e.isTimeOut)
+    analysis.errorRate = (actualErrors.length / analysis.totalWords) * 100
+    
+    // Calculate correction rate using actual corrections tracked during typing
+    const totalWordsTyped = analysis.userWords.length
+    analysis.correctionRate = totalWordsTyped > 0 ? (corrections / totalWordsTyped) * 100 : 0
+    
+    // Calculate completion rate (words completed vs total words)
+    analysis.completionRate = (analysis.userWords.length / analysis.totalWords) * 100
+    
+    return analysis
+  }
+
+  const handleTwitterShare = () => {
+    const shareText = `I just completed a typing test! ${stats ? `Speed: ${stats.wpm} WPM, Accuracy: ${stats.accuracy}%` : 'Check out my results!'} #TypingTest #TestYourself`
+    const shareUrl = window.location.origin + '/typing'
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`
+    window.open(url, '_blank', 'width=800,height=600')
+    setShowShareDropdown(false)
+  }
+
+  // Settings screen
+  if (showSettings) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
+          <div className="max-w-6xl mx-auto">
+            {/* Header */}
+            <Header onLogoClick={undefined} />
+            
+            {/* Test Title Box */}
+            <div className="text-center mb-2">
+              <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg border border-green-200 p-6 w-full">
+                <h1 className="text-xl font-bold text-green-800 mb-3">Typing Speed Challenge - <span className="font-normal">Configure your typing test settings</span></h1>
+                
+                {/* Test Info */}
+                <div className="bg-white border border-green-200 rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
+                  <span className="font-medium">Format:</span> Speed and accuracy test
+                  <span className="text-green-500 ml-2">⌨️ Improve your typing skills</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Settings Card */}
+            <div className="bg-blue-50 rounded-2xl shadow-lg p-8 mb-2">
+              <h2 className="text-xl font-semibold text-gray-800 mb-2 text-center">Test Configuration</h2>
+              
+              {/* Time Selection */}
+              <div className="mb-2">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">Time Limit</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {[
+                    { value: 30, label: '30 seconds' },
+                    { value: 60, label: '1 minute' },
+                    { value: 120, label: '2 minutes' },
+                    { value: 180, label: '3 minutes' }
+                  ].map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => setSelectedTime(option.value)}
+                      className={`p-4 rounded-lg border-2 transition-all duration-300 ${
+                        selectedTime === option.value
+                          ? 'border-green-500 bg-green-50 text-green-700'
+                          : 'border-gray-200 hover:border-green-300 hover:bg-green-50'
+                      }`}
+                    >
+                      <div className="font-semibold">{option.label}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Difficulty Selection */}
+              <div className="mb-2">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">Difficulty Level</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <button
+                    onClick={() => setSelectedDifficulty('easy')}
+                    className={`p-6 rounded-lg border-2 transition-all duration-300 ${
+                      selectedDifficulty === 'easy'
+                        ? 'border-green-500 bg-green-50 text-green-700'
+                        : 'border-gray-200 hover:border-green-300 hover:bg-green-50'
+                    }`}
+                  >
+                    <div className="text-xl font-semibold mb-2">Easy Mode</div>
+                    <div className="text-sm text-gray-600">
+                      Segmented typing format. Type each segment individually with auto-advance.
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setSelectedDifficulty('hard')}
+                    className={`p-6 rounded-lg border-2 transition-all duration-300 ${
+                      selectedDifficulty === 'hard'
+                        ? 'border-red-500 bg-red-50 text-red-700'
+                        : 'border-gray-200 hover:border-red-300 hover:bg-red-50'
+                    }`}
+                  >
+                    <div className="text-xl font-semibold mb-2">Hard Mode</div>
+                    <div className="text-sm text-gray-600">
+                      Wall of text format. Type the entire passage in one go. Challenge yourself!
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              {/* Start Button */}
+              <div className="text-center mt-8">
+                <button
+                  onClick={startTest}
+                  className="px-8 py-4 bg-green-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300 text-lg"
+                >
+                  Start Typing Challenge
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Footer Component */}
+        <Footer />
+      </div>
+    )
+  }
+
+  if (!challenge) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
+          <div className="max-w-6xl mx-auto">
+            {/* Header */}
+            <Header onLogoClick={undefined} />
+            
+            <div className="flex items-center justify-center min-h-[400px]">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
+                <p className="text-gray-600">Loading typing challenge...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Footer Component */}
+        <Footer />
+      </div>
+    )
+  }
+
+  // Results screen - simplified for now
+  if (showResults && stats) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
+          <div className="max-w-6xl mx-auto">
+            {/* Header */}
+            <Header onLogoClick={undefined} />
+            
+            {/* Results Content - Hide when review or share is shown */}
+            {!showReview && !showShare && (
+              <>
+                {/* Results Header */}
+                <div className="text-center mb-2">
+                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 mb-4">
+                    <h1 className="text-xl font-bold text-gray-800 mb-4">Typing Speed Results</h1>
+                    <div className="space-y-2 mb-6">
+                      <h2 className="text-lg font-semibold text-gray-800">
+                        {selectedDifficulty === 'easy' ? 'Easy Mode (Segmented)' : 'Hard Mode (Wall of Text)'} • {selectedTime}s
+                      </h2>
+                      <p className="text-gray-600">Time: {selectedTime - timeLeft} seconds</p>
+                    </div>
+                    
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                      <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
+                        <div className="text-xl font-bold text-purple-600 mb-2">{stats.score}</div>
+                        <div className="text-gray-600 font-medium">Overall Score</div>
+                      </div>
+                      <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
+                        <div className="text-xl font-bold text-blue-600 mb-2">{stats.wpm}</div>
+                        <div className="text-gray-600 font-medium">Words Per Minute</div>
+                      </div>
+                      <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
+                        <div className="text-xl font-bold text-green-600 mb-2">{stats.accuracy}%</div>
+                        <div className="text-gray-600 font-medium">Accuracy</div>
+                      </div>
+                      <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
+                        <div className="text-xl font-bold text-red-600 mb-2">{stats.errors}</div>
+                        <div className="text-gray-600 font-medium">Issues</div>
+                      </div>
+                      <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
+                        <div className="text-lg font-bold text-orange-600 mb-2 break-words">{stats.performance}</div>
+                        <div className="text-gray-600 font-medium">Level</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Performance Feedback */}
+                <div className="bg-purple-50 rounded-2xl shadow-lg p-6 mb-3">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">Performance Analysis</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <h4 className="text-base font-semibold text-gray-800 mb-2">Speed Analysis</h4>
+                      <p className="text-gray-600 text-sm mb-2">
+                        You typed at <span className="font-semibold text-blue-600">{stats.wpm} WPM</span>.
+                        {stats.wpm >= 60 && " Excellent speed! You're typing like a professional."}
+                        {stats.wpm >= 45 && stats.wpm < 60 && " Good speed! You're above average."}
+                        {stats.wpm >= 30 && stats.wpm < 45 && " Decent speed! Keep practicing to improve."}
+                        {stats.wpm < 30 && " Keep practicing! Speed will improve with time."}
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="text-base font-semibold text-gray-800 mb-2">Accuracy Analysis</h4>
+                      <p className="text-gray-600 text-sm mb-2">
+                        You achieved <span className="font-semibold text-green-600">{stats.accuracy}% accuracy</span>.
+                        {stats.accuracy >= 95 && " Outstanding accuracy! You're very precise."}
+                        {stats.accuracy >= 90 && stats.accuracy < 95 && " Great accuracy! Very good work."}
+                        {stats.accuracy >= 85 && stats.accuracy < 90 && " Good accuracy! Focus on precision."}
+                        {stats.accuracy < 85 && " Work on accuracy! Slow down to be more precise."}
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="text-base font-semibold text-gray-800 mb-2">Score Breakdown</h4>
+                      <div className="text-gray-600 text-sm space-y-1">
+                        <p>
+                          <span className="font-semibold text-blue-600">{stats.wpm}</span> WPM × 1.0 = <span className="font-semibold">{Math.min(Math.round(stats.wpm * 1.0), 60)}</span> points
+                        </p>
+                        <p>
+                          <span className="font-semibold text-green-600">{stats.accuracy}%</span> accuracy × 0.3 = <span className="font-semibold">{Math.min(Math.round(stats.accuracy * 0.3), 30)}</span> points
+                        </p>
+                        <p>
+                          <span className="font-semibold text-red-600">{stats.errors}</span> issues × -2 = <span className="font-semibold">-{Math.min(stats.errors * 2, 10)}</span> points
+                        </p>
+                        <div className="border-t pt-1 mt-2">
+                          <p className="font-semibold text-purple-600">
+                            Total Score: {stats.score}/100
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="text-base font-semibold text-gray-800 mb-2">Typing Analysis</h4>
+                      <div className="text-gray-600 text-sm">
+                        <p>Incorrect words: {stats.wordErrors || 0}</p>
+                        <p>Total issues: {stats.errors || 0}</p>
+                        <p>Incomplete words: {stats.missingWords || 0}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Top Action Buttons - Only show when page is scrollable */}
+            {needsTopButtons && (showReview || showShare) && (
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 pb-4">
+                <button
+                  onClick={handleShareToggle}
+                  className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                >
+                  {showShare ? 'Hide Share' : 'Share Results'}
+                </button>
+                <button
+                  onClick={handleReviewToggle}
+                  className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                >
+                  {showReview ? 'Hide Review' : 'Show Review'}
+                </button>
+                <button
+                  onClick={retakeTest}
+                  className="px-8 py-3 bg-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                >
+                  Try Another Challenge
+                </button>
+              </div>
+            )}
+
+            {/* Test Title - Show when review or share is shown */}
+            {(showReview || showShare) && (
+              <div className={`text-center mb-4 ${needsTopButtons ? '-mt-8' : 'mt-4'}`}>
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 px-2 py-0.5">
+                  <h1 className="text-lg font-bold text-gray-800">
+                    Typing Speed Results - {selectedDifficulty === 'easy' ? 'Easy Mode (Segmented)' : 'Hard Mode (Wall of Text)'} • {selectedTime}s
+                  </h1>
+                </div>
+              </div>
+            )}
+
+            {/* Share Section */}
+            {showShare && !showReview && (
+              <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mb-4 mt-4">
+                <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">Share Your Results</h3>
+                <p className="text-gray-600 mb-6 text-center">Choose a platform to share your test results</p>
+                
+                <div className="flex justify-start">
+                  <button
+                    onClick={handleTwitterShare}
+                    className="p-4 text-left bg-blue-50 hover:bg-blue-100 rounded-2xl shadow-lg border border-blue-200 transition-colors flex items-center"
+                  >
+                    <span className="text-2xl mr-3">🐦</span>
+                    <div>
+                      <div className="font-semibold text-blue-800">Twitter</div>
+                      <div className="text-sm text-blue-600">Share on Twitter</div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Text Review */}
+            {showReview && (
+              <div ref={reviewRef} className="bg-indigo-50 rounded-2xl shadow-lg p-8 mb-4 mt-4">
+                <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">Text Analysis Review</h3>
+                {(() => {
+                  const analysis = analyzeText()
+                  if (!analysis) return <p className="text-gray-600 text-center">No analysis available</p>
+                  
+                  return (
+                    <div className="space-y-6">
+                      {/* Error Statistics */}
+                      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
+                        <div className="bg-red-50 rounded-lg p-4 text-center">
+                          <div className="text-xl font-bold text-red-600">{analysis.errors.filter(e => !e.isTimeOut).length}</div>
+                          <div className="text-red-600 font-medium">Actual Errors</div>
+                        </div>
+                        <div className="bg-orange-50 rounded-lg p-4 text-center">
+                          <div className="text-xl font-bold text-orange-600">{analysis.errors.filter(e => e.isTimeOut).length}</div>
+                          <div className="text-orange-600 font-medium">Missing (Time)</div>
+                        </div>
+                        <div className="bg-green-50 rounded-lg p-4 text-center">
+                          <div className="text-xl font-bold text-green-600">{corrections}</div>
+                          <div className="text-green-600 font-medium">Corrected Words</div>
+                        </div>
+                        <div className="bg-blue-50 rounded-lg p-4 text-center">
+                          <div className="text-xl font-bold text-blue-600">{analysis.errorRate.toFixed(1)}%</div>
+                          <div className="text-blue-600 font-medium">Error Rate</div>
+                        </div>
+                        <div className="bg-purple-50 rounded-lg p-4 text-center">
+                          <div className="text-xl font-bold text-purple-600">{analysis.correctionRate.toFixed(1)}%</div>
+                          <div className="text-purple-600 font-medium">Correction Rate</div>
+                        </div>
+                        <div className="bg-indigo-50 rounded-lg p-4 text-center">
+                          <div className="text-xl font-bold text-indigo-600">{analysis.completionRate.toFixed(1)}%</div>
+                          <div className="text-indigo-600 font-medium">Completed</div>
+                        </div>
+                      </div>
+
+                      {/* Text Comparison */}
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-800 mb-3">Original Text</h4>
+                          <div className="bg-gray-50 rounded-lg p-4 font-mono text-sm leading-relaxed">
+                            {analysis.originalText}
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-800 mb-3">Your Text</h4>
+                          <div className="bg-gray-50 rounded-lg p-4 font-mono text-sm leading-relaxed">
+                            {analysis.userText}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Error Details */}
+                      {analysis.errors.length > 0 && (
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-800 mb-3">Word Analysis Details</h4>
+                          <div className="space-y-2 max-h-60 overflow-y-auto">
+                            {analysis.errors.slice(0, 20).map((error, index) => (
+                              <div key={index} className={`border rounded-lg p-3 ${
+                                error.isTimeOut 
+                                  ? 'bg-orange-50 border-orange-200' 
+                                  : 'bg-red-50 border-red-200'
+                              }`}>
+                                <div className="flex items-center gap-2 text-sm">
+                                  <span className={`font-mono px-2 py-1 rounded ${
+                                    error.isTimeOut 
+                                      ? 'bg-orange-100 text-orange-700' 
+                                      : 'bg-red-100 text-red-700'
+                                  }`}>
+                                    Word {error.position + 1}
+                                  </span>
+                                  <span className={error.isTimeOut ? 'text-orange-600' : 'text-red-600'}>
+                                    Expected: <span className="font-mono px-1 rounded" style={{backgroundColor: '#fbbf24'}}>"{error.original}"</span>
+                                  </span>
+                                  <span className={error.isTimeOut ? 'text-orange-600' : 'text-red-600'}>
+                                    Got: <span className="font-mono px-1 rounded" style={{backgroundColor: '#fbbf24'}}>"{error.user || 'Not typed'}"</span>
+                                  </span>
+                                  {error.isTimeOut && <span className="text-orange-500 text-xs">(Time ran out)</span>}
+                                  {error.isMissing && !error.isTimeOut && <span className="text-red-500 text-xs">(Missing)</span>}
+                                  {error.isExtra && <span className="text-red-500 text-xs">(Extra)</span>}
+                                </div>
+                              </div>
+                            ))}
+                            {analysis.errors.length > 20 && (
+                              <p className="text-gray-500 text-sm text-center">
+                                ... and {analysis.errors.length - 20} more items
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Performance Insights */}
+                      <div className="bg-blue-50 rounded-lg p-4">
+                        <h4 className="text-lg font-semibold text-blue-800 mb-2">Performance Insights</h4>
+                        <div className="text-blue-700 text-sm space-y-1">
+                          {analysis.errorRate < 5 && <p>• Excellent accuracy! You made very few word errors.</p>}
+                          {analysis.errorRate >= 5 && analysis.errorRate < 15 && <p>• Good accuracy! Consider slowing down slightly for better precision.</p>}
+                          {analysis.errorRate >= 15 && <p>• Focus on accuracy! Try typing slower to reduce word errors.</p>}
+                          {analysis.errors.filter(e => e.isMissing).length > analysis.errors.filter(e => e.isExtra).length && 
+                            <p>• You tend to skip words. Try to be more thorough.</p>}
+                          {analysis.errors.filter(e => e.isExtra).length > analysis.errors.filter(e => e.isMissing).length && 
+                            <p>• You tend to add extra words. Focus on precision.</p>}
+                          <p>• This analysis matches the error count shown in your main results above.</p>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })()}
+              </div>
+            )}
+
+            {/* Bottom Action Buttons - Always visible at the bottom */}
+            <div ref={bottomButtonsRef} className="-mx-4 px-4 py-2 mb-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  onClick={handleShareToggle}
+                  className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                >
+                  {showShare ? 'Hide Share' : 'Share Results'}
+                </button>
+                <button
+                  onClick={handleReviewToggle}
+                  className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                >
+                  {showReview ? 'Hide Review' : 'Show Review'}
+                </button>
+                <button
+                  onClick={retakeTest}
+                  className="px-8 py-3 bg-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                >
+                  Try Another Challenge
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Footer Component */}
+        <Footer />
+      </div>
+    )
+  }
+
+  // Main test screen
+  return (
+    <div className="min-h-screen flex flex-col">
+      <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <Header onLogoClick={undefined} />
+          
+          {/* Test Title Box */}
+          <div className="text-center mb-2">
+            <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg border border-green-200 p-6 w-full">
+              <h1 className="text-xl font-bold text-green-800 mb-3">Typing Speed Challenge - <span className="font-normal">Test your typing speed and accuracy</span></h1>
+              
+              <div className="bg-white border border-green-200 rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
+                <span className="font-medium">Mode:</span> {selectedDifficulty === 'easy' ? 'Easy Mode (Segmented)' : 'Hard Mode (Wall of Text)'} • {selectedTime}s
+                <span className="text-green-500 ml-2">⌨️ Improve your typing skills</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Begin Button - Shows when test is active but not begun */}
+          {isActive && !hasBegun && (
+            <div className="text-center mb-2">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-2xl shadow-lg p-4">
+                <h3 className="text-xl font-semibold text-yellow-800 mb-3">Ready to Begin?</h3>
+                <p className="text-yellow-700 mb-4">
+                  Take a moment to read the instructions below. When you're ready, click the button to start typing.
+                </p>
+                <button
+                  onClick={beginTyping}
+                  className="px-8 py-0.5 bg-yellow-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300 text-lg"
+                >
+                  Begin Typing Now
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Instructions - Show when test hasn't begun */}
+          {!hasBegun && (
+            <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mb-4">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">Typing Challenge Instructions</h3>
+              <div className="space-y-3 text-gray-600">
+                <div>
+                  <h4 className="font-semibold text-gray-800 mb-2">Test Format</h4>
+                  <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Easy Mode:</strong> Type segments one at a time with auto-advance</li>
+                    <li><strong>Hard Mode:</strong> Type the entire text in one textarea</li>
+                  </ul>
+                </div>
+                <div className="border-t border-gray-200 pt-3">
+                  <h4 className="font-semibold text-gray-800 mb-2">How It Works</h4>
+                  <ul className="space-y-1">
+                    <li>• Choose time limit (30s, 1m, 2m, 3m) and difficulty</li>
+                    <li>• Type as accurately and quickly as possible</li>
+                    <li>• Score based on WPM and accuracy</li>
+                    <li>• Easy Mode: Segments auto-advance when completed correctly</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Test Content - Only show when test has begun */}
+          {hasBegun ? (
+            <>
+              {/* Easy Mode - Segmented */}
+              {challenge.segments ? (
+                <>
+                  {/* Timer and Progress Side by Side */}
+                  <div className="flex gap-3 mb-3">
+                    {/* Timer */}
+                    <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-2 flex-1 flex items-center justify-center">
+                      <div className="flex items-center gap-3">
+                        <div className="text-xl font-bold text-gray-800">
+                          {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+                        </div>
+                        <div className="text-gray-600 text-sm">
+                          Time Remaining
+                        </div>
+                        <button
+                          onClick={handleTimeUp}
+                          className="ml-2 px-3 py-1 bg-red-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 text-sm"
+                        >
+                          Finish Early
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Progress Indicator */}
+                    <div className="bg-blue-50 rounded-2xl shadow-lg p-3 flex-1">
+                      <div className="flex items-center justify-between mb-1">
+                        <h3 className="text-base font-semibold text-gray-800">Segment {currentSegment + 1} of {challenge.segments.length}</h3>
+                        <div className="text-xs text-gray-600">
+                          {Math.round(((currentSegment + 1) / challenge.segments.length) * 100)}%
+                        </div>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-1.5">
+                        <div 
+                          className="bg-blue-500 h-1.5 rounded-full transition-all duration-300"
+                          style={{ width: `${((currentSegment + 1) / challenge.segments.length) * 100}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Full Text with Highlighted Current Segment */}
+                  <div className="bg-purple-50 rounded-2xl shadow-lg p-3 mb-3">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Type the following text:</h3>
+                    <div className="bg-gray-50 rounded-lg p-3 text-base leading-relaxed text-gray-700 font-mono">
+                      {(() => {
+                        const fullText = challenge.text
+                        const currentSegmentText = challenge.segments[currentSegment]
+                        const segmentStart = fullText.indexOf(currentSegmentText)
+                        const segmentEnd = segmentStart + currentSegmentText.length
+                        
+                        return (
+                          <>
+                            {fullText.substring(0, segmentStart)}
+                            <span className="bg-yellow-200 px-1 rounded">
+                              {fullText.substring(segmentStart, segmentEnd)}
+                            </span>
+                            {fullText.substring(segmentEnd)}
+                          </>
+                        )
+                      })()}
+                    </div>
+                  </div>
+
+                  {/* Current Segment Text */}
+                  <div className="bg-green-50 rounded-2xl shadow-lg p-2 mb-3">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-1">Current segment to type:</h3>
+                    <div className="bg-gray-50 rounded-lg p-3 text-base leading-relaxed text-gray-700 font-mono">
+                      {challenge.segments[currentSegment]}
+                    </div>
+                  </div>
+
+                  {/* Typing Area */}
+                  <div className="bg-purple-50 rounded-2xl shadow-lg p-2 mb-2">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-1">Your typing:</h3>
+                    <input
+                      type="text"
+                      value={userSegments[currentSegment] || ''}
+                      onChange={handleSegmentChange}
+                      onPaste={(e) => e.preventDefault()}
+                      placeholder="Start typing here..."
+                      className="w-full p-3 border-2 border-gray-200 rounded-lg text-base focus:border-green-500 focus:outline-none cursor-text h-12"
+                      disabled={!isActive || !hasBegun}
+                      autoFocus
+                    />
+                    <div className="mt-2 text-xs text-gray-600">
+                      Words typed: {(userSegments[currentSegment] || '').trim().split(' ').filter(word => word.length > 0).length}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                /* Hard Mode - Wall of Text */
+                <>
+                  {/* Timer */}
+                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-2 mb-3 flex items-center justify-center">
+                    <div className="flex items-center gap-3">
+                      <div className="text-xl font-bold text-gray-800">
+                        {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+                      </div>
+                      <div className="text-gray-600 text-sm">
+                        Time Remaining
+                      </div>
+                      <button
+                        onClick={handleTimeUp}
+                        className="ml-2 px-3 py-1 bg-red-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 text-sm"
+                      >
+                        Finish Early
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Challenge Text */}
+                  <div className="bg-purple-50 rounded-2xl shadow-lg p-3 mb-3">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Type the following text:</h3>
+                    <div className="bg-gray-50 rounded-lg p-3 text-sm leading-relaxed text-gray-700 font-mono">
+                      {challenge.text}
+                    </div>
+                  </div>
+
+                  {/* Typing Area */}
+                  <div className="bg-purple-50 rounded-2xl shadow-lg p-3 mb-2">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Your typing:</h3>
+                    <textarea
+                      value={userText}
+                      onChange={handleTextChange}
+                      onPaste={(e) => e.preventDefault()}
+                      placeholder={isActive && hasBegun ? "Start typing here..." : "Click 'Begin Typing Now' to start"}
+                      className="w-full h-28 p-3 border-2 border-gray-200 rounded-lg text-base leading-relaxed resize-none focus:border-green-500 focus:outline-none cursor-text"
+                      disabled={!isActive || !hasBegun}
+                    />
+                    <div className="mt-2 text-xs text-gray-600">
+                      Words typed: {userText.trim().split(' ').filter(word => word.length > 0).length}
+                    </div>
+                  </div>
+                </>
+              )}
+            </>
+          ) : null}
+
+          {/* Action Buttons */}
+          <div className="text-center">
+            {!isActive && !isComplete && (
+              <button
+                onClick={startTest}
+                className="px-8 py-4 bg-green-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300 text-lg"
+              >
+                Start Challenge
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+      
+      {/* Footer Component */}
+      <Footer />
+    </div>
+  )
+}
