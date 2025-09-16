@@ -298,7 +298,7 @@ export default function MemoryTest() {
           {hasBegun && challenges.length > 0 && (
             <>
               {/* Progress Bar - Separate Box */}
-              <div className="bg-white rounded-2xl shadow-lg p-4 mb-4">
+              <div className="bg-white rounded-2xl shadow-lg p-4 mb-2">
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm font-medium text-sage-600">
                     Challenge {currentChallenge + 1} of {challenges.length}
