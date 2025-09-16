@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Head from 'next/head'
 import { getRandomOpticalIllusions, calculateOpticalIllusionResults } from '@/lib/opticalIllusions'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -76,7 +77,80 @@ export default function OpticalIllusionTest() {
   const progress = illusions.length > 0 ? (Object.keys(answers).length / illusions.length) * 100 : 0
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <Head>
+        {/* Basic Meta Tags */}
+        <title>Optical Illusion Test - Free Visual Perception Assessment | TestYourself</title>
+        <meta name="description" content="Discover how your brain processes visual information with our free optical illusion test! Explore fascinating visual illusions and learn about your cognitive style and visual perception patterns." />
+        <meta name="keywords" content="optical illusion test, visual perception test, cognitive test, visual illusions, brain test, perception assessment, visual processing, optical illusions quiz, visual cognition" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://testyourself.com/optical-illusion" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Optical Illusion Test - Free Visual Perception Assessment" />
+        <meta property="og:description" content="Discover how your brain processes visual information with our free optical illusion test! Explore fascinating visual illusions and learn about your cognitive style." />
+        <meta property="og:image" content="https://testyourself.com/optical-illusion-og-image.jpg" />
+        <meta property="og:url" content="https://testyourself.com/optical-illusion" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="TestYourself" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Optical Illusion Test - Free Visual Perception Assessment" />
+        <meta name="twitter:description" content="Discover how your brain processes visual information with our free optical illusion test! Explore fascinating visual illusions and learn about your cognitive style." />
+        <meta name="twitter:image" content="https://testyourself.com/optical-illusion-og-image.jpg" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Quiz",
+              "name": "Optical Illusion Test - Visual Perception Assessment",
+              "description": "A comprehensive optical illusion test that explores how your brain processes visual information and reveals insights about your cognitive style and visual perception patterns.",
+              "url": "https://testyourself.com/optical-illusion",
+              "provider": {
+                "@type": "Organization",
+                "name": "TestYourself",
+                "url": "https://testyourself.com"
+              },
+              "educationalLevel": "beginner",
+              "learningResourceType": "assessment",
+              "timeRequired": "PT3M",
+              "typicalAgeRange": "8-99",
+              "about": {
+                "@type": "Thing",
+                "name": "Visual Perception",
+                "description": "Optical illusions and visual perception testing"
+              },
+              "teaches": [
+                "Visual perception",
+                "Cognitive processing",
+                "Visual processing patterns",
+                "Brain interpretation",
+                "Visual cognition"
+              ],
+              "inLanguage": "en",
+              "isAccessibleForFree": true,
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "hasPart": [
+                {
+                  "@type": "Question",
+                  "name": "Visual Illusion Questions",
+                  "description": "Questions about various optical illusions and visual perception patterns"
+                }
+              ]
+            })
+          }}
+        />
+      </Head>
+      
+      <div className="min-h-screen flex flex-col">
       <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -84,7 +158,7 @@ export default function OpticalIllusionTest() {
           
           {/* Test Title Box */}
           <div className="text-center mb-2">
-            <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg border border-green-200 p-6 max-w-6xl mx-auto">
+            <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg p-6 max-w-6xl mx-auto">
               <h1 className="text-xl font-bold text-green-800 mb-3">
                 Optical Illusion Test
               </h1>
@@ -93,7 +167,7 @@ export default function OpticalIllusionTest() {
               </p>
               
               {/* Test Info */}
-              <div className="bg-white border border-green-200 rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
+              <div className="bg-white rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
                 <span className="font-medium">Format:</span> Visual perception questions
                 <span className="text-green-500 ml-2">👁️ Explore how your brain processes images</span>
               </div>
@@ -103,7 +177,7 @@ export default function OpticalIllusionTest() {
           {/* Begin Button Banner */}
           {!hasBegun ? (
             <div className="text-center mb-2">
-              <div className="bg-yellow-50 border border-yellow-200 rounded-2xl shadow-lg p-4">
+              <div className="bg-yellow-50 rounded-2xl shadow-lg p-4">
                 <h3 className="text-xl font-semibold text-yellow-800 mb-3">Ready to Begin?</h3>
                 <p className="text-yellow-700 mb-4">
                   Take a moment to read the instructions below. When you're ready, click the button to start the test.
@@ -222,5 +296,6 @@ export default function OpticalIllusionTest() {
       {/* Footer Component */}
       <Footer />
     </div>
+    </>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Head from 'next/head'
 import { getRandomTriviaQuestions, calculateTriviaScore } from '@/lib/triviaQuestions'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -112,17 +113,135 @@ export default function TriviaTest() {
 
   if (isComplete) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-600 mx-auto mb-4"></div>
-          <p className="text-green-600 text-lg">Calculating your score...</p>
+      <>
+        <Head>
+          {/* Basic Meta Tags */}
+          <title>Trivia Quiz - Free Online Knowledge Test | TestYourself</title>
+          <meta name="description" content="Test your general knowledge with our free trivia quiz! Answer questions across various topics including science, history, geography, arts, and sports. Get scored on accuracy and speed!" />
+          <meta name="keywords" content="trivia quiz, general knowledge test, online quiz, knowledge test, trivia questions, quiz game, brain teaser, educational quiz, free quiz" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="canonical" href="https://testyourself.com/trivia" />
+          
+          {/* Open Graph Tags */}
+          <meta property="og:title" content="Trivia Quiz - Free Online Knowledge Test" />
+          <meta property="og:description" content="Test your general knowledge with our free trivia quiz! Answer questions across various topics including science, history, geography, arts, and sports." />
+          <meta property="og:image" content="https://testyourself.com/trivia-og-image.jpg" />
+          <meta property="og:url" content="https://testyourself.com/trivia" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="TestYourself" />
+          
+          {/* Twitter Card Tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Trivia Quiz - Free Online Knowledge Test" />
+          <meta name="twitter:description" content="Test your general knowledge with our free trivia quiz! Answer questions across various topics including science, history, geography, arts, and sports." />
+          <meta name="twitter:image" content="https://testyourself.com/trivia-og-image.jpg" />
+        </Head>
+        
+        <div className="flex items-center justify-center py-20">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-600 mx-auto mb-4"></div>
+            <p className="text-green-600 text-lg">Calculating your score...</p>
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <Head>
+        {/* Basic Meta Tags */}
+        <title>Trivia Quiz - Free Online Knowledge Test | TestYourself</title>
+        <meta name="description" content="Test your general knowledge with our free trivia quiz! Answer questions across various topics including science, history, geography, arts, and sports. Get scored on accuracy and speed!" />
+        <meta name="keywords" content="trivia quiz, general knowledge test, online quiz, knowledge test, trivia questions, quiz game, brain teaser, educational quiz, free quiz" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://testyourself.com/trivia" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Trivia Quiz - Free Online Knowledge Test" />
+        <meta property="og:description" content="Test your general knowledge with our free trivia quiz! Answer questions across various topics including science, history, geography, arts, and sports." />
+        <meta property="og:image" content="https://testyourself.com/trivia-og-image.jpg" />
+        <meta property="og:url" content="https://testyourself.com/trivia" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="TestYourself" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Trivia Quiz - Free Online Knowledge Test" />
+        <meta name="twitter:description" content="Test your general knowledge with our free trivia quiz! Answer questions across various topics including science, history, geography, arts, and sports." />
+        <meta name="twitter:image" content="https://testyourself.com/trivia-og-image.jpg" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Quiz",
+              "name": "Trivia Quiz - General Knowledge Test",
+              "description": "A comprehensive trivia quiz that tests your general knowledge across various topics including science, history, geography, arts, and sports with scoring based on accuracy and speed.",
+              "url": "https://testyourself.com/trivia",
+              "provider": {
+                "@type": "Organization",
+                "name": "TestYourself",
+                "url": "https://testyourself.com"
+              },
+              "educationalLevel": "intermediate",
+              "learningResourceType": "assessment",
+              "timeRequired": "PT5M",
+              "typicalAgeRange": "12-99",
+              "about": {
+                "@type": "Thing",
+                "name": "General Knowledge",
+                "description": "Trivia and general knowledge testing across multiple subject areas"
+              },
+              "teaches": [
+                "General knowledge",
+                "Critical thinking",
+                "Quick decision making",
+                "Subject knowledge",
+                "Speed and accuracy"
+              ],
+              "inLanguage": "en",
+              "isAccessibleForFree": true,
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "hasPart": [
+                {
+                  "@type": "Question",
+                  "name": "Science Questions",
+                  "description": "Questions about biology, physics, chemistry, and other sciences"
+                },
+                {
+                  "@type": "Question", 
+                  "name": "History Questions",
+                  "description": "Questions about world events, historical figures, and historical facts"
+                },
+                {
+                  "@type": "Question",
+                  "name": "Geography Questions", 
+                  "description": "Questions about countries, capitals, landmarks, and geographical facts"
+                },
+                {
+                  "@type": "Question",
+                  "name": "Arts & Culture Questions",
+                  "description": "Questions about literature, music, art, and cultural topics"
+                },
+                {
+                  "@type": "Question",
+                  "name": "Sports Questions",
+                  "description": "Questions about teams, athletes, records, and sports facts"
+                }
+              ]
+            })
+          }}
+        />
+      </Head>
+      
+      <div className="min-h-screen flex flex-col">
       <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
         <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -130,7 +249,7 @@ export default function TriviaTest() {
         
         {/* Test Title Box */}
         <div className="text-center mb-2">
-          <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg border border-green-200 p-6 max-w-6xl mx-auto">
+          <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg p-6 max-w-6xl mx-auto">
             <h1 className="text-xl font-bold text-green-800 mb-3">
               Trivia Quiz
             </h1>
@@ -139,7 +258,7 @@ export default function TriviaTest() {
             </p>
             
             {/* Scoring Info */}
-            <div className="bg-white border border-green-200 rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
+            <div className="bg-white rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
               <span className="font-medium">Scoring:</span> Correct answers + speed bonus
               <span className="text-green-500 ml-2">⚡ Fast answers get extra points!</span>
             </div>
@@ -149,7 +268,7 @@ export default function TriviaTest() {
         {/* Begin Button Banner */}
         {!hasBegun ? (
           <div className="text-center mb-2">
-            <div className="bg-yellow-50 border border-yellow-200 rounded-2xl shadow-lg p-4">
+            <div className="bg-yellow-50 rounded-2xl shadow-lg p-4">
               <h3 className="text-xl font-semibold text-yellow-800 mb-3">Ready to Begin?</h3>
               <p className="text-yellow-700 mb-4">
                 Take a moment to read the instructions below. When you're ready, click the button to start the quiz.
@@ -238,5 +357,6 @@ export default function TriviaTest() {
       {/* Footer Component */}
       <Footer />
     </div>
+    </>
   )
 }

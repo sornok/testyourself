@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "TestYourself - Discover Yourself Through Fun Tests",
   description: "Take personality tests, memory challenges, trivia quizzes, optical illusion tests, and typing tests to discover more about yourself!",
   keywords: "personality test, memory test, trivia quiz, optical illusion, typing test, self-discovery, MBTI",
+  robots: "index, follow",
   openGraph: {
     title: "TestYourself - Discover Yourself Through Fun Tests",
     description: "Take personality tests, memory challenges, trivia quizzes, optical illusion tests, and typing tests to discover more about yourself!",
@@ -25,6 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+      </head>
       <body>
         {children}
       </body>

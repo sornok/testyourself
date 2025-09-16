@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Head from 'next/head'
 import { getRandomPersonalityQuestions, personalityTypes } from '@/lib/personalityTest'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -82,17 +83,108 @@ export default function PersonalityTest() {
 
   if (isComplete) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-sage-600 mx-auto mb-4"></div>
-          <p className="text-sage-600 text-lg">Calculating your personality type...</p>
+      <>
+        <Head>
+          {/* Basic Meta Tags */}
+          <title>Character Assessment - Free MBTI Personality Test | TestYourself</title>
+          <meta name="description" content="Take our free MBTI-style personality test to discover your character type. Get detailed insights into your personality traits, preferences, and behavior patterns. Complete in 5-10 minutes!" />
+          <meta name="keywords" content="personality test, MBTI test, character assessment, personality type, Myers-Briggs, personality quiz, self-discovery, psychological test, personality traits" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="canonical" href="https://testyourself.com/personality" />
+          
+          {/* Open Graph Tags */}
+          <meta property="og:title" content="Character Assessment - Free MBTI Personality Test" />
+          <meta property="og:description" content="Take our free MBTI-style personality test to discover your character type. Get detailed insights into your personality traits, preferences, and behavior patterns." />
+          <meta property="og:image" content="https://testyourself.com/personality-og-image.jpg" />
+          <meta property="og:url" content="https://testyourself.com/personality" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="TestYourself" />
+          
+          {/* Twitter Card Tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Character Assessment - Free MBTI Personality Test" />
+          <meta name="twitter:description" content="Take our free MBTI-style personality test to discover your character type. Get detailed insights into your personality traits, preferences, and behavior patterns." />
+          <meta name="twitter:image" content="https://testyourself.com/personality-og-image.jpg" />
+        </Head>
+        
+        <div className="flex items-center justify-center py-20">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-sage-600 mx-auto mb-4"></div>
+            <p className="text-sage-600 text-lg">Calculating your personality type...</p>
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <Head>
+        {/* Basic Meta Tags */}
+        <title>Character Assessment - Free MBTI Personality Test | TestYourself</title>
+        <meta name="description" content="Take our free MBTI-style personality test to discover your character type. Get detailed insights into your personality traits, preferences, and behavior patterns. Complete in 5-10 minutes!" />
+        <meta name="keywords" content="personality test, MBTI test, character assessment, personality type, Myers-Briggs, personality quiz, self-discovery, psychological test, personality traits" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://testyourself.com/personality" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Character Assessment - Free MBTI Personality Test" />
+        <meta property="og:description" content="Take our free MBTI-style personality test to discover your character type. Get detailed insights into your personality traits, preferences, and behavior patterns." />
+        <meta property="og:image" content="https://testyourself.com/personality-og-image.jpg" />
+        <meta property="og:url" content="https://testyourself.com/personality" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="TestYourself" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Character Assessment - Free MBTI Personality Test" />
+        <meta name="twitter:description" content="Take our free MBTI-style personality test to discover your character type. Get detailed insights into your personality traits, preferences, and behavior patterns." />
+        <meta name="twitter:image" content="https://testyourself.com/personality-og-image.jpg" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Quiz",
+              "name": "Character Assessment - MBTI Personality Test",
+              "description": "A comprehensive MBTI-style personality test that helps you discover your character type and understand your personality traits, preferences, and behavior patterns.",
+              "url": "https://testyourself.com/personality",
+              "provider": {
+                "@type": "Organization",
+                "name": "TestYourself",
+                "url": "https://testyourself.com"
+              },
+              "educationalLevel": "beginner",
+              "learningResourceType": "assessment",
+              "timeRequired": "PT5M",
+              "typicalAgeRange": "16-99",
+              "about": {
+                "@type": "Thing",
+                "name": "Personality Assessment",
+                "description": "MBTI-style personality testing and character assessment"
+              },
+              "teaches": [
+                "Self-awareness",
+                "Personality understanding",
+                "Character traits",
+                "Behavioral patterns",
+                "Personal preferences"
+              ],
+              "inLanguage": "en",
+              "isAccessibleForFree": true,
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              }
+            })
+          }}
+        />
+      </Head>
+      
+      <div className="min-h-screen flex flex-col">
       <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -100,7 +192,7 @@ export default function PersonalityTest() {
           
           {/* Test Title Box */}
           <div className="text-center mb-2">
-            <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg border border-green-200 p-6 max-w-6xl mx-auto">
+            <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg p-6 max-w-6xl mx-auto">
               <h1 className="text-xl font-bold text-green-800 mb-3">
                 Character Assessment
               </h1>
@@ -109,7 +201,7 @@ export default function PersonalityTest() {
               </p>
               
               {/* Test Info */}
-              <div className="bg-white border border-green-200 rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
+              <div className="bg-white rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
                 <span className="font-medium">Format:</span> Multiple choice questions
                 <span className="text-green-500 ml-2">🧠 Based on psychological principles</span>
               </div>
@@ -119,7 +211,7 @@ export default function PersonalityTest() {
           {/* Begin Button Banner */}
           {!hasBegun ? (
             <div className="text-center mb-2">
-              <div className="bg-yellow-50 border border-yellow-200 rounded-2xl shadow-lg p-4">
+              <div className="bg-yellow-50 rounded-2xl shadow-lg p-4">
                 <h3 className="text-xl font-semibold text-yellow-800 mb-3">Ready to Begin?</h3>
                 <p className="text-yellow-700 mb-4">
                   Take a moment to read the instructions below. When you're ready, click the button to start the test.
@@ -227,5 +319,6 @@ export default function PersonalityTest() {
       {/* Footer Component */}
       <Footer />
     </div>
+    </>
   )
 }

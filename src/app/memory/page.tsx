@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import Head from 'next/head'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { getRandomMemoryChallenges, calculateMemoryResults } from '@/lib/memoryChallenges'
@@ -162,7 +163,80 @@ export default function MemoryTest() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <Head>
+        {/* Basic Meta Tags */}
+        <title>Memory Challenge - Free Memory Test & Cognitive Assessment | TestYourself</title>
+        <meta name="description" content="Challenge your memory with our free memory test! Test your short-term memory capacity with sequence memorization challenges. Improve your cognitive abilities and track your memory performance." />
+        <meta name="keywords" content="memory test, memory challenge, cognitive test, short-term memory, memory training, brain test, memory assessment, cognitive assessment, memory improvement, sequence memory" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://testyourself.com/memory" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="Memory Challenge - Free Memory Test & Cognitive Assessment" />
+        <meta property="og:description" content="Challenge your memory with our free memory test! Test your short-term memory capacity with sequence memorization challenges. Improve your cognitive abilities." />
+        <meta property="og:image" content="https://testyourself.com/memory-og-image.jpg" />
+        <meta property="og:url" content="https://testyourself.com/memory" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="TestYourself" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Memory Challenge - Free Memory Test & Cognitive Assessment" />
+        <meta name="twitter:description" content="Challenge your memory with our free memory test! Test your short-term memory capacity with sequence memorization challenges. Improve your cognitive abilities." />
+        <meta name="twitter:image" content="https://testyourself.com/memory-og-image.jpg" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Quiz",
+              "name": "Memory Challenge - Cognitive Memory Test",
+              "description": "A comprehensive memory test that challenges your short-term memory capacity through sequence memorization tasks, helping you understand and improve your cognitive memory abilities.",
+              "url": "https://testyourself.com/memory",
+              "provider": {
+                "@type": "Organization",
+                "name": "TestYourself",
+                "url": "https://testyourself.com"
+              },
+              "educationalLevel": "beginner",
+              "learningResourceType": "assessment",
+              "timeRequired": "PT3M",
+              "typicalAgeRange": "8-99",
+              "about": {
+                "@type": "Thing",
+                "name": "Memory Assessment",
+                "description": "Short-term memory and cognitive memory testing"
+              },
+              "teaches": [
+                "Memory capacity",
+                "Short-term memory",
+                "Cognitive processing",
+                "Memory retention",
+                "Sequence memorization"
+              ],
+              "inLanguage": "en",
+              "isAccessibleForFree": true,
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "hasPart": [
+                {
+                  "@type": "Question",
+                  "name": "Sequence Memory Challenges",
+                  "description": "Memory challenges involving colors, numbers, patterns, words, and mixed item sequences"
+                }
+              ]
+            })
+          }}
+        />
+      </Head>
+      
+      <div className="min-h-screen flex flex-col">
       <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -170,7 +244,7 @@ export default function MemoryTest() {
           
           {/* Test Title Box */}
           <div className="text-center mb-2">
-            <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg border border-green-200 p-6 max-w-6xl mx-auto">
+            <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg p-6 max-w-6xl mx-auto">
               <h1 className="text-xl font-bold text-green-800 mb-3">
                 Memory Test
               </h1>
@@ -179,7 +253,7 @@ export default function MemoryTest() {
               </p>
               
               {/* Test Info */}
-              <div className="bg-white border border-green-200 rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
+              <div className="bg-white rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
                 <span className="font-medium">Format:</span> Sequence memorization
                 <span className="text-green-500 ml-2">🧠 Test your short-term memory capacity</span>
               </div>
@@ -189,7 +263,7 @@ export default function MemoryTest() {
           {/* Begin Button Banner */}
           {!hasBegun ? (
             <div className="text-center mb-2">
-              <div className="bg-yellow-50 border border-yellow-200 rounded-2xl shadow-lg p-4">
+              <div className="bg-yellow-50 rounded-2xl shadow-lg p-4">
                 <h3 className="text-xl font-semibold text-yellow-800 mb-3">Ready to Begin?</h3>
                 <p className="text-yellow-700 mb-4">
                   Take a moment to read the instructions below. When you're ready, click the button to start the test.
@@ -224,7 +298,7 @@ export default function MemoryTest() {
           {hasBegun && challenges.length > 0 && (
             <>
               {/* Progress Bar - Separate Box */}
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 mb-4">
+              <div className="bg-white rounded-2xl shadow-lg p-4 mb-4">
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm font-medium text-sage-600">
                     Challenge {currentChallenge + 1} of {challenges.length}
@@ -327,5 +401,6 @@ export default function MemoryTest() {
       {/* Footer Component */}
       <Footer />
     </div>
+    </>
   )
 }

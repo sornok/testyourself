@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import Head from 'next/head'
 import { getRandomTypingChallenge, calculateTypingStats } from '@/lib/typingChallenges'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -361,7 +362,85 @@ export default function TypingTest() {
   // Settings screen
   if (showSettings) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <>
+        <Head>
+          {/* Basic Meta Tags */}
+          <title>Typing Speed Challenge - Free Typing Test & Speed Assessment | TestYourself</title>
+          <meta name="description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills with customizable time limits and difficulty levels." />
+          <meta name="keywords" content="typing test, typing speed test, typing challenge, WPM test, typing accuracy, typing practice, keyboard skills, typing assessment, free typing test, typing speed challenge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="canonical" href="https://testyourself.com/typing" />
+          
+          {/* Open Graph Tags */}
+          <meta property="og:title" content="Typing Speed Challenge - Free Typing Test & Speed Assessment" />
+          <meta property="og:description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills." />
+          <meta property="og:image" content="https://testyourself.com/typing-og-image.jpg" />
+          <meta property="og:url" content="https://testyourself.com/typing" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="TestYourself" />
+          
+          {/* Twitter Card Tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Typing Speed Challenge - Free Typing Test & Speed Assessment" />
+          <meta name="twitter:description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills." />
+          <meta name="twitter:image" content="https://testyourself.com/typing-og-image.jpg" />
+          
+          {/* Structured Data */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Quiz",
+                "name": "Typing Speed Challenge - Speed and Accuracy Test",
+                "description": "A comprehensive typing test that measures your typing speed (WPM) and accuracy with customizable difficulty levels including Easy Mode (segmented typing) and Hard Mode (wall of text).",
+                "url": "https://testyourself.com/typing",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "TestYourself",
+                  "url": "https://testyourself.com"
+                },
+                "educationalLevel": "beginner",
+                "learningResourceType": "assessment",
+                "timeRequired": "PT2M",
+                "typicalAgeRange": "8-99",
+                "about": {
+                  "@type": "Thing",
+                  "name": "Typing Skills",
+                  "description": "Typing speed, accuracy, and keyboard proficiency testing"
+                },
+                "teaches": [
+                  "Typing speed",
+                  "Typing accuracy",
+                  "Keyboard skills",
+                  "WPM measurement",
+                  "Typing proficiency"
+                ],
+                "inLanguage": "en",
+                "isAccessibleForFree": true,
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD"
+                },
+                "hasPart": [
+                  {
+                    "@type": "Question",
+                    "name": "Easy Mode Typing Challenge",
+                    "description": "Segmented typing format with auto-advance for easier typing practice"
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Hard Mode Typing Challenge", 
+                    "description": "Wall of text format for advanced typing practice and speed testing"
+                  }
+                ]
+              })
+            }}
+          />
+        </Head>
+        
+        <div className="min-h-screen flex flex-col">
         <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
@@ -369,11 +448,11 @@ export default function TypingTest() {
             
             {/* Test Title Box */}
             <div className="text-center mb-2">
-              <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg border border-green-200 p-6 w-full">
+              <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg p-6 w-full">
                 <h1 className="text-xl font-bold text-green-800 mb-3">Typing Speed Challenge - <span className="font-normal">Configure your typing test settings</span></h1>
                 
                 {/* Test Info */}
-                <div className="bg-white border border-green-200 rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
+                <div className="bg-white rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
                   <span className="font-medium">Format:</span> Speed and accuracy test
                   <span className="text-green-500 ml-2">⌨️ Improve your typing skills</span>
                 </div>
@@ -458,12 +537,37 @@ export default function TypingTest() {
         {/* Footer Component */}
         <Footer />
       </div>
+      </>
     )
   }
 
   if (!challenge) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <>
+        <Head>
+          {/* Basic Meta Tags */}
+          <title>Typing Speed Challenge - Free Typing Test & Speed Assessment | TestYourself</title>
+          <meta name="description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills with customizable time limits and difficulty levels." />
+          <meta name="keywords" content="typing test, typing speed test, typing challenge, WPM test, typing accuracy, typing practice, keyboard skills, typing assessment, free typing test, typing speed challenge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="canonical" href="https://testyourself.com/typing" />
+          
+          {/* Open Graph Tags */}
+          <meta property="og:title" content="Typing Speed Challenge - Free Typing Test & Speed Assessment" />
+          <meta property="og:description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills." />
+          <meta property="og:image" content="https://testyourself.com/typing-og-image.jpg" />
+          <meta property="og:url" content="https://testyourself.com/typing" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="TestYourself" />
+          
+          {/* Twitter Card Tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Typing Speed Challenge - Free Typing Test & Speed Assessment" />
+          <meta name="twitter:description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills." />
+          <meta name="twitter:image" content="https://testyourself.com/typing-og-image.jpg" />
+        </Head>
+        
+        <div className="min-h-screen flex flex-col">
         <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
@@ -481,13 +585,38 @@ export default function TypingTest() {
         {/* Footer Component */}
         <Footer />
       </div>
+      </>
     )
   }
 
   // Results screen - simplified for now
   if (showResults && stats) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <>
+        <Head>
+          {/* Basic Meta Tags */}
+          <title>Typing Speed Challenge - Free Typing Test & Speed Assessment | TestYourself</title>
+          <meta name="description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills with customizable time limits and difficulty levels." />
+          <meta name="keywords" content="typing test, typing speed test, typing challenge, WPM test, typing accuracy, typing practice, keyboard skills, typing assessment, free typing test, typing speed challenge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="canonical" href="https://testyourself.com/typing" />
+          
+          {/* Open Graph Tags */}
+          <meta property="og:title" content="Typing Speed Challenge - Free Typing Test & Speed Assessment" />
+          <meta property="og:description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills." />
+          <meta property="og:image" content="https://testyourself.com/typing-og-image.jpg" />
+          <meta property="og:url" content="https://testyourself.com/typing" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="TestYourself" />
+          
+          {/* Twitter Card Tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Typing Speed Challenge - Free Typing Test & Speed Assessment" />
+          <meta name="twitter:description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills." />
+          <meta name="twitter:image" content="https://testyourself.com/typing-og-image.jpg" />
+        </Head>
+        
+        <div className="min-h-screen flex flex-col">
         <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
@@ -496,7 +625,7 @@ export default function TypingTest() {
             {/* Top Action Buttons - Only show when page is scrollable */}
             {needsTopButtons && (
               <div className="-mx-4 px-4 pt-2">
-                <div className="bg-gray-50 rounded-2xl shadow-lg border border-gray-200 p-2">
+                <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <button
                       onClick={handleShareToggle}
@@ -526,7 +655,7 @@ export default function TypingTest() {
               <>
                 {/* Results Header */}
                 <div className="text-center mb-2 mt-2">
-                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 mb-2">
+                  <div className="bg-white rounded-2xl shadow-lg p-4 mb-2">
                     <h1 className="text-xl font-bold text-gray-800 mb-4">Typing Speed Results</h1>
                     <div className="space-y-2 mb-2">
                       <h2 className="text-lg font-semibold text-gray-800">
@@ -538,19 +667,19 @@ export default function TypingTest() {
                     {/* Stats Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                       <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
-                        <div className="text-xl font-bold text-purple-600 mb-2">{stats.score}</div>
+                        <div className="text-xl font-bold text-purple-600 mb-2">{Number(stats.score) || 0}</div>
                         <div className="text-gray-600 font-medium">Overall Score</div>
                       </div>
                       <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
-                        <div className="text-xl font-bold text-blue-600 mb-2">{stats.wpm}</div>
+                        <div className="text-xl font-bold text-blue-600 mb-2">{Number(stats.wpm) || 0}</div>
                         <div className="text-gray-600 font-medium">Words Per Minute</div>
                       </div>
                       <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
-                        <div className="text-xl font-bold text-green-600 mb-2">{stats.accuracy}%</div>
+                        <div className="text-xl font-bold text-green-600 mb-2">{Number(stats.accuracy) || 0}%</div>
                         <div className="text-gray-600 font-medium">Accuracy</div>
                       </div>
                       <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
-                        <div className="text-xl font-bold text-red-600 mb-2">{stats.errors}</div>
+                        <div className="text-xl font-bold text-red-600 mb-2">{Number(stats.errors) || 0}</div>
                         <div className="text-gray-600 font-medium">Issues</div>
                       </div>
                       <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
@@ -568,7 +697,7 @@ export default function TypingTest() {
                     <div>
                       <h4 className="text-base font-semibold text-gray-800 mb-2">Speed Analysis</h4>
                       <p className="text-gray-600 text-sm mb-2">
-                        You typed at <span className="font-semibold text-blue-600">{stats.wpm} WPM</span>.
+                        You typed at <span className="font-semibold text-blue-600">{Number(stats.wpm) || 0} WPM</span>.
                         {stats.wpm >= 60 && " Excellent speed! You're typing like a professional."}
                         {stats.wpm >= 45 && stats.wpm < 60 && " Good speed! You're above average."}
                         {stats.wpm >= 30 && stats.wpm < 45 && " Decent speed! Keep practicing to improve."}
@@ -578,7 +707,7 @@ export default function TypingTest() {
                     <div>
                       <h4 className="text-base font-semibold text-gray-800 mb-2">Accuracy Analysis</h4>
                       <p className="text-gray-600 text-sm mb-2">
-                        You achieved <span className="font-semibold text-green-600">{stats.accuracy}% accuracy</span>.
+                        You achieved <span className="font-semibold text-green-600">{Number(stats.accuracy) || 0}% accuracy</span>.
                         {stats.accuracy >= 95 && " Outstanding accuracy! You're very precise."}
                         {stats.accuracy >= 90 && stats.accuracy < 95 && " Great accuracy! Very good work."}
                         {stats.accuracy >= 85 && stats.accuracy < 90 && " Good accuracy! Focus on precision."}
@@ -589,17 +718,17 @@ export default function TypingTest() {
                       <h4 className="text-base font-semibold text-gray-800 mb-2">Score Breakdown</h4>
                       <div className="text-gray-600 text-sm space-y-1">
                         <p>
-                          <span className="font-semibold text-blue-600">{stats.wpm}</span> WPM × 1.0 = <span className="font-semibold">{Math.min(Math.round(stats.wpm * 1.0), 60)}</span> points
+                          <span className="font-semibold text-blue-600">{Number(stats.wpm) || 0}</span> WPM × 1.0 = <span className="font-semibold">{Math.min(Math.round((Number(stats.wpm) || 0) * 1.0), 60)}</span> points
                         </p>
                         <p>
-                          <span className="font-semibold text-green-600">{stats.accuracy}%</span> accuracy × 0.3 = <span className="font-semibold">{Math.min(Math.round(stats.accuracy * 0.3), 30)}</span> points
+                          <span className="font-semibold text-green-600">{Number(stats.accuracy) || 0}%</span> accuracy × 0.3 = <span className="font-semibold">{Math.min(Math.round((Number(stats.accuracy) || 0) * 0.3), 30)}</span> points
                         </p>
                         <p>
-                          <span className="font-semibold text-red-600">{stats.errors}</span> issues × -2 = <span className="font-semibold">-{Math.min(stats.errors * 2, 10)}</span> points
+                          <span className="font-semibold text-red-600">{Number(stats.errors) || 0}</span> issues × -2 = <span className="font-semibold">-{Math.min((Number(stats.errors) || 0) * 2, 10)}</span> points
                         </p>
                         <div className="border-t pt-1 mt-2">
                           <p className="font-semibold text-purple-600">
-                            Total Score: {stats.score}/100
+                            Total Score: {Number(stats.score) || 0}/100
                           </p>
                         </div>
                       </div>
@@ -621,7 +750,7 @@ export default function TypingTest() {
             {/* Test Title - Show when review or share is shown */}
             {(showReview || showShare) && (
               <div className={`text-center mb-2 ${needsTopButtons ? 'mt-2' : 'mt-4'}`}>
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 px-2 py-0.5">
+                <div className="bg-white rounded-2xl shadow-lg px-2 py-0.5">
                   <h1 className="text-lg font-bold text-gray-800">
                     Typing Speed Results - {selectedDifficulty === 'easy' ? 'Easy Mode (Segmented)' : 'Hard Mode (Wall of Text)'} • {selectedTime}s
                   </h1>
@@ -638,7 +767,7 @@ export default function TypingTest() {
                 <div className="flex justify-start">
                   <button
                     onClick={handleTwitterShare}
-                    className="p-4 text-left bg-blue-50 hover:bg-blue-100 rounded-2xl shadow-lg border border-blue-200 transition-colors flex items-center"
+                    className="p-4 text-left bg-blue-50 hover:bg-blue-100 rounded-2xl shadow-lg transition-colors flex items-center"
                   >
                     <span className="text-2xl mr-3">🐦</span>
                     <div>
@@ -767,7 +896,7 @@ export default function TypingTest() {
 
             {/* Bottom Action Buttons - Always visible at the bottom */}
             <div ref={bottomButtonsRef} className="-mx-4 px-4 py-2 mb-2">
-              <div className="bg-gray-50 rounded-2xl shadow-lg border border-gray-200 p-2">
+              <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button
                     onClick={handleShareToggle}
@@ -796,12 +925,150 @@ export default function TypingTest() {
         {/* Footer Component */}
         <Footer />
       </div>
+      </>
     )
   }
 
   // Main test screen
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <Head>
+        {/* Conditional SEO based on results state */}
+        {showResults ? (
+          <>
+            {/* Results Screen SEO */}
+            <title>Typing Test Results - Speed & Accuracy Analysis | TestYourself</title>
+            <meta name="description" content="View your typing test results! See your WPM, accuracy, and performance analysis. Get detailed insights into your typing skills and improvement areas. Track your typing progress and identify areas for improvement." />
+            <meta name="keywords" content="typing test results, typing speed results, WPM results, typing accuracy results, typing performance analysis, typing skills assessment, typing speed test results, keyboard proficiency results" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="canonical" href="https://testyourself.com/typing" />
+            
+            {/* Open Graph Tags */}
+            <meta property="og:title" content="Typing Test Results - Speed & Accuracy Analysis" />
+            <meta property="og:description" content="View your typing test results! See your WPM, accuracy, and performance analysis. Get detailed insights into your typing skills and improvement areas." />
+            <meta property="og:image" content="https://testyourself.com/typing-results-og-image.jpg" />
+            <meta property="og:url" content="https://testyourself.com/typing" />
+            <meta property="og:type" content="website" />
+            <meta property="og:site_name" content="TestYourself" />
+            
+            {/* Twitter Card Tags */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content="Typing Test Results - Speed & Accuracy Analysis" />
+            <meta name="twitter:description" content="View your typing test results! See your WPM, accuracy, and performance analysis. Get detailed insights into your typing skills and improvement areas." />
+            <meta name="twitter:image" content="https://testyourself.com/typing-results-og-image.jpg" />
+            
+            {/* Structured Data */}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "WebPage",
+                  "name": "Typing Test Results - Speed & Accuracy Analysis",
+                  "description": "View your typing test results! See your WPM, accuracy, and performance analysis. Get detailed insights into your typing skills and improvement areas.",
+                  "url": "https://testyourself.com/typing",
+                  "provider": {
+                    "@type": "Organization",
+                    "name": "TestYourself",
+                    "url": "https://testyourself.com"
+                  },
+                  "about": {
+                    "@type": "Thing",
+                    "name": "Typing Test Results",
+                    "description": "Typing speed, accuracy, and performance analysis results"
+                  },
+                  "mainEntity": {
+                    "@type": "Quiz",
+                    "name": "Typing Speed Challenge Results",
+                    "description": "Results from typing speed and accuracy test including WPM, accuracy percentage, and performance analysis"
+                  },
+                  "inLanguage": "en",
+                  "isAccessibleForFree": true
+                })
+              }}
+            />
+          </>
+        ) : (
+          <>
+            {/* Test Screen SEO */}
+            <title>Typing Speed Challenge - Free Typing Test & Speed Assessment | TestYourself</title>
+            <meta name="description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills with customizable time limits and difficulty levels." />
+            <meta name="keywords" content="typing test, typing speed test, typing challenge, WPM test, typing accuracy, typing practice, keyboard skills, typing assessment, free typing test, typing speed challenge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="canonical" href="https://testyourself.com/typing" />
+            
+            {/* Open Graph Tags */}
+            <meta property="og:title" content="Typing Speed Challenge - Free Typing Test & Speed Assessment" />
+            <meta property="og:description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills." />
+            <meta property="og:image" content="https://testyourself.com/typing-og-image.jpg" />
+            <meta property="og:url" content="https://testyourself.com/typing" />
+            <meta property="og:type" content="website" />
+            <meta property="og:site_name" content="TestYourself" />
+            
+            {/* Twitter Card Tags */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content="Typing Speed Challenge - Free Typing Test & Speed Assessment" />
+            <meta name="twitter:description" content="Test your typing speed and accuracy with our free typing challenge! Choose between Easy Mode (segmented) or Hard Mode (wall of text). Improve your typing skills." />
+            <meta name="twitter:image" content="https://testyourself.com/typing-og-image.jpg" />
+            
+            {/* Structured Data */}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "Quiz",
+                  "name": "Typing Speed Challenge - Speed and Accuracy Test",
+                  "description": "A comprehensive typing test that measures your typing speed (WPM) and accuracy with customizable difficulty levels including Easy Mode (segmented typing) and Hard Mode (wall of text).",
+                  "url": "https://testyourself.com/typing",
+                  "provider": {
+                    "@type": "Organization",
+                    "name": "TestYourself",
+                    "url": "https://testyourself.com"
+                  },
+                  "educationalLevel": "beginner",
+                  "learningResourceType": "assessment",
+                  "timeRequired": "PT2M",
+                  "typicalAgeRange": "8-99",
+                  "about": {
+                    "@type": "Thing",
+                    "name": "Typing Skills",
+                    "description": "Typing speed, accuracy, and keyboard proficiency testing"
+                  },
+                  "teaches": [
+                    "Typing speed",
+                    "Typing accuracy",
+                    "Keyboard skills",
+                    "WPM measurement",
+                    "Typing proficiency"
+                  ],
+                  "inLanguage": "en",
+                  "isAccessibleForFree": true,
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                  },
+                  "hasPart": [
+                    {
+                      "@type": "Question",
+                      "name": "Easy Mode Typing Challenge",
+                      "description": "Segmented typing format with auto-advance for easier typing practice"
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "Hard Mode Typing Challenge", 
+                      "description": "Wall of text format for advanced typing practice and speed testing"
+                    }
+                  ]
+                })
+              }}
+            />
+          </>
+        )}
+      </Head>
+      
+      <div className="min-h-screen flex flex-col">
       <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -809,10 +1076,10 @@ export default function TypingTest() {
           
           {/* Test Title Box */}
           <div className="text-center mb-2">
-            <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg border border-green-200 p-6 w-full">
+            <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg p-6 w-full">
               <h1 className="text-xl font-bold text-green-800 mb-3">Typing Speed Challenge - <span className="font-normal">Test your typing speed and accuracy</span></h1>
               
-              <div className="bg-white border border-green-200 rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
+              <div className="bg-white rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
                 <span className="font-medium">Mode:</span> {selectedDifficulty === 'easy' ? 'Easy Mode (Segmented)' : 'Hard Mode (Wall of Text)'} • {selectedTime}s
                 <span className="text-green-500 ml-2">⌨️ Improve your typing skills</span>
               </div>
@@ -822,7 +1089,7 @@ export default function TypingTest() {
           {/* Begin Button - Shows when test is active but not begun */}
           {isActive && !hasBegun && (
             <div className="text-center mb-2">
-              <div className="bg-yellow-50 border border-yellow-200 rounded-2xl shadow-lg p-4">
+              <div className="bg-yellow-50 rounded-2xl shadow-lg p-4">
                 <h3 className="text-xl font-semibold text-yellow-800 mb-3">Ready to Begin?</h3>
                 <p className="text-yellow-700 mb-4">
                   Take a moment to read the instructions below. When you're ready, click the button to start typing.
@@ -871,7 +1138,7 @@ export default function TypingTest() {
                   {/* Timer and Progress Side by Side */}
                   <div className="flex gap-3 mb-3">
                     {/* Timer */}
-                    <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-2 flex-1 flex items-center justify-center">
+                    <div className="bg-white rounded-2xl shadow-lg p-2 flex-1 flex items-center justify-center">
                       <div className="flex items-center gap-3">
                         <div className="text-xl font-bold text-gray-800">
                           {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
@@ -958,7 +1225,7 @@ export default function TypingTest() {
                 /* Hard Mode - Wall of Text */
                 <>
                   {/* Timer */}
-                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-2 mb-3 flex items-center justify-center">
+                  <div className="bg-white rounded-2xl shadow-lg p-2 mb-3 flex items-center justify-center">
                     <div className="flex items-center gap-3">
                       <div className="text-xl font-bold text-gray-800">
                         {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
@@ -1020,5 +1287,6 @@ export default function TypingTest() {
       {/* Footer Component */}
       <Footer />
     </div>
+    </>
   )
 }

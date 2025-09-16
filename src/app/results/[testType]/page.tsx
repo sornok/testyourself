@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { useParams, useSearchParams, useRouter } from 'next/navigation'
+import Head from 'next/head'
 import { personalityTypes } from '@/lib/personalityTest'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -213,7 +214,7 @@ export default function ResultsPage() {
       <div className="space-y-2">
         {/* Main Result */}
         <div className="text-center">
-          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-2">
+          <div className="bg-sage-50 rounded-2xl shadow-lg p-6 mb-2">
             <h1 className="text-xl text-sage-800 mb-2">
               <span className="font-bold">Your Results</span> - Here's what we discovered about you
             </h1>
@@ -236,7 +237,7 @@ export default function ResultsPage() {
           <h3 className="text-xl font-semibold text-sage-800 mb-2">Your Traits</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {personality.traits.map((trait: string, index: number) => (
-              <div key={index} className="bg-white rounded-lg py-2 px-3 text-center border border-sage-200 shadow-lg hover:shadow-xl transition-shadow duration-200">
+              <div key={index} className="bg-white rounded-lg py-2 px-3 text-center shadow-lg hover:shadow-xl transition-shadow duration-200">
                 <span className="text-sage-700 font-medium text-sm">{trait}</span>
               </div>
             ))}
@@ -274,15 +275,15 @@ export default function ResultsPage() {
   }
 
   const renderTriviaResults = () => {
-    const score = searchParams.get('score') || '0'
-    const speed = searchParams.get('speed')
-    const correct = searchParams.get('correct')
-    const total = searchParams.get('total')
+    const score = parseInt(searchParams.get('score') || '0', 10) || 0
+    const speed = searchParams.get('speed') || 'Unknown'
+    const correct = parseInt(searchParams.get('correct') || '0', 10) || 0
+    const total = parseInt(searchParams.get('total') || '0', 10) || 0
     const results = JSON.parse(searchParams.get('results') || '{}')
     const answers = JSON.parse(searchParams.get('answers') || '{}')
     const questions = JSON.parse(searchParams.get('questions') || '[]')
 
-    if (!score) {
+    if (score === 0 && total === 0) {
       return (
         <div className="text-center">
           <p className="text-sage-600">Unable to load results. Please try again.</p>
@@ -294,7 +295,7 @@ export default function ResultsPage() {
       <div className="space-y-2">
         {/* Main Result */}
         <div className="text-center">
-          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-2">
+          <div className="bg-sage-50 rounded-2xl shadow-lg p-6 mb-2">
             <h1 className="text-xl text-sage-800 mb-2">
               <span className="font-bold">Your Results</span> - Here's what we discovered about you
             </h1>
@@ -342,7 +343,7 @@ export default function ResultsPage() {
       <div className="space-y-2">
         {/* Main Result */}
         <div className="text-center">
-          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-2">
+          <div className="bg-sage-50 rounded-2xl shadow-lg p-6 mb-2">
             <h1 className="text-xl text-sage-800 mb-2">
               <span className="font-bold">Your Results</span> - Here's what we discovered about you
             </h1>
@@ -368,12 +369,12 @@ export default function ResultsPage() {
                   <div key={index} className="rounded-lg p-4 border border-sage-200" style={{backgroundColor: '#fefcff'}}>
                     <div className="flex justify-between items-center mb-2">
                       <span className="font-medium text-sage-700">{trait}</span>
-                      <span className="text-sm text-sage-500">{count as number} times</span>
+                      <span className="text-sm text-sage-500">{Number(count) || 0} times</span>
                     </div>
                     <div className="w-full bg-sage-200 rounded-full h-2">
                       <div 
                         className="bg-sage-500 h-2 rounded-full"
-                        style={{ width: `${results.totalQuestions > 0 ? (count as number / results.totalQuestions) * 100 : 0}%` }}
+                        style={{ width: `${results.totalQuestions > 0 ? Math.round((Number(count) / Number(results.totalQuestions)) * 100) : 0}%` }}
                       ></div>
                     </div>
                   </div>
@@ -410,7 +411,7 @@ export default function ResultsPage() {
       <div className="space-y-2">
         {/* Main Result */}
         <div className="text-center">
-          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-2">
+          <div className="bg-sage-50 rounded-2xl shadow-lg p-6 mb-2">
             <h1 className="text-xl text-sage-800 mb-2">
               <span className="font-bold">Your Results</span> - Here's what we discovered about you
             </h1>
@@ -424,20 +425,20 @@ export default function ResultsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-xl font-bold text-sage-800 mb-2">
-                  {results.memoryScore || 0}%
+                  {Number(results.memoryScore) || 0}%
                 </h3>
                 <p className="text-sage-600 font-medium text-lg">Challenge Score</p>
                 <p className="text-sage-500 text-sm mt-1">
-                  {results.totalCorrect || 0} out of {results.totalItems || 0} challenges completed
+                  {Number(results.totalCorrect) || 0} out of {Number(results.totalItems) || 0} challenges completed
                 </p>
               </div>
               <div>
                 <h3 className="text-xl font-bold text-sage-800 mb-2">
-                  {results.detailedAccuracy || 0}%
+                  {Number(results.detailedAccuracy) || 0}%
                 </h3>
                 <p className="text-sage-600 font-medium text-lg">Detailed Accuracy</p>
                 <p className="text-sage-500 text-sm mt-1">
-                  {results.totalCorrectItems || 0} out of {results.totalDetailedItems || 0} items correct
+                  {Number(results.totalCorrectItems) || 0} out of {Number(results.totalDetailedItems) || 0} items correct
                 </p>
               </div>
             </div>
@@ -477,8 +478,128 @@ export default function ResultsPage() {
     )
   }
 
+  // Dynamic SEO content based on test type
+  const getSEOContent = () => {
+    const baseUrl = 'https://testyourself.com'
+    
+    switch (testType) {
+      case 'personality':
+        return {
+          title: 'Character Assessment Results - Free MBTI Personality Test | TestYourself',
+          description: 'View your detailed MBTI personality test results! Discover your character type, personality traits, and behavioral patterns. Get insights into your personality preferences and cognitive style.',
+          keywords: 'personality test results, MBTI results, character assessment results, personality type, Myers-Briggs results, personality analysis, character traits',
+          ogTitle: 'Character Assessment Results - MBTI Personality Test',
+          ogDescription: 'View your detailed MBTI personality test results! Discover your character type, personality traits, and behavioral patterns.',
+          ogImage: `${baseUrl}/personality-results-og-image.jpg`,
+          canonical: `${baseUrl}/results/personality`
+        }
+      case 'trivia':
+        return {
+          title: 'Trivia Quiz Results - Free Knowledge Test Results | TestYourself',
+          description: 'Check your trivia quiz results! See your knowledge test score, accuracy, and speed performance. Discover which topics you excel in and areas for improvement.',
+          keywords: 'trivia quiz results, knowledge test results, quiz score, general knowledge results, trivia performance, quiz accuracy',
+          ogTitle: 'Trivia Quiz Results - Knowledge Test Results',
+          ogDescription: 'Check your trivia quiz results! See your knowledge test score, accuracy, and speed performance.',
+          ogImage: `${baseUrl}/trivia-results-og-image.jpg`,
+          canonical: `${baseUrl}/results/trivia`
+        }
+      case 'optical-illusion':
+        return {
+          title: 'Optical Illusion Test Results - Visual Perception Analysis | TestYourself',
+          description: 'Explore your optical illusion test results! Understand how your brain processes visual information and discover your cognitive style. Learn about your visual perception patterns.',
+          keywords: 'optical illusion results, visual perception results, cognitive test results, visual processing, brain test results, perception analysis',
+          ogTitle: 'Optical Illusion Test Results - Visual Perception Analysis',
+          ogDescription: 'Explore your optical illusion test results! Understand how your brain processes visual information and discover your cognitive style.',
+          ogImage: `${baseUrl}/optical-illusion-results-og-image.jpg`,
+          canonical: `${baseUrl}/results/optical-illusion`
+        }
+      case 'memory':
+        return {
+          title: 'Memory Challenge Results - Cognitive Memory Assessment | TestYourself',
+          description: 'Review your memory challenge results! Analyze your short-term memory capacity, sequence memorization skills, and cognitive performance. Track your memory improvement.',
+          keywords: 'memory test results, memory challenge results, cognitive memory results, short-term memory, memory capacity, sequence memory results',
+          ogTitle: 'Memory Challenge Results - Cognitive Memory Assessment',
+          ogDescription: 'Review your memory challenge results! Analyze your short-term memory capacity, sequence memorization skills, and cognitive performance.',
+          ogImage: `${baseUrl}/memory-results-og-image.jpg`,
+          canonical: `${baseUrl}/results/memory`
+        }
+      default:
+        return {
+          title: 'Test Results - Free Online Assessment Results | TestYourself',
+          description: 'View your test results and performance analysis! Get detailed insights into your performance across various cognitive and personality assessments.',
+          keywords: 'test results, assessment results, performance analysis, cognitive test results, personality test results',
+          ogTitle: 'Test Results - Online Assessment Results',
+          ogDescription: 'View your test results and performance analysis! Get detailed insights into your performance across various assessments.',
+          ogImage: `${baseUrl}/test-results-og-image.jpg`,
+          canonical: `${baseUrl}/results/${testType}`
+        }
+    }
+  }
+
+  const seoContent = getSEOContent()
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <Head>
+        {/* Basic Meta Tags */}
+        <title>{seoContent.title}</title>
+        <meta name="description" content={seoContent.description} />
+        <meta name="keywords" content={seoContent.keywords} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href={seoContent.canonical} />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content={seoContent.ogTitle} />
+        <meta property="og:description" content={seoContent.ogDescription} />
+        <meta property="og:image" content={seoContent.ogImage} />
+        <meta property="og:url" content={seoContent.canonical} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="TestYourself" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoContent.ogTitle} />
+        <meta name="twitter:description" content={seoContent.ogDescription} />
+        <meta name="twitter:image" content={seoContent.ogImage} />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": seoContent.ogTitle,
+              "description": seoContent.description,
+              "url": seoContent.canonical,
+              "provider": {
+                "@type": "Organization",
+                "name": "TestYourself",
+                "url": "https://testyourself.com"
+              },
+              "about": {
+                "@type": "Thing",
+                "name": testType === 'personality' ? 'Personality Assessment Results' :
+                       testType === 'trivia' ? 'Trivia Quiz Results' :
+                       testType === 'optical-illusion' ? 'Visual Perception Results' :
+                       testType === 'memory' ? 'Memory Assessment Results' :
+                       'Test Results',
+                "description": seoContent.description
+              },
+              "mainEntity": {
+                "@type": "Quiz",
+                "name": seoContent.ogTitle,
+                "description": seoContent.description,
+                "url": seoContent.canonical
+              },
+              "inLanguage": "en",
+              "isAccessibleForFree": true
+            })
+          }}
+        />
+      </Head>
+      
+      <div className="min-h-screen flex flex-col">
       <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
         <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -487,7 +608,7 @@ export default function ResultsPage() {
         {/* Top Action Buttons - Only show when content is tall enough to need scrolling */}
         {needsTopButtons && (
           <div className="-mx-4 px-4 pt-2">
-            <div className="bg-gray-50 rounded-2xl shadow-lg border border-gray-200 p-2">
+            <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   onClick={handleShareToggle}
@@ -527,7 +648,7 @@ export default function ResultsPage() {
         {/* Test Title - Show when review or share is shown */}
         {(showReview || showShare) && (
           <div className={`text-center mb-2 ${needsTopButtons ? 'mt-2' : 'mt-4'}`}>
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 px-2 py-0.5">
+            <div className="bg-white rounded-2xl shadow-lg px-2 py-0.5">
               <h1 className="text-lg font-bold text-gray-800">
                 {testType === 'personality' ? 'Character Assessment Results' :
                  testType === 'trivia' ? 'Trivia Quiz Results' :
@@ -783,7 +904,7 @@ export default function ResultsPage() {
             <div className="flex justify-start">
               <button
                 onClick={handleTwitterShare}
-                className="p-4 text-left bg-blue-50 hover:bg-blue-100 rounded-2xl shadow-lg border border-blue-200 transition-colors flex items-center"
+                className="p-4 text-left bg-blue-50 hover:bg-blue-100 rounded-2xl shadow-lg transition-colors flex items-center"
               >
                 <span className="text-2xl mr-3">🐦</span>
                 <div>
@@ -797,7 +918,7 @@ export default function ResultsPage() {
 
         {/* Bottom Action Buttons - Always visible at the bottom */}
         <div ref={bottomButtonsRef} className={`-mx-4 px-4 pb-2 ${showShare && !showReview ? 'pt-0' : 'pt-2'}`}>
-          <div className="bg-gray-50 rounded-2xl shadow-lg border border-gray-200 p-2">
+          <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={handleShareToggle}
@@ -828,5 +949,6 @@ export default function ResultsPage() {
       {/* Footer Component */}
       <Footer />
     </div>
+    </>
   )
 }

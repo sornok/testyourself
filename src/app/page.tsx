@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -89,7 +90,93 @@ export default function Home() {
   })
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <Head>
+        {/* Basic Meta Tags */}
+        <title>TestYourself - Free Online Tests & Assessments | Personality, Trivia, Memory & More</title>
+        <meta name="description" content="Discover yourself with our free online tests! Take personality assessments, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests. Start your journey of self-discovery today!" />
+        <meta name="keywords" content="online tests, personality test, trivia quiz, memory test, optical illusions, typing test, self-discovery, free assessments, psychological tests" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://testyourself.com/" />
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="TestYourself - Free Online Tests & Assessments" />
+        <meta property="og:description" content="Discover yourself with our free online tests! Take personality assessments, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests." />
+        <meta property="og:image" content="https://testyourself.com/og-image.jpg" />
+        <meta property="og:url" content="https://testyourself.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="TestYourself" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="TestYourself - Free Online Tests & Assessments" />
+        <meta name="twitter:description" content="Discover yourself with our free online tests! Take personality assessments, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests." />
+        <meta name="twitter:image" content="https://testyourself.com/og-image.jpg" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "TestYourself",
+              "description": "Free online tests and assessments including personality tests, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests.",
+              "url": "https://testyourself.com/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://testyourself.com/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              },
+              "mainEntity": {
+                "@type": "ItemList",
+                "name": "Online Tests Collection",
+                "description": "A collection of free online tests and assessments",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Character Assessment",
+                    "description": "Take our MBTI-style personality test to learn more about yourself",
+                    "url": "https://testyourself.com/personality"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Optical Illusions",
+                    "description": "Explore optical illusions and discover how your mind interprets visual information",
+                    "url": "https://testyourself.com/optical-illusion"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Trivia Quiz",
+                    "description": "Test your general knowledge with our fun trivia quiz",
+                    "url": "https://testyourself.com/trivia"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "name": "Typing Test",
+                    "description": "Test your typing speed and accuracy with our typing challenge",
+                    "url": "https://testyourself.com/typing"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "name": "Memory Challenge",
+                    "description": "Challenge your memory and reaction time with our cognitive tests",
+                    "url": "https://testyourself.com/memory"
+                  }
+                ]
+              }
+            })
+          }}
+        />
+      </Head>
+      
+      <div className="min-h-screen flex flex-col">
       <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
         <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -216,7 +303,7 @@ export default function Home() {
                   📋 List
                 </button>
               </div>
-            </div>
+        </div>
             
             {/* Bottom line: Filter Buttons */}
             <div className="flex justify-center gap-1 sm:gap-2 flex-wrap pb-1 sm:pb-2 max-w-full">
@@ -325,7 +412,7 @@ export default function Home() {
 
           {/* Footer */}
           <div className="text-center mt-2">
-            <p className="text-sage-500 text-sm">
+            <p className="text-sage-500 text-xs sm:text-sm">
               Choose a test above to begin your journey of self-discovery
             </p>
           </div>
@@ -337,5 +424,6 @@ export default function Home() {
         <Footer />
       </div>
     </div>
+    </>
   )
 }
