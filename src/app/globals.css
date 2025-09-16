@@ -9,7 +9,11 @@
     font-family: 'Poppins', system-ui, sans-serif;
     background: linear-gradient(135deg, #dcfce7 0%, #d6cfe2 100%) !important;
     min-height: 100vh;
-    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  
+  html {
+    overflow-x: hidden;
   }
 }
 

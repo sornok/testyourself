@@ -19,10 +19,17 @@ export default function ResultsPage() {
   const memoryReviewRef = useRef<HTMLDivElement>(null)
   const triviaReviewRef = useRef<HTMLDivElement>(null)
 
-  // Update needsTopButtons when showReview or showShare changes
+  // Extract data for review sections
+  const questions = JSON.parse(searchParams.get('questions') || '[]')
+  const answers = JSON.parse(searchParams.get('answers') || '{}')
+  const illusions = JSON.parse(searchParams.get('illusions') || '[]')
+  const challenges = JSON.parse(searchParams.get('challenges') || '[]')
+
+  // Update needsTopButtons when showReview or showShare changes, or when results are shown
   useEffect(() => {
-    // If either review or share is shown, check if we need top buttons
-    if (showReview || showShare) {
+    // Check if we need top buttons whenever we have results (regardless of review/share state)
+    const hasResults = questions.length > 0 || Object.keys(answers).length > 0
+    if (showReview || showShare || (!showReview && !showShare && hasResults)) {
       // Use a small delay to ensure DOM is updated
       setTimeout(() => {
         setNeedsTopButtons(checkBottomButtonsVisibility())
@@ -30,18 +37,20 @@ export default function ResultsPage() {
     } else {
       setNeedsTopButtons(false)
     }
-  }, [showReview, showShare])
+  }, [showReview, showShare, questions, answers])
 
   // Add scroll and resize listeners to update button visibility
   useEffect(() => {
     const handleScroll = () => {
-      if (showReview || showShare) {
+      const hasResults = questions.length > 0 || Object.keys(answers).length > 0
+      if (showReview || showShare || (!showReview && !showShare && hasResults)) {
         setNeedsTopButtons(checkBottomButtonsVisibility())
       }
     }
 
     const handleResize = () => {
-      if (showReview || showShare) {
+      const hasResults = questions.length > 0 || Object.keys(answers).length > 0
+      if (showReview || showShare || (!showReview && !showShare && hasResults)) {
         setNeedsTopButtons(checkBottomButtonsVisibility())
       }
     }
@@ -53,12 +62,6 @@ export default function ResultsPage() {
       window.removeEventListener('resize', handleResize)
     }
   }, [showReview, showShare])
-
-  // Extract data for review sections
-  const questions = JSON.parse(searchParams.get('questions') || '[]')
-  const answers = JSON.parse(searchParams.get('answers') || '{}')
-  const illusions = JSON.parse(searchParams.get('illusions') || '[]')
-  const challenges = JSON.parse(searchParams.get('challenges') || '[]')
 
   const handleShare = async () => {
     try {
@@ -207,14 +210,14 @@ export default function ResultsPage() {
     }
 
     return (
-      <div className="space-y-8">
+      <div className="space-y-2">
         {/* Main Result */}
         <div className="text-center">
-          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
-            <h1 className="text-xl text-sage-800 mb-6">
+          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-2">
+            <h1 className="text-xl text-sage-800 mb-2">
               <span className="font-bold">Your Results</span> - Here's what we discovered about you
             </h1>
-            <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="flex items-center justify-center gap-4 mb-2">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-sage-500 rounded-full text-white text-xl font-bold">
                 {type}
               </div>
@@ -230,7 +233,7 @@ export default function ResultsPage() {
 
         {/* Traits */}
         <div className="bg-sage-50 rounded-2xl shadow-lg p-6">
-          <h3 className="text-xl font-semibold text-sage-800 mb-4">Your Traits</h3>
+          <h3 className="text-xl font-semibold text-sage-800 mb-2">Your Traits</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {personality.traits.map((trait: string, index: number) => (
               <div key={index} className="bg-white rounded-lg py-2 px-3 text-center border border-sage-200 shadow-lg hover:shadow-xl transition-shadow duration-200">
@@ -243,7 +246,7 @@ export default function ResultsPage() {
         {/* Strengths and Weaknesses */}
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-mint-50 rounded-2xl shadow-lg p-6">
-            <h3 className="text-xl font-semibold text-mint-600 mb-4">Strengths</h3>
+            <h3 className="text-xl font-semibold text-mint-600 mb-2">Strengths</h3>
             <ul className="space-y-2">
               {personality.strengths.map((strength: string, index: number) => (
                 <li key={index} className="flex items-start">
@@ -255,7 +258,7 @@ export default function ResultsPage() {
           </div>
 
           <div className="bg-lavender-50 rounded-2xl shadow-lg p-6">
-            <h3 className="text-xl font-semibold text-lavender-600 mb-4">Areas for Growth</h3>
+            <h3 className="text-xl font-semibold text-lavender-600 mb-2">Areas for Growth</h3>
             <ul className="space-y-2">
               {personality.weaknesses.map((weakness: string, index: number) => (
                 <li key={index} className="flex items-start">
@@ -288,18 +291,18 @@ export default function ResultsPage() {
     }
 
     return (
-      <div className="space-y-8">
+      <div className="space-y-2">
         {/* Main Result */}
         <div className="text-center">
-          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
-            <h1 className="text-xl text-sage-800 mb-6">
+          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-2">
+            <h1 className="text-xl text-sage-800 mb-2">
               <span className="font-bold">Your Results</span> - Here's what we discovered about you
             </h1>
-            <div className="text-xl mb-6">🎯</div>
+            <div className="text-xl mb-2">🎯</div>
             <h2 className="text-xl font-bold text-green-800 mb-2">
               {score}%
             </h2>
-            <p className="text-xl text-green-600 mb-4">
+            <p className="text-xl text-green-600 mb-2">
               {correct} out of {total} correct
             </p>
             <p className="text-lg text-gray-700">
@@ -310,7 +313,7 @@ export default function ResultsPage() {
 
         {/* Score Breakdown */}
         <div className="bg-purple-50 rounded-2xl shadow-lg p-8">
-          <h3 className="text-xl font-semibold text-green-800 mb-6 text-center">Quiz Summary</h3>
+          <h3 className="text-xl font-semibold text-green-800 mb-2 text-center">Quiz Summary</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-green-50 border-2 border-green-200 rounded-xl p-6 text-center">
               <h4 className="text-xl font-bold text-green-800 mb-2">{score}%</h4>
@@ -336,14 +339,14 @@ export default function ResultsPage() {
     const illusions = JSON.parse(searchParams.get('illusions') || '[]')
     
     return (
-      <div className="space-y-8">
+      <div className="space-y-2">
         {/* Main Result */}
         <div className="text-center">
-          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
-            <h1 className="text-xl text-sage-800 mb-6">
+          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-2">
+            <h1 className="text-xl text-sage-800 mb-2">
               <span className="font-bold">Your Results</span> - Here's what we discovered about you
             </h1>
-            <div className="text-xl mb-4">👁️</div>
+            <div className="text-xl mb-2">👁️</div>
             <h2 className="text-xl font-bold text-sage-800 mb-2">
               {results.overallType || 'Visual Perceiver'}
             </h2>
@@ -358,8 +361,8 @@ export default function ResultsPage() {
           
           {/* Personality Traits */}
           {results.personalityTraits && Object.keys(results.personalityTraits).length > 0 && (
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold text-sage-800 mb-4">Your Visual Processing Style</h3>
+            <div className="mb-2">
+              <h3 className="text-xl font-semibold text-sage-800 mb-2">Your Visual Processing Style</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {Object.entries(results.personalityTraits).map(([trait, count], index) => (
                   <div key={index} className="rounded-lg p-4 border border-sage-200" style={{backgroundColor: '#fefcff'}}>
@@ -382,7 +385,7 @@ export default function ResultsPage() {
           {/* Insights */}
           {results.insights && results.insights.length > 0 && (
             <div>
-              <h3 className="text-xl font-semibold text-sage-800 mb-4">Key Insights</h3>
+              <h3 className="text-xl font-semibold text-sage-800 mb-2">Key Insights</h3>
               <div className="space-y-2">
                 {results.insights.map((insight: string, index: number) => (
                   <div key={index} className="flex items-start space-x-3">
@@ -404,18 +407,18 @@ export default function ResultsPage() {
     const challenges = JSON.parse(searchParams.get('challenges') || '[]')
     
     return (
-      <div className="space-y-8">
+      <div className="space-y-2">
         {/* Main Result */}
         <div className="text-center">
-          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
-            <h1 className="text-xl text-sage-800 mb-6">
+          <div className="bg-sage-50 rounded-2xl shadow-lg border border-gray-200 p-6 mb-2">
+            <h1 className="text-xl text-sage-800 mb-2">
               <span className="font-bold">Your Results</span> - Here's what we discovered about you
             </h1>
-            <div className="text-xl mb-4">🧩</div>
+            <div className="text-xl mb-2">🧩</div>
             <h2 className="text-xl font-bold text-sage-800 mb-2">
               {results.performance || 'Memory Performance'}
             </h2>
-            <p className="text-sage-600 mb-4">
+            <p className="text-sage-600 mb-2">
               Your memory skills performance
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -444,7 +447,7 @@ export default function ResultsPage() {
         {/* Key Insights - Separate Box */}
         {results.insights && results.insights.length > 0 && (
           <div className="bg-sage-50 rounded-2xl p-8 border border-sage-200">
-            <h3 className="text-xl font-semibold text-sage-800 mb-4">Key Insights</h3>
+            <h3 className="text-xl font-semibold text-sage-800 mb-2">Key Insights</h3>
             <div className="space-y-2">
               {results.insights.map((insight: string, index: number) => (
                 <div key={index} className="flex items-start space-x-3">
@@ -461,9 +464,9 @@ export default function ResultsPage() {
 
   const renderOtherResults = () => {
     return (
-      <div className="space-y-8">
+      <div className="space-y-2">
         <div className="text-center">
-          <h2 className="text-xl font-bold text-sage-800 mb-4">
+          <h2 className="text-xl font-bold text-sage-800 mb-2">
             Test Complete!
           </h2>
           <p className="text-sage-600">
@@ -481,9 +484,37 @@ export default function ResultsPage() {
         {/* Header */}
         <Header onLogoClick={undefined} />
         
+        {/* Top Action Buttons - Only show when content is tall enough to need scrolling */}
+        {needsTopButtons && (
+          <div className="-mx-4 px-4 pt-2">
+            <div className="bg-gray-50 rounded-2xl shadow-lg border border-gray-200 p-2">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  onClick={handleShareToggle}
+                  className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
+                >
+                  {showShare ? 'Hide Share' : 'Share Results'}
+                </button>
+                <button
+                  onClick={handleReviewToggle}
+                  className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
+                >
+                  {showReview ? 'Hide Review' : 'Show Review'}
+                </button>
+                <button
+                  onClick={() => router.push(`/${testType}`)}
+                  className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
+                >
+                  {testType === 'typing' ? 'Try Another Challenge' : 'Retake Test'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        
         {/* Results Content - Hide when review or share is shown */}
         {!showReview && !showShare && (
-          <div className="mb-2">
+          <div className="mt-2">
             {testType === 'personality' ? renderPersonalityResults() : 
              testType === 'trivia' ? renderTriviaResults() : 
              testType === 'optical-illusion' ? renderOpticalIllusionResults() :
@@ -492,35 +523,10 @@ export default function ResultsPage() {
           </div>
         )}
 
-        {/* Top Action Buttons - Only show when content is tall enough to need scrolling */}
-        {needsTopButtons && (
-          <div className="-mx-4 px-4 py-4 mb-8">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={handleShareToggle}
-                className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
-              >
-                {showShare ? 'Hide Share' : 'Share Results'}
-              </button>
-              <button
-                onClick={handleReviewToggle}
-                className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
-              >
-                {showReview ? 'Hide Review' : 'Show Review'}
-              </button>
-              <button
-                onClick={() => router.push(`/${testType}`)}
-                className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
-              >
-                {testType === 'typing' ? 'Try Another Challenge' : 'Retake Test'}
-              </button>
-            </div>
-          </div>
-        )}
 
         {/* Test Title - Show when review or share is shown */}
         {(showReview || showShare) && (
-          <div className={`text-center mb-4 ${needsTopButtons ? '-mt-8' : 'mt-4'}`}>
+          <div className={`text-center mb-2 ${needsTopButtons ? 'mt-2' : 'mt-4'}`}>
             <div className="bg-white rounded-2xl shadow-lg border border-gray-200 px-2 py-0.5">
               <h1 className="text-lg font-bold text-gray-800">
                 {testType === 'personality' ? 'Character Assessment Results' :
@@ -539,7 +545,7 @@ export default function ResultsPage() {
             {/* Character Assessment Review */}
             {testType === 'personality' && questions.length > 0 && (
               <div ref={triviaReviewRef} className="bg-sage-50 rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-sage-800 mb-4 text-center">Question Review</h3>
+                <h3 className="text-xl font-bold text-sage-800 mb-2 text-center">Question Review</h3>
                 <div className="space-y-4">
                   {questions.map((question: any, index: number) => {
                     const userAnswer = answers[question.id]
@@ -547,7 +553,7 @@ export default function ResultsPage() {
                     
                     return (
                       <div key={question.id} className="border border-sage-200 rounded-xl p-4 bg-sage-50">
-                        <div className="flex justify-between items-start mb-3">
+                        <div className="flex justify-between items-start mb-2">
                           <div className="flex-1">
                             <div className="flex items-center gap-3 mb-2">
                               <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm font-medium">
@@ -576,7 +582,7 @@ export default function ResultsPage() {
             {/* Trivia Test Review */}
             {testType === 'trivia' && questions.length > 0 && (
               <div ref={triviaReviewRef} className="bg-purple-50 rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-green-800 mb-4 text-center">Question Review</h3>
+                <h3 className="text-xl font-bold text-green-800 mb-2 text-center">Question Review</h3>
                 <div className="space-y-4">
                   {questions.map((question: any, index: number) => {
                     const userAnswer = answers[question.id]
@@ -588,7 +594,7 @@ export default function ResultsPage() {
                       <div key={question.id} className={`border-2 rounded-xl p-4 ${
                         isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'
                       }`}>
-                        <div className="flex justify-between items-start mb-4">
+                        <div className="flex justify-between items-start mb-2">
                           <div className="flex-1">
                             <div className="flex items-center gap-3 mb-2">
                               <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm font-medium">
@@ -598,7 +604,7 @@ export default function ResultsPage() {
                                 {question.category}
                               </span>
                             </div>
-                            <h4 className="text-xl font-semibold text-gray-800 mb-3">
+                            <h4 className="text-xl font-semibold text-gray-800 mb-2">
                               {question.question}
                             </h4>
                           </div>
@@ -633,20 +639,20 @@ export default function ResultsPage() {
             {/* Optical Illusion Test Review */}
             {testType === 'optical-illusion' && illusions.length > 0 && (
               <div ref={opticalReviewRef} className="bg-sage-50 rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-sage-800 mb-4 text-center">Question Review</h3>
+                <h3 className="text-xl font-bold text-sage-800 mb-2 text-center">Question Review</h3>
                 <div className="space-y-4">
                   {illusions.map((illusion: any, index: number) => {
                     const userAnswer = answers[illusion.id]
                     return (
                       <div key={illusion.id} className="border border-sage-200 rounded-xl p-4 bg-sage-50">
-                        <div className="flex justify-between items-start mb-4">
+                        <div className="flex justify-between items-start mb-2">
                           <div className="flex-1">
                             <div className="flex items-center gap-3 mb-2">
                               <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm font-medium">
                                 Question {index + 1}
                               </span>
                             </div>
-                            <h4 className="text-lg font-semibold text-sage-800 mb-3">
+                            <h4 className="text-lg font-semibold text-sage-800 mb-2">
                               {illusion.title}
                             </h4>
                           </div>
@@ -680,7 +686,7 @@ export default function ResultsPage() {
             {/* Memory Test Review */}
             {testType === 'memory' && challenges.length > 0 && (
               <div ref={memoryReviewRef} className="bg-purple-50 rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-sage-800 mb-4 text-center">Challenge Review</h3>
+                <h3 className="text-xl font-bold text-sage-800 mb-2 text-center">Challenge Review</h3>
                 <div className="space-y-4">
                   {challenges.map((challenge: any, index: number) => {
                     const userAnswer = answers[challenge.id]
@@ -690,14 +696,14 @@ export default function ResultsPage() {
                       <div key={challenge.id} className={`border-2 rounded-xl p-4 ${
                         isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'
                       }`}>
-                        <div className="flex justify-between items-start mb-4">
+                        <div className="flex justify-between items-start mb-2">
                           <div className="flex-1">
                             <div className="flex items-center gap-3 mb-2">
                               <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm font-medium">
                                 Challenge {index + 1}
                               </span>
                             </div>
-                            <h4 className="text-xl font-semibold text-sage-800 mb-3">
+                            <h4 className="text-xl font-semibold text-sage-800 mb-2">
                               {challenge.title}
                             </h4>
                           </div>
@@ -707,7 +713,7 @@ export default function ResultsPage() {
                         </div>
                         
                         {/* Item-level accuracy */}
-                        <div className="mb-4">
+                        <div className="mb-2">
                           <div className="flex items-center justify-between">
                             <span className="text-sm font-medium text-sage-600">Item Accuracy:</span>
                             <span className="text-sm font-bold text-sage-800">
@@ -770,9 +776,9 @@ export default function ResultsPage() {
 
         {/* Share Section - Show when share is toggled (but not when review is shown) */}
         {showShare && !showReview && (
-          <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mb-4">
-            <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">Share Your Results</h3>
-            <p className="text-gray-600 mb-6 text-center">Choose a platform to share your test results</p>
+          <div className="bg-purple-50 rounded-2xl shadow-lg p-2 mb-2">
+            <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">Share Your Results</h3>
+            <p className="text-gray-600 mb-2 text-center">Choose a platform to share your test results</p>
             
             <div className="flex justify-start">
               <button
@@ -790,28 +796,30 @@ export default function ResultsPage() {
         )}
 
         {/* Bottom Action Buttons - Always visible at the bottom */}
-        <div ref={bottomButtonsRef} className="-mx-4 px-4 py-4">
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={handleShareToggle}
-              className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
-            >
-              {showShare ? 'Hide Share' : 'Share Results'}
-            </button>
-            {(testType === 'optical-illusion' || testType === 'memory' || testType === 'trivia' || testType === 'personality') && (
+        <div ref={bottomButtonsRef} className={`-mx-4 px-4 pb-2 ${showShare && !showReview ? 'pt-0' : 'pt-2'}`}>
+          <div className="bg-gray-50 rounded-2xl shadow-lg border border-gray-200 p-2">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={handleReviewToggle}
-                className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
+                onClick={handleShareToggle}
+                className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
               >
-                {showReview ? 'Hide Review' : 'Show Review'}
+                {showShare ? 'Hide Share' : 'Share Results'}
               </button>
-            )}
-            <button
-              onClick={() => router.push(`/${testType}`)}
-              className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
-            >
-              {testType === 'typing' ? 'Try Another Challenge' : 'Retake Test'}
-            </button>
+              {(testType === 'optical-illusion' || testType === 'memory' || testType === 'trivia' || testType === 'personality') && (
+                <button
+                  onClick={handleReviewToggle}
+                  className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
+                >
+                  {showReview ? 'Hide Review' : 'Show Review'}
+                </button>
+              )}
+              <button
+                onClick={() => router.push(`/${testType}`)}
+                className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
+              >
+                {testType === 'typing' ? 'Try Another Challenge' : 'Retake Test'}
+              </button>
+            </div>
           </div>
         </div>
         </div>

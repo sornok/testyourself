@@ -100,10 +100,10 @@ export default function TypingTest() {
     return !isVisible // Show top buttons when bottom buttons are NOT visible
   }
 
-  // Update needsTopButtons when showReview or showShare changes
+  // Update needsTopButtons when showReview or showShare changes, or when results are shown
   useEffect(() => {
-    // If either review or share is shown, check if we need top buttons
-    if (showReview || showShare) {
+    // Check if we need top buttons whenever we have results (regardless of review/share state)
+    if (stats) {
       // Use a small delay to ensure DOM is updated
       setTimeout(() => {
         setNeedsTopButtons(checkBottomButtonsVisibility())
@@ -111,18 +111,18 @@ export default function TypingTest() {
     } else {
       setNeedsTopButtons(false)
     }
-  }, [showReview, showShare])
+  }, [showReview, showShare, stats])
 
   // Add scroll and resize listeners to update button visibility
   useEffect(() => {
     const handleScroll = () => {
-      if (showReview || showShare) { // Only check when review/share is active
+      if (stats) { // Check whenever we have results
         setNeedsTopButtons(checkBottomButtonsVisibility())
       }
     }
 
     const handleResize = () => {
-      if (showReview || showShare) { // Only check when review/share is active
+      if (stats) { // Check whenever we have results
         setNeedsTopButtons(checkBottomButtonsVisibility())
       }
     }
@@ -493,14 +493,42 @@ export default function TypingTest() {
             {/* Header */}
             <Header onLogoClick={undefined} />
             
+            {/* Top Action Buttons - Only show when page is scrollable */}
+            {needsTopButtons && (
+              <div className="-mx-4 px-4 pt-2">
+                <div className="bg-gray-50 rounded-2xl shadow-lg border border-gray-200 p-2">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button
+                      onClick={handleShareToggle}
+                      className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                    >
+                      {showShare ? 'Hide Share' : 'Share Results'}
+                    </button>
+                    <button
+                      onClick={handleReviewToggle}
+                      className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                    >
+                      {showReview ? 'Hide Review' : 'Show Review'}
+                    </button>
+                    <button
+                      onClick={retakeTest}
+                      className="px-8 py-3 bg-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                    >
+                      Try Another Challenge
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            
             {/* Results Content - Hide when review or share is shown */}
             {!showReview && !showShare && (
               <>
                 {/* Results Header */}
-                <div className="text-center mb-2">
-                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 mb-4">
+                <div className="text-center mb-2 mt-2">
+                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 mb-2">
                     <h1 className="text-xl font-bold text-gray-800 mb-4">Typing Speed Results</h1>
-                    <div className="space-y-2 mb-6">
+                    <div className="space-y-2 mb-2">
                       <h2 className="text-lg font-semibold text-gray-800">
                         {selectedDifficulty === 'easy' ? 'Easy Mode (Segmented)' : 'Hard Mode (Wall of Text)'} • {selectedTime}s
                       </h2>
@@ -534,8 +562,8 @@ export default function TypingTest() {
                 </div>
 
                 {/* Performance Feedback */}
-                <div className="bg-purple-50 rounded-2xl shadow-lg p-6 mb-3">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">Performance Analysis</h3>
+                <div className="bg-purple-50 rounded-2xl shadow-lg pt-6 px-6 pb-2">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">Performance Analysis</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <h4 className="text-base font-semibold text-gray-800 mb-2">Speed Analysis</h4>
@@ -577,7 +605,7 @@ export default function TypingTest() {
                       </div>
                     </div>
                     <div>
-                      <h4 className="text-base font-semibold text-gray-800 mb-2">Typing Analysis</h4>
+                      <h4 className="text-base font-semibold text-gray-800">Typing Analysis</h4>
                       <div className="text-gray-600 text-sm">
                         <p>Incorrect words: {stats.wordErrors || 0}</p>
                         <p>Total issues: {stats.errors || 0}</p>
@@ -589,33 +617,10 @@ export default function TypingTest() {
               </>
             )}
 
-            {/* Top Action Buttons - Only show when page is scrollable */}
-            {needsTopButtons && (showReview || showShare) && (
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 pb-4">
-                <button
-                  onClick={handleShareToggle}
-                  className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                >
-                  {showShare ? 'Hide Share' : 'Share Results'}
-                </button>
-                <button
-                  onClick={handleReviewToggle}
-                  className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                >
-                  {showReview ? 'Hide Review' : 'Show Review'}
-                </button>
-                <button
-                  onClick={retakeTest}
-                  className="px-8 py-3 bg-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                >
-                  Try Another Challenge
-                </button>
-              </div>
-            )}
 
             {/* Test Title - Show when review or share is shown */}
             {(showReview || showShare) && (
-              <div className={`text-center mb-4 ${needsTopButtons ? '-mt-8' : 'mt-4'}`}>
+              <div className={`text-center mb-2 ${needsTopButtons ? 'mt-2' : 'mt-4'}`}>
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 px-2 py-0.5">
                   <h1 className="text-lg font-bold text-gray-800">
                     Typing Speed Results - {selectedDifficulty === 'easy' ? 'Easy Mode (Segmented)' : 'Hard Mode (Wall of Text)'} • {selectedTime}s
@@ -626,9 +631,9 @@ export default function TypingTest() {
 
             {/* Share Section */}
             {showShare && !showReview && (
-              <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mb-4 mt-4">
-                <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">Share Your Results</h3>
-                <p className="text-gray-600 mb-6 text-center">Choose a platform to share your test results</p>
+              <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mt-2">
+                <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">Share Your Results</h3>
+                <p className="text-gray-600 mb-2 text-center">Choose a platform to share your test results</p>
                 
                 <div className="flex justify-start">
                   <button
@@ -647,8 +652,8 @@ export default function TypingTest() {
 
             {/* Text Review */}
             {showReview && (
-              <div ref={reviewRef} className="bg-indigo-50 rounded-2xl shadow-lg p-8 mb-4 mt-4">
-                <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">Text Analysis Review</h3>
+              <div ref={reviewRef} className="bg-indigo-50 rounded-2xl shadow-lg p-8 mt-2">
+                <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">Text Analysis Review</h3>
                 {(() => {
                   const analysis = analyzeText()
                   if (!analysis) return <p className="text-gray-600 text-center">No analysis available</p>
@@ -656,7 +661,7 @@ export default function TypingTest() {
                   return (
                     <div className="space-y-6">
                       {/* Error Statistics */}
-                      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
+                      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-2">
                         <div className="bg-red-50 rounded-lg p-4 text-center">
                           <div className="text-xl font-bold text-red-600">{analysis.errors.filter(e => !e.isTimeOut).length}</div>
                           <div className="text-red-600 font-medium">Actual Errors</div>
@@ -761,26 +766,28 @@ export default function TypingTest() {
             )}
 
             {/* Bottom Action Buttons - Always visible at the bottom */}
-            <div ref={bottomButtonsRef} className="-mx-4 px-4 py-2 mb-4">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  onClick={handleShareToggle}
-                  className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                >
-                  {showShare ? 'Hide Share' : 'Share Results'}
-                </button>
-                <button
-                  onClick={handleReviewToggle}
-                  className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                >
-                  {showReview ? 'Hide Review' : 'Show Review'}
-                </button>
-                <button
-                  onClick={retakeTest}
-                  className="px-8 py-3 bg-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                >
-                  Try Another Challenge
-                </button>
+            <div ref={bottomButtonsRef} className="-mx-4 px-4 py-2 mb-2">
+              <div className="bg-gray-50 rounded-2xl shadow-lg border border-gray-200 p-2">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button
+                    onClick={handleShareToggle}
+                    className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                  >
+                    {showShare ? 'Hide Share' : 'Share Results'}
+                  </button>
+                  <button
+                    onClick={handleReviewToggle}
+                    className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                  >
+                    {showReview ? 'Hide Review' : 'Show Review'}
+                  </button>
+                  <button
+                    onClick={retakeTest}
+                    className="px-8 py-3 bg-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                  >
+                    Try Another Challenge
+                  </button>
+                </div>
               </div>
             </div>
           </div>

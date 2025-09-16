@@ -96,7 +96,7 @@ export default function Home() {
         <Header onLogoClick={handleLogoReset} />
 
         {/* Filter Buttons - Responsive Layout */}
-        <div className="mt-6 mb-8">
+        <div className="mt-2 mb-4 sm:mb-8">
           {/* Desktop: Single line layout */}
           <div className="hidden lg:flex justify-between items-center gap-2">
             {/* Left: Sort Buttons */}
@@ -173,20 +173,20 @@ export default function Home() {
               <div className="flex gap-1">
                 <button
                   onClick={() => setSortBy('category')}
-                  className={`px-2 py-2 rounded-full font-medium transition-all duration-300 text-sm ${
+                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm ${
                     sortBy === 'category'
                       ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
-                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-transparent hover:bg-gray-150'
+                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
                   }`}
                 >
                   Category
                 </button>
                 <button
                   onClick={() => setSortBy('alphabetical')}
-                  className={`px-2 py-2 rounded-full font-medium transition-all duration-300 text-sm whitespace-nowrap ${
+                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
                     sortBy === 'alphabetical'
                       ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
-                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-transparent hover:bg-gray-150'
+                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
                   }`}
                 >
                   A-Z
@@ -197,20 +197,20 @@ export default function Home() {
               <div className="flex gap-1">
                 <button
                   onClick={() => setViewMode('cards')}
-                  className={`px-2 py-2 rounded-full font-medium transition-all duration-300 text-sm whitespace-nowrap ${
+                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
                     viewMode === 'cards'
                       ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
-                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-transparent hover:bg-gray-150'
+                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
                   }`}
                 >
                   🔲 Cards
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`px-2 py-2 rounded-full font-medium transition-all duration-300 text-sm whitespace-nowrap ${
+                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
                     viewMode === 'list'
                       ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
-                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-transparent hover:bg-gray-150'
+                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
                   }`}
                 >
                   📋 List
@@ -219,12 +219,12 @@ export default function Home() {
             </div>
             
             {/* Bottom line: Filter Buttons */}
-            <div className="flex justify-center gap-2 flex-wrap pb-2 max-w-full">
+            <div className="flex justify-center gap-1 sm:gap-2 flex-wrap pb-1 sm:pb-2 max-w-full">
               {filterOptions.map((filter) => (
                 <button
                   key={filter.id}
                   onClick={() => setActiveFilter(filter.id)}
-                  className={`px-3 py-2 rounded-full font-medium transition-all duration-300 text-sm whitespace-nowrap ${
+                  className={`px-2 py-1 sm:px-3 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
                     activeFilter === filter.id
                       ? 'bg-purple-500 text-white shadow-lg'
                       : 'text-sage-600 hover:text-sage-900 border border-sage-200 hover:bg-sage-100'
@@ -239,24 +239,24 @@ export default function Home() {
 
         {/* Category Cards or List */}
         {viewMode === 'cards' ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
             {filteredCategories.map((category) => (
               <Link
                 key={category.id}
                 href={category.path}
                 className="group block"
               >
-                <div className="bg-purple-50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 hover:scale-105 p-4 h-full flex flex-col cursor-pointer group relative">
-                  <div className="flex items-center mb-2">
-                    <div className={`w-8 h-8 rounded-full ${category.color} flex items-center justify-center text-sm mr-3 group-hover:scale-110 transition-transform duration-300`}>
+                <div className="bg-purple-50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 hover:scale-105 pt-2.5 px-3 pb-3 h-full flex flex-col cursor-pointer group relative">
+                  <div className="flex items-center mb-2 -ml-2">
+                    <div className={`w-8 h-8 rounded-full ${category.color} flex items-center justify-center text-sm mr-1 group-hover:scale-110 transition-transform duration-300`}>
                       {category.icon}
                     </div>
-                    <h3 className="text-lg font-semibold text-sage-800 group-hover:text-sage-600 transition-colors whitespace-nowrap">
+                    <h3 className="text-sm font-semibold text-sage-800 group-hover:text-sage-600 transition-colors whitespace-nowrap overflow-hidden text-ellipsis">
                       {category.title}
                     </h3>
                   </div>
                   <div className="mb-2">
-                    <span className="inline-block px-2 py-1 text-xs font-medium bg-sage-100 text-sage-700 rounded-full">
+                    <span className="inline-block px-2 py-1 text-xs font-medium bg-sage-100 text-sage-700 rounded-full whitespace-nowrap">
                       {category.category}
                     </span>
                   </div>
@@ -268,7 +268,7 @@ export default function Home() {
             ))}
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-2">
             {filteredCategories.map((category) => (
               <Link
                 key={category.id}
@@ -276,16 +276,37 @@ export default function Home() {
                 className="group block"
               >
                 <div className="bg-purple-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 py-2 px-3 cursor-pointer group relative">
-                  <div className="grid grid-cols-12 gap-4 items-center">
-                    <div className="col-span-5 flex items-center">
-                      <div className={`w-12 h-12 rounded-full ${category.color} flex items-center justify-center text-lg mr-4 group-hover:scale-110 transition-transform duration-300`}>
+                  {/* Mobile: Stacked layout */}
+                  <div className="sm:hidden">
+                    <div className="flex items-center mb-2">
+                      <div className={`w-8 h-8 sm:w-12 sm:h-12 rounded-full ${category.color} flex items-center justify-center text-sm sm:text-lg mr-2 sm:mr-3 group-hover:scale-110 transition-transform duration-300`}>
                         {category.icon}
                       </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-sage-800 group-hover:text-sage-600 transition-colors mb-1 whitespace-nowrap">
+                      <div className="text-left flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold text-sage-800 group-hover:text-sage-600 transition-colors mb-1 whitespace-nowrap overflow-hidden text-ellipsis ml-1">
                           {category.title}
                         </h3>
-                        <span className="inline-block px-2 py-1 text-xs font-medium bg-sage-100 text-sage-700 rounded-full">
+                        <span className="inline-block px-2 py-1 text-xs font-medium bg-sage-100 text-sage-700 rounded-full whitespace-nowrap">
+                          {category.category}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-sage-600 leading-relaxed text-xs">
+                      {category.description}
+                    </p>
+                  </div>
+                  
+                  {/* Desktop: Side-by-side layout */}
+                  <div className="hidden sm:grid grid-cols-12 gap-4 items-center">
+                    <div className="col-span-5 flex items-center">
+                      <div className={`w-8 h-8 sm:w-12 sm:h-12 rounded-full ${category.color} flex items-center justify-center text-sm sm:text-lg mr-2 sm:mr-3 group-hover:scale-110 transition-transform duration-300`}>
+                        {category.icon}
+                      </div>
+                      <div className="text-left flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold text-sage-800 group-hover:text-sage-600 transition-colors mb-1 whitespace-nowrap overflow-hidden text-ellipsis ml-1">
+                          {category.title}
+                        </h3>
+                        <span className="inline-block px-2 py-1 text-xs font-medium bg-sage-100 text-sage-700 rounded-full whitespace-nowrap">
                           {category.category}
                         </span>
                       </div>
@@ -303,8 +324,8 @@ export default function Home() {
         )}
 
           {/* Footer */}
-          <div className="text-center mt-6">
-            <p className="text-sage-500">
+          <div className="text-center mt-2">
+            <p className="text-sage-500 text-sm">
               Choose a test above to begin your journey of self-discovery
             </p>
           </div>
@@ -312,7 +333,9 @@ export default function Home() {
       </div>
       
       {/* Footer Component */}
-      <Footer />
+      <div className="mt-2">
+        <Footer />
+      </div>
     </div>
   )
 }

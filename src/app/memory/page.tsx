@@ -245,7 +245,7 @@ export default function MemoryTest() {
               <div className="text-center">
                 {/* Show sequence to memorize */}
                 {showSequence && challenges[currentChallenge] && (
-                  <div className="bg-sage-50 rounded-2xl p-6 mb-6 border-2 border-sage-200">
+                  <div className="bg-sage-50 rounded-2xl p-6 mb-2 border-2 border-sage-200">
                     <h2 className="text-xl font-bold text-sage-800 mb-4">
                       {challenges[currentChallenge] && challenges[currentChallenge].title}
                     </h2>
@@ -274,7 +274,7 @@ export default function MemoryTest() {
 
                 {/* Show answer options */}
                 {showAnswer && challenges[currentChallenge] && (
-                  <div className="bg-sage-50 rounded-2xl p-6 mb-6 border-2 border-sage-200">
+                  <div className="bg-sage-50 rounded-2xl p-6 mb-2 border-2 border-sage-200">
                     <h2 className="text-xl font-bold text-sage-800 mb-4">
                       {challenges[currentChallenge] && challenges[currentChallenge].title}
                     </h2>

@@ -136,7 +136,7 @@ export default function OpticalIllusionTest() {
           {hasBegun && !showResults && illusions.length > 0 && (
             <div className="bg-purple-50 rounded-2xl shadow-lg p-6">
               {/* Progress Bar */}
-              <div className="mb-6">
+              <div className="mb-2">
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm font-medium text-green-600">
                     Question {currentIllusion + 1} of {illusions.length}
@@ -154,7 +154,7 @@ export default function OpticalIllusionTest() {
               </div>
 
               {/* Current Illusion */}
-              <div className="mb-6">
+              <div className="mb-2">
                 <div className="flex flex-col lg:flex-row gap-6">
                   {/* Image - Left Side */}
                   <div className="lg:w-1/2">
@@ -164,12 +164,12 @@ export default function OpticalIllusionTest() {
                       </h2>
                     </div>
                     
-                    <div className="bg-green-50 rounded-2xl p-3 border-2 border-green-200">
-                      <div className="flex justify-center">
+                    <div className="bg-green-50 rounded-2xl p-3 border-2 border-green-200 h-[72%]">
+                      <div className="flex justify-center h-full">
                         <img 
                           src={illusions[currentIllusion].image} 
                           alt={illusions[currentIllusion].title}
-                          className="max-w-full h-auto rounded-lg shadow-lg"
+                          className="max-w-full h-auto rounded-lg shadow-lg scale-65"
                         />
                       </div>
                     </div>
@@ -189,7 +189,7 @@ export default function OpticalIllusionTest() {
                         <button
                           key={index}
                           onClick={() => handleAnswer(illusions[currentIllusion].id, option)}
-                          className="w-full py-2 px-3 text-left border-2 border-green-200 rounded-xl hover:border-green-400 hover:bg-green-50 transition-all duration-200 text-green-700 font-medium"
+                          className="w-full py-3 px-3 text-left border-2 border-green-200 rounded-xl hover:border-green-400 hover:bg-green-50 transition-all duration-200 text-green-700 font-medium"
                           style={{backgroundColor: '#fefcff'}}
                         >
                           {option.text}

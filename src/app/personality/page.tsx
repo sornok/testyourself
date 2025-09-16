@@ -150,7 +150,7 @@ export default function PersonalityTest() {
 
           {/* Question Card - Only show when test has begun */}
           {questions.length > 0 && hasBegun && (
-            <div className="bg-sage-50 rounded-2xl shadow-lg p-8 mb-2">
+            <div className="bg-sage-50 rounded-2xl shadow-lg p-6 mb-2">
               <h2 className="text-xl font-semibold text-sage-800 mb-4 text-center">
                 {questions[currentQuestion].question}
               </h2>
@@ -160,7 +160,7 @@ export default function PersonalityTest() {
                   <button
                     key={index}
                     onClick={() => handleAnswer(questions[currentQuestion].id, option.type)}
-                    className="w-full p-4 text-left border-2 border-sage-200 rounded-xl hover:border-sage-400 hover:bg-sage-50 transition-all duration-200 group"
+                    className="w-full px-4 py-2 text-left border-2 border-sage-200 rounded-xl hover:border-sage-400 hover:bg-sage-50 transition-all duration-200 group"
                   >
                     <div className="flex items-center">
                       <div className="w-4 h-4 border-2 border-sage-300 rounded-full mr-4 group-hover:border-sage-500 transition-colors"></div>
@@ -171,6 +171,18 @@ export default function PersonalityTest() {
                   </button>
                 ))}
               </div>
+              
+              {/* Previous Question Button - Inside the answers box */}
+              {currentQuestion > 0 && (
+                <div className="text-center mt-4">
+                  <button
+                    onClick={() => setCurrentQuestion(currentQuestion - 1)}
+                    className="px-3 py-1 bg-sage-200 text-sage-700 rounded-lg hover:bg-sage-300 transition-colors text-sm"
+                  >
+                    ← Previous Question
+                  </button>
+                </div>
+              )}
             </div>
           )}
 
@@ -209,17 +221,6 @@ export default function PersonalityTest() {
             </div>
           )}
 
-          {/* Back Button - Only show when test has begun */}
-          {hasBegun && currentQuestion > 0 && (
-            <div className="text-center">
-              <button
-                onClick={() => setCurrentQuestion(currentQuestion - 1)}
-                className="px-6 py-3 text-sage-600 hover:text-sage-800 transition-colors"
-              >
-                ← Previous Question
-              </button>
-            </div>
-          )}
         </div>
       </div>
       
