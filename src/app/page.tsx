@@ -28,12 +28,30 @@ export default function Home() {
       category: 'Personality & Self-Discovery'
     },
     {
+      id: 'emotional-intelligence',
+      title: 'Emotional Intelligence',
+      description: 'Discover your EQ level and emotional awareness with our comprehensive assessment',
+      icon: '💝',
+      path: '/emotional-intelligence',
+      color: 'from-pink-400 to-pink-600',
+      category: 'Personality & Self-Discovery'
+    },
+    {
       id: 'optical',
       title: 'Optical Illusions',
       description: 'Explore optical illusions and discover how your mind interprets visual information',
       icon: '👁️',
       path: '/optical-illusion',
       color: 'from-purple-400 to-purple-600',
+      category: 'Visual & Perception'
+    },
+    {
+      id: 'color-blindness',
+      title: 'Color Blindness Test',
+      description: 'Test your color vision with our comprehensive Ishihara test to detect color blindness',
+      icon: '🌈',
+      path: '/color-blindness',
+      color: 'from-indigo-400 to-indigo-600',
       category: 'Visual & Perception'
     },
     {
@@ -94,7 +112,7 @@ export default function Home() {
       <Head>
         {/* Basic Meta Tags */}
         <title>TestYourself - Free Online Tests & Assessments | Personality, Trivia, Memory & More</title>
-        <meta name="description" content="Discover yourself with our free online tests! Take personality assessments, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests. Start your journey of self-discovery today!" />
+        <meta name="description" content="Discover yourself with our free online tests! Take personality assessments, emotional intelligence tests, color blindness tests, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests. Start your journey of self-discovery today!" />
         <meta name="keywords" content="online tests, personality test, trivia quiz, memory test, optical illusions, typing test, self-discovery, free assessments, psychological tests" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://testyourself.com/" />
@@ -102,7 +120,7 @@ export default function Home() {
         
         {/* Open Graph Tags */}
         <meta property="og:title" content="TestYourself - Free Online Tests & Assessments" />
-        <meta property="og:description" content="Discover yourself with our free online tests! Take personality assessments, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests." />
+        <meta property="og:description" content="Discover yourself with our free online tests! Take personality assessments, emotional intelligence tests, color blindness tests, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests." />
         <meta property="og:image" content="https://testyourself.com/og-image.jpg" />
         <meta property="og:url" content="https://testyourself.com/" />
         <meta property="og:type" content="website" />
@@ -111,7 +129,7 @@ export default function Home() {
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="TestYourself - Free Online Tests & Assessments" />
-        <meta name="twitter:description" content="Discover yourself with our free online tests! Take personality assessments, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests." />
+        <meta name="twitter:description" content="Discover yourself with our free online tests! Take personality assessments, emotional intelligence tests, color blindness tests, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests." />
         <meta name="twitter:image" content="https://testyourself.com/og-image.jpg" />
         
         {/* Structured Data */}
@@ -122,7 +140,7 @@ export default function Home() {
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "TestYourself",
-              "description": "Free online tests and assessments including personality tests, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests.",
+              "description": "Free online tests and assessments including personality tests, emotional intelligence tests, color blindness tests, trivia quizzes, memory challenges, optical illusion tests, and typing speed tests.",
               "url": "https://testyourself.com/",
               "potentialAction": {
                 "@type": "SearchAction",
@@ -144,27 +162,41 @@ export default function Home() {
                   {
                     "@type": "ListItem",
                     "position": 2,
+                    "name": "Emotional Intelligence",
+                    "description": "Discover your EQ level and emotional awareness with our comprehensive assessment",
+                    "url": "https://testyourself.com/emotional-intelligence"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
                     "name": "Optical Illusions",
                     "description": "Explore optical illusions and discover how your mind interprets visual information",
                     "url": "https://testyourself.com/optical-illusion"
                   },
                   {
                     "@type": "ListItem",
-                    "position": 3,
+                    "position": 4,
+                    "name": "Color Blindness Test",
+                    "description": "Test your color vision with our comprehensive Ishihara test to detect color blindness",
+                    "url": "https://testyourself.com/color-blindness"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 5,
                     "name": "Trivia Quiz",
                     "description": "Test your general knowledge with our fun trivia quiz",
                     "url": "https://testyourself.com/trivia"
                   },
                   {
                     "@type": "ListItem",
-                    "position": 4,
+                    "position": 6,
                     "name": "Typing Test",
                     "description": "Test your typing speed and accuracy with our typing challenge",
                     "url": "https://testyourself.com/typing"
                   },
                   {
                     "@type": "ListItem",
-                    "position": 5,
+                    "position": 7,
                     "name": "Memory Challenge",
                     "description": "Challenge your memory and reaction time with our cognitive tests",
                     "url": "https://testyourself.com/memory"
