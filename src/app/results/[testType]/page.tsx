@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
 import { useParams, useSearchParams, useRouter } from 'next/navigation'
 import Head from 'next/head'
 import { personalityTypes } from '@/lib/personalityTest'
@@ -10,11 +9,6 @@ import Footer from '@/components/Footer'
 export default function ResultsPage() {
   const { testType } = useParams()
   const searchParams = useSearchParams()
-  const [showShareDropdown, setShowShareDropdown] = useState(false)
-  const [showReview, setShowReview] = useState(false)
-  const [showShare, setShowShare] = useState(false)
-  const [needsTopButtons, setNeedsTopButtons] = useState(false)
-  const bottomButtonsRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
   // Save Results functionality
@@ -357,190 +351,11 @@ Visit https://testyourself.com for more tests!`
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `${testType}-test-results-${new Date().toISOString().split('T')[0]}.txt`
+    a.download = `${testType === 'personality' ? 'character-assessment' : testType}-test-results-${new Date().toISOString().split('T')[0]}.txt`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
-  }
-  const opticalReviewRef = useRef<HTMLDivElement>(null)
-  const memoryReviewRef = useRef<HTMLDivElement>(null)
-  const triviaReviewRef = useRef<HTMLDivElement>(null)
-
-  // Extract data for review sections
-  const questions = JSON.parse(searchParams.get('questions') || '[]')
-  const answers = JSON.parse(searchParams.get('answers') || '{}')
-  const illusions = JSON.parse(searchParams.get('illusions') || '[]')
-  const challenges = JSON.parse(searchParams.get('challenges') || '[]')
-
-  // Update needsTopButtons when showReview or showShare changes, or when results are shown
-  useEffect(() => {
-    // Check if we need top buttons whenever we have results (regardless of review/share state)
-    const hasResults = questions.length > 0 || Object.keys(answers).length > 0
-    if (showReview || showShare || (!showReview && !showShare && hasResults)) {
-      // Use a small delay to ensure DOM is updated
-      setTimeout(() => {
-        setNeedsTopButtons(checkBottomButtonsVisibility())
-      }, 100)
-    } else {
-      setNeedsTopButtons(false)
-    }
-  }, [showReview, showShare, questions, answers])
-
-  // Add scroll and resize listeners to update button visibility
-  useEffect(() => {
-    const handleScroll = () => {
-      const hasResults = questions.length > 0 || Object.keys(answers).length > 0
-      if (showReview || showShare || (!showReview && !showShare && hasResults)) {
-        setNeedsTopButtons(checkBottomButtonsVisibility())
-      }
-    }
-
-    const handleResize = () => {
-      const hasResults = questions.length > 0 || Object.keys(answers).length > 0
-      if (showReview || showShare || (!showReview && !showShare && hasResults)) {
-        setNeedsTopButtons(checkBottomButtonsVisibility())
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [showReview, showShare])
-
-  const handleShare = async () => {
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: 'My TestYourself Results',
-          text: '',
-          url: ''
-        })
-        return
-      }
-    } catch (error) {
-      console.log('Native share failed')
-    }
-
-    // Fallback - just show a message
-    showNotification('Choose a platform from the popup to share your results!')
-  }
-
-  const handleReviewToggle = () => {
-    if (!showReview) {
-      // When showing review, hide share
-      setShowShare(false)
-    }
-    setShowReview(!showReview)
-  }
-
-  const handleShareToggle = () => {
-    if (!showShare) {
-      // When showing share, hide review
-      setShowReview(false)
-    }
-    setShowShare(!showShare)
-  }
-
-  // Check if bottom buttons are visible in viewport
-  const checkBottomButtonsVisibility = () => {
-    if (!bottomButtonsRef.current) return false
-    
-    const rect = bottomButtonsRef.current.getBoundingClientRect()
-    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight
-    
-    return !isVisible // Show top buttons when bottom buttons are NOT visible
-  }
-
-  // Generate share content based on test type
-  const getShareContent = () => {
-    const baseUrl = window.location.origin
-    const testName = (testType as string).charAt(0).toUpperCase() + (testType as string).slice(1).replace('-', ' ')
-    
-    let title = ''
-    let description = ''
-    let hashtags = '#TestYourself #SelfDiscovery'
-    
-    switch (testType) {
-      case 'personality':
-        title = 'I just discovered my personality type!'
-        description = 'Take the personality test and discover your MBTI type. Find out what makes you unique!'
-        hashtags = '#PersonalityTest #MBTI #SelfDiscovery #TestYourself'
-        break
-      case 'trivia':
-        title = 'I just tested my general knowledge!'
-        description = 'How much do you know? Take this trivia quiz and challenge yourself!'
-        hashtags = '#TriviaQuiz #GeneralKnowledge #TestYourself #Quiz'
-        break
-      case 'optical-illusion':
-        title = 'I just tested my visual perception!'
-        description = 'Discover how your brain processes images with these optical illusions!'
-        hashtags = '#OpticalIllusion #VisualPerception #BrainTest #TestYourself'
-        break
-      case 'memory':
-        title = 'I just tested my memory skills!'
-        description = 'Challenge your memory with sequence tests and see how well you remember!'
-        hashtags = '#MemoryTest #BrainTraining #MemorySkills #TestYourself'
-        break
-      case 'typing':
-        title = 'I just tested my typing speed!'
-        description = 'How fast can you type? Test your speed and accuracy with this typing challenge!'
-        hashtags = '#TypingTest #TypingSpeed #TestYourself #Skills'
-        break
-      default:
-        title = 'I just took an amazing test!'
-        description = 'Discover more about yourself with these fun and insightful tests!'
-        hashtags = '#TestYourself #SelfDiscovery'
-    }
-    
-    return {
-      url: `${baseUrl}/${testType}`,
-      title,
-      description,
-      hashtags,
-      text: `${title} ${description} ${hashtags}`
-    }
-  }
-
-  const handleFacebookShare = () => {
-    // Facebook sharing disabled - requires live site
-    alert('Facebook sharing will be available when the site is live!')
-  }
-
-  const handleXShare = () => {
-    const content = getShareContent()
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(content.text)}&url=${encodeURIComponent(content.url)}`
-    window.open(url, '_blank', 'width=800,height=600')
-  }
-
-  const showNotification = (message: string) => {
-    // Create a custom notification instead of using alert
-    const notification = document.createElement('div')
-    notification.textContent = message
-    notification.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #10b981;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      z-index: 1000;
-      font-family: system-ui, sans-serif;
-      font-size: 14px;
-    `
-    document.body.appendChild(notification)
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-      if (notification.parentNode) {
-        notification.parentNode.removeChild(notification)
-      }
-    }, 3000)
   }
 
   const renderPersonalityResults = () => {
@@ -559,15 +374,6 @@ Visit https://testyourself.com for more tests!`
 
     return (
       <div className="space-y-2">
-        {/* Test Title */}
-        <div className="text-center mb-2 mt-2">
-          <div className="bg-white rounded-2xl shadow-lg px-2 py-0.5">
-            <h1 className="text-lg font-bold text-gray-800">
-              Character Assessment Results
-            </h1>
-          </div>
-        </div>
-
         {/* Main Result */}
         <div className="text-center">
           <div className="bg-sage-50 rounded-2xl shadow-lg p-6 mb-2">
@@ -854,12 +660,12 @@ Visit https://testyourself.com for more tests!`
     switch (testType) {
       case 'personality':
         return {
-          title: 'Character Assessment Results - Free MBTI Personality Test | TestYourself',
-          description: 'View your detailed MBTI personality test results! Discover your character type, personality traits, and behavioral patterns. Get insights into your personality preferences and cognitive style.',
-          keywords: 'personality test results, MBTI results, character assessment results, personality type, Myers-Briggs results, personality analysis, character traits',
-          ogTitle: 'Character Assessment Results - MBTI Personality Test',
-          ogDescription: 'View your detailed MBTI personality test results! Discover your character type, personality traits, and behavioral patterns.',
-          ogImage: `${baseUrl}/personality-results-og-image.jpg`,
+          title: 'Character Assessment Results - Free Personality Type Test | TestYourself',
+          description: 'View your detailed character assessment results! Discover your personality type, character traits, and behavioral patterns. Get comprehensive insights into your personality preferences and cognitive style with our free personality test.',
+          keywords: 'character assessment results, personality test results, personality type, character traits, behavioral patterns, personality analysis, cognitive style, personality preferences, free personality test',
+          ogTitle: 'Character Assessment Results - Free Personality Type Test',
+          ogDescription: 'View your detailed character assessment results! Discover your personality type, character traits, and behavioral patterns.',
+          ogImage: `${baseUrl}/images/character-assessment-results-og.jpg`,
           canonical: `${baseUrl}/results/personality`
         }
       case 'trivia':
@@ -931,6 +737,61 @@ Visit https://testyourself.com for more tests!`
         <meta name="twitter:description" content={seoContent.ogDescription} />
         <meta name="twitter:image" content={seoContent.ogImage} />
         
+        {/* JSON-LD Schema Markup */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Character Assessment Test",
+              "description": "Free personality type test based on character assessment principles. Discover your personality traits and behavioral patterns.",
+              "url": seoContent.canonical,
+              "applicationCategory": "PsychologyApplication",
+              "operatingSystem": "Web Browser",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "creator": {
+                "@type": "Organization",
+                "name": "TestYourself",
+                "url": "https://testyourself.com"
+              },
+              "mainEntity": {
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "What is a character assessment test?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "A character assessment test is a psychological evaluation that analyzes your personality traits, behavioral patterns, and cognitive preferences to determine your personality type."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How accurate is the character assessment test?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Our character assessment test is based on established psychological principles and provides insights into your personality preferences. While no test is 100% accurate, it offers valuable self-discovery insights."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How long does the character assessment take?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The character assessment test typically takes 5-10 minutes to complete, with 15 carefully selected questions designed to reveal your personality preferences."
+                    }
+                  }
+                ]
+              }
+            })
+          }}
+        />
+        
         {/* Structured Data */}
         <script
           type="application/ld+json"
@@ -969,373 +830,70 @@ Visit https://testyourself.com for more tests!`
       </Head>
       
       <div className="min-h-screen flex flex-col">
-      <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
-        <div className="max-w-6xl mx-auto overflow-x-hidden">
-        {/* Header */}
-        <Header onLogoClick={undefined} />
-        
-        {/* Top Action Buttons - Only show when content is tall enough to need scrolling */}
-        {needsTopButtons && (
-          <div className="-mx-4 px-4 pt-2">
-            <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  onClick={handleShareToggle}
-                  className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
-                >
-                  {showShare ? '🔒 Hide Share' : '📤 Share Results'}
-                </button>
-                <button
-                  onClick={handleReviewToggle}
-                  className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
-                >
-                  {showReview ? '🔒 Hide Review' : '📋 Show Review'}
-                </button>
-                <button
-                  onClick={saveResults}
-                  className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-all duration-300"
-                >
-                  💾 Save Results
-                </button>
-                <button
-                  onClick={() => router.push(`/${testType}`)}
-                  className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
-                >
-                  {testType === 'typing' ? '🔄 Try Another Challenge' : '🔄 Retake Test'}
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-        
-        {/* Results Content - Hide when review or share is shown */}
-        {!showReview && !showShare && (
-          <div className="mt-2">
-            {testType === 'personality' ? renderPersonalityResults() : 
-             testType === 'trivia' ? renderTriviaResults() : 
-             testType === 'optical-illusion' ? renderOpticalIllusionResults() :
-             testType === 'memory' ? renderMemoryResults() :
-             renderOtherResults()}
-          </div>
-        )}
-
-
-        {/* Test Title - Show when review or share is shown */}
-        {(showReview || showShare) && (
-          <div className={`text-center mb-2 ${needsTopButtons ? 'mt-2' : 'mt-4'}`}>
-            <div className="bg-white rounded-2xl shadow-lg px-2 py-0.5">
-              <h1 className="text-lg font-bold text-gray-800">
-                {testType === 'personality' ? 'Character Assessment Results' :
-                 testType === 'trivia' ? 'Trivia Quiz Results' :
-                 testType === 'memory' ? 'Memory Test Results' :
-                 testType === 'optical-illusion' ? 'Optical Illusion Test Results' :
-                 'Test Results'}
-              </h1>
-            </div>
-          </div>
-        )}
-
-        {/* Review Sections - All test types */}
-        {showReview && (
-          <>
-            {/* Character Assessment Review */}
-            {testType === 'personality' && questions.length > 0 && (
-              <div ref={triviaReviewRef} className="bg-sage-50 rounded-2xl shadow-lg p-4">
-                <h3 className="text-lg font-bold text-sage-800 mb-2 text-center">Question Review</h3>
-                <div className="space-y-3">
-                  {questions.map((question: any, index: number) => {
-                    const userAnswer = answers[question.id]
-                    const userAnswerText = userAnswer ? question.options.find((opt: any) => opt.type === userAnswer)?.text : 'No answer'
-                    
-                    return (
-                      <div key={question.id} className="border border-sage-200 rounded-lg p-3 bg-sage-50">
-                        <div className="flex justify-between items-start mb-2">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-xs font-medium">
-                                Question {index + 1}
-                              </span>
-                            </div>
-                            <h4 className="text-sm font-semibold text-sage-800 mb-2">
-                              {question.question}
-                            </h4>
-                          </div>
-                        </div>
-                        
-                        <div>
-                          <p className="text-sm font-medium text-sage-600 mb-1">Your Answer:</p>
-                          <div className="p-2 rounded-lg border border-sage-200 text-sm text-sage-800" style={{backgroundColor: '#fefcff'}}>
-                            {userAnswerText}
-                          </div>
-                          <p className="text-sm text-sage-500 mt-1">
-                            Type: {userAnswer ? (userAnswer === 'E' ? 'Extraversion' : userAnswer === 'I' ? 'Introversion' : userAnswer === 'S' ? 'Sensing' : userAnswer === 'N' ? 'Intuition' : userAnswer === 'T' ? 'Thinking' : userAnswer === 'F' ? 'Feeling' : userAnswer === 'J' ? 'Judging' : userAnswer === 'P' ? 'Perceiving' : userAnswer) : 'Unknown'}
-                          </p>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* Trivia Test Review */}
-            {testType === 'trivia' && questions.length > 0 && (
-              <div ref={triviaReviewRef} className="bg-purple-50 rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-green-800 mb-2 text-center">Question Review</h3>
-                <div className="space-y-4">
-                  {questions.map((question: any, index: number) => {
-                    const userAnswer = answers[question.id]
-                    const isCorrect = userAnswer === question.correct
-                    const userAnswerText = userAnswer === -1 ? 'No answer' : question.options[userAnswer]
-                    const correctAnswerText = question.options[question.correct]
-                    
-                    return (
-                      <div key={question.id} className={`border-2 rounded-xl p-4 ${
-                        isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'
-                      }`}>
-                        <div className="flex justify-between items-start mb-2">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-3 mb-2">
-                              <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm font-medium">
-                                Q{index + 1}
-                              </span>
-                              <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">
-                                {question.category}
-                              </span>
-                            </div>
-                            <h4 className="text-xl font-semibold text-gray-800 mb-2">
-                              {question.question}
-                            </h4>
-                          </div>
-                          <div className={`text-2xl ${isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                            {isCorrect ? '✅' : '❌'}
-                          </div>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <p className="text-base font-medium text-gray-600 mb-2">Your Answer:</p>
-                            <div className={`p-3 rounded-lg text-lg ${
-                              isCorrect ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                            }`}>
-                              {userAnswerText}
-                            </div>
-                          </div>
-                          <div>
-                            <p className="text-base font-medium text-gray-600 mb-2">Correct Answer:</p>
-                            <div className="p-3 rounded-lg bg-green-100 text-green-800 text-lg">
-                              {correctAnswerText}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* Optical Illusion Test Review */}
-            {testType === 'optical-illusion' && illusions.length > 0 && (
-              <div ref={opticalReviewRef} className="bg-sage-50 rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-sage-800 mb-2 text-center">Question Review</h3>
-                <div className="space-y-4">
-                  {illusions.map((illusion: any, index: number) => {
-                    const userAnswer = answers[illusion.id]
-                    return (
-                      <div key={illusion.id} className="border border-sage-200 rounded-xl p-4 bg-sage-50">
-                        <div className="flex justify-between items-start mb-2">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-3 mb-2">
-                              <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm font-medium">
-                                Question {index + 1}
-                              </span>
-                            </div>
-                            <h4 className="text-lg font-semibold text-sage-800 mb-2">
-                              {illusion.title}
-                            </h4>
-                          </div>
-                        </div>
-                        
-                        <div className="mb-2">
-                          <div className="bg-sage-50 rounded-2xl p-4 border-2 border-sage-200">
-                            <div className="flex justify-center">
-                              <img 
-                                src={illusion.image} 
-                                alt={illusion.title}
-                                className="max-w-full h-auto max-h-36 rounded-lg shadow-lg"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div>
-                          <p className="text-base font-medium text-sage-600 mb-2">Your Answer:</p>
-                          <div className="p-3 rounded-lg border border-sage-200 text-lg text-sage-800" style={{backgroundColor: '#fefcff'}}>
-                            {userAnswer ? userAnswer.text : 'No answer'}
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* Memory Test Review */}
-            {testType === 'memory' && challenges.length > 0 && (
-              <div ref={memoryReviewRef} className="bg-purple-50 rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-bold text-sage-800 mb-2 text-center">Challenge Review</h3>
-                <div className="space-y-4">
-                  {challenges.map((challenge: any, index: number) => {
-                    const userAnswer = answers[challenge.id]
-                    const isCorrect = userAnswer && userAnswer.correct
-                    
-                    return (
-                      <div key={challenge.id} className={`border-2 rounded-xl p-4 ${
-                        isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'
-                      }`}>
-                        <div className="flex justify-between items-start mb-2">
-                          <div className="flex-1">
-                            <div className="flex items-center gap-3 mb-2">
-                              <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm font-medium">
-                                Challenge {index + 1}
-                              </span>
-                            </div>
-                            <h4 className="text-xl font-semibold text-sage-800 mb-2">
-                              {challenge.title}
-                            </h4>
-                          </div>
-                          <div className={`text-2xl ${isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                            {isCorrect ? '✅' : '❌'}
-                          </div>
-                        </div>
-                        
-                        {/* Item-level accuracy */}
-                        <div className="mb-2">
-                          <div className="flex items-center">
-                            <span className="text-sm font-medium text-sage-600">Item Accuracy:</span>
-                            <span className="text-sm font-bold text-sage-800 ml-1">
-                              {userAnswer ? (() => {
-                                const userSeq = userAnswer.userSequence || [];
-                                const correctSeq = challenge.sequence;
-                                let correctItems = 0;
-                                for (let i = 0; i < Math.min(correctSeq.length, userSeq.length); i++) {
-                                  if (correctSeq[i] === userSeq[i]) correctItems++;
-                                }
-                                return `${correctItems}/${correctSeq.length}`;
-                              })() : '0/0'}
-                            </span>
-                          </div>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <p className="text-base font-medium text-sage-600 mb-2">Your Answer:</p>
-                            <div className="p-1 rounded-lg text-xl flex flex-wrap gap-1">
-                              {userAnswer && userAnswer.userSequence ? (
-                                userAnswer.userSequence.map((item: any, index: number) => {
-                                  const correctSeq = challenge.sequence;
-                                  const isItemCorrect = index < correctSeq.length && item === correctSeq[index];
-                                  return (
-                                    <span 
-                                      key={index}
-                                      className={`rounded ${
-                                        isItemCorrect 
-                                          ? 'bg-green-200 text-green-800' 
-                                          : 'bg-red-200 text-red-800'
-                                      }`}
-                                    >
-                                      {item}
-                                    </span>
-                                  );
-                                })
-                              ) : (
-                                <span className="text-gray-500">No answer</span>
-                              )}
-                            </div>
-                          </div>
-                          <div>
-                            <p className="text-base font-medium text-sage-600 mb-2">Correct Answer:</p>
-                            <div className="p-1 rounded-lg bg-green-100 text-green-800 text-xl">
-                              {challenge.sequence.join(', ')}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-          </>
-        )}
-
-        {/* Share Section - Show when share is toggled (but not when review is shown) */}
-        {showShare && !showReview && (
-          <div className="bg-purple-50 rounded-2xl shadow-lg p-2 mb-2">
-            <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">Share Your Results</h3>
-            <p className="text-gray-600 mb-2 text-center">Choose a platform to share your test results</p>
+        <div className="pt-2 px-4 sm:px-6 lg:px-8 flex-grow">
+          <div className="max-w-6xl mx-auto overflow-x-hidden">
+            {/* Header */}
+            <Header onLogoClick={undefined} />
             
-            <div className="flex justify-start">
-              <button
-                onClick={handleXShare}
-                className="p-4 text-left bg-blue-50 hover:bg-blue-100 rounded-2xl shadow-lg transition-colors flex items-center"
-              >
-                <span className="text-2xl mr-3">𝕏</span>
-                <div>
-                  <div className="font-semibold text-blue-800">X.com</div>
-                  <div className="text-sm text-blue-600">Share on X</div>
-                </div>
-              </button>
+            {/* Test Title */}
+            <div className="text-center mb-2 mt-2">
+              <div className="bg-white rounded-2xl shadow-lg px-2 py-0.5">
+                <h1 className="text-lg font-bold text-gray-800">
+                  {testType === 'personality' ? 'Character Assessment Results' :
+                   testType === 'trivia' ? 'Trivia Quiz Results' :
+                   testType === 'memory' ? 'Memory Challenge Results' :
+                   testType === 'optical-illusion' ? 'Optical Illusion Test Results' :
+                   'Test Results'}
+                </h1>
+              </div>
             </div>
-          </div>
-        )}
 
-        {/* Bottom Action Buttons - Always visible at the bottom */}
-        <div ref={bottomButtonsRef} className={`-mx-4 px-4 pb-2 ${
-          showShare && !showReview ? 'pt-0' : 
-          showReview ? 'pt-2' : 
-          testType === 'memory' ? 'pt-0' : 
-          testType === 'personality' ? 'pt-2' : 
-          testType === 'optical-illusion' ? 'pt-2' : 
-          testType === 'trivia' ? 'pt-2' : 
-          testType === 'emotional-intelligence' ? 'pt-2' : 
-          'pt-1'
-        }`}>
-          <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={handleShareToggle}
-                className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
-              >
-                {showShare ? '🔒 Hide Share' : '📤 Share Results'}
-              </button>
-              {(testType === 'optical-illusion' || testType === 'memory' || testType === 'trivia' || testType === 'personality') && (
-                <button
-                  onClick={handleReviewToggle}
-                  className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
-                >
-                  {showReview ? '🔒 Hide Review' : '📋 Show Review'}
-                </button>
-              )}
-              <button
-                onClick={saveResults}
-                className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-all duration-300"
-              >
-                💾 Save Results
-              </button>
-              <button
-                onClick={() => router.push(`/${testType}`)}
-                className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
-              >
-                {testType === 'typing' ? '🔄 Try Another Challenge' : '🔄 Retake Test'}
-              </button>
+            {/* Results Content */}
+            <div className="mt-2">
+              {testType === 'personality' ? renderPersonalityResults() : 
+               testType === 'trivia' ? renderTriviaResults() : 
+               testType === 'optical-illusion' ? renderOpticalIllusionResults() :
+               testType === 'memory' ? renderMemoryResults() :
+               renderOtherResults()}
             </div>
+
+            {/* Action Buttons */}
+            <div className="mt-2 mb-2">
+              <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button
+                    onClick={() => router.push(`/results/${testType}/share?${searchParams.toString()}`)}
+                    className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
+                  >
+                    📤 Share Results
+                  </button>
+                  {(testType === 'optical-illusion' || testType === 'memory' || testType === 'trivia' || testType === 'personality') && (
+                    <button
+                      onClick={() => router.push(`/results/${testType}/review?${searchParams.toString()}`)}
+                      className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
+                    >
+                      📋 Show Review
+                    </button>
+                  )}
+                  <button
+                    onClick={saveResults}
+                    className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-all duration-300"
+                  >
+                    💾 Save Results
+                  </button>
+                  <button
+                    onClick={() => router.push(`/${testType}`)}
+                    className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
+                  >
+                    {testType === 'typing' ? '🔄 Try Another Challenge' : '🔄 Retake Test'}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
-        </div>
-      </div>
       
       {/* Footer Component */}
       <Footer />
