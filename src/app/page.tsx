@@ -21,7 +21,7 @@ export default function Home() {
     {
       id: 'personality',
       title: 'Character Assessment',
-      description: 'Take our MBTI-style personality test to learn more about yourself',
+      description: 'Take our MBTI-style personality test to learn more about yourself and discover your unique traits.',
       icon: '🧠',
       path: '/personality',
       color: 'from-green-400 to-green-600',
@@ -30,7 +30,7 @@ export default function Home() {
     {
       id: 'emotional-intelligence',
       title: 'Emotional Intelligence',
-      description: 'Discover your EQ level and emotional awareness with our comprehensive assessment',
+      description: 'Discover your EQ level and emotional awareness with our comprehensive assessment.',
       icon: '💝',
       path: '/emotional-intelligence',
       color: 'from-pink-400 to-pink-600',
@@ -39,7 +39,7 @@ export default function Home() {
     {
       id: 'optical',
       title: 'Optical Illusions',
-      description: 'Explore optical illusions and discover how your mind interprets visual information',
+      description: 'Explore optical illusions and discover how your mind interprets visual information.',
       icon: '👁️',
       path: '/optical-illusion',
       color: 'from-purple-400 to-purple-600',
@@ -48,7 +48,7 @@ export default function Home() {
     {
       id: 'color-blindness',
       title: 'Color Blindness Test',
-      description: 'Test your color vision with our comprehensive Ishihara test to detect color blindness',
+      description: 'Test your color vision with our comprehensive Ishihara test to detect color blindness.',
       icon: '🌈',
       path: '/color-blindness',
       color: 'from-indigo-400 to-indigo-600',
@@ -57,30 +57,48 @@ export default function Home() {
     {
       id: 'trivia',
       title: 'Trivia Quiz',
-      description: 'Test your general knowledge with our fun trivia quiz',
+      description: 'Test your general knowledge with our fun trivia quiz covering various topics and challenge your intellect.',
       icon: '📚',
       path: '/trivia',
       color: 'from-blue-400 to-blue-600',
       category: 'Knowledge & Trivia'
     },
     {
+      id: 'math',
+      title: 'Math',
+      description: 'Test your 7th-8th grade math skills with our comprehensive assessment covering arithmetic and fractions.',
+      icon: '🧮',
+      path: '/math',
+      color: 'from-orange-400 to-orange-600',
+      category: 'Knowledge & Trivia'
+    },
+    {
       id: 'typing',
       title: 'Typing',
-      description: 'Test your typing speed and accuracy with our typing challenge',
+      description: 'Test your typing speed and accuracy with our typing challenge to improve your skills.',
       icon: '⌨️',
       path: '/typing',
       color: 'from-green-500 to-green-700',
       category: 'Skills & Productivity'
     },
-    {
-      id: 'memory',
-      title: 'Memory Challenge',
-      description: 'Challenge your memory and reaction time with our cognitive tests',
-      icon: '🧩',
-      path: '/memory',
-      color: 'from-purple-500 to-purple-700',
-      category: 'Cognitive & Mental Agility'
-    }
+              {
+                id: 'memory',
+                title: 'Memory Challenge',
+                description: 'Challenge your memory and reaction time with our cognitive tests designed to improve mental agility.',
+                icon: '🧩',
+                path: '/memory',
+                color: 'from-purple-500 to-purple-700',
+                category: 'Cognitive & Mental Agility'
+              },
+              {
+                id: 'reaction-time',
+                title: 'Reaction Time',
+                description: 'Test your speed and accuracy with our comprehensive reaction time assessment covering visual processing.',
+                icon: '⚡',
+                path: '/reaction-time',
+                color: 'from-orange-400 to-orange-600',
+                category: 'Skills & Productivity'
+              }
   ]
 
   const filterOptions = [
@@ -190,16 +208,30 @@ export default function Home() {
                   {
                     "@type": "ListItem",
                     "position": 6,
+                    "name": "Math",
+                    "description": "Test your 7th-8th grade math skills with our comprehensive assessment",
+                    "url": "https://testyourself.com/math"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 7,
                     "name": "Typing Test",
                     "description": "Test your typing speed and accuracy with our typing challenge",
                     "url": "https://testyourself.com/typing"
                   },
                   {
                     "@type": "ListItem",
-                    "position": 7,
+                    "position": 8,
                     "name": "Memory Challenge",
                     "description": "Challenge your memory and reaction time with our cognitive tests",
                     "url": "https://testyourself.com/memory"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 9,
+                    "name": "Reaction Time",
+                    "description": "Test your speed and accuracy with our comprehensive reaction time assessment",
+                    "url": "https://testyourself.com/reaction-time"
                   }
                 ]
               }
@@ -365,7 +397,7 @@ export default function Home() {
                 href={category.path}
                 className="group block"
               >
-                <div className="bg-purple-50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 hover:scale-105 pt-2.5 px-3 pb-3 h-full flex flex-col cursor-pointer group relative">
+                <div className="bg-purple-50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-102 pt-2.5 px-3 pb-3 h-full flex flex-col cursor-pointer group relative">
                   <div className="flex items-center mb-2 -ml-2">
                     <div className={`w-8 h-8 rounded-full ${category.color} flex items-center justify-center text-sm mr-1 group-hover:scale-110 transition-transform duration-300`}>
                       {category.icon}
@@ -379,7 +411,7 @@ export default function Home() {
                       {category.category}
                     </span>
                   </div>
-                  <p className="text-sage-600 mb-0 leading-relaxed text-xs line-clamp-2">
+                  <p className="text-sage-600 mb-0 leading-relaxed text-xs line-clamp-3">
                     {category.description}
                   </p>
                 </div>
@@ -394,7 +426,7 @@ export default function Home() {
                 href={category.path}
                 className="group block"
               >
-                <div className="bg-purple-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 py-2 px-3 cursor-pointer group relative">
+                <div className="bg-purple-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-102 py-1.5 px-3 cursor-pointer group relative">
                   {/* Mobile: Stacked layout */}
                   <div className="sm:hidden">
                     <div className="flex items-center mb-2">

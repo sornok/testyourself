@@ -84,11 +84,23 @@ export default function EmotionalIntelligenceTest() {
         setCurrentQuestion(currentQuestion + 1)
       } else {
         // Test completed
-        const results = calculateEQResults(newAnswers)
+        const results = calculateEQResults(newAnswers, selectedQuestions)
         setEqResults(results)
         setShowResults(true)
       }
     }, 500)
+  }
+
+  const handlePreviousQuestion = () => {
+    if (currentQuestion > 0) {
+      // Clear the answer for the current question when going back
+      const newAnswers = [...answers]
+      newAnswers[currentQuestion] = undefined as any
+      setAnswers(newAnswers)
+      
+      // Go to previous question
+      setCurrentQuestion(currentQuestion - 1)
+    }
   }
 
   const handleRetakeTest = () => {
@@ -748,7 +760,7 @@ Visit https://testyourself.com for more tests!`
                       <button
                         key={index}
                         onClick={() => handleAnswerSelect(index)}
-                        className="w-full p-3 text-left bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-lg transition-all duration-200"
+                        className="w-full py-1.5 px-3 text-left bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 rounded-lg transition-all duration-200"
                       >
                         <div className="flex items-center">
                           <div className="w-4 h-4 border-2 border-gray-300 rounded-full mr-3"></div>
@@ -757,6 +769,18 @@ Visit https://testyourself.com for more tests!`
                       </button>
                     ))}
                   </div>
+
+                  {/* Previous Button */}
+                  {currentQuestion > 0 && (
+                    <div className="mt-4 flex justify-center">
+                      <button
+                        onClick={handlePreviousQuestion}
+                        className="py-1.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-all duration-200 font-medium"
+                      >
+                        ← Previous Question
+                      </button>
+                    </div>
+                  )}
                 </div>
               </>
             )}

@@ -599,8 +599,16 @@ export const selectRandomEQQuestions = (): EQQuestion[] => {
   return selectedQuestions.sort(() => Math.random() - 0.5);
 };
 
-export const calculateEQResults = (answers: number[]): EQResult => {
+export const calculateEQResults = (answers: number[], selectedQuestions: EQQuestion[]): EQResult => {
   const categoryScores = {
+    'self-awareness': 0,
+    'self-regulation': 0,
+    'motivation': 0,
+    'empathy': 0,
+    'social-skills': 0
+  };
+
+  const categoryCounts = {
     'self-awareness': 0,
     'self-regulation': 0,
     'motivation': 0,
@@ -611,21 +619,22 @@ export const calculateEQResults = (answers: number[]): EQResult => {
   let totalScore = 0;
 
   answers.forEach((answerIndex, questionIndex) => {
-    const question = emotionalIntelligenceQuestions[questionIndex];
+    const question = selectedQuestions[questionIndex];
     const selectedOption = question.options[answerIndex];
     const score = selectedOption.score;
     
     categoryScores[question.category] += score;
+    categoryCounts[question.category] += 1;
     totalScore += score;
   });
 
-  // Calculate average scores for each category (now 9 questions per category)
+  // Calculate average scores for each category (3 questions per category)
   const categoryAverages = {
-    selfAwareness: Math.round(categoryScores['self-awareness'] / 9),
-    selfRegulation: Math.round(categoryScores['self-regulation'] / 9),
-    motivation: Math.round(categoryScores['motivation'] / 9),
-    empathy: Math.round(categoryScores['empathy'] / 9),
-    socialSkills: Math.round(categoryScores['social-skills'] / 9)
+    selfAwareness: Math.round(categoryScores['self-awareness'] / categoryCounts['self-awareness']),
+    selfRegulation: Math.round(categoryScores['self-regulation'] / categoryCounts['self-regulation']),
+    motivation: Math.round(categoryScores['motivation'] / categoryCounts['motivation']),
+    empathy: Math.round(categoryScores['empathy'] / categoryCounts['empathy']),
+    socialSkills: Math.round(categoryScores['social-skills'] / categoryCounts['social-skills'])
   };
 
   // Calculate overall average as the average of the 5 category averages

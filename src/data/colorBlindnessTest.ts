@@ -16,8 +16,8 @@ export interface ColorBlindnessResult {
   totalScore: number;
   totalQuestions: number;
   accuracy: number;
-  colorBlindnessType: 'Normal' | 'Protanopia' | 'Deuteranopia' | 'Tritanopia' | 'Monochromacy' | 'Unknown';
-  severity: 'None' | 'Mild' | 'Moderate' | 'Severe';
+  colorBlindnessType: 'Normal' | 'May have issues';
+  severity: 'Normal' | 'May have issues';
   description: string;
   recommendations: string[];
   insights: string[];
@@ -235,28 +235,22 @@ export const calculateColorBlindnessResults = (answers: number[]): ColorBlindnes
   const accuracy = Math.round((correctAnswers / totalQuestions) * 100);
   const totalScore = correctAnswers;
 
-  // Determine color blindness type based on specific wrong answers
-  let colorBlindnessType: 'Normal' | 'Protanopia' | 'Deuteranopia' | 'Tritanopia' | 'Monochromacy' | 'Unknown' = 'Unknown';
-  let severity: 'None' | 'Mild' | 'Moderate' | 'Severe' = 'None';
+  // Simple binary result - Normal or May have issues
+  let colorBlindnessType: 'Normal' | 'May have issues' = 'Normal';
+  let severity: 'Normal' | 'May have issues' = 'Normal';
 
   if (accuracy >= 90) {
     colorBlindnessType = 'Normal';
-    severity = 'None';
-  } else if (accuracy >= 70) {
-    colorBlindnessType = 'Unknown';
-    severity = 'Mild';
-  } else if (accuracy >= 50) {
-    colorBlindnessType = 'Unknown';
-    severity = 'Moderate';
+    severity = 'Normal';
   } else {
-    colorBlindnessType = 'Unknown';
-    severity = 'Severe';
+    colorBlindnessType = 'May have issues';
+    severity = 'May have issues';
   }
 
   // Generate description
   const descriptions = {
     'Normal': 'You have normal color vision! You can distinguish colors effectively and don\'t appear to have any form of color blindness.',
-    'Unknown': 'Your results suggest some difficulty with color perception. This could indicate mild color vision deficiency or other visual factors.'
+    'May have issues': 'Your results suggest some difficulty with color perception. This could indicate color vision deficiency or other visual factors. Consider consulting an eye care professional for a comprehensive evaluation.'
   };
 
   // Generate recommendations
@@ -265,9 +259,9 @@ export const calculateColorBlindnessResults = (answers: number[]): ColorBlindnes
     recommendations.push('Continue to protect your vision with regular eye exams');
     recommendations.push('Be aware that color vision can change over time');
   } else {
-    recommendations.push('Consider consulting an eye care professional for a comprehensive color vision test');
-    recommendations.push('Use color-blind friendly design tools when creating visual content');
-    recommendations.push('Inform others about your color vision needs in professional settings');
+    recommendations.push('Consult an eye care professional for a comprehensive color vision test');
+    recommendations.push('This is a basic screening test - professional evaluation is recommended');
+    recommendations.push('Consider using color-blind friendly tools when creating visual content');
   }
 
   // Generate insights
@@ -278,8 +272,8 @@ export const calculateColorBlindnessResults = (answers: number[]): ColorBlindnes
     insights.push('Your color vision appears to be within normal range');
   } else {
     insights.push('You may have some difficulty with certain color combinations');
+    insights.push('This is a basic screening test - professional evaluation recommended');
     insights.push('Consider using alternative methods to distinguish colors when needed');
-    insights.push('Your results suggest consulting a professional for further evaluation');
   }
 
   return {
@@ -288,7 +282,7 @@ export const calculateColorBlindnessResults = (answers: number[]): ColorBlindnes
     accuracy,
     colorBlindnessType,
     severity,
-    description: descriptions[colorBlindnessType] || descriptions['Unknown'],
+    description: descriptions[colorBlindnessType],
     recommendations,
     insights
   };
