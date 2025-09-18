@@ -86,7 +86,12 @@ export default function EmotionalIntelligenceTest() {
         // Test completed
         const results = calculateEQResults(newAnswers, selectedQuestions)
         setEqResults(results)
-        setShowResults(true)
+        
+        // Navigate to results page with data
+        const resultsData = encodeURIComponent(JSON.stringify(results))
+        const answersData = encodeURIComponent(JSON.stringify(newAnswers))
+        const questionsData = encodeURIComponent(JSON.stringify(selectedQuestions))
+        router.push(`/results/emotional-intelligence?results=${resultsData}&answers=${answersData}&questions=${questionsData}`)
       }
     }, 500)
   }
