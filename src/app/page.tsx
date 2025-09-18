@@ -608,78 +608,8 @@ export default function Home() {
         </div>
       </div>
       
-      {/* Homepage Footer with Ad */}
-      <div className="w-full px-4 sm:px-6 lg:px-8 pb-4 mt-2">
-        <div className="max-w-6xl mx-auto">
-          <footer className="w-full rounded-2xl shadow-lg py-1 px-4 bg-purple-100">
-            {/* 3-Column Layout */}
-            <div className="flex items-center justify-between gap-2">
-              {/* Left Column: Copyright */}
-              <div className="text-sm text-gray-500 flex-shrink-0 whitespace-nowrap hidden sm:block">
-                TestYourself © 2024
-              </div>
-              
-              {/* Center Column: Ad Banner */}
-              <div className="flex-1 flex justify-center items-center mx-1 sm:mx-2 lg:mx-4">
-                {/* XL: 728x50 Leaderboard */}
-                <div className="hidden xl:block">
-                  <div 
-                    className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
-                    style={{width: '728px', height: '50px'}}
-                  >
-                    [728×50 Leaderboard]
-                  </div>
-                </div>
-                
-                {/* LG: 468x60 Banner */}
-                <div className="hidden lg:block xl:hidden">
-                  <div 
-                    className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
-                    style={{width: '468px', height: '60px'}}
-                  >
-                    [468×60 Banner]
-                  </div>
-        </div>
-                
-                {/* MD: 320x50 Banner */}
-                <div className="hidden md:block lg:hidden">
-                  <div 
-                    className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
-                    style={{width: '320px', height: '50px'}}
-                  >
-                    [320×50 Banner]
-                  </div>
-                </div>
-                
-                {/* SM: 250x50 Banner */}
-                <div className="hidden sm:block md:hidden">
-                  <div 
-                    className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
-                    style={{width: '250px', height: '50px'}}
-                  >
-                    [250×50 Banner]
-                  </div>
-                </div>
-                
-                {/* Mobile: 250x50 Banner */}
-                <div className="block sm:hidden">
-                  <div 
-                    className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
-                    style={{width: '250px', height: '50px'}}
-                  >
-                    [250×50 Banner]
-                  </div>
-                </div>
-              </div>
-              
-              {/* Right Column: All Rights Reserved */}
-              <div className="text-sm text-gray-500 flex-shrink-0 whitespace-nowrap hidden sm:block">
-                All rights reserved
-              </div>
-            </div>
-      </footer>
-    </div>
-      </div>
+      {/* Footer Component */}
+      <Footer />
     </div>
     </>
   )
