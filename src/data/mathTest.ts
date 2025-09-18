@@ -19,11 +19,11 @@ export interface MathResult {
     geometry: number;
   };
   categoryAverages: {
-    arithmetic: number;
-    fractions: number;
-    percentages: number;
-    algebra: number;
-    geometry: number;
+    arithmetic: string;
+    fractions: string;
+    percentages: string;
+    algebra: string;
+    geometry: string;
   };
   overallAverage: number;
   level: 'Beginner' | 'Developing' | 'Proficient' | 'Advanced';
@@ -180,141 +180,141 @@ export const mathQuestions: MathQuestion[] = [
   {
     id: 21,
     question: "What is 3/4 + 1/2?",
-    options: ["5/4", "4/6", "1 1/4", "Both A and C"],
-    correct: 3,
+    options: ["5/4", "4/6", "3/4", "2/3"],
+    correct: 0,
     category: "fractions"
   },
   {
     id: 22,
     question: "What is 5/6 - 1/3?",
-    options: ["4/3", "1/2", "3/6", "Both B and C"],
-    correct: 3,
+    options: ["4/3", "1/2", "2/3", "3/4"],
+    correct: 1,
     category: "fractions"
   },
   {
     id: 23,
     question: "What is 2/3 × 3/4?",
-    options: ["6/12", "1/2", "5/7", "Both A and B"],
-    correct: 3,
+    options: ["6/12", "2/3", "5/7", "3/4"],
+    correct: 0,
     category: "fractions"
   },
   {
     id: 24,
     question: "What is 3/5 ÷ 2/5?",
-    options: ["6/25", "1 1/2", "5/10", "Both B and C"],
+    options: ["6/25", "1 1/2", "5/10", "2/3"],
     correct: 1,
     category: "fractions"
   },
   {
     id: 25,
     question: "What is 1/2 + 1/4 + 1/8?",
-    options: ["7/8", "3/14", "1 1/8", "Both A and C"],
+    options: ["7/8", "3/14", "1 1/8", "2/3"],
     correct: 0,
     category: "fractions"
   },
   {
     id: 26,
     question: "What is 4/7 - 2/7?",
-    options: ["2/7", "2/14", "6/7", "Both A and B"],
-    correct: 3,
+    options: ["2/7", "2/14", "6/7", "3/4"],
+    correct: 0,
     category: "fractions"
   },
   {
     id: 27,
     question: "What is 2/5 × 5/6?",
-    options: ["10/30", "1/3", "7/11", "Both A and B"],
-    correct: 3,
+    options: ["10/30", "2/3", "7/11", "3/4"],
+    correct: 0,
     category: "fractions"
   },
   {
     id: 28,
     question: "What is 7/8 ÷ 1/4?",
-    options: ["7/32", "3 1/2", "28/8", "Both B and C"],
-    correct: 3,
+    options: ["7/32", "3 1/2", "2/3", "3/4"],
+    correct: 1,
     category: "fractions"
   },
   {
     id: 29,
     question: "What is 1/3 + 2/9?",
-    options: ["3/12", "5/9", "3/9", "Both B and C"],
+    options: ["3/12", "5/9", "3/9", "2/3"],
     correct: 1,
     category: "fractions"
   },
   {
     id: 30,
     question: "What is 5/6 - 1/2?",
-    options: ["4/4", "1/3", "2/6", "Both B and C"],
-    correct: 3,
+    options: ["4/4", "1/3", "2/3", "3/4"],
+    correct: 1,
     category: "fractions"
   },
   {
     id: 31,
     question: "What is 3/4 × 2/3?",
-    options: ["6/12", "1/2", "5/7", "Both A and B"],
-    correct: 3,
+    options: ["6/12", "2/3", "5/7", "3/4"],
+    correct: 0,
     category: "fractions"
   },
   {
     id: 32,
     question: "What is 8/9 ÷ 2/3?",
-    options: ["16/27", "1 1/3", "24/18", "Both B and C"],
-    correct: 3,
+    options: ["16/27", "1 1/3", "2/3", "3/4"],
+    correct: 1,
     category: "fractions"
   },
   {
     id: 33,
     question: "What is 2/5 + 3/10?",
-    options: ["5/15", "7/10", "1/2", "Both B and C"],
-    correct: 3,
+    options: ["5/15", "7/10", "1/2", "3/4"],
+    correct: 1,
     category: "fractions"
   },
   {
     id: 34,
     question: "What is 7/12 - 1/4?",
-    options: ["6/8", "1/3", "4/12", "Both B and C"],
-    correct: 3,
+    options: ["6/8", "1/3", "2/3", "3/4"],
+    correct: 1,
     category: "fractions"
   },
   {
     id: 35,
     question: "What is 4/5 × 3/8?",
-    options: ["12/40", "3/10", "7/13", "Both A and B"],
-    correct: 3,
+    options: ["12/40", "2/3", "7/13", "3/4"],
+    correct: 0,
     category: "fractions"
   },
   {
     id: 36,
     question: "What is 9/10 ÷ 3/5?",
-    options: ["27/50", "1 1/2", "45/30", "Both B and C"],
-    correct: 3,
+    options: ["27/50", "1 1/2", "2/3", "3/4"],
+    correct: 1,
     category: "fractions"
   },
   {
     id: 37,
     question: "What is 1/6 + 1/3?",
-    options: ["2/9", "1/2", "3/6", "Both B and C"],
-    correct: 3,
+    options: ["2/9", "1/2", "2/3", "3/4"],
+    correct: 1,
     category: "fractions"
   },
   {
     id: 38,
     question: "What is 5/8 - 1/4?",
-    options: ["4/4", "3/8", "1/2", "Both B and C"],
-    correct: 3,
+    options: ["4/4", "3/8", "1/2", "2/3"],
+    correct: 1,
     category: "fractions"
   },
   {
     id: 39,
     question: "What is 2/7 × 7/8?",
-    options: ["14/56", "1/4", "9/15", "Both A and B"],
-    correct: 3,
+    options: ["14/56", "2/3", "9/15", "3/4"],
+    correct: 0,
     category: "fractions"
   },
   {
     id: 40,
     question: "What is 6/7 ÷ 2/7?",
-    options: ["12/49", "3", "42/14", "Both B and C"],
-    correct: 3,
+    options: ["12/49", "3", "2/3", "3/4"],
+    correct: 1,
     category: "fractions"
   },
 
@@ -783,7 +783,7 @@ export const selectRandomMathQuestions = (count = 15): MathQuestion[] => {
 };
 
 // Calculate math test results
-export const calculateMathResults = (answers: number[], selectedQuestions: MathQuestion[]): MathResult => {
+export const calculateMathResults = (answers: (number | undefined)[], selectedQuestions: MathQuestion[]): MathResult => {
   const categoryScores = {
     arithmetic: 0,
     fractions: 0,
@@ -802,42 +802,47 @@ export const calculateMathResults = (answers: number[], selectedQuestions: MathQ
 
   // Calculate scores for each category
   let answeredQuestions = 0;
+  
+  // Only count and score questions that were actually answered
   answers.forEach((answer, questionIndex) => {
     const question = selectedQuestions[questionIndex];
     if (question && answer !== undefined) {
       answeredQuestions += 1;
+      categoryCounts[question.category] += 1; // Count this question in its category
+      
       if (answer === question.correct) {
         categoryScores[question.category] += 1;
       }
-      categoryCounts[question.category] += 1;
     }
   });
 
-  // Calculate category averages
+  // Calculate category averages (as fractions)
   const categoryAverages = {
-    arithmetic: Math.round(categoryScores.arithmetic / categoryCounts.arithmetic * 5),
-    fractions: Math.round(categoryScores.fractions / categoryCounts.fractions * 5),
-    percentages: Math.round(categoryScores.percentages / categoryCounts.percentages * 5),
-    algebra: Math.round(categoryScores.algebra / categoryCounts.algebra * 5),
-    geometry: Math.round(categoryScores.geometry / categoryCounts.geometry * 5)
+    arithmetic: categoryCounts.arithmetic > 0 ? `${categoryScores.arithmetic}/${categoryCounts.arithmetic}` : '0/0',
+    fractions: categoryCounts.fractions > 0 ? `${categoryScores.fractions}/${categoryCounts.fractions}` : '0/0',
+    percentages: categoryCounts.percentages > 0 ? `${categoryScores.percentages}/${categoryCounts.percentages}` : '0/0',
+    algebra: categoryCounts.algebra > 0 ? `${categoryScores.algebra}/${categoryCounts.algebra}` : '0/0',
+    geometry: categoryCounts.geometry > 0 ? `${categoryScores.geometry}/${categoryCounts.geometry}` : '0/0'
   };
 
   // Calculate overall average
   const totalScore = answers.reduce((score, answer, index) => {
     const question = selectedQuestions[index];
-    return score + (answer === question.correct ? 1 : 0);
+    if (answer !== undefined && question) {
+      return score + (answer === question.correct ? 1 : 0);
+    }
+    return score;
   }, 0);
 
-  const overallAverage = Math.round((categoryAverages.arithmetic + categoryAverages.fractions + 
-    categoryAverages.percentages + categoryAverages.algebra + categoryAverages.geometry) / 5);
+  const overallAverage = Math.round((totalScore / answeredQuestions) * 10);
 
   // Determine level
   let level: 'Beginner' | 'Developing' | 'Proficient' | 'Advanced';
-  if (overallAverage <= 2) {
+  if (overallAverage <= 4) {
     level = 'Beginner';
-  } else if (overallAverage <= 3) {
+  } else if (overallAverage <= 6) {
     level = 'Developing';
-  } else if (overallAverage <= 4) {
+  } else if (overallAverage <= 8) {
     level = 'Proficient';
   } else {
     level = 'Advanced';
@@ -854,7 +859,9 @@ export const calculateMathResults = (answers: number[], selectedQuestions: MathQ
   // Generate strengths
   const strengths: string[] = [];
   Object.entries(categoryAverages).forEach(([category, score]) => {
-    if (score >= 4) {
+    const [correct, total] = score.split('/').map(Number);
+    const percentage = total > 0 ? (correct / total) : 0;
+    if (percentage >= 0.8) { // 80% or higher
       const categoryNames = {
         arithmetic: 'Basic Arithmetic',
         fractions: 'Fractions',
@@ -873,7 +880,9 @@ export const calculateMathResults = (answers: number[], selectedQuestions: MathQ
   // Generate areas for growth
   const areasForGrowth: string[] = [];
   Object.entries(categoryAverages).forEach(([category, score]) => {
-    if (score <= 2) {
+    const [correct, total] = score.split('/').map(Number);
+    const percentage = total > 0 ? (correct / total) : 0;
+    if (percentage <= 0.4) { // 40% or lower
       const categoryNames = {
         arithmetic: 'Basic Arithmetic',
         fractions: 'Fractions',

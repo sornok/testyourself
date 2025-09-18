@@ -47,28 +47,54 @@ const Header = ({ onLogoClick }: HeaderProps) => {
 
             {/* Right: Ad Banner */}
             <div className="flex-shrink-0 max-w-full">
-              {/* Desktop: 728x90 Leaderboard */}
-              <div className="hidden md:block h-90px max-w-full">
-                <ins 
-                  className="adsbygoogle"
-                  style={{display: 'block', width: '100%', maxWidth: '728px', height: '90px'}}
-                  data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                  data-ad-slot="XXXXXXXXXX"
-                  data-ad-format="auto"
-                  data-full-width-responsive="true"
-                ></ins>
+              {/* XL: 728x90 Leaderboard */}
+              <div className="hidden xl:block">
+                <div 
+                  className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
+                  style={{width: '728px', height: '90px'}}
+                >
+                  [728×90 Header Ad]
+                </div>
               </div>
               
-              {/* Mobile: 320x90 Banner */}
-              <div className="block md:hidden h-90px max-w-full">
-                <ins 
-                  className="adsbygoogle"
-                  style={{display: 'block', width: '100%', maxWidth: '320px', height: '90px'}}
-                  data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                  data-ad-slot="XXXXXXXXXX"
-                  data-ad-format="auto"
-                  data-full-width-responsive="true"
-                ></ins>
+              {/* LG: 468x90 Banner */}
+              <div className="hidden lg:block xl:hidden">
+                <div 
+                  className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
+                  style={{width: '468px', height: '90px'}}
+                >
+                  [468×90 Header Ad]
+                </div>
+              </div>
+              
+              {/* MD: 320x90 Banner */}
+              <div className="hidden md:block lg:hidden">
+                <div 
+                  className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
+                  style={{width: '320px', height: '90px'}}
+                >
+                  [320×90 Header Ad]
+                </div>
+              </div>
+              
+              {/* SM: 300x90 Banner */}
+              <div className="hidden sm:block md:hidden">
+                <div 
+                  className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
+                  style={{width: '300px', height: '90px'}}
+                >
+                  [300×90 Header Ad]
+                </div>
+              </div>
+              
+              {/* Mobile: 250x90 Banner */}
+              <div className="block sm:hidden">
+                <div 
+                  className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
+                  style={{width: '250px', height: '90px'}}
+                >
+                  [250×90 Header Ad]
+                </div>
               </div>
             </div>
           </div>

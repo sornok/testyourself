@@ -10,11 +10,15 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState('all')
   const [sortBy, setSortBy] = useState('category')
   const [viewMode, setViewMode] = useState('cards')
+  const [currentPage, setCurrentPage] = useState(1)
+  const testsPerPageCards = 12
+  const testsPerPageList = 12
 
   const handleLogoReset = () => {
     setActiveFilter('all')
     setSortBy('category')
     setViewMode('cards')
+    setCurrentPage(1)
   }
 
   const categories = [
@@ -98,6 +102,69 @@ export default function Home() {
                 path: '/reaction-time',
                 color: 'from-orange-400 to-orange-600',
                 category: 'Skills & Productivity'
+              },
+              {
+                id: 'stress-test',
+                title: 'Stress Assessment',
+                description: 'Evaluate your stress levels and learn effective coping strategies with our comprehensive assessment.',
+                icon: '😌',
+                path: '/stress-test',
+                color: 'from-green-500 to-green-700',
+                category: 'Personality & Self-Discovery'
+              },
+              {
+                id: 'leadership-test',
+                title: 'Leadership Assessment',
+                description: 'Evaluate your leadership potential and management skills with our detailed comprehensive test.',
+                icon: '👑',
+                path: '/leadership-test',
+                color: 'from-yellow-500 to-yellow-700',
+                category: 'Personality & Self-Discovery'
+              },
+              {
+                id: 'iq-test',
+                title: 'IQ Assessment',
+                description: 'Measure your cognitive abilities with logical reasoning and problem-solving comprehensive tests.',
+                icon: '🧩',
+                path: '/iq-test',
+                color: 'from-blue-500 to-blue-700',
+                category: 'Cognitive & Mental Agility'
+              },
+              {
+                id: 'creativity-test',
+                title: 'Creativity Assessment',
+                description: 'Discover your creative potential and innovative thinking abilities with our comprehensive detailed test.',
+                icon: '🎨',
+                path: '/creativity-test',
+                color: 'from-pink-400 to-pink-600',
+                category: 'Cognitive & Mental Agility'
+              },
+              {
+                id: 'communication-test',
+                title: 'Communication Skills',
+                description: 'Evaluate your verbal and written communication abilities with our comprehensive assessment.',
+                icon: '💬',
+                path: '/communication-test',
+                color: 'from-blue-400 to-blue-600',
+                category: 'Skills & Productivity'
+              },
+              {
+                id: 'time-management-test',
+                title: 'Time Management',
+                description: 'Assess your time management skills and productivity habits with our comprehensive detailed test.',
+                icon: '⏰',
+                path: '/time-management-test',
+                color: 'from-green-400 to-green-600',
+                category: 'Skills & Productivity'
+              },
+              {
+                id: 'decision-making-test',
+                title: 'Decision Making',
+                description: 'Test your decision-making abilities and problem-solving approach with our comprehensive assessment.',
+                icon: '🎯',
+                path: '/decision-making-test',
+                color: 'from-purple-400 to-purple-600',
+                category: 'Cognitive & Mental Agility'
               }
   ]
 
@@ -124,6 +191,13 @@ export default function Home() {
     }
     return 0
   })
+
+  // Pagination logic
+  const testsPerPage = viewMode === 'cards' ? testsPerPageCards : testsPerPageList
+  const totalPages = Math.ceil(filteredCategories.length / testsPerPage)
+  const startIndex = (currentPage - 1) * testsPerPage
+  const endIndex = startIndex + testsPerPage
+  const currentTests = filteredCategories.slice(startIndex, endIndex)
 
   return (
     <>
@@ -391,7 +465,7 @@ export default function Home() {
         {/* Category Cards or List */}
         {viewMode === 'cards' ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
-            {filteredCategories.map((category) => (
+            {currentTests.map((category) => (
               <Link
                 key={category.id}
                 href={category.path}
@@ -402,7 +476,11 @@ export default function Home() {
                     <div className={`w-8 h-8 rounded-full ${category.color} flex items-center justify-center text-sm mr-1 group-hover:scale-110 transition-transform duration-300`}>
                       {category.icon}
                     </div>
-                    <h3 className="text-sm font-semibold text-sage-800 group-hover:text-sage-600 transition-colors whitespace-nowrap overflow-hidden text-ellipsis">
+                    <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
+                      ['stress-test', 'leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
+                        ? 'text-red-600 group-hover:text-red-600'
+                        : 'text-sage-800 group-hover:text-sage-600'
+                    }`}>
                       {category.title}
                     </h3>
                   </div>
@@ -420,7 +498,7 @@ export default function Home() {
           </div>
         ) : (
           <div className="space-y-2">
-            {filteredCategories.map((category) => (
+            {currentTests.map((category) => (
               <Link
                 key={category.id}
                 href={category.path}
@@ -434,7 +512,11 @@ export default function Home() {
                         {category.icon}
                       </div>
                       <div className="text-left flex-1 min-w-0">
-                        <h3 className="text-sm font-semibold text-sage-800 group-hover:text-sage-600 transition-colors mb-1 whitespace-nowrap overflow-hidden text-ellipsis ml-1">
+                        <h3 className={`text-sm font-semibold transition-colors mb-1 whitespace-nowrap overflow-hidden text-ellipsis ml-1 ${
+                          ['stress-test', 'leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
+                            ? 'text-red-600 group-hover:text-red-600'
+                            : 'text-sage-800 group-hover:text-sage-600'
+                        }`}>
                           {category.title}
                         </h3>
                         <span className="inline-block px-2 py-1 text-xs font-medium bg-sage-100 text-sage-700 rounded-full whitespace-nowrap">
@@ -454,7 +536,11 @@ export default function Home() {
                         {category.icon}
                       </div>
                       <div className="text-left flex-1 min-w-0">
-                        <h3 className="text-sm font-semibold text-sage-800 group-hover:text-sage-600 transition-colors mb-1 whitespace-nowrap overflow-hidden text-ellipsis ml-1">
+                        <h3 className={`text-sm font-semibold transition-colors mb-1 whitespace-nowrap overflow-hidden text-ellipsis ml-1 ${
+                          ['stress-test', 'leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
+                            ? 'text-red-600 group-hover:text-red-600'
+                            : 'text-sage-800 group-hover:text-sage-600'
+                        }`}>
                           {category.title}
                         </h3>
                         <span className="inline-block px-2 py-1 text-xs font-medium bg-sage-100 text-sage-700 rounded-full whitespace-nowrap">
@@ -474,18 +560,125 @@ export default function Home() {
           </div>
         )}
 
-          {/* Footer */}
-          <div className="text-center mt-2">
-            <p className="text-sage-500 text-xs sm:text-sm">
-              Choose a test above to begin your journey of self-discovery
-            </p>
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-2 mt-6 mb-4">
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className={`px-3 py-2 rounded-full font-medium transition-all duration-300 text-sm ${
+                currentPage === 1
+                  ? 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200 cursor-not-allowed'
+                  : 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
+              }`}
+            >
+              ← Previous
+            </button>
+            
+            <div className="flex gap-1">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`px-3 py-2 rounded-full font-medium transition-all duration-300 text-sm ${
+                    currentPage === page
+                      ? 'bg-purple-500 text-white shadow-lg'
+                      : 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
+            
+            <button
+              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage === totalPages}
+              className={`px-3 py-2 rounded-full font-medium transition-all duration-300 text-sm ${
+                currentPage === totalPages
+                  ? 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200 cursor-not-allowed'
+                  : 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
+              }`}
+            >
+              Next →
+            </button>
           </div>
+        )}
+
         </div>
       </div>
       
-      {/* Footer Component */}
-      <div className="mt-2">
-        <Footer />
+      {/* Homepage Footer with Ad */}
+      <div className="w-full px-4 sm:px-6 lg:px-8 pb-4 mt-2">
+        <div className="max-w-6xl mx-auto">
+          <footer className="w-full rounded-2xl shadow-lg py-1 px-4 bg-purple-100">
+            {/* 3-Column Layout */}
+            <div className="flex items-center justify-between gap-2">
+              {/* Left Column: Copyright */}
+              <div className="text-sm text-gray-500 flex-shrink-0 whitespace-nowrap hidden sm:block">
+                TestYourself © 2024
+              </div>
+              
+              {/* Center Column: Ad Banner */}
+              <div className="flex-1 flex justify-center items-center mx-1 sm:mx-2 lg:mx-4">
+                {/* XL: 728x50 Leaderboard */}
+                <div className="hidden xl:block">
+                  <div 
+                    className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
+                    style={{width: '728px', height: '50px'}}
+                  >
+                    [728×50 Leaderboard]
+                  </div>
+                </div>
+                
+                {/* LG: 468x60 Banner */}
+                <div className="hidden lg:block xl:hidden">
+                  <div 
+                    className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
+                    style={{width: '468px', height: '60px'}}
+                  >
+                    [468×60 Banner]
+                  </div>
+        </div>
+                
+                {/* MD: 320x50 Banner */}
+                <div className="hidden md:block lg:hidden">
+                  <div 
+                    className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
+                    style={{width: '320px', height: '50px'}}
+                  >
+                    [320×50 Banner]
+                  </div>
+                </div>
+                
+                {/* SM: 250x50 Banner */}
+                <div className="hidden sm:block md:hidden">
+                  <div 
+                    className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
+                    style={{width: '250px', height: '50px'}}
+                  >
+                    [250×50 Banner]
+                  </div>
+                </div>
+                
+                {/* Mobile: 250x50 Banner */}
+                <div className="block sm:hidden">
+                  <div 
+                    className="bg-gray-200 border-2 border-dashed border-gray-400 flex items-center justify-center text-gray-600 text-sm"
+                    style={{width: '250px', height: '50px'}}
+                  >
+                    [250×50 Banner]
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right Column: All Rights Reserved */}
+              <div className="text-sm text-gray-500 flex-shrink-0 whitespace-nowrap hidden sm:block">
+                All rights reserved
+              </div>
+            </div>
+      </footer>
+    </div>
       </div>
     </div>
     </>

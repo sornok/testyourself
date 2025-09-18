@@ -65,24 +65,19 @@ export default function MathTest() {
       if (currentQuestion < selectedQuestions.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
       } else {
-        completeTest(newAnswers);
+        completeTest(newAnswers as (number | undefined)[]);
       }
     }, 500);
   };
 
   const handlePreviousQuestion = () => {
     if (currentQuestion > 0) {
-      // Clear the answer for the current question when going back
-      const newAnswers = [...answers];
-      newAnswers[currentQuestion] = undefined;
-      setAnswers(newAnswers);
-      
-      // Go to previous question
+      // Go to previous question without clearing current answer
       setCurrentQuestion(currentQuestion - 1);
     }
   };
 
-  const completeTest = (finalAnswers: number[]) => {
+  const completeTest = (finalAnswers: (number | undefined)[]) => {
     const results = calculateMathResults(finalAnswers, selectedQuestions);
     setMathResults(results);
     setTestCompleted(true);
@@ -110,7 +105,7 @@ export default function MathTest() {
   };
 
   const handleTwitterShare = () => {
-    const shareText = `I just completed a math test! ${mathResults ? `Level: ${mathResults.level}, Overall Score: ${mathResults.overallAverage}/5` : 'Check out my results!'} #MathTest #TestYourself`;
+    const shareText = `I just completed a math test! ${mathResults ? `Level: ${mathResults.level}, Overall Score: ${mathResults.overallAverage}/10` : 'Check out my results!'} #MathTest #TestYourself`;
     const shareUrl = window.location.origin + '/math';
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(url, '_blank', 'width=800,height=600');
@@ -118,7 +113,7 @@ export default function MathTest() {
   };
 
   const handleXShare = () => {
-    const shareText = `I just completed a math test! ${mathResults ? `Level: ${mathResults.level}, Overall Score: ${mathResults.overallAverage}/5` : 'Check out my results!'} #MathTest #TestYourself`;
+    const shareText = `I just completed a math test! ${mathResults ? `Level: ${mathResults.level}, Overall Score: ${mathResults.overallAverage}/10` : 'Check out my results!'} #MathTest #TestYourself`;
     const shareUrl = window.location.origin + '/math';
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(url, '_blank', 'width=800,height=600');
@@ -135,14 +130,14 @@ Test Summary:
 - Total Questions: ${mathResults.totalQuestions}
 - Correct Answers: ${mathResults.totalScore}
 - Accuracy: ${mathResults.accuracy}%
-- Overall Level: ${mathResults.level} (${mathResults.overallAverage}/5)
+- Overall Level: ${mathResults.level} (${mathResults.overallAverage}/10)
 
 Category Breakdown:
-- Arithmetic: ${mathResults.categoryAverages.arithmetic}/5
-- Fractions: ${mathResults.categoryAverages.fractions}/5
-- Percentages: ${mathResults.categoryAverages.percentages}/5
-- Algebra: ${mathResults.categoryAverages.algebra}/5
-- Geometry: ${mathResults.categoryAverages.geometry}/5
+- Arithmetic: ${mathResults.categoryAverages.arithmetic}
+- Fractions: ${mathResults.categoryAverages.fractions}
+- Percentages: ${mathResults.categoryAverages.percentages}
+- Algebra: ${mathResults.categoryAverages.algebra}
+- Geometry: ${mathResults.categoryAverages.geometry}
 
 Description:
 ${mathResults.description}
@@ -597,9 +592,9 @@ Visit https://testyourself.com for more tests!`;
                         <span className="font-bold">Your Results</span>
                       </h2>
                       <p className="text-lg text-blue-700 mb-3">Here's what we discovered about your<br /><span className="font-bold">math skills</span></p>
-                      <div className="text-5xl font-bold text-blue-600 mb-2">{mathResults.overallAverage}/5</div>
+                      <div className="text-5xl font-bold text-blue-600 mb-2">{mathResults.overallAverage}/10</div>
                       <div className="text-2xl font-semibold text-gray-800 mb-2">{mathResults.level}</div>
-                      <div className="text-lg font-semibold text-blue-700">{mathResults.accuracy}% Accuracy</div>
+                      <div className="text-lg font-semibold text-blue-700">{mathResults.accuracy}% ({mathResults.totalScore}/{mathResults.totalQuestions} correct)</div>
                     </div>
                   </div>
                 </div>
@@ -639,23 +634,23 @@ Visit https://testyourself.com for more tests!`;
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
                       <span className="text-gray-700">Arithmetic</span>
-                      <span className="font-semibold text-gray-800">{mathResults.categoryAverages.arithmetic}/5</span>
+                      <span className="font-semibold text-gray-800">{mathResults.categoryAverages.arithmetic}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-gray-700">Fractions</span>
-                      <span className="font-semibold text-gray-800">{mathResults.categoryAverages.fractions}/5</span>
+                      <span className="font-semibold text-gray-800">{mathResults.categoryAverages.fractions}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-gray-700">Percentages</span>
-                      <span className="font-semibold text-gray-800">{mathResults.categoryAverages.percentages}/5</span>
+                      <span className="font-semibold text-gray-800">{mathResults.categoryAverages.percentages}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-gray-700">Algebra</span>
-                      <span className="font-semibold text-gray-800">{mathResults.categoryAverages.algebra}/5</span>
+                      <span className="font-semibold text-gray-800">{mathResults.categoryAverages.algebra}</span>
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-gray-700">Geometry</span>
-                      <span className="font-semibold text-gray-800">{mathResults.categoryAverages.geometry}/5</span>
+                      <span className="font-semibold text-gray-800">{mathResults.categoryAverages.geometry}</span>
                     </div>
                   </div>
                 </div>
