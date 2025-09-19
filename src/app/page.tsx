@@ -43,7 +43,7 @@ export default function Home() {
     {
       id: 'optical',
       title: 'Optical Illusions',
-      description: 'Explore optical illusions and discover how your mind interprets visual information.',
+      description: 'Explore optical illusions and discover how your mind interprets visual information with fascinating perceptual tricks.',
       icon: '👁️',
       path: '/optical-illusion',
       color: 'from-purple-400 to-purple-600',
@@ -79,7 +79,7 @@ export default function Home() {
     {
       id: 'typing',
       title: 'Typing',
-      description: 'Test your typing speed and accuracy with our typing challenge to improve your skills.',
+      description: 'Test your typing speed and accuracy with our typing challenge to improve your skills and productivity.',
       icon: '⌨️',
       path: '/typing',
       color: 'from-green-500 to-green-700',

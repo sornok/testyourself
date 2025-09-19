@@ -479,8 +479,8 @@ Visit https://testyourself.com for more tests!`
               </div>
             </div>
 
-            {/* Action Buttons - For Emotional Intelligence, Personality, Trivia, and Memory Tests */}
-            {(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'trivia' || testType === 'memory') && (
+            {/* Action Buttons - For Emotional Intelligence, Personality, Optical Illusion, Trivia, and Memory Tests */}
+            {(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory') && (
               <div className="mb-2">
                 <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -533,8 +533,8 @@ Visit https://testyourself.com for more tests!`
               </div>
             </div>
 
-            {/* Action Buttons - Exclude Emotional Intelligence, Personality, Trivia, and Memory as they have their own buttons at top */}
-            {testType !== 'emotional-intelligence' && testType !== 'personality' && testType !== 'trivia' && testType !== 'memory' && (
+            {/* Action Buttons - Exclude Emotional Intelligence, Personality, Optical Illusion, Trivia, and Memory as they have their own buttons at top */}
+            {testType !== 'emotional-intelligence' && testType !== 'personality' && testType !== 'optical-illusion' && testType !== 'trivia' && testType !== 'memory' && (
               <div className="mt-2 mb-2">
                 <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
