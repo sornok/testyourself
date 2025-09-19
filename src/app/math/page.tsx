@@ -263,6 +263,68 @@ Visit https://testyourself.com for more tests!`;
                   "@type": "Organization",
                   "name": "TestYourself",
                   "url": "https://testyourself.com"
+                },
+                "breadcrumb": {
+                  "@type": "BreadcrumbList",
+                  "itemListElement": [
+                    {
+                      "@type": "ListItem",
+                      "position": 1,
+                      "name": "Home",
+                      "item": "https://testyourself.com"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 2,
+                      "name": "Math Test",
+                      "item": "https://testyourself.com/math"
+                    }
+                  ]
+                },
+                "mainEntity": {
+                  "@type": "FAQPage",
+                  "mainEntity": [
+                    {
+                      "@type": "Question",
+                      "name": "What grade level is this math test for?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "This math test is designed for 7th-8th grade students, covering intermediate level mathematics concepts including arithmetic, fractions, percentages, algebra, and geometry."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "How long does the math test take to complete?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The math test typically takes about 5 minutes to complete and includes 15 multiple choice questions covering various mathematical topics."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "What math topics are covered in this test?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The test covers five main mathematical categories: arithmetic (basic operations), fractions, percentages, algebra (basic equations), and geometry (shapes, area, perimeter)."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "Is this math test free to take?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, this is a completely free math assessment. No registration or payment is required to take the test and receive your results."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "What kind of results will I get after taking the test?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "You'll receive detailed results including your overall score, performance by category, strengths and weaknesses analysis, and personalized recommendations for improvement in each mathematical area."
+                      }
+                    }
+                  ]
                 }
               })
             }}
