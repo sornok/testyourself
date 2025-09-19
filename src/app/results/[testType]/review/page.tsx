@@ -34,6 +34,54 @@ Date: ${timestamp}
 `
 
     switch (testType) {
+      case 'math':
+        const mathResults = JSON.parse(searchParams.get('results') || '{}')
+        const mathAnswers = JSON.parse(searchParams.get('answers') || '[]')
+        const mathQuestions = JSON.parse(searchParams.get('questions') || '[]')
+        
+        content += `Math Test Results
+Date: ${timestamp}
+
+Test Summary:
+- Total Questions: ${mathResults.totalQuestions}
+- Correct Answers: ${mathResults.totalScore}
+- Accuracy: ${mathResults.accuracy}%
+- Overall Level: ${mathResults.level} (${mathResults.overallAverage}/10)
+
+Category Breakdown:
+- Arithmetic: ${mathResults.categoryAverages.arithmetic}
+- Fractions: ${mathResults.categoryAverages.fractions}
+- Percentages: ${mathResults.categoryAverages.percentages}
+- Algebra: ${mathResults.categoryAverages.algebra}
+- Geometry: ${mathResults.categoryAverages.geometry}
+
+Description:
+${mathResults.description}
+
+Strengths:
+${mathResults.strengths.map((strength: string) => `- ${strength}`).join('\n')}
+
+Areas for Growth:
+${mathResults.areasForGrowth.map((area: string) => `- ${area}`).join('\n')}
+
+Recommendations:
+${mathResults.recommendations.map((rec: string) => `- ${rec}`).join('\n')}
+
+Question Review:
+${mathQuestions.map((question: any, index: number) => {
+          const userAnswer = mathAnswers[index];
+          const correctAnswer = question.correct;
+          const isCorrect = userAnswer === correctAnswer;
+          
+          return `QUESTION ${index + 1}: ${question.question}
+Your Answer: ${userAnswer !== undefined ? question.options[userAnswer] : 'Not answered'}
+Correct Answer: ${question.options[correctAnswer]}
+Result: ${isCorrect ? 'Correct' : 'Incorrect'}
+Category: ${question.category.charAt(0).toUpperCase() + question.category.slice(1)}
+`
+        }).join('\n')}`
+        break
+
       case 'personality':
         const personalityType = searchParams.get('type') || 'Unknown'
         const questions = JSON.parse(searchParams.get('questions') || '[]')
@@ -228,6 +276,16 @@ Visit https://testyourself.com for more tests!`
     const baseUrl = 'https://testyourself.com'
     
     switch (testType) {
+      case 'math':
+        return {
+          title: 'Math Test Review - Question-by-Question Analysis | TestYourself',
+          description: 'Review your math test answers! See detailed question-by-question analysis of your math problems and understand your mathematical strengths and weaknesses.',
+          keywords: 'math test review, math question analysis, math answers review, arithmetic review, algebra review, geometry review, math problems analysis',
+          ogTitle: 'Math Test Review - Question Analysis',
+          ogDescription: 'Review your math test answers! See detailed question-by-question analysis of your math problems and mathematical performance.',
+          ogImage: `${baseUrl}/images/math-test-review-og.jpg`,
+          canonical: `${baseUrl}/results/math/review`
+        }
       case 'personality':
         return {
           title: 'Character Assessment Review - Question Analysis | TestYourself',
@@ -373,6 +431,7 @@ Visit https://testyourself.com for more tests!`
               <div className="bg-white rounded-2xl shadow-lg px-2 py-0.5">
                 <h1 className="text-lg font-bold text-gray-800">
                   {testType === 'personality' ? 'Character Assessment Review' :
+                   testType === 'math' ? 'Math Test Review' :
                    testType === 'emotional-intelligence' ? 'Emotional Intelligence Test Review' :
                    testType === 'trivia' ? 'Trivia Quiz Review' :
                    testType === 'memory' ? 'Memory Challenge Review' :
@@ -437,6 +496,55 @@ Visit https://testyourself.com for more tests!`
                           <p className="text-sm font-medium text-gray-800 mb-2">{question.question}</p>
                           <div className="text-sm text-gray-600">
                             <span className="font-medium">Your Answer:</span> {selectedOption?.text || 'Not answered'}
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Math Test Review */}
+              {testType === 'math' && questions.length > 0 && (
+                <div className="bg-white rounded-2xl shadow-lg p-6 mb-2">
+                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Question Review</h2>
+                  <div className="space-y-4">
+                    {questions.map((question: any, index: number) => {
+                      const userAnswer = answers[index]
+                      const correctAnswer = question.correct
+                      const isCorrect = userAnswer === correctAnswer
+                      
+                      return (
+                        <div key={index} className="border border-gray-200 rounded-lg p-4">
+                          <div className="flex justify-between items-start mb-2">
+                            <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">
+                              QUESTION {index + 1}
+                            </span>
+                            <span className={`px-2 py-1 rounded text-sm font-medium ${
+                              isCorrect ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                            }`}>
+                              {isCorrect ? 'Correct' : 'Incorrect'}
+                            </span>
+                          </div>
+                          <p className="text-gray-800 mb-3">{question.question}</p>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                              <p className="text-sm font-medium text-gray-600 mb-1">Your Answer:</p>
+                              <p className="text-sm bg-gray-50 p-2 rounded border">
+                                {userAnswer !== undefined ? question.options[userAnswer] : 'Not answered'}
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium text-gray-600 mb-1">Correct Answer:</p>
+                              <p className="text-sm bg-green-50 p-2 rounded border border-green-200">
+                                {question.options[correctAnswer]}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="mt-2">
+                            <span className="text-xs text-gray-500">
+                              Category: {question.category.charAt(0).toUpperCase() + question.category.slice(1)}
+                            </span>
                           </div>
                         </div>
                       )

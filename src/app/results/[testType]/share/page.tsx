@@ -20,6 +20,54 @@ Date: ${timestamp}
 `
 
     switch (testType) {
+      case 'math':
+        const mathResults = JSON.parse(searchParams.get('results') || '{}')
+        const mathAnswers = JSON.parse(searchParams.get('answers') || '[]')
+        const mathQuestions = JSON.parse(searchParams.get('questions') || '[]')
+        
+        content += `Math Test Results
+Date: ${timestamp}
+
+Test Summary:
+- Total Questions: ${mathResults.totalQuestions}
+- Correct Answers: ${mathResults.totalScore}
+- Accuracy: ${mathResults.accuracy}%
+- Overall Level: ${mathResults.level} (${mathResults.overallAverage}/10)
+
+Category Breakdown:
+- Arithmetic: ${mathResults.categoryAverages.arithmetic}
+- Fractions: ${mathResults.categoryAverages.fractions}
+- Percentages: ${mathResults.categoryAverages.percentages}
+- Algebra: ${mathResults.categoryAverages.algebra}
+- Geometry: ${mathResults.categoryAverages.geometry}
+
+Description:
+${mathResults.description}
+
+Strengths:
+${mathResults.strengths.map((strength: string) => `- ${strength}`).join('\n')}
+
+Areas for Growth:
+${mathResults.areasForGrowth.map((area: string) => `- ${area}`).join('\n')}
+
+Recommendations:
+${mathResults.recommendations.map((rec: string) => `- ${rec}`).join('\n')}
+
+Question Review:
+${mathQuestions.map((question: any, index: number) => {
+          const userAnswer = mathAnswers[index];
+          const correctAnswer = question.correct;
+          const isCorrect = userAnswer === correctAnswer;
+          
+          return `QUESTION ${index + 1}: ${question.question}
+Your Answer: ${userAnswer !== undefined ? question.options[userAnswer] : 'Not answered'}
+Correct Answer: ${question.options[correctAnswer]}
+Result: ${isCorrect ? 'Correct' : 'Incorrect'}
+Category: ${question.category.charAt(0).toUpperCase() + question.category.slice(1)}
+`
+        }).join('\n')}`
+        break
+
       case 'personality':
         const personalityType = searchParams.get('type') || 'Unknown'
         const questions = JSON.parse(searchParams.get('questions') || '[]')
@@ -219,6 +267,11 @@ Visit https://testyourself.com for more tests!`
     let hashtags = '#TestYourself #SelfDiscovery'
     
     switch (testType) {
+      case 'math':
+        title = 'I just completed a math assessment!'
+        description = 'Take the math test and assess your mathematical abilities across different categories!'
+        hashtags = '#MathTest #MathAssessment #Mathematics #TestYourself #MathSkills'
+        break
       case 'personality':
         title = 'I just discovered my character type!'
         description = 'Take the character assessment and discover your personality type. Find out what makes you unique!'
@@ -325,6 +378,16 @@ Visit https://testyourself.com for more tests!`
     const baseUrl = 'https://testyourself.com'
     
     switch (testType) {
+      case 'math':
+        return {
+          title: 'Share Math Test Results | TestYourself',
+          description: 'Share your math test results with friends and family. Let them assess their mathematical abilities across different categories too! Take our free math test.',
+          keywords: 'share math test results, math assessment results, mathematics test sharing, math skills sharing, free math test, math test results',
+          ogTitle: 'Share Math Test Results',
+          ogDescription: 'Share your math test results with friends and family. Let them assess their mathematical abilities too!',
+          ogImage: `${baseUrl}/images/math-test-share-og.jpg`,
+          canonical: `${baseUrl}/results/math/share`
+        }
       case 'personality':
         return {
           title: 'Share Character Assessment Results | TestYourself',
@@ -470,6 +533,7 @@ Visit https://testyourself.com for more tests!`
               <div className="bg-white rounded-2xl shadow-lg px-2 py-0.5">
                 <h1 className="text-lg font-bold text-gray-800">
                   {testType === 'personality' ? 'Character Assessment Results' :
+                   testType === 'math' ? 'Math Test Results - 7th-8th Grade Assessment' :
                    testType === 'emotional-intelligence' ? 'Emotional Intelligence Test Results' :
                    testType === 'trivia' ? 'Trivia Quiz Results' :
                    testType === 'memory' ? 'Memory Challenge Results' :
@@ -479,8 +543,8 @@ Visit https://testyourself.com for more tests!`
               </div>
             </div>
 
-            {/* Action Buttons - For Emotional Intelligence, Personality, Optical Illusion, Trivia, and Memory Tests */}
-            {(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory') && (
+            {/* Action Buttons - For Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, and Math Tests */}
+            {(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory' || testType === 'math') && (
               <div className="mb-2">
                 <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -533,8 +597,8 @@ Visit https://testyourself.com for more tests!`
               </div>
             </div>
 
-            {/* Action Buttons - Exclude Emotional Intelligence, Personality, Optical Illusion, Trivia, and Memory as they have their own buttons at top */}
-            {testType !== 'emotional-intelligence' && testType !== 'personality' && testType !== 'optical-illusion' && testType !== 'trivia' && testType !== 'memory' && (
+            {/* Action Buttons - Exclude Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, and Math as they have their own buttons at top */}
+            {testType !== 'emotional-intelligence' && testType !== 'personality' && testType !== 'optical-illusion' && testType !== 'trivia' && testType !== 'memory' && testType !== 'math' && (
               <div className="mt-2 mb-2">
                 <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">

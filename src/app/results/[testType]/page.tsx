@@ -20,6 +20,54 @@ Date: ${timestamp}
 `
 
     switch (testType) {
+      case 'math':
+        const mathResults = JSON.parse(searchParams.get('results') || '{}')
+        const mathAnswers = JSON.parse(searchParams.get('answers') || '[]')
+        const mathQuestions = JSON.parse(searchParams.get('questions') || '[]')
+        
+        content += `Math Test Results
+Date: ${timestamp}
+
+Test Summary:
+- Total Questions: ${mathResults.totalQuestions}
+- Correct Answers: ${mathResults.totalScore}
+- Accuracy: ${mathResults.accuracy}%
+- Overall Level: ${mathResults.level} (${mathResults.overallAverage}/10)
+
+Category Breakdown:
+- Arithmetic: ${mathResults.categoryAverages.arithmetic}
+- Fractions: ${mathResults.categoryAverages.fractions}
+- Percentages: ${mathResults.categoryAverages.percentages}
+- Algebra: ${mathResults.categoryAverages.algebra}
+- Geometry: ${mathResults.categoryAverages.geometry}
+
+Description:
+${mathResults.description}
+
+Strengths:
+${mathResults.strengths.map((strength: string) => `- ${strength}`).join('\n')}
+
+Areas for Growth:
+${mathResults.areasForGrowth.map((area: string) => `- ${area}`).join('\n')}
+
+Recommendations:
+${mathResults.recommendations.map((rec: string) => `- ${rec}`).join('\n')}
+
+Question Review:
+${mathQuestions.map((question: any, index: number) => {
+          const userAnswer = mathAnswers[index];
+          const correctAnswer = question.correct;
+          const isCorrect = userAnswer === correctAnswer;
+          
+          return `QUESTION ${index + 1}: ${question.question}
+Your Answer: ${userAnswer !== undefined ? question.options[userAnswer] : 'Not answered'}
+Correct Answer: ${question.options[correctAnswer]}
+Result: ${isCorrect ? 'Correct' : 'Incorrect'}
+Category: ${question.category.charAt(0).toUpperCase() + question.category.slice(1)}
+`
+        }).join('\n')}`
+        break
+
       case 'personality':
         const personalityType = searchParams.get('type') || 'Unknown'
         const questions = JSON.parse(searchParams.get('questions') || '[]')
@@ -745,6 +793,108 @@ Visit https://testyourself.com for more tests!`
     )
   }
 
+  const renderMathResults = () => {
+    const results = JSON.parse(searchParams.get('results') || '{}')
+    const answers = JSON.parse(searchParams.get('answers') || '[]')
+    const questions = JSON.parse(searchParams.get('questions') || '[]')
+
+    if (!results || !results.level) {
+      return (
+        <div className="text-center">
+          <p className="text-sage-600">Unable to load results. Please try again.</p>
+        </div>
+      )
+    }
+
+    return (
+      <div className="space-y-2">
+        {/* Your Results and Key Insights - Side by Side */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-2">
+          {/* Your Results - 40% width */}
+          <div className="lg:col-span-2">
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-lg p-5 h-full flex flex-col justify-center">
+              <div className="text-center">
+                <h2 className="text-xl text-blue-800 mb-1">
+                  <span className="font-bold">Your Results</span>
+                </h2>
+                <p className="text-lg text-blue-700 mb-3">Here's what we discovered about your<br /><span className="font-bold">math skills</span></p>
+                <div className="text-5xl font-bold text-blue-600 mb-2">{results.overallAverage}/10</div>
+                <div className="text-2xl font-semibold text-gray-800 mb-2">{results.level}</div>
+                <div className="text-lg font-semibold text-blue-700">{results.accuracy}% ({results.totalScore}/{results.totalQuestions} correct)</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Key Insights - 60% width */}
+          <div className="lg:col-span-3">
+            <div className="bg-white rounded-2xl shadow-lg p-5">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Insights</h3>
+              <div className="space-y-3">
+                <p className="text-gray-700">{results.description}</p>
+                <div>
+                  <h4 className="font-semibold text-gray-800 mb-2">Strengths:</h4>
+                  <ul className="list-disc list-inside text-gray-700 space-y-1">
+                    {results.strengths.map((strength: string, index: number) => (
+                      <li key={index}>{strength}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-800 mb-2">Recommendations:</h4>
+                  <ul className="list-disc list-inside text-gray-700 space-y-1">
+                    {results.recommendations.map((rec: string, index: number) => (
+                      <li key={index}>{rec}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Category Breakdown and Areas for Growth - Side by Side */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-2">
+          {/* Category Breakdown */}
+          <div className="bg-white rounded-2xl shadow-lg p-3">
+            <h3 className="text-lg font-semibold text-gray-800 mb-3">Category Breakdown</h3>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Arithmetic</span>
+                <span className="font-semibold text-gray-800">{results.categoryAverages.arithmetic}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Fractions</span>
+                <span className="font-semibold text-gray-800">{results.categoryAverages.fractions}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Percentages</span>
+                <span className="font-semibold text-gray-800">{results.categoryAverages.percentages}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Algebra</span>
+                <span className="font-semibold text-gray-800">{results.categoryAverages.algebra}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Geometry</span>
+                <span className="font-semibold text-gray-800">{results.categoryAverages.geometry}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Areas for Growth */}
+          <div className="bg-white rounded-2xl shadow-lg p-3">
+            <h3 className="text-lg font-semibold text-gray-800 mb-3">Areas for Growth</h3>
+            <div className="space-y-1">
+              {results.areasForGrowth.map((area: string, index: number) => (
+                <div key={index} className="text-gray-700">• {area}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const renderOtherResults = () => {
     return (
       <div className="space-y-2">
@@ -765,6 +915,16 @@ Visit https://testyourself.com for more tests!`
     const baseUrl = 'https://testyourself.com'
     
     switch (testType) {
+      case 'math':
+        return {
+          title: 'Math Test Results - 7th-8th Grade Assessment | TestYourself',
+          description: 'View your math test results and get insights about your mathematical abilities. See your performance across arithmetic, fractions, percentages, algebra, and geometry.',
+          keywords: 'math test results, 7th grade math, 8th grade math, arithmetic, fractions, percentages, algebra, geometry, math assessment',
+          ogTitle: 'Math Test Results - Mathematical Ability Assessment',
+          ogDescription: 'View your math test results and get insights about your mathematical abilities across different categories.',
+          ogImage: `${baseUrl}/images/math-test-results-og.jpg`,
+          canonical: `${baseUrl}/results/math`
+        }
       case 'personality':
         return {
           title: 'Character Assessment Results - Free Personality Type Test | TestYourself',
@@ -1026,19 +1186,20 @@ Visit https://testyourself.com for more tests!`
             {/* Test Title */}
             <div className="text-center mb-2 mt-2">
             <div className="bg-white rounded-2xl shadow-lg px-2 py-0.5">
-              <h1 className="text-lg font-bold text-gray-800">
-                {testType === 'personality' ? 'Character Assessment Results' :
-                 testType === 'trivia' ? 'Trivia Quiz Results' :
+                <h1 className="text-lg font-bold text-gray-800">
+                  {testType === 'personality' ? 'Character Assessment Results' :
+                   testType === 'math' ? 'Math Test Results - 7th-8th Grade Assessment' :
+                   testType === 'trivia' ? 'Trivia Quiz Results' :
                    testType === 'memory' ? 'Memory Challenge Results' :
-                 testType === 'optical-illusion' ? 'Optical Illusion Test Results' :
+                   testType === 'optical-illusion' ? 'Optical Illusion Test Results' :
                    testType === 'emotional-intelligence' ? 'Emotional Intelligence Test Results' :
-                 'Test Results'}
-              </h1>
+                   'Test Results'}
+                </h1>
             </div>
           </div>
 
-            {/* Action Buttons - For Emotional Intelligence, Personality, Optical Illusion, Trivia, and Memory Tests */}
-            {(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory') && (
+            {/* Action Buttons - For Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, and Math Tests */}
+            {(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory' || testType === 'math') && (
               <div className="mb-2">
             <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -1072,8 +1233,9 @@ Visit https://testyourself.com for more tests!`
         )}
         
             {/* Results Content */}
-            <div className={`mt-2 ${(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory') ? 'mb-2' : ''}`}>
+            <div className={`mt-2 ${(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory' || testType === 'math') ? 'mb-2' : ''}`}>
             {testType === 'personality' ? renderPersonalityResults() : 
+             testType === 'math' ? renderMathResults() :
              testType === 'trivia' ? renderTriviaResults() : 
              testType === 'optical-illusion' ? renderOpticalIllusionResults() :
              testType === 'memory' ? renderMemoryResults() :
@@ -1081,8 +1243,8 @@ Visit https://testyourself.com for more tests!`
              renderOtherResults()}
           </div>
                         
-            {/* Action Buttons - Exclude Emotional Intelligence, Personality, Optical Illusion, Trivia, and Memory as they have their own buttons at top */}
-            {testType !== 'emotional-intelligence' && testType !== 'personality' && testType !== 'optical-illusion' && testType !== 'trivia' && testType !== 'memory' && (
+            {/* Action Buttons - Exclude Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, and Math as they have their own buttons at top */}
+            {testType !== 'emotional-intelligence' && testType !== 'personality' && testType !== 'optical-illusion' && testType !== 'trivia' && testType !== 'memory' && testType !== 'math' && (
               <div className="mt-2 mb-2">
           <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -81,6 +81,13 @@ export default function MathTest() {
     const results = calculateMathResults(finalAnswers, selectedQuestions);
     setMathResults(results);
     setTestCompleted(true);
+    
+    // Redirect to new results page
+    const resultsData = encodeURIComponent(JSON.stringify(results));
+    const answersData = encodeURIComponent(JSON.stringify(finalAnswers));
+    const questionsData = encodeURIComponent(JSON.stringify(selectedQuestions));
+    
+    window.location.href = `/results/math?results=${resultsData}&answers=${answersData}&questions=${questionsData}`;
   };
 
   const handleRetakeTest = () => {
@@ -408,7 +415,7 @@ Visit https://testyourself.com for more tests!`;
             </div>
 
             {/* Question */}
-            <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="bg-white rounded-2xl shadow-lg p-6 mb-2">
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
