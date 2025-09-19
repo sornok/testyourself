@@ -229,7 +229,7 @@ export const mathQuestions: MathQuestion[] = [
   {
     id: 28,
     question: "What is 7/8 ÷ 1/4?",
-    options: ["7/32", "3 1/2", "2/3", "3/4"],
+    options: ["7/32", "3½", "2/3", "3/4"],
     correct: 1,
     category: "fractions"
   },
