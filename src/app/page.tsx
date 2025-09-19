@@ -321,7 +321,7 @@ export default function Home() {
         <Header onLogoClick={handleLogoReset} />
 
         {/* Filter Buttons - Responsive Layout */}
-        <div className="mt-2 mb-4 sm:mb-8">
+        <div className="mt-2 mb-2">
           {/* Desktop: Single line layout */}
           <div className="hidden lg:flex justify-between items-center gap-2">
             {/* Left: Sort Buttons */}
@@ -464,7 +464,7 @@ export default function Home() {
 
         {/* Category Cards or List */}
         {viewMode === 'cards' ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             {currentTests.map((category) => (
               <Link
                 key={category.id}
@@ -505,53 +505,68 @@ export default function Home() {
                 className="group block"
               >
                 <div className="bg-purple-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-102 py-1.5 px-3 cursor-pointer group relative">
-                  {/* Mobile: Stacked layout */}
-                  <div className="sm:hidden">
-                    <div className="flex items-center mb-2">
-                      <div className={`w-8 h-8 sm:w-12 sm:h-12 rounded-full ${category.color} flex items-center justify-center text-sm sm:text-lg mr-2 sm:mr-3 group-hover:scale-110 transition-transform duration-300`}>
-                        {category.icon}
+                  {/* Mobile/Tablet: Without description */}
+                  <div className="lg:hidden">
+                    <div className="flex items-center gap-2 min-w-0">
+                      {/* Icon */}
+                      <div className="flex-shrink-0">
+                        <div className={`w-5 h-5 rounded-full ${category.color} flex items-center justify-center text-xs group-hover:scale-110 transition-transform duration-300`}>
+                          {category.icon}
+                        </div>
                       </div>
-                      <div className="text-left flex-1 min-w-0">
-                        <h3 className={`text-sm font-semibold transition-colors mb-1 whitespace-nowrap overflow-hidden text-ellipsis ml-1 ${
+                      
+                      {/* Title - Flexible */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
                           ['stress-test', 'leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
                             ? 'text-red-600 group-hover:text-red-600'
                             : 'text-sage-800 group-hover:text-sage-600'
                         }`}>
                           {category.title}
                         </h3>
-                        <span className="inline-block px-2 py-1 text-xs font-medium bg-sage-100 text-sage-700 rounded-full whitespace-nowrap">
+                      </div>
+                      
+                      {/* Category - Right aligned, shrinkable */}
+                      <div className="flex-shrink-0">
+                        <span className="inline-block px-1.5 py-0.5 text-xs font-medium bg-sage-100 text-sage-700 rounded-full whitespace-nowrap">
                           {category.category}
                         </span>
                       </div>
                     </div>
-                    <p className="text-sage-600 leading-relaxed text-xs">
-                      {category.description}
-                    </p>
                   </div>
                   
-                  {/* Desktop: Side-by-side layout */}
-                  <div className="hidden sm:grid grid-cols-12 gap-4 items-center">
-                    <div className="col-span-5 flex items-center">
-                      <div className={`w-8 h-8 sm:w-12 sm:h-12 rounded-full ${category.color} flex items-center justify-center text-sm sm:text-lg mr-2 sm:mr-3 group-hover:scale-110 transition-transform duration-300`}>
+                  {/* Desktop: Full layout with description */}
+                  <div className="hidden lg:grid grid-cols-12 gap-2 items-center">
+                    {/* Icon */}
+                    <div className="col-span-1 flex justify-center">
+                      <div className={`w-6 h-6 rounded-full ${category.color} flex items-center justify-center text-xs group-hover:scale-110 transition-transform duration-300`}>
                         {category.icon}
                       </div>
-                      <div className="text-left flex-1 min-w-0">
-                        <h3 className={`text-sm font-semibold transition-colors mb-1 whitespace-nowrap overflow-hidden text-ellipsis ml-1 ${
-                          ['stress-test', 'leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
-                            ? 'text-red-600 group-hover:text-red-600'
-                            : 'text-sage-800 group-hover:text-sage-600'
-                        }`}>
-                          {category.title}
-                        </h3>
-                        <span className="inline-block px-2 py-1 text-xs font-medium bg-sage-100 text-sage-700 rounded-full whitespace-nowrap">
-                          {category.category}
-                        </span>
-                      </div>
                     </div>
-                    <div className="col-span-7 text-right">
-                      <p className="text-sage-600 leading-relaxed text-xs">
+                    
+                    {/* Title - Left aligned */}
+                    <div className="col-span-4 text-left">
+                      <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
+                        ['stress-test', 'leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
+                          ? 'text-red-600 group-hover:text-red-600'
+                          : 'text-sage-800 group-hover:text-sage-600'
+                      }`}>
+                        {category.title}
+                      </h3>
+                    </div>
+                    
+                    {/* Description - Center aligned */}
+                    <div className="col-span-4 text-center">
+                      <p className="text-sage-600 text-xs leading-tight">
                         {category.description}
                       </p>
+                    </div>
+                    
+                    {/* Category - Right aligned */}
+                    <div className="col-span-3 text-right">
+                      <span className="inline-block px-2 py-1 text-xs font-medium bg-sage-100 text-sage-700 rounded-full whitespace-nowrap">
+                        {category.category}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -562,7 +577,7 @@ export default function Home() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-2 mt-6 mb-4">
+          <div className="flex justify-center items-center gap-2 mt-2 mb-2">
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
