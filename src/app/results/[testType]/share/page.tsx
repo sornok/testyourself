@@ -479,15 +479,49 @@ Visit https://testyourself.com for more tests!`
               </div>
             </div>
 
+            {/* Action Buttons - For Emotional Intelligence and Personality Tests */}
+            {(testType === 'emotional-intelligence' || testType === 'personality') && (
+              <div className="mb-2">
+                <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button
+                      onClick={() => router.push(`/results/${testType}?${searchParams.toString()}`)}
+                      className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
+                    >
+                      📤 Hide Share
+                    </button>
+                    <button
+                      onClick={() => router.push(`/results/${testType}/review?${searchParams.toString()}`)}
+                      className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
+                    >
+                      📋 Show Review
+                    </button>
+                    <button
+                      onClick={saveResults}
+                      className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-all duration-300"
+                    >
+                      💾 Save Results
+                    </button>
+                    <button
+                      onClick={() => router.push(`/${testType}`)}
+                      className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
+                    >
+                      🔄 Retake Test
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Share Section */}
-            <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mt-2">
+            <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mt-2 mb-2">
               <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">Share Your Results</h3>
               <p className="text-gray-600 mb-2 text-center">Choose a platform to share your EQ test results</p>
               
               <div className="flex justify-start">
                 <button
                   onClick={handleXShare}
-                  className="p-4 text-left bg-blue-50 hover:bg-blue-100 rounded-2xl shadow-lg transition-colors flex items-center"
+                  className="p-4 text-left bg-white hover:bg-blue-50 rounded-2xl shadow-lg transition-colors flex items-center border border-blue-200"
                   style={{width: '210px'}}
                 >
                   <span className="text-2xl mr-3" aria-label="X (formerly Twitter) logo">𝕏</span>
@@ -499,37 +533,39 @@ Visit https://testyourself.com for more tests!`
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="mt-2 mb-2">
-              <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button
-                    onClick={() => router.push(`/results/${testType}?${searchParams.toString()}`)}
-                    className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
-                  >
-                    📤 Hide Share
-                  </button>
-                  <button
-                    onClick={() => router.push(`/results/${testType}/review?${searchParams.toString()}`)}
-                    className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
-                  >
-                    📋 Show Review
-                  </button>
-                  <button
-                    onClick={saveResults}
-                    className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-all duration-300"
-                  >
-                    💾 Save Results
-                  </button>
-                  <button
-                    onClick={() => router.push(`/${testType}`)}
-                    className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
-                  >
-                    {testType === 'typing' ? '🔄 Try Another Challenge' : '🔄 Retake Test'}
-                  </button>
+            {/* Action Buttons - Exclude Emotional Intelligence and Personality as they have their own buttons at top */}
+            {testType !== 'emotional-intelligence' && testType !== 'personality' && (
+              <div className="mt-2 mb-2">
+                <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button
+                      onClick={() => router.push(`/results/${testType}?${searchParams.toString()}`)}
+                      className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
+                    >
+                      📤 Hide Share
+                    </button>
+                    <button
+                      onClick={() => router.push(`/results/${testType}/review?${searchParams.toString()}`)}
+                      className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
+                    >
+                      📋 Show Review
+                    </button>
+                    <button
+                      onClick={saveResults}
+                      className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-all duration-300"
+                    >
+                      💾 Save Results
+                    </button>
+                    <button
+                      onClick={() => router.push(`/${testType}`)}
+                      className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
+                    >
+                      {testType === 'typing' ? '🔄 Try Another Challenge' : '🔄 Retake Test'}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
           </div>
         </div>

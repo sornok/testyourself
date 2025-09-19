@@ -760,7 +760,7 @@ Visit https://testyourself.com for more tests!`
         </div>
 
         {/* Key Insights */}
-        <div className="bg-blue-50 rounded-2xl shadow-lg p-5 mb-0">
+        <div className="bg-blue-50 rounded-2xl shadow-lg p-5 mb-2">
           <h3 className="text-lg font-semibold text-blue-800 mb-3">Key Insights</h3>
           <ul className="space-y-2">
             {results.insights && results.insights.map((insight: string, index: number) => (
@@ -1064,8 +1064,42 @@ Visit https://testyourself.com for more tests!`
             </div>
           </div>
 
+            {/* Action Buttons - For Emotional Intelligence and Personality Tests */}
+            {(testType === 'emotional-intelligence' || testType === 'personality') && (
+              <div className="mb-2">
+                <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button
+                      onClick={() => router.push(`/results/${testType}/share?${searchParams.toString()}`)}
+                      className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
+                    >
+                      📤 Share Results
+                    </button>
+                    <button
+                      onClick={() => router.push(`/results/${testType}/review?${searchParams.toString()}`)}
+                      className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
+                    >
+                      📋 Show Review
+                    </button>
+                    <button
+                      onClick={saveResults}
+                      className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-all duration-300"
+                    >
+                      💾 Save Results
+                    </button>
+                    <button
+                      onClick={() => router.push(`/${testType}`)}
+                      className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
+                    >
+                      🔄 Retake Test
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Results Content */}
-            <div className="mt-2">
+            <div className={`mt-2 ${(testType === 'emotional-intelligence' || testType === 'personality') ? 'mb-2' : ''}`}>
               {testType === 'personality' ? renderPersonalityResults() : 
                testType === 'trivia' ? renderTriviaResults() : 
                testType === 'optical-illusion' ? renderOpticalIllusionResults() :
@@ -1074,39 +1108,41 @@ Visit https://testyourself.com for more tests!`
                renderOtherResults()}
                         </div>
                         
-            {/* Action Buttons */}
-            <div className="mt-2 mb-2">
-          <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                    onClick={() => router.push(`/results/${testType}/share?${searchParams.toString()}`)}
-                className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
-              >
-                    📤 Share Results
-              </button>
-                  {(testType === 'optical-illusion' || testType === 'memory' || testType === 'trivia' || testType === 'personality' || testType === 'emotional-intelligence') && (
-                <button
-                      onClick={() => router.push(`/results/${testType}/review?${searchParams.toString()}`)}
-                  className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
-                >
-                      📋 Show Review
-                </button>
-              )}
-              <button
-                onClick={saveResults}
-                className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-all duration-300"
-              >
-                💾 Save Results
-              </button>
-              <button
-                onClick={() => router.push(`/${testType}`)}
-                className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
-              >
-                {testType === 'typing' ? '🔄 Try Another Challenge' : '🔄 Retake Test'}
-              </button>
-            </div>
-          </div>
-        </div>
+            {/* Action Buttons - Exclude Emotional Intelligence and Personality as they have their own buttons at top */}
+            {testType !== 'emotional-intelligence' && testType !== 'personality' && (
+              <div className="mt-2 mb-2">
+                <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button
+                      onClick={() => router.push(`/results/${testType}/share?${searchParams.toString()}`)}
+                      className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300"
+                    >
+                      📤 Share Results
+                    </button>
+                    {(testType === 'optical-illusion' || testType === 'memory' || testType === 'trivia') && (
+                      <button
+                        onClick={() => router.push(`/results/${testType}/review?${searchParams.toString()}`)}
+                        className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-all duration-300"
+                      >
+                        📋 Show Review
+                      </button>
+                    )}
+                    <button
+                      onClick={saveResults}
+                      className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-all duration-300"
+                    >
+                      💾 Save Results
+                    </button>
+                    <button
+                      onClick={() => router.push(`/${testType}`)}
+                      className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-all duration-300"
+                    >
+                      {testType === 'typing' ? '🔄 Try Another Challenge' : '🔄 Retake Test'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
 
         </div>

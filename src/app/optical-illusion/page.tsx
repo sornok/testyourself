@@ -208,7 +208,7 @@ export default function OpticalIllusionTest() {
 
           {/* Main Content - Show when test has begun */}
           {hasBegun && !showResults && illusions.length > 0 && (
-            <div className="bg-purple-50 rounded-2xl shadow-lg p-6">
+            <div className="bg-purple-50 rounded-2xl shadow-lg p-6 mb-2">
               {/* Progress Bar */}
               <div className="mb-2">
                 <div className="flex justify-between items-center mb-2">
