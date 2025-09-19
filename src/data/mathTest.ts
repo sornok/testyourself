@@ -201,14 +201,14 @@ export const mathQuestions: MathQuestion[] = [
   {
     id: 24,
     question: "What is 3/5 ÷ 2/5?",
-    options: ["6/25", "1 1/2", "5/10", "2/3"],
+    options: ["6/25", "1½", "5/10", "2/3"],
     correct: 1,
     category: "fractions"
   },
   {
     id: 25,
     question: "What is 1/2 + 1/4 + 1/8?",
-    options: ["7/8", "3/14", "1 1/8", "2/3"],
+    options: ["7/8", "3/14", "1⅛", "2/3"],
     correct: 0,
     category: "fractions"
   },
@@ -257,7 +257,7 @@ export const mathQuestions: MathQuestion[] = [
   {
     id: 32,
     question: "What is 8/9 ÷ 2/3?",
-    options: ["16/27", "1 1/3", "2/3", "3/4"],
+    options: ["16/27", "1⅓", "2/3", "3/4"],
     correct: 1,
     category: "fractions"
   },
@@ -285,7 +285,7 @@ export const mathQuestions: MathQuestion[] = [
   {
     id: 36,
     question: "What is 9/10 ÷ 3/5?",
-    options: ["27/50", "1 1/2", "2/3", "3/4"],
+    options: ["27/50", "1½", "2/3", "3/4"],
     correct: 1,
     category: "fractions"
   },
