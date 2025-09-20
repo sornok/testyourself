@@ -270,7 +270,69 @@ export default function TriviaTest() {
                   "name": "Sports Questions",
                   "description": "Questions about teams, athletes, records, and sports facts"
                 }
-              ]
+              ],
+              "mainEntity": {
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "What topics are covered in the trivia quiz?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The trivia quiz covers five main categories: Science (biology, physics, chemistry), History (world events, historical figures), Geography (countries, capitals, landmarks), Arts & Culture (literature, music, art), and Sports (teams, athletes, records)."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How is the trivia quiz scored?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The trivia quiz is scored based on both accuracy and speed. You get points for correct answers, and bonus points for answering quickly. The final score reflects your general knowledge and quick thinking abilities."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "What difficulty level is the trivia quiz?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The trivia quiz is designed for intermediate to advanced knowledge levels, suitable for ages 12 and up. Questions range from basic facts to more challenging topics across various subject areas."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Can I retake the trivia quiz?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes, you can take the trivia quiz as many times as you want. Each attempt may include different questions, and you can track your improvement over time by comparing your scores."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How long does the trivia quiz take?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The trivia quiz typically takes about 5 minutes to complete. It includes multiple choice questions across different categories, and the time limit encourages quick thinking and decision-making."
+                    }
+                  }
+                ]
+              },
+              "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://testyourself.com"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Trivia Quiz",
+                    "item": "https://testyourself.com/trivia"
+                  }
+                ]
+              }
             })
           }}
         />

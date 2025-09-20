@@ -306,9 +306,14 @@ export default function ReactionTimeTest() {
   const completeTest = (finalAnswers: number[], finalReactionTimes: number[]) => {
     console.log('completeTest called with:', { finalAnswers, finalReactionTimes, selectedQuestions: selectedQuestions.length });
     const results = calculateReactionResults(finalAnswers, finalReactionTimes, selectedQuestions);
-    setReactionResults(results);
-    setTestCompleted(true);
-    console.log('Test completed, results set');
+    
+    // Redirect to new results format
+    const resultsData = encodeURIComponent(JSON.stringify(results))
+    const answersData = encodeURIComponent(JSON.stringify(finalAnswers))
+    const reactionTimesData = encodeURIComponent(JSON.stringify(finalReactionTimes))
+    const questionsData = encodeURIComponent(JSON.stringify(selectedQuestions))
+    
+    window.location.href = `/results/reaction-time?results=${resultsData}&answers=${answersData}&reactionTimes=${reactionTimesData}&questions=${questionsData}`
   };
 
   const handleCornerHover = (corner: string) => {
@@ -536,6 +541,68 @@ Visit https://testyourself.com for more tests!`;
                   "@type": "Organization",
                   "name": "TestYourself",
                   "url": "https://testyourself.com"
+                },
+                "mainEntity": {
+                  "@type": "FAQPage",
+                  "mainEntity": [
+                    {
+                      "@type": "Question",
+                      "name": "What is reaction time and why is it important?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Reaction time is the time it takes to respond to a stimulus. It's important for cognitive function, safety, and performance in many activities. It reflects how quickly your brain processes information and initiates responses."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "What types of reaction time tests are included?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The test includes three types of reaction time assessments: color selection (responding to color changes), sequential clicking (following sequences), and movement reaction tests (responding to visual cues with mouse movement)."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "What factors affect reaction time?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Reaction time is affected by age, fatigue, stress, alertness, practice, and individual differences. External factors like distractions, lighting, and device responsiveness can also impact results."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "Can I improve my reaction time?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, reaction time can be improved through regular practice, physical exercise, adequate sleep, stress management, and cognitive training exercises. Consistent practice with reaction time tasks can help enhance your response speed."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "How long does the reaction time test take?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The reaction time test typically takes about 4 minutes to complete. It includes 9 interactive tasks across three different types of reaction time assessments to provide a comprehensive evaluation."
+                      }
+                    }
+                  ]
+                },
+                "breadcrumb": {
+                  "@type": "BreadcrumbList",
+                  "itemListElement": [
+                    {
+                      "@type": "ListItem",
+                      "position": 1,
+                      "name": "Home",
+                      "item": "https://testyourself.com"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 2,
+                      "name": "Reaction Time Test",
+                      "item": "https://testyourself.com/reaction-time"
+                    }
+                  ]
                 }
               })
             }}

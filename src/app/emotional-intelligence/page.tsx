@@ -702,7 +702,69 @@ Visit https://testyourself.com for more tests!`
                   "name": "Social Skills Assessment",
                   "description": "Questions about interpersonal relationships and communication"
                 }
-              ]
+              ],
+              "mainEntity": {
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "What is emotional intelligence (EQ)?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Emotional intelligence (EQ) is the ability to recognize, understand, and manage your own emotions while also being aware of and responding appropriately to others' emotions. It includes self-awareness, self-regulation, motivation, empathy, and social skills."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How is emotional intelligence measured?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "EQ is measured through assessment of five key components: self-awareness (understanding your emotions), self-regulation (managing your emotions), motivation (using emotions to achieve goals), empathy (understanding others' emotions), and social skills (managing relationships)."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Can emotional intelligence be improved?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes, emotional intelligence can be developed and improved through practice. Techniques include mindfulness, active listening, empathy exercises, stress management, and regular self-reflection on emotional responses."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Why is emotional intelligence important?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "EQ is crucial for personal and professional success. It improves relationships, communication, decision-making, leadership abilities, and overall mental well-being. High EQ is often more predictive of success than IQ."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How long does the emotional intelligence test take?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The emotional intelligence test typically takes about 5 minutes to complete. It includes questions across all five EQ components to provide a comprehensive assessment of your emotional intelligence skills."
+                    }
+                  }
+                ]
+              },
+              "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://testyourself.com"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Emotional Intelligence Test",
+                    "item": "https://testyourself.com/emotional-intelligence"
+                  }
+                ]
+              }
             })
           }}
         />

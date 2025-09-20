@@ -149,7 +149,69 @@ export default function OpticalIllusionTest() {
                   "name": "Visual Illusion Questions",
                   "description": "Questions about various optical illusions and visual perception patterns"
                 }
-              ]
+              ],
+              "mainEntity": {
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "What are optical illusions?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Optical illusions are visual images that deceive the eye and brain, creating perceptions that differ from reality. They reveal how our brain processes visual information and can provide insights into cognitive processing patterns."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "What does this optical illusion test measure?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The test measures how your brain processes visual information and reveals your cognitive style. It assesses your visual perception patterns, attention to detail, and how you interpret ambiguous visual stimuli."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "What types of optical illusions are included?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The test includes various types of optical illusions such as geometric illusions, ambiguous figures, size perception illusions, motion illusions, and pattern recognition challenges that test different aspects of visual processing."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Can optical illusions reveal personality traits?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "While optical illusions primarily reveal visual processing patterns, they can provide insights into cognitive style, attention patterns, and how you approach ambiguous situations, which may relate to certain personality characteristics."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How long does the optical illusion test take?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The optical illusion test typically takes about 3 minutes to complete. It includes multiple visual illusions and questions designed to assess your visual perception and cognitive processing patterns."
+                    }
+                  }
+                ]
+              },
+              "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://testyourself.com"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Optical Illusion Test",
+                    "item": "https://testyourself.com/optical-illusion"
+                  }
+                ]
+              }
             })
           }}
         />

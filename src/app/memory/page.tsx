@@ -230,7 +230,69 @@ export default function MemoryTest() {
                   "name": "Sequence Memory Challenges",
                   "description": "Memory challenges involving colors, numbers, patterns, words, and mixed item sequences"
                 }
-              ]
+              ],
+              "mainEntity": {
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "What is the memory test designed to measure?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The memory test measures your short-term memory capacity and cognitive processing abilities. It challenges you to memorize and recall sequences of different items including colors, numbers, patterns, and words."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How does the memory challenge work?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "You'll be shown sequences of items (colors, numbers, patterns, or words) that you need to memorize and then recall in the correct order. The sequences get progressively longer to test your memory capacity limits."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "What types of memory challenges are included?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The test includes five types of memory challenges: color sequences, number sequences, pattern sequences, word sequences, and mixed item sequences that combine different types of items."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Can I improve my memory with practice?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes, memory can be improved with regular practice and training. Techniques like chunking, visualization, and repetition can help enhance your memory capacity and retention abilities."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How long does the memory test take?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The memory test typically takes about 3 minutes to complete. It includes multiple rounds of different memory challenges to provide a comprehensive assessment of your memory abilities."
+                    }
+                  }
+                ]
+              },
+              "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://testyourself.com"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Memory Test",
+                    "item": "https://testyourself.com/memory"
+                  }
+                ]
+              }
             })
           }}
         />

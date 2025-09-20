@@ -178,6 +178,68 @@ export default function PersonalityTest() {
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "USD"
+              },
+              "mainEntity": {
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "What is the MBTI personality test?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The MBTI (Myers-Briggs Type Indicator) is a personality assessment that categorizes people into 16 different personality types based on four key dimensions: Extraversion/Introversion, Sensing/Intuition, Thinking/Feeling, and Judging/Perceiving."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How accurate are personality tests?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Personality tests provide insights into your character traits and behavioral patterns. While they offer valuable self-reflection, they should be used as a starting point for understanding yourself rather than definitive labels. Results can vary based on mood and context."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "What personality types are there?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "There are 16 personality types based on combinations of four dimensions. Examples include INTJ (Architect), ENFP (Campaigner), ISTJ (Logistician), and ENTP (Debater). Each type has unique characteristics, strengths, and preferences."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Can my personality type change over time?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "While your core personality traits tend to remain relatively stable, some aspects may evolve with life experiences, personal growth, and conscious development. The test reflects your current preferences and tendencies."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How long does the personality test take?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "The personality test typically takes about 5 minutes to complete. It includes questions about your preferences, behaviors, and reactions to various situations to determine your personality type."
+                    }
+                  }
+                ]
+              },
+              "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://testyourself.com"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Personality Test",
+                    "item": "https://testyourself.com/personality"
+                  }
+                ]
               }
             })
           }}

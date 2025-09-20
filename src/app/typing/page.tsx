@@ -458,6 +458,11 @@ Visit https://testyourself.com for more tests!`
                   "WPM measurement",
                   "Typing proficiency"
                 ],
+                "audience": {
+                  "@type": "EducationalAudience",
+                  "educationalRole": "student",
+                  "audienceType": "general public"
+                },
                 "inLanguage": "en",
                 "isAccessibleForFree": true,
                 "offers": {
@@ -476,7 +481,69 @@ Visit https://testyourself.com for more tests!`
                     "name": "Hard Mode Typing Challenge", 
                     "description": "Wall of text format for advanced typing practice and speed testing"
                   }
-                ]
+                ],
+                "mainEntity": {
+                  "@type": "FAQPage",
+                  "mainEntity": [
+                    {
+                      "@type": "Question",
+                      "name": "How does the typing speed test work?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Our typing test measures your Words Per Minute (WPM) and accuracy. You can choose between Easy Mode (segmented text) or Hard Mode (wall of text) and select your preferred time limit (30, 60, or 90 seconds)."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "What's the difference between Easy Mode and Hard Mode?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Easy Mode presents text in small segments that advance automatically, making it easier for beginners. Hard Mode shows a wall of text that you type continuously, providing a more challenging experience for advanced users."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "How is typing speed calculated?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Typing speed is calculated as Words Per Minute (WPM), which measures how many words you can type correctly in one minute. Accuracy is calculated as the percentage of correct characters typed."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "What is a good typing speed?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "A good typing speed is typically 40+ WPM. Professional typists average 65-75 WPM, while advanced users can reach 90+ WPM. Our test provides detailed performance analysis to help you improve."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "Is the typing test free to use?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, our typing speed test is completely free to use. No registration required, and you can take the test as many times as you want to track your improvement over time."
+                      }
+                    }
+                  ]
+                },
+                "breadcrumb": {
+                  "@type": "BreadcrumbList",
+                  "itemListElement": [
+                    {
+                      "@type": "ListItem",
+                      "position": 1,
+                      "name": "Home",
+                      "item": "https://testyourself.com"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 2,
+                      "name": "Typing Test",
+                      "item": "https://testyourself.com/typing"
+                    }
+                  ]
+                }
               })
             }}
           />
@@ -494,7 +561,7 @@ Visit https://testyourself.com for more tests!`
                 <h1 className="text-xl font-bold text-green-800 mb-3">Typing Speed Challenge - <span className="font-normal">Configure your typing test settings</span></h1>
                 
                 {/* Test Info */}
-                <div className="bg-white rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
+                <div className="bg-white rounded-lg px-4 py-3 text-base text-green-700 shadow-lg">
                   <span className="font-medium">Format:</span> Speed and accuracy test
                   <span className="text-green-500 ml-2">⌨️ Improve your typing skills</span>
                 </div>
@@ -543,7 +610,7 @@ Visit https://testyourself.com for more tests!`
                     }`}
                   >
                     <div className="text-xl font-semibold mb-2">Easy Mode</div>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-base text-gray-600">
                       Segmented typing format. Type each segment individually with auto-advance.
                     </div>
                   </button>
@@ -556,7 +623,7 @@ Visit https://testyourself.com for more tests!`
                     }`}
                   >
                     <div className="text-xl font-semibold mb-2">Hard Mode</div>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-base text-gray-600">
                       Wall of text format. Type the entire passage in one go. Challenge yourself!
                     </div>
                   </button>
@@ -664,87 +731,94 @@ Visit https://testyourself.com for more tests!`
             {/* Header */}
             <Header onLogoClick={undefined} />
             
-            {/* Top Action Buttons - Only show when page is scrollable */}
-            {needsTopButtons && (
-              <div className="-mx-4 px-4 pt-2">
-                <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button
-                      onClick={handleShareToggle}
-                      className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                    >
-                      {showShare ? '🔒 Hide Share' : '📤 Share Results'}
-                    </button>
-                    <button
-                      onClick={handleReviewToggle}
-                      className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                    >
-                      {showReview ? '🔒 Hide Review' : '📋 Show Review'}
-                    </button>
-                    <button
-                      onClick={saveResults}
-                      className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                    >
-                      💾 Save Results
-                    </button>
-                    <button
-                      onClick={retakeTest}
-                      className="px-8 py-3 bg-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                    >
-                      🔄 Try Another Challenge
-                    </button>
-                  </div>
+            {/* Results Title - Always visible */}
+            <div className="text-center mb-2 mt-2">
+              <div className="bg-white rounded-2xl shadow-lg px-2 py-0.5">
+                <h1 className="text-lg font-bold text-gray-800">Typing Speed Results</h1>
+              </div>
+            </div>
+
+            {/* Action Buttons - Always visible at top */}
+            <div className="-mx-4 px-4 mb-2">
+              <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button
+                    onClick={handleShareToggle}
+                    className="px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                  >
+                    {showShare ? '🔒 Hide Share' : '📤 Share Results'}
+                  </button>
+                  <button
+                    onClick={handleReviewToggle}
+                    className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                  >
+                    {showReview ? '🔒 Hide Review' : '📋 Show Review'}
+                  </button>
+                  <button
+                    onClick={saveResults}
+                    className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                  >
+                    💾 Save Results
+                  </button>
+                  <button
+                    onClick={retakeTest}
+                    className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                  >
+                    🔄 Try Another Challenge
+                  </button>
                 </div>
               </div>
-            )}
+            </div>
             
             {/* Results Content - Hide when review or share is shown */}
             {!showReview && !showShare && (
               <>
-                {/* Results Header */}
-                <div className="text-center mb-2 mt-2">
-                  <div className="bg-white rounded-2xl shadow-lg p-4 mb-2">
-                    <h1 className="text-xl font-bold text-gray-800 mb-4">Typing Speed Results</h1>
-                    <div className="space-y-2 mb-2">
-                      <h2 className="text-lg font-semibold text-gray-800">
-                        {selectedDifficulty === 'easy' ? 'Easy Mode (Segmented)' : 'Hard Mode (Wall of Text)'} • {selectedTime}s
-                      </h2>
-                      <p className="text-gray-600">Time: {selectedTime - timeLeft} seconds</p>
+                {/* Mode and Time Info */}
+                <div className="bg-white rounded-2xl shadow-lg p-2 mb-2 text-center">
+                  <div className="space-y-2">
+                    <h2 className="text-lg font-semibold text-gray-800">
+                      {selectedDifficulty === 'easy' ? 'Easy Mode (Segmented)' : 'Hard Mode (Wall of Text)'} • {selectedTime}s
+                    </h2>
+                    <p className="text-gray-600">Time: {selectedTime - timeLeft} seconds</p>
+                  </div>
+                </div>
+
+                {/* Stats Container Box */}
+                <div className="bg-gray-50 rounded-2xl shadow-lg p-2 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">Your Performance</h3>
+                  
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <div className="bg-purple-50 rounded-2xl shadow-lg p-2 text-center">
+                      <div className="text-xl font-bold text-purple-600 mb-2">{Number(stats.score) || 0}</div>
+                      <div className="text-gray-600 font-medium">Overall Score</div>
                     </div>
-                    
-                    {/* Stats Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                      <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
-                        <div className="text-xl font-bold text-purple-600 mb-2">{Number(stats.score) || 0}</div>
-                        <div className="text-gray-600 font-medium">Overall Score</div>
-                      </div>
-                      <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
-                        <div className="text-xl font-bold text-blue-600 mb-2">{Number(stats.wpm) || 0}</div>
-                        <div className="text-gray-600 font-medium">Words Per Minute</div>
-                      </div>
-                      <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
-                        <div className="text-xl font-bold text-green-600 mb-2">{Number(stats.accuracy) || 0}%</div>
-                        <div className="text-gray-600 font-medium">Accuracy</div>
-                      </div>
-                      <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
-                        <div className="text-xl font-bold text-red-600 mb-2">{Number(stats.errors) || 0}</div>
-                        <div className="text-gray-600 font-medium">Issues</div>
-                      </div>
-                      <div className="bg-purple-50 rounded-2xl shadow-lg p-6 text-center">
-                        <div className="text-lg font-bold text-orange-600 mb-2 break-words">{stats.performance}</div>
-                        <div className="text-gray-600 font-medium">Level</div>
-                      </div>
+                    <div className="bg-purple-50 rounded-2xl shadow-lg p-2 text-center">
+                      <div className="text-xl font-bold text-blue-600 mb-2">{Number(stats.wpm) || 0}</div>
+                      <div className="text-gray-600 font-medium">Words Per Minute</div>
+                    </div>
+                    <div className="bg-purple-50 rounded-2xl shadow-lg p-2 text-center">
+                      <div className="text-xl font-bold text-green-600 mb-2">{Number(stats.accuracy) || 0}%</div>
+                      <div className="text-gray-600 font-medium">Accuracy</div>
+                    </div>
+                    <div className="bg-purple-50 rounded-2xl shadow-lg p-2 text-center">
+                      <div className="text-xl font-bold text-red-600 mb-2">{Number(stats.errors) || 0}</div>
+                      <div className="text-gray-600 font-medium">Issues</div>
+                    </div>
+                    <div className="bg-purple-50 rounded-2xl shadow-lg p-2 text-center">
+                      <div className="text-lg font-bold text-orange-600 mb-2 break-words">{stats.performance}</div>
+                      <div className="text-gray-600 font-medium">Level</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Performance Feedback */}
-                <div className="bg-purple-50 rounded-2xl shadow-lg pt-6 px-6 pb-2">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">Performance Analysis</h3>
+                <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mb-2">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2 text-center">Performance Analysis</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <h4 className="text-base font-semibold text-gray-800 mb-2">Speed Analysis</h4>
-                      <p className="text-gray-600 text-sm mb-2">
+                      <h4 className="text-lg font-semibold text-gray-800 mb-2">Speed Analysis</h4>
+                      <p className="text-gray-600 text-base mb-2">
                         You typed at <span className="font-semibold text-blue-600">{Number(stats.wpm) || 0} WPM</span>.
                         {stats.wpm >= 60 && " Excellent speed! You're typing like a professional."}
                         {stats.wpm >= 45 && stats.wpm < 60 && " Good speed! You're above average."}
@@ -753,8 +827,8 @@ Visit https://testyourself.com for more tests!`
                       </p>
                     </div>
                     <div>
-                      <h4 className="text-base font-semibold text-gray-800 mb-2">Accuracy Analysis</h4>
-                      <p className="text-gray-600 text-sm mb-2">
+                      <h4 className="text-lg font-semibold text-gray-800 mb-2">Accuracy Analysis</h4>
+                      <p className="text-gray-600 text-base mb-2">
                         You achieved <span className="font-semibold text-green-600">{Number(stats.accuracy) || 0}% accuracy</span>.
                         {stats.accuracy >= 95 && " Outstanding accuracy! You're very precise."}
                         {stats.accuracy >= 90 && stats.accuracy < 95 && " Great accuracy! Very good work."}
@@ -763,8 +837,8 @@ Visit https://testyourself.com for more tests!`
                       </p>
                     </div>
                     <div>
-                      <h4 className="text-base font-semibold text-gray-800 mb-2">Score Breakdown</h4>
-                      <div className="text-gray-600 text-sm space-y-1">
+                      <h4 className="text-lg font-semibold text-gray-800 mb-2">Score Breakdown</h4>
+                      <div className="text-gray-600 text-base space-y-1">
                         <p>
                           <span className="font-semibold text-blue-600">{Number(stats.wpm) || 0}</span> WPM × 1.0 = <span className="font-semibold">{Math.min(Math.round((Number(stats.wpm) || 0) * 1.0), 60)}</span> points
                         </p>
@@ -783,7 +857,7 @@ Visit https://testyourself.com for more tests!`
                     </div>
                     <div>
                       <h4 className="text-base font-semibold text-gray-800">Typing Analysis</h4>
-                      <div className="text-gray-600 text-sm">
+                      <div className="text-gray-600 text-base">
                         <p>Incorrect words: {stats.wordErrors || 0}</p>
                         <p>Total issues: {stats.errors || 0}</p>
                         <p>Incomplete words: {stats.missingWords || 0}</p>
@@ -795,32 +869,23 @@ Visit https://testyourself.com for more tests!`
             )}
 
 
-            {/* Test Title - Show when review or share is shown */}
-            {(showReview || showShare) && (
-              <div className={`text-center mb-2 ${needsTopButtons ? 'mt-2' : 'mt-4'}`}>
-                <div className="bg-white rounded-2xl shadow-lg px-2 py-0.5">
-                  <h1 className="text-lg font-bold text-gray-800">
-                    Typing Speed Results - {selectedDifficulty === 'easy' ? 'Easy Mode (Segmented)' : 'Hard Mode (Wall of Text)'} • {selectedTime}s
-                  </h1>
-                </div>
-              </div>
-            )}
 
             {/* Share Section */}
             {showShare && !showReview && (
-              <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mt-2">
+              <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mt-2 mb-2">
                 <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">Share Your Results</h3>
                 <p className="text-gray-600 mb-2 text-center">Choose a platform to share your test results</p>
                 
                 <div className="flex justify-start">
                   <button
                     onClick={handleXShare}
-                    className="p-4 text-left bg-blue-50 hover:bg-blue-100 rounded-2xl shadow-lg transition-colors flex items-center"
+                    className="p-4 text-left bg-white hover:bg-blue-50 rounded-2xl shadow-lg transition-colors flex items-center border border-blue-200"
+                    style={{width: '210px'}}
                   >
-                    <span className="text-2xl mr-3">𝕏</span>
-                    <div>
+                    <span className="text-2xl mr-3" aria-label="X (formerly Twitter) logo">𝕏</span>
+                    <div className="flex-1 text-center">
                       <div className="font-semibold text-blue-800">X.com</div>
-                      <div className="text-sm text-blue-600">Share on X</div>
+                      <div className="text-base text-blue-600">Share on X</div>
                     </div>
                   </button>
                 </div>
@@ -829,54 +894,54 @@ Visit https://testyourself.com for more tests!`
 
             {/* Text Review */}
             {showReview && (
-              <div ref={reviewRef} className="bg-indigo-50 rounded-2xl shadow-lg p-8 mt-2">
+              <div ref={reviewRef} className="bg-indigo-50 rounded-2xl shadow-lg p-4 mt-2 mb-2">
                 <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">Text Analysis Review</h3>
                 {(() => {
                   const analysis = analyzeText()
                   if (!analysis) return <p className="text-gray-600 text-center">No analysis available</p>
                   
                   return (
-                    <div className="space-y-6">
+                    <div className="space-y-2">
                       {/* Error Statistics */}
                       <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-2">
-                        <div className="bg-red-50 rounded-lg p-4 text-center">
+                        <div className="bg-red-50 rounded-lg p-2 text-center">
                           <div className="text-xl font-bold text-red-600">{analysis.errors.filter(e => !e.isTimeOut).length}</div>
                           <div className="text-red-600 font-medium">Actual Errors</div>
                         </div>
-                        <div className="bg-orange-50 rounded-lg p-4 text-center">
+                        <div className="bg-orange-50 rounded-lg p-2 text-center">
                           <div className="text-xl font-bold text-orange-600">{analysis.errors.filter(e => e.isTimeOut).length}</div>
                           <div className="text-orange-600 font-medium">Missing (Time)</div>
                         </div>
-                        <div className="bg-green-50 rounded-lg p-4 text-center">
+                        <div className="bg-green-50 rounded-lg p-2 text-center">
                           <div className="text-xl font-bold text-green-600">{corrections}</div>
                           <div className="text-green-600 font-medium">Corrected Words</div>
                         </div>
-                        <div className="bg-blue-50 rounded-lg p-4 text-center">
+                        <div className="bg-blue-50 rounded-lg p-2 text-center">
                           <div className="text-xl font-bold text-blue-600">{analysis.errorRate.toFixed(1)}%</div>
                           <div className="text-blue-600 font-medium">Error Rate</div>
                         </div>
-                        <div className="bg-purple-50 rounded-lg p-4 text-center">
+                        <div className="bg-purple-50 rounded-lg p-2 text-center">
                           <div className="text-xl font-bold text-purple-600">{analysis.correctionRate.toFixed(1)}%</div>
                           <div className="text-purple-600 font-medium">Correction Rate</div>
                         </div>
-                        <div className="bg-indigo-50 rounded-lg p-4 text-center">
+                        <div className="bg-indigo-50 rounded-lg p-2 text-center">
                           <div className="text-xl font-bold text-indigo-600">{analysis.completionRate.toFixed(1)}%</div>
                           <div className="text-indigo-600 font-medium">Completed</div>
                         </div>
                       </div>
 
                       {/* Text Comparison */}
-                      <div className="space-y-4">
+                      <div className="space-y-2">
                         <div>
-                          <h4 className="text-lg font-semibold text-gray-800 mb-3">Original Text</h4>
-                          <div className="bg-gray-50 rounded-lg p-4 font-mono text-sm leading-relaxed">
+                          <h4 className="text-lg font-semibold text-gray-800 mb-2">Original Text</h4>
+                          <div className="bg-gray-50 rounded-lg p-2 font-mono text-base leading-relaxed">
                             {analysis.originalText}
                           </div>
                         </div>
                         
                         <div>
-                          <h4 className="text-lg font-semibold text-gray-800 mb-3">Your Text</h4>
-                          <div className="bg-gray-50 rounded-lg p-4 font-mono text-sm leading-relaxed">
+                          <h4 className="text-lg font-semibold text-gray-800 mb-2">Your Text</h4>
+                          <div className="bg-gray-50 rounded-lg p-2 font-mono text-base leading-relaxed">
                             {analysis.userText}
                           </div>
                         </div>
@@ -885,7 +950,7 @@ Visit https://testyourself.com for more tests!`
                       {/* Error Details */}
                       {analysis.errors.length > 0 && (
                         <div>
-                          <h4 className="text-lg font-semibold text-gray-800 mb-3">Word Analysis Details</h4>
+                          <h4 className="text-lg font-semibold text-gray-800 mb-2">Word Analysis Details</h4>
                           <div className="space-y-2 max-h-60 overflow-y-auto">
                             {analysis.errors.slice(0, 20).map((error, index) => (
                               <div key={index} className={`border rounded-lg p-3 ${
@@ -893,7 +958,7 @@ Visit https://testyourself.com for more tests!`
                                   ? 'bg-orange-50 border-orange-200' 
                                   : 'bg-red-50 border-red-200'
                               }`}>
-                                <div className="flex items-center gap-2 text-sm">
+                                <div className="flex items-center gap-2 text-base">
                                   <span className={`font-mono px-2 py-1 rounded ${
                                     error.isTimeOut 
                                       ? 'bg-orange-100 text-orange-700' 
@@ -914,7 +979,7 @@ Visit https://testyourself.com for more tests!`
                               </div>
                             ))}
                             {analysis.errors.length > 20 && (
-                              <p className="text-gray-500 text-sm text-center">
+                              <p className="text-gray-500 text-base text-center">
                                 ... and {analysis.errors.length - 20} more items
                               </p>
                             )}
@@ -923,9 +988,9 @@ Visit https://testyourself.com for more tests!`
                       )}
 
                       {/* Performance Insights */}
-                      <div className="bg-blue-50 rounded-lg p-4">
+                      <div className="bg-blue-50 rounded-lg p-2">
                         <h4 className="text-lg font-semibold text-blue-800 mb-2">Performance Insights</h4>
-                        <div className="text-blue-700 text-sm space-y-1">
+                        <div className="text-blue-700 text-base space-y-1">
                           {analysis.errorRate < 5 && <p>• Excellent accuracy! You made very few word errors.</p>}
                           {analysis.errorRate >= 5 && analysis.errorRate < 15 && <p>• Good accuracy! Consider slowing down slightly for better precision.</p>}
                           {analysis.errorRate >= 15 && <p>• Focus on accuracy! Try typing slower to reduce word errors.</p>}
@@ -942,42 +1007,13 @@ Visit https://testyourself.com for more tests!`
               </div>
             )}
 
-            {/* Bottom Action Buttons - Always visible at the bottom */}
-            <div ref={bottomButtonsRef} className="-mx-4 px-4 py-2 mb-1">
-              <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button
-                    onClick={handleShareToggle}
-                    className="px-8 py-3 bg-green-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                  >
-                    {showShare ? '🔒 Hide Share' : '📤 Share Results'}
-                  </button>
-                  <button
-                    onClick={handleReviewToggle}
-                    className="px-8 py-3 bg-blue-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                  >
-                    {showReview ? '🔒 Hide Review' : '📋 Show Review'}
-                  </button>
-                  <button
-                    onClick={saveResults}
-                    className="px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                  >
-                    💾 Save Results
-                  </button>
-                  <button
-                    onClick={retakeTest}
-                    className="px-8 py-3 bg-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
-                  >
-                    🔄 Try Another Challenge
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         
         {/* Footer Component */}
-        <Footer />
+        <div className="mb-2">
+          <Footer />
+        </div>
       </div>
       </>
     )
@@ -1031,13 +1067,90 @@ Visit https://testyourself.com for more tests!`
                     "name": "Typing Test Results",
                     "description": "Typing speed, accuracy, and performance analysis results"
                   },
-                  "mainEntity": {
-                    "@type": "Quiz",
-                    "name": "Typing Speed Challenge Results",
-                    "description": "Results from typing speed and accuracy test including WPM, accuracy percentage, and performance analysis"
-                  },
+                  "mainEntity": [
+                    {
+                      "@type": "Quiz",
+                      "name": "Typing Speed Challenge Results",
+                      "description": "Results from typing speed and accuracy test including WPM, accuracy percentage, and performance analysis",
+                      "educationalLevel": "beginner",
+                      "learningResourceType": "assessment",
+                      "audience": {
+                        "@type": "EducationalAudience",
+                        "educationalRole": "student",
+                        "audienceType": "general public"
+                      }
+                    },
+                    {
+                      "@type": "FAQPage",
+                      "mainEntity": [
+                        {
+                          "@type": "Question",
+                          "name": "What do my typing test results mean?",
+                          "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Your typing test results show your Words Per Minute (WPM), accuracy percentage, and overall performance level. WPM measures typing speed, accuracy shows precision, and the performance level indicates your skill range."
+                          }
+                        },
+                        {
+                          "@type": "Question",
+                          "name": "How do I improve my typing speed?",
+                          "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "To improve typing speed, practice regularly, focus on accuracy over speed initially, learn proper finger placement, and gradually increase your pace. Our detailed analysis helps identify specific areas for improvement."
+                          }
+                        },
+                        {
+                          "@type": "Question",
+                          "name": "What is considered a good typing speed?",
+                          "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "A good typing speed is typically 40+ WPM. Professional typists average 65-75 WPM, while advanced users can reach 90+ WPM. Accuracy should be at least 95% for professional typing."
+                          }
+                        },
+                        {
+                          "@type": "Question",
+                          "name": "Can I retake the typing test?",
+                          "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes, you can retake the typing test as many times as you want. Each attempt helps track your improvement over time and identify areas where you're progressing or need more practice."
+                          }
+                        },
+                        {
+                          "@type": "Question",
+                          "name": "How accurate is the typing test analysis?",
+                          "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Our typing test provides detailed analysis including WPM calculation, accuracy percentage, error tracking, and performance insights. The analysis helps identify strengths and areas for improvement in your typing skills."
+                          }
+                        }
+                      ]
+                    }
+                  ],
                   "inLanguage": "en",
-                  "isAccessibleForFree": true
+                  "isAccessibleForFree": true,
+                  "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                      {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://testyourself.com"
+                      },
+                      {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Typing Test",
+                        "item": "https://testyourself.com/typing"
+                      },
+                      {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Results",
+                        "item": "https://testyourself.com/typing"
+                      }
+                    ]
+                  }
                 })
               }}
             />
@@ -1114,7 +1227,69 @@ Visit https://testyourself.com for more tests!`
                       "name": "Hard Mode Typing Challenge", 
                       "description": "Wall of text format for advanced typing practice and speed testing"
                     }
-                  ]
+                  ],
+                  "mainEntity": {
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                      {
+                        "@type": "Question",
+                        "name": "How does the typing speed test work?",
+                        "acceptedAnswer": {
+                          "@type": "Answer",
+                          "text": "Our typing test measures your Words Per Minute (WPM) and accuracy. You can choose between Easy Mode (segmented text) or Hard Mode (wall of text) and select your preferred time limit (30, 60, or 90 seconds)."
+                        }
+                      },
+                      {
+                        "@type": "Question",
+                        "name": "What's the difference between Easy Mode and Hard Mode?",
+                        "acceptedAnswer": {
+                          "@type": "Answer",
+                          "text": "Easy Mode presents text in small segments that advance automatically, making it easier for beginners. Hard Mode shows a wall of text that you type continuously, providing a more challenging experience for advanced users."
+                        }
+                      },
+                      {
+                        "@type": "Question",
+                        "name": "How is typing speed calculated?",
+                        "acceptedAnswer": {
+                          "@type": "Answer",
+                          "text": "Typing speed is calculated as Words Per Minute (WPM), which measures how many words you can type correctly in one minute. Accuracy is calculated as the percentage of correct characters typed."
+                        }
+                      },
+                      {
+                        "@type": "Question",
+                        "name": "What is a good typing speed?",
+                        "acceptedAnswer": {
+                          "@type": "Answer",
+                          "text": "A good typing speed is typically 40+ WPM. Professional typists average 65-75 WPM, while advanced users can reach 90+ WPM. Our test provides detailed performance analysis to help you improve."
+                        }
+                      },
+                      {
+                        "@type": "Question",
+                        "name": "Is the typing test free to use?",
+                        "acceptedAnswer": {
+                          "@type": "Answer",
+                          "text": "Yes, our typing speed test is completely free to use. No registration required, and you can take the test as many times as you want to track your improvement over time."
+                        }
+                      }
+                    ]
+                  },
+                  "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                      {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://testyourself.com"
+                      },
+                      {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Typing Test",
+                        "item": "https://testyourself.com/typing"
+                      }
+                    ]
+                  }
                 })
               }}
             />
@@ -1133,7 +1308,7 @@ Visit https://testyourself.com for more tests!`
             <div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl shadow-lg p-6 w-full">
               <h1 className="text-xl font-bold text-green-800 mb-3">Typing Speed Challenge - <span className="font-normal">Test your typing speed and accuracy</span></h1>
               
-              <div className="bg-white rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
+              <div className="bg-white rounded-lg px-4 py-3 text-base text-green-700 shadow-lg">
                 <span className="font-medium">Mode:</span> {selectedDifficulty === 'easy' ? 'Easy Mode (Segmented)' : 'Hard Mode (Wall of Text)'} • {selectedTime}s
                 <span className="text-green-500 ml-2">⌨️ Improve your typing skills</span>
               </div>
@@ -1160,9 +1335,9 @@ Visit https://testyourself.com for more tests!`
 
           {/* Instructions - Show when test hasn't begun */}
           {!hasBegun && (
-            <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mb-4">
+            <div className="bg-purple-50 rounded-2xl shadow-lg p-4 mb-2">
               <h3 className="text-xl font-semibold text-gray-800 mb-3">Typing Challenge Instructions</h3>
-              <div className="space-y-3 text-gray-600">
+              <div className="space-y-2 text-gray-600">
                 <div>
                   <h4 className="font-semibold text-gray-800 mb-2">Test Format</h4>
                   <ul className="list-disc list-inside space-y-1 ml-4">
@@ -1190,19 +1365,19 @@ Visit https://testyourself.com for more tests!`
               {challenge.segments ? (
                 <>
                   {/* Timer and Progress Side by Side */}
-                  <div className="flex gap-3 mb-3">
+                  <div className="flex gap-3 mb-2">
                     {/* Timer */}
                     <div className="bg-white rounded-2xl shadow-lg p-2 flex-1 flex items-center justify-center">
                       <div className="flex items-center gap-3">
                         <div className="text-xl font-bold text-gray-800">
                           {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
                         </div>
-                        <div className="text-gray-600 text-sm">
+                        <div className="text-gray-600 text-base">
                           Time Remaining
                         </div>
                         <button
                           onClick={handleTimeUp}
-                          className="ml-2 px-3 py-1 bg-red-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 text-sm"
+                          className="ml-2 px-3 py-1 bg-red-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 text-base"
                         >
                           Finish Early
                         </button>
@@ -1211,7 +1386,7 @@ Visit https://testyourself.com for more tests!`
 
                     {/* Progress Indicator */}
                     <div className="bg-blue-50 rounded-2xl shadow-lg p-3 flex-1">
-                      <div className="flex items-center justify-between mb-1">
+                      <div className="flex items-center justify-between mb-2">
                         <h3 className="text-base font-semibold text-gray-800">Segment {currentSegment + 1} of {challenge.segments.length}</h3>
                         <div className="text-xs text-gray-600">
                           {Math.round(((currentSegment + 1) / challenge.segments.length) * 100)}%
@@ -1227,7 +1402,7 @@ Visit https://testyourself.com for more tests!`
                   </div>
 
                   {/* Full Text with Highlighted Current Segment */}
-                  <div className="bg-purple-50 rounded-2xl shadow-lg p-3 mb-3">
+                  <div className="bg-purple-50 rounded-2xl shadow-lg p-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-800 mb-2">Type the following text:</h3>
                     <div className="bg-gray-50 rounded-lg p-3 text-base leading-relaxed text-gray-700 font-mono">
                       {(() => {
@@ -1250,8 +1425,8 @@ Visit https://testyourself.com for more tests!`
                   </div>
 
                   {/* Current Segment Text */}
-                  <div className="bg-green-50 rounded-2xl shadow-lg p-2 mb-3">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1">Current segment to type:</h3>
+                  <div className="bg-green-50 rounded-2xl shadow-lg p-2 mb-2">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Current segment to type:</h3>
                     <div className="bg-gray-50 rounded-lg p-3 text-base leading-relaxed text-gray-700 font-mono">
                       {challenge.segments[currentSegment]}
                     </div>
@@ -1259,7 +1434,7 @@ Visit https://testyourself.com for more tests!`
 
                   {/* Typing Area */}
                   <div className="bg-purple-50 rounded-2xl shadow-lg p-2 mb-2">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-1">Your typing:</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Your typing:</h3>
                     <input
                       type="text"
                       value={userSegments[currentSegment] || ''}
@@ -1279,17 +1454,17 @@ Visit https://testyourself.com for more tests!`
                 /* Hard Mode - Wall of Text */
                 <>
                   {/* Timer */}
-                  <div className="bg-white rounded-2xl shadow-lg p-2 mb-3 flex items-center justify-center">
+                  <div className="bg-white rounded-2xl shadow-lg p-2 mb-2 flex items-center justify-center">
                     <div className="flex items-center gap-3">
                       <div className="text-xl font-bold text-gray-800">
                         {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
                       </div>
-                      <div className="text-gray-600 text-sm">
+                      <div className="text-gray-600 text-base">
                         Time Remaining
                       </div>
                       <button
                         onClick={handleTimeUp}
-                        className="ml-2 px-3 py-1 bg-red-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 text-sm"
+                        className="ml-2 px-3 py-1 bg-red-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 text-base"
                       >
                         Finish Early
                       </button>
@@ -1297,9 +1472,9 @@ Visit https://testyourself.com for more tests!`
                   </div>
 
                   {/* Challenge Text */}
-                  <div className="bg-purple-50 rounded-2xl shadow-lg p-3 mb-3">
+                  <div className="bg-purple-50 rounded-2xl shadow-lg p-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-800 mb-2">Type the following text:</h3>
-                    <div className="bg-gray-50 rounded-lg p-3 text-sm leading-relaxed text-gray-700 font-mono">
+                    <div className="bg-gray-50 rounded-lg p-3 text-base leading-relaxed text-gray-700 font-mono">
                       {challenge.text}
                     </div>
                   </div>
