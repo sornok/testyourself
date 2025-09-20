@@ -43,7 +43,7 @@ export default function Home() {
     {
       id: 'optical',
       title: 'Optical Illusions',
-      description: 'Explore optical illusions and discover how your mind interprets visual information with fascinating perceptual tricks.',
+      description: 'Explore optical illusions and discover how your mind interprets visual information fascinating perceptual tricks.',
       icon: '👁️',
       path: '/optical-illusion',
       color: 'from-purple-400 to-purple-600',
@@ -353,7 +353,10 @@ export default function Home() {
               {filterOptions.map((filter) => (
                 <button
                   key={filter.id}
-                  onClick={() => setActiveFilter(filter.id)}
+                  onClick={() => {
+                    setActiveFilter(filter.id)
+                    setCurrentPage(1)
+                  }}
                   className={`px-3 py-2 rounded-full font-medium transition-all duration-300 text-sm whitespace-nowrap ${
                     activeFilter === filter.id
                       ? 'bg-purple-500 text-white shadow-lg'
@@ -448,7 +451,10 @@ export default function Home() {
               {filterOptions.map((filter) => (
                 <button
                   key={filter.id}
-                  onClick={() => setActiveFilter(filter.id)}
+                  onClick={() => {
+                    setActiveFilter(filter.id)
+                    setCurrentPage(1)
+                  }}
                   className={`px-2 py-1 sm:px-3 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
                     activeFilter === filter.id
                       ? 'bg-purple-500 text-white shadow-lg'

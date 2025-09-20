@@ -33,7 +33,7 @@ export const getRandomStressQuestions = async (count = 15) => {
 };
 
 // Calculate stress level based on answers
-export const calculateStressLevel = (answers: any, questions: any[]) => {
+export const calculateStressType = (answers: any, questions: any[]) => {
   const scores = {
     Low: 0,     // Low stress indicators
     Medium: 0,  // Medium stress indicators

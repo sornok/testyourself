@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Head from 'next/head'
-import { getRandomStressQuestions, stressTypes } from '@/lib/stressTest'
+import { getRandomStressQuestions, stressTypes, calculateStressType } from '@/lib/stressTest'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -47,7 +47,7 @@ export default function StressTest() {
       // Show 100% progress bar for a moment before completing
       setTimeout(() => {
         // Calculate stress level
-        const result = calculateStressType(newAnswers)
+        const result = calculateStressType(newAnswers, questions)
         setIsComplete(true)
         // Navigate to results page with detailed data after a delay
         setTimeout(() => {
@@ -59,19 +59,6 @@ export default function StressTest() {
     }
   }
 
-  const calculateStressType = (answers: Record<number, string>) => {
-    const counts = { Low: 0, Medium: 0, High: 0 }
-    
-    Object.values(answers).forEach(answer => {
-      counts[answer as keyof typeof counts]++
-    })
-
-    // Determine stress level based on highest score
-    const maxScore = Math.max(counts.Low, counts.Medium, counts.High)
-    if (counts.High === maxScore) return 'High'
-    if (counts.Medium === maxScore) return 'Medium'
-    return 'Low'
-  }
 
   const beginTest = () => {
     setHasBegun(true)
