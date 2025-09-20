@@ -51,7 +51,7 @@ export default function Home() {
     },
     {
       id: 'color-blindness',
-      title: 'Color Blindness Test',
+      title: 'Color Blindness Check',
       description: 'Test your color vision with our comprehensive Ishihara test to detect color blindness.',
       icon: '🌈',
       path: '/color-blindness',
@@ -69,7 +69,7 @@ export default function Home() {
     },
     {
       id: 'math',
-      title: 'Math Check',
+      title: 'Math Exam',
       description: 'Test your 7th-8th grade math skills with our comprehensive assessment covering arithmetic and fractions.',
       icon: '🧮',
       path: '/math',
@@ -518,7 +518,7 @@ export default function Home() {
                       {/* Title - Flexible */}
                       <div className="flex-1 min-w-0">
                         <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
-                          ['stress-test', 'leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
+                          ['leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
                             ? 'text-red-600 group-hover:text-red-600'
                             : 'text-sage-800 group-hover:text-sage-600'
                         }`}>
@@ -547,7 +547,7 @@ export default function Home() {
                     {/* Title - Left aligned */}
                     <div className="col-span-4 text-left">
                       <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
-                        ['stress-test', 'leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
+                        ['leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
                           ? 'text-red-600 group-hover:text-red-600'
                           : 'text-sage-800 group-hover:text-sage-600'
                       }`}>
