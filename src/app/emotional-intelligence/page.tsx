@@ -9,7 +9,7 @@ import Footer from '@/components/Footer'
 
 export default function EmotionalIntelligenceTest() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<number[]>([])
+  const [answers, setAnswers] = useState<(number | undefined)[]>([])
   const [showResults, setShowResults] = useState(false)
   const [eqResults, setEqResults] = useState<any>(null)
   const [showReview, setShowReview] = useState(false)
@@ -100,7 +100,7 @@ export default function EmotionalIntelligenceTest() {
     if (currentQuestion > 0) {
       // Clear the answer for the current question when going back
       const newAnswers = [...answers]
-      newAnswers[currentQuestion] = undefined as any
+      newAnswers[currentQuestion] = undefined
       setAnswers(newAnswers)
       
       // Go to previous question
@@ -164,10 +164,10 @@ EQ Components:
 - Social Skills: ${eqResults.socialSkills}/5
 
 Areas for Growth:
-${eqResults.areasForGrowth.length > 0 ? eqResults.areasForGrowth.map(area => `- ${area}`).join('\n') : '- Great job! Keep maintaining your EQ skills'}
+${eqResults.areasForGrowth.length > 0 ? eqResults.areasForGrowth.map((area: string) => `- ${area}`).join('\n') : '- Great job! Keep maintaining your EQ skills'}
 
 Key Insights:
-${eqResults.insights.map(insight => `- ${insight}`).join('\n')}
+${eqResults.insights.map((insight: string) => `- ${insight}`).join('\n')}
 
 Question Review:
 ${selectedQuestions.map((question, index) => {

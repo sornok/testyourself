@@ -268,7 +268,14 @@ export default function PersonalityTest() {
               {currentQuestion > 0 && (
                 <div className="text-center mt-4">
                   <button
-                    onClick={() => setCurrentQuestion(currentQuestion - 1)}
+                    onClick={() => {
+                      // Clear the answer for the current question when going back
+                      const newAnswers = { ...answers }
+                      delete newAnswers[questions[currentQuestion].id]
+                      setAnswers(newAnswers)
+                      
+                      setCurrentQuestion(currentQuestion - 1)
+                    }}
                     className="px-3 py-1 bg-sage-200 text-sage-700 rounded-lg hover:bg-sage-300 transition-colors text-sm"
                   >
                     ← Previous Question

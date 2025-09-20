@@ -68,6 +68,41 @@ Category: ${question.category.charAt(0).toUpperCase() + question.category.slice(
         }).join('\n')}`
         break
 
+      case 'color-blindness':
+        const colorBlindnessResults = JSON.parse(searchParams.get('results') || '{}')
+        const colorBlindnessAnswers = JSON.parse(searchParams.get('answers') || '[]')
+        const colorBlindnessQuestions = JSON.parse(searchParams.get('questions') || '[]')
+        
+        content += `Color Blindness Test Results
+Date: ${timestamp}
+
+Test Summary:
+- Total Questions: ${colorBlindnessResults.totalQuestions}
+- Correct Answers: ${colorBlindnessResults.totalScore}
+- Accuracy: ${colorBlindnessResults.accuracy}%
+- Result: ${colorBlindnessResults.colorBlindnessType}
+
+Description:
+${colorBlindnessResults.description}
+
+Recommendations:
+${colorBlindnessResults.recommendations.map((rec: string) => `- ${rec}`).join('\n')}
+
+Key Insights:
+${colorBlindnessResults.insights.map((insight: string) => `- ${insight}`).join('\n')}
+
+Question Review:
+${colorBlindnessAnswers.map((answer: number, index: number) => {
+          const question = colorBlindnessQuestions[index]
+          const selectedOption = question.options[answer]
+          const isCorrect = answer === question.correctAnswer
+          return `Plate ${index + 1}: What number do you see in this image?
+Your Answer: ${selectedOption.text} ${isCorrect ? '(Correct)' : '(Incorrect)'}
+Correct Answer: ${question.options[question.correctAnswer].text}
+`
+        }).join('\n')}`
+        break
+
       case 'personality':
         const personalityType = searchParams.get('type') || 'Unknown'
         const questions = JSON.parse(searchParams.get('questions') || '[]')
@@ -911,6 +946,94 @@ Visit https://testyourself.com for more tests!`
   }
 
   // Dynamic SEO content based on test type
+  // Render Color Blindness Results
+  const renderColorBlindnessResults = () => {
+    const results = JSON.parse(searchParams.get('results') || '{}')
+    const answers = JSON.parse(searchParams.get('answers') || '[]')
+    const questions = JSON.parse(searchParams.get('questions') || '[]')
+    
+    return (
+      <>
+        {/* Results Header */}
+        <div className="text-center mb-2 mt-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {/* Overall Score */}
+            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl shadow-lg p-5">
+              <div className="text-center">
+                <h2 className="text-lg text-purple-800 mb-1">
+                  <span className="font-bold">Your Results</span>
+                </h2>
+                <p className="text-base text-purple-700 mb-3">Here's what we discovered about your color vision</p>
+                <div className="text-4xl font-bold text-purple-600 mb-2">{results.accuracy}%</div>
+                <div className="text-xl font-semibold text-gray-800">{results.colorBlindnessType}</div>
+              </div>
+            </div>
+
+            {/* Professional Consultation Info */}
+            <div className="bg-blue-50 rounded-2xl shadow-lg p-5">
+              <div className="text-center">
+                <h3 className="text-lg font-semibold text-blue-800 mb-3">Important Note</h3>
+                <p className="text-blue-700 text-sm mb-3">
+                  This is a screening test using 15 Ishihara plates. While it can detect color vision issues, it cannot accurately determine specific types of color blindness.
+                </p>
+                <p className="text-blue-700 text-sm font-medium">
+                  For accurate diagnosis and specific type determination, please consult an eye care professional.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Test Details */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+          <div className="bg-blue-50 rounded-2xl shadow-lg p-5">
+            <h3 className="text-lg font-semibold text-blue-800 mb-3">Test Performance</h3>
+            <div className="space-y-2">
+              <div className="flex justify-between">
+                <span className="text-blue-700">Correct Answers:</span>
+                <span className="font-semibold text-blue-800">{results.totalScore}/{results.totalQuestions}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-blue-700">Accuracy:</span>
+                <span className="font-semibold text-blue-800">{results.accuracy}%</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-blue-700">Result:</span>
+                <span className="font-semibold text-blue-800">{results.colorBlindnessType}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-green-50 rounded-2xl shadow-lg p-5">
+            <h3 className="text-lg font-semibold text-green-800 mb-3">What This Means</h3>
+            <p className="text-gray-600 text-sm">{results.description}</p>
+          </div>
+        </div>
+
+        {/* Recommendations and Key Insights */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-2">
+          <div className="bg-orange-50 rounded-2xl shadow-lg p-5">
+            <h3 className="text-lg font-semibold text-orange-800 mb-3">Recommendations</h3>
+            <ul className="space-y-2">
+              {results.recommendations.map((recommendation: string, index: number) => (
+                <li key={index} className="text-orange-700 text-sm">• {recommendation}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-purple-50 rounded-2xl shadow-lg p-5">
+            <h3 className="text-lg font-semibold text-purple-800 mb-3">Key Insights</h3>
+            <ul className="space-y-2">
+              {results.insights.map((insight: string, index: number) => (
+                <li key={index} className="text-purple-700 text-sm">• {insight}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </>
+    )
+  }
+
   const getSEOContent = () => {
     const baseUrl = 'https://testyourself.com'
     
@@ -975,6 +1098,16 @@ Visit https://testyourself.com for more tests!`
           ogImage: `${baseUrl}/emotional-intelligence-results-og-image.jpg`,
           canonical: `${baseUrl}/results/emotional-intelligence`
         }
+      case 'color-blindness':
+        return {
+          title: 'Color Blindness Test Results - Ishihara Test Analysis | TestYourself',
+          description: 'View your color blindness test results! Discover your color vision type, accuracy, and get detailed analysis of your color perception abilities.',
+          keywords: 'color blindness test results, Ishihara test results, color vision test results, color deficiency results, color perception analysis',
+          ogTitle: 'Color Blindness Test Results - Ishihara Test Analysis',
+          ogDescription: 'Discover your color vision type with detailed Ishihara test analysis and comprehensive color perception assessment.',
+          ogImage: `${baseUrl}/color-blindness-results-og-image.jpg`,
+          canonical: `${baseUrl}/results/color-blindness`
+        }
       default:
         return {
           title: 'Test Results - Free Online Assessment Results | TestYourself',
@@ -1026,12 +1159,14 @@ Visit https://testyourself.com for more tests!`
                      testType === 'trivia' ? "Trivia Quiz" :
                      testType === 'optical-illusion' ? "Optical Illusion Test" :
                      testType === 'memory' ? "Memory Challenge" :
+                     testType === 'color-blindness' ? "Color Blindness Test" :
                      "TestYourself Assessment",
               "description": testType === 'personality' ? "Free personality type test based on character assessment principles. Discover your personality traits and behavioral patterns." :
                            testType === 'emotional-intelligence' ? "Free emotional intelligence test to assess your EQ level, emotional awareness, empathy, and social skills." :
                            testType === 'trivia' ? "Free trivia quiz to test your general knowledge across various categories." :
                            testType === 'optical-illusion' ? "Free optical illusion test to understand your visual perception and cognitive style." :
                            testType === 'memory' ? "Free memory challenge to test your cognitive memory and recall abilities." :
+                           testType === 'color-blindness' ? "Free color blindness test using Ishihara plates to assess your color vision and detect color vision deficiency." :
                            "Free online assessments and tests for self-discovery.",
               "url": seoContent.canonical,
               "applicationCategory": "PsychologyApplication",
@@ -1161,6 +1296,7 @@ Visit https://testyourself.com for more tests!`
                        testType === 'trivia' ? 'Trivia Quiz Results' :
                        testType === 'optical-illusion' ? 'Visual Perception Results' :
                        testType === 'memory' ? 'Memory Assessment Results' :
+                       testType === 'color-blindness' ? 'Color Vision Assessment Results' :
                        'Test Results',
                 "description": seoContent.description
               },
@@ -1193,13 +1329,14 @@ Visit https://testyourself.com for more tests!`
                    testType === 'memory' ? 'Memory Challenge Results' :
                    testType === 'optical-illusion' ? 'Optical Illusion Test Results' :
                    testType === 'emotional-intelligence' ? 'Emotional Intelligence Test Results' :
+                   testType === 'color-blindness' ? 'Color Blindness Test Results' :
                    'Test Results'}
                 </h1>
             </div>
           </div>
 
-            {/* Action Buttons - For Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, and Math Tests */}
-            {(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory' || testType === 'math') && (
+            {/* Action Buttons - For Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, Math, and Color Blindness Tests */}
+            {(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory' || testType === 'math' || testType === 'color-blindness') && (
               <div className="mb-2">
             <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -1233,18 +1370,19 @@ Visit https://testyourself.com for more tests!`
         )}
         
             {/* Results Content */}
-            <div className={`mt-2 ${(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory' || testType === 'math') ? 'mb-2' : ''}`}>
+            <div className={`mt-2 ${(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory' || testType === 'math' || testType === 'color-blindness') ? 'mb-2' : ''}`}>
             {testType === 'personality' ? renderPersonalityResults() : 
              testType === 'math' ? renderMathResults() :
              testType === 'trivia' ? renderTriviaResults() : 
              testType === 'optical-illusion' ? renderOpticalIllusionResults() :
              testType === 'memory' ? renderMemoryResults() :
+             testType === 'color-blindness' ? renderColorBlindnessResults() :
                testType === 'emotional-intelligence' ? renderEmotionalIntelligenceResults() :
              renderOtherResults()}
           </div>
                         
-            {/* Action Buttons - Exclude Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, and Math as they have their own buttons at top */}
-            {testType !== 'emotional-intelligence' && testType !== 'personality' && testType !== 'optical-illusion' && testType !== 'trivia' && testType !== 'memory' && testType !== 'math' && (
+            {/* Action Buttons - Exclude Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, Math, and Color Blindness as they have their own buttons at top */}
+            {testType !== 'emotional-intelligence' && testType !== 'personality' && testType !== 'optical-illusion' && testType !== 'trivia' && testType !== 'memory' && testType !== 'math' && testType !== 'color-blindness' && (
               <div className="mt-2 mb-2">
           <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

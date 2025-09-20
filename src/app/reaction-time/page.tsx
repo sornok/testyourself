@@ -202,7 +202,7 @@ export default function ReactionTimeTest() {
       setFirstClickTime(null);
     } else {
       console.log('Calling completeTest from stimulus click - THIS IS THE LAST QUESTION');
-      completeTest(newAnswers, newReactionTimes);
+      completeTest(newAnswers.filter((answer): answer is number => answer !== undefined), newReactionTimes.filter((time): time is number => time !== undefined));
     }
   };
 
@@ -246,7 +246,7 @@ export default function ReactionTimeTest() {
         setFirstClickTime(null);
       } else {
         console.log('Calling completeTest from sequential click - THIS IS THE LAST QUESTION');
-        completeTest(newAnswers, newReactionTimes);
+        completeTest(newAnswers.filter((answer): answer is number => answer !== undefined), newReactionTimes.filter((time): time is number => time !== undefined));
       }
     }
   };
@@ -280,7 +280,7 @@ export default function ReactionTimeTest() {
       setFirstNumberClicked(false);
       setFirstClickTime(null);
     } else {
-      completeTest(newAnswers, newReactionTimes);
+      completeTest(newAnswers.filter((answer): answer is number => answer !== undefined), newReactionTimes.filter((time): time is number => time !== undefined));
     }
   };
 
@@ -345,7 +345,7 @@ export default function ReactionTimeTest() {
           // Advance to next question
           setCurrentQuestion(currentQuestion + 1);
         } else {
-          completeTest(newAnswers, newReactionTimes);
+          completeTest(newAnswers.filter((answer): answer is number => answer !== undefined), newReactionTimes.filter((time): time is number => time !== undefined));
         }
       }, 500);
     }

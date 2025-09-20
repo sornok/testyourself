@@ -68,6 +68,41 @@ Category: ${question.category.charAt(0).toUpperCase() + question.category.slice(
         }).join('\n')}`
         break
 
+      case 'color-blindness':
+        const colorBlindnessResults = JSON.parse(searchParams.get('results') || '{}')
+        const colorBlindnessAnswers = JSON.parse(searchParams.get('answers') || '[]')
+        const colorBlindnessQuestions = JSON.parse(searchParams.get('questions') || '[]')
+        
+        content += `Color Blindness Test Results
+Date: ${timestamp}
+
+Test Summary:
+- Total Questions: ${colorBlindnessResults.totalQuestions}
+- Correct Answers: ${colorBlindnessResults.totalScore}
+- Accuracy: ${colorBlindnessResults.accuracy}%
+- Result: ${colorBlindnessResults.colorBlindnessType}
+
+Description:
+${colorBlindnessResults.description}
+
+Recommendations:
+${colorBlindnessResults.recommendations.map((rec: string) => `- ${rec}`).join('\n')}
+
+Key Insights:
+${colorBlindnessResults.insights.map((insight: string) => `- ${insight}`).join('\n')}
+
+Question Review:
+${colorBlindnessAnswers.map((answer: number, index: number) => {
+          const question = colorBlindnessQuestions[index]
+          const selectedOption = question.options[answer]
+          const isCorrect = answer === question.correctAnswer
+          return `Plate ${index + 1}: What number do you see in this image?
+Your Answer: ${selectedOption.text} ${isCorrect ? '(Correct)' : '(Incorrect)'}
+Correct Answer: ${question.options[question.correctAnswer].text}
+`
+        }).join('\n')}`
+        break
+
       case 'personality':
         const personalityType = searchParams.get('type') || 'Unknown'
         const questions = JSON.parse(searchParams.get('questions') || '[]')
@@ -297,6 +332,11 @@ Visit https://testyourself.com for more tests!`
         description = 'Challenge your memory with sequence tests and see how well you remember!'
         hashtags = '#MemoryTest #BrainTraining #MemorySkills #TestYourself'
         break
+      case 'color-blindness':
+        title = 'I just tested my color vision!'
+        description = 'Discover your color perception with the Ishihara color blindness test!'
+        hashtags = '#ColorBlindnessTest #ColorVision #IshiharaTest #TestYourself #ColorPerception'
+        break
       case 'typing':
         title = 'I just tested my typing speed!'
         description = 'How fast can you type? Test your speed and accuracy with this typing challenge!'
@@ -426,6 +466,16 @@ Visit https://testyourself.com for more tests!`
           description: 'Share your memory test results and challenge others to test their memory skills!',
           canonical: `${baseUrl}/results/memory/share`
         }
+      case 'color-blindness':
+        return {
+          title: 'Share Color Blindness Test Results | TestYourself',
+          description: 'Share your color blindness test results with friends and family. Let them discover their color vision and perception abilities too! Take our free Ishihara test.',
+          keywords: 'share color blindness results, share color vision test results, color blindness sharing, Ishihara test sharing, color perception sharing, free color blindness test',
+          ogTitle: 'Share Color Blindness Test Results',
+          ogDescription: 'Share your color blindness test results with friends and family. Let them discover their color vision abilities too!',
+          ogImage: `${baseUrl}/images/color-blindness-share-og.jpg`,
+          canonical: `${baseUrl}/results/color-blindness/share`
+        }
       default:
         return {
           title: 'Share Test Results | TestYourself',
@@ -538,13 +588,14 @@ Visit https://testyourself.com for more tests!`
                    testType === 'trivia' ? 'Trivia Quiz Results' :
                    testType === 'memory' ? 'Memory Challenge Results' :
                    testType === 'optical-illusion' ? 'Optical Illusion Test Results' :
+                   testType === 'color-blindness' ? 'Color Blindness Test Results' :
                    'Test Results'}
                 </h1>
               </div>
             </div>
 
-            {/* Action Buttons - For Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, and Math Tests */}
-            {(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory' || testType === 'math') && (
+            {/* Action Buttons - For Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, Math, and Color Blindness Tests */}
+            {(testType === 'emotional-intelligence' || testType === 'personality' || testType === 'optical-illusion' || testType === 'trivia' || testType === 'memory' || testType === 'math' || testType === 'color-blindness') && (
               <div className="mb-2">
                 <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -597,8 +648,8 @@ Visit https://testyourself.com for more tests!`
               </div>
             </div>
 
-            {/* Action Buttons - Exclude Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, and Math as they have their own buttons at top */}
-            {testType !== 'emotional-intelligence' && testType !== 'personality' && testType !== 'optical-illusion' && testType !== 'trivia' && testType !== 'memory' && testType !== 'math' && (
+            {/* Action Buttons - Exclude Emotional Intelligence, Personality, Optical Illusion, Trivia, Memory, Math, and Color Blindness as they have their own buttons at top */}
+            {testType !== 'emotional-intelligence' && testType !== 'personality' && testType !== 'optical-illusion' && testType !== 'trivia' && testType !== 'memory' && testType !== 'math' && testType !== 'color-blindness' && (
               <div className="mt-2 mb-2">
                 <div className="bg-gray-50 rounded-2xl shadow-lg p-2">
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">

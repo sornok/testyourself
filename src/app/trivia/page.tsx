@@ -20,6 +20,7 @@ export default function TriviaTest() {
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [answerTimes, setAnswerTimes] = useState<Record<number, number>>({})
   const [questions, setQuestions] = useState<Question[]>([])
+  const [randomizedQuestions, setRandomizedQuestions] = useState<Question[]>([])
   const [timeLeft, setTimeLeft] = useState(30)
   const [isComplete, setIsComplete] = useState(false)
   const [hasBegun, setHasBegun] = useState(false)
@@ -33,6 +34,30 @@ export default function TriviaTest() {
         const questions = await getRandomTriviaQuestions(10);
         console.log('Loaded questions:', questions);
         setQuestions(questions);
+        
+        // Randomize options for each question
+        const randomizedQuestions = questions.map(question => {
+          const options = [...question.options];
+          const correctAnswer = question.correct;
+          
+          // Shuffle the options
+          for (let i = options.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [options[i], options[j]] = [options[j], options[i]];
+          }
+          
+          // Find the new position of the correct answer
+          const correctOptionText = question.options[correctAnswer];
+          const newCorrectIndex = options.findIndex(option => option === correctOptionText);
+          
+          return {
+            ...question,
+            options,
+            correct: newCorrectIndex
+          };
+        });
+        
+        setRandomizedQuestions(randomizedQuestions);
       } catch (error) {
         console.error('Error loading trivia questions:', error);
       }
@@ -57,7 +82,17 @@ export default function TriviaTest() {
 
   const handleAnswer = (questionId: number, answerIndex: number) => {
     const answerTime = 30 - timeLeft // Calculate how long it took to answer
-    const newAnswers = { ...answers, [questionId]: answerIndex }
+    
+    // Get the selected option text from randomized options
+    const selectedOption = randomizedQuestions[currentQuestion].options[answerIndex];
+    
+    // Find the original index of this option in the original question
+    const originalQuestion = questions[currentQuestion];
+    const originalAnswerIndex = originalQuestion.options.findIndex(
+      option => option === selectedOption
+    );
+    
+    const newAnswers = { ...answers, [questionId]: originalAnswerIndex }
     const newAnswerTimes = { ...answerTimes, [questionId]: answerTime }
     
     setAnswers(newAnswers)
@@ -109,7 +144,7 @@ export default function TriviaTest() {
     }, 1000)
   }
 
-  const progress = questions.length > 0 ? (Object.keys(answers).length / questions.length) * 100 : 0
+  const progress = randomizedQuestions.length > 0 ? (Object.keys(answers).length / randomizedQuestions.length) * 100 : 0
 
   if (isComplete) {
     return (
@@ -286,7 +321,7 @@ export default function TriviaTest() {
           <div className="mb-2">
             <div className="bg-green-50 rounded-2xl shadow-lg p-4 mb-2">
               <div className="flex justify-between text-sm text-green-600 mb-2">
-                <span>Question {currentQuestion + 1} of {questions.length}</span>
+                <span>Question {currentQuestion + 1} of {randomizedQuestions.length}</span>
                 <span className="font-bold">{Math.round(progress)}% Complete</span>
               </div>
               <div className="w-full bg-green-200 rounded-full h-2">
@@ -306,22 +341,22 @@ export default function TriviaTest() {
         )}
 
         {/* Question Card - Only show when test has begun */}
-        {questions.length > 0 && hasBegun && (
+        {randomizedQuestions.length > 0 && hasBegun && (
           <div className="bg-purple-50 rounded-2xl shadow-lg p-6 mb-2">
             <div className="text-center mb-4">
               <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
-                {questions[currentQuestion].category}
+                {randomizedQuestions[currentQuestion].category}
               </span>
             </div>
             <h2 className="text-lg font-semibold text-green-800 mb-3 text-center">
-              {questions[currentQuestion].question}
+              {randomizedQuestions[currentQuestion].question}
             </h2>
             
             <div className="space-y-3">
-              {questions[currentQuestion].options.map((option, index) => (
+              {randomizedQuestions[currentQuestion].options.map((option, index) => (
                 <button
                   key={index}
-                  onClick={() => handleAnswer(questions[currentQuestion].id, index)}
+                  onClick={() => handleAnswer(randomizedQuestions[currentQuestion].id, index)}
                   className="w-full p-2 text-left bg-white border-2 border-purple-200 rounded-xl hover:border-purple-400 hover:bg-purple-50 transition-all duration-200 group"
                 >
                   <div className="flex items-center">
@@ -343,7 +378,7 @@ export default function TriviaTest() {
           <div className="bg-purple-50 rounded-2xl shadow-lg p-6 mb-2">
             <h3 className="text-xl font-semibold text-green-800 mb-4">Quiz Instructions</h3>
             <div className="space-y-3 text-green-600">
-              <p>• This quiz consists of {questions.length} questions across various categories</p>
+              <p>• This quiz consists of {randomizedQuestions.length} questions across various categories</p>
               <p>• You have 30 seconds to answer each question</p>
               <p>• Faster answers earn bonus points - think quickly!</p>
               <p>• Choose the best answer from the multiple choice options</p>

@@ -82,6 +82,41 @@ Category: ${question.category.charAt(0).toUpperCase() + question.category.slice(
         }).join('\n')}`
         break
 
+      case 'color-blindness':
+        const colorBlindnessResults = JSON.parse(searchParams.get('results') || '{}')
+        const colorBlindnessAnswers = JSON.parse(searchParams.get('answers') || '[]')
+        const colorBlindnessQuestions = JSON.parse(searchParams.get('questions') || '[]')
+        
+        content += `Color Blindness Test Results
+Date: ${timestamp}
+
+Test Summary:
+- Total Questions: ${colorBlindnessResults.totalQuestions}
+- Correct Answers: ${colorBlindnessResults.totalScore}
+- Accuracy: ${colorBlindnessResults.accuracy}%
+- Result: ${colorBlindnessResults.colorBlindnessType}
+
+Description:
+${colorBlindnessResults.description}
+
+Recommendations:
+${colorBlindnessResults.recommendations.map((rec: string) => `- ${rec}`).join('\n')}
+
+Key Insights:
+${colorBlindnessResults.insights.map((insight: string) => `- ${insight}`).join('\n')}
+
+Question Review:
+${colorBlindnessAnswers.map((answer: number, index: number) => {
+          const question = colorBlindnessQuestions[index]
+          const selectedOption = question.options[answer]
+          const isCorrect = answer === question.correctAnswer
+          return `Plate ${index + 1}: What number do you see in this image?
+Your Answer: ${selectedOption.text} ${isCorrect ? '(Correct)' : '(Incorrect)'}
+Correct Answer: ${question.options[question.correctAnswer].text}
+`
+        }).join('\n')}`
+        break
+
       case 'personality':
         const personalityType = searchParams.get('type') || 'Unknown'
         const questions = JSON.parse(searchParams.get('questions') || '[]')
@@ -324,6 +359,16 @@ Visit https://testyourself.com for more tests!`
           description: 'Review your memory challenge performance. See how well you memorized sequences and identify areas for improvement.',
           canonical: `${baseUrl}/results/memory/review`
         }
+      case 'color-blindness':
+        return {
+          title: 'Color Blindness Test Review - Ishihara Test Answers Review | TestYourself',
+          description: 'Review your color blindness test answers! See detailed explanations for each Ishihara plate and understand your color vision performance.',
+          keywords: 'color blindness test review, Ishihara test review, color vision test review, color deficiency review, color perception review',
+          ogTitle: 'Color Blindness Test Review - Ishihara Test Answers Review',
+          ogDescription: 'Review your color blindness test answers with detailed explanations and color vision analysis.',
+          ogImage: `${baseUrl}/images/color-blindness-review-og.jpg`,
+          canonical: `${baseUrl}/results/color-blindness/review`
+        }
       default:
         return {
           title: 'Test Review - Question Review | TestYourself',
@@ -436,6 +481,7 @@ Visit https://testyourself.com for more tests!`
                    testType === 'trivia' ? 'Trivia Quiz Review' :
                    testType === 'memory' ? 'Memory Challenge Review' :
                    testType === 'optical-illusion' ? 'Optical Illusion Review' :
+                   testType === 'color-blindness' ? 'Color Blindness Test Review' :
                    'Test Review'}
                 </h1>
               </div>
@@ -775,6 +821,46 @@ Visit https://testyourself.com for more tests!`
                               <div className="p-1 rounded-lg bg-green-100 text-green-800 text-xl">
                                 {challenge.sequence.join(', ')}
                               </div>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Color Blindness Test Review */}
+              {testType === 'color-blindness' && questions.length > 0 && (
+                <div ref={triviaReviewRef} className="bg-blue-50 rounded-2xl shadow-lg p-3 mt-2">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2 text-center">Question Review: What number do you see in this image?</h3>
+                  <div className="space-y-3">
+                    {questions.map((question: any, index: number) => {
+                      const userAnswer = answers[index]
+                      const selectedOption = question.options[userAnswer]
+                      const isCorrect = userAnswer === question.correctAnswer
+                      const correctOption = question.options[question.correctAnswer]
+                      
+                      return (
+                        <div key={index} className="bg-white rounded-lg p-2">
+                          <div className="flex items-start gap-2 mb-2">
+                            <span className="bg-blue-100 text-blue-700 text-xs font-medium px-2 py-1 rounded" aria-label={`Plate ${index + 1}`}>
+                              Plate {index + 1}
+                            </span>
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                              isCorrect ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                            }`}>
+                              {isCorrect ? 'Correct' : 'Incorrect'}
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div className="bg-gray-50 rounded-lg p-3">
+                              <div className="text-sm font-medium text-gray-700 mb-1">Your Answer:</div>
+                              <div className="text-gray-800">{selectedOption?.text || 'Not answered'}</div>
+                            </div>
+                            <div className="bg-gray-50 rounded-lg p-3">
+                              <div className="text-sm font-medium text-gray-700 mb-1">Correct Answer:</div>
+                              <div className="text-gray-800">{correctOption?.text || 'Unknown'}</div>
                             </div>
                           </div>
                         </div>

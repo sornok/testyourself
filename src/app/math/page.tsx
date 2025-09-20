@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { mathQuestions, selectRandomMathQuestions, calculateMathResults, MathQuestion, MathResult } from '@/data/mathTest';
+import { mathQuestions, calculateMathResults, MathQuestion, MathResult } from '@/data/mathTest';
 
 export default function MathTest() {
   const [testStarted, setTestStarted] = useState(false);
@@ -12,6 +12,7 @@ export default function MathTest() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<(number | undefined)[]>([]);
   const [selectedQuestions, setSelectedQuestions] = useState<MathQuestion[]>([]);
+  const [randomizedQuestions, setRandomizedQuestions] = useState<MathQuestion[]>([]);
   const [mathResults, setMathResults] = useState<MathResult | null>(null);
   const [showShare, setShowShare] = useState(false);
   const [showReview, setShowReview] = useState(false);
@@ -24,6 +25,7 @@ export default function MathTest() {
     setCurrentQuestion(0);
     setAnswers([]);
     setSelectedQuestions([]);
+    setRandomizedQuestions([]);
     setMathResults(null);
     setShowShare(false);
     setShowReview(false);
@@ -47,22 +49,65 @@ export default function MathTest() {
     };
   }, [testCompleted, showShare, showReview]);
 
+  // Function to select random math questions and randomize their options
+  const selectRandomMathQuestions = (count: number): MathQuestion[] => {
+    // Create a copy of all questions and shuffle them
+    const shuffledQuestions = [...mathQuestions].sort(() => Math.random() - 0.5);
+    
+    // Select the first 'count' questions
+    const selectedQuestions = shuffledQuestions.slice(0, count);
+    
+    // Randomize options for each selected question
+    const randomizedQuestions = selectedQuestions.map(question => {
+      const options = [...question.options];
+      const correctAnswer = question.correct;
+      
+      // Shuffle the options
+      for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+      }
+      
+      // Find the new position of the correct answer
+      const correctOptionText = question.options[correctAnswer];
+      const newCorrectIndex = options.findIndex(option => option === correctOptionText);
+      
+      return {
+        ...question,
+        options,
+        correct: newCorrectIndex
+      };
+    });
+    
+    return randomizedQuestions;
+  };
+
   const beginTest = () => {
     const questions = selectRandomMathQuestions(15);
     setSelectedQuestions(questions);
+    setRandomizedQuestions(questions);
     setAnswers(new Array(questions.length).fill(undefined));
     setTestStarted(true);
     setCurrentQuestion(0);
   };
 
   const handleAnswerSelect = (answerIndex: number) => {
+    // Get the selected option text from randomized options
+    const selectedOption = randomizedQuestions[currentQuestion].options[answerIndex];
+    
+    // Find the original index of this option in the original question
+    const originalQuestion = selectedQuestions[currentQuestion];
+    const originalAnswerIndex = originalQuestion.options.findIndex(
+      option => option === selectedOption
+    );
+    
     const newAnswers = [...answers];
-    newAnswers[currentQuestion] = answerIndex;
+    newAnswers[currentQuestion] = originalAnswerIndex;
     setAnswers(newAnswers);
 
     // Auto-advance to next question
     setTimeout(() => {
-      if (currentQuestion < selectedQuestions.length - 1) {
+      if (currentQuestion < randomizedQuestions.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
       } else {
         completeTest(newAnswers as (number | undefined)[]);
@@ -72,7 +117,12 @@ export default function MathTest() {
 
   const handlePreviousQuestion = () => {
     if (currentQuestion > 0) {
-      // Go to previous question without clearing current answer
+      // Clear the answer for the current question when going back
+      const newAnswers = [...answers];
+      newAnswers[currentQuestion] = undefined;
+      setAnswers(newAnswers);
+      
+      // Go to previous question
       setCurrentQuestion(currentQuestion - 1);
     }
   };
@@ -433,13 +483,13 @@ Visit https://testyourself.com for more tests!`;
 
   if (!testCompleted) {
     const answeredQuestions = answers.filter(answer => answer !== undefined).length;
-    const progress = (answeredQuestions / selectedQuestions.length) * 100;
+    const progress = (answeredQuestions / randomizedQuestions.length) * 100;
     
     return (
       <>
         <Head>
-          <title>Math Test - Question {currentQuestion + 1} of {selectedQuestions.length} | TestYourself</title>
-          <meta name="description" content="Taking the math test - Question {currentQuestion + 1} of {selectedQuestions.length}" />
+          <title>Math Test - Question {currentQuestion + 1} of {randomizedQuestions.length} | TestYourself</title>
+          <meta name="description" content="Taking the math test - Question {currentQuestion + 1} of {randomizedQuestions.length}" />
           <meta name="robots" content="noindex, nofollow" />
         </Head>
 
@@ -465,7 +515,7 @@ Visit https://testyourself.com for more tests!`;
               {/* Progress Bar */}
             <div className="bg-white rounded-2xl shadow-lg p-4 mb-2">
               <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium text-gray-700">Question {currentQuestion + 1} of {selectedQuestions.length}</span>
+                <span className="text-sm font-medium text-gray-700">Question {currentQuestion + 1} of {randomizedQuestions.length}</span>
                 <span className="text-sm font-medium text-gray-700">{Math.round(progress)}% Complete</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
@@ -481,17 +531,17 @@ Visit https://testyourself.com for more tests!`;
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-4">
                   <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                    {selectedQuestions[currentQuestion].category.charAt(0).toUpperCase() + selectedQuestions[currentQuestion].category.slice(1)}
+                    {randomizedQuestions[currentQuestion].category.charAt(0).toUpperCase() + randomizedQuestions[currentQuestion].category.slice(1)}
                   </span>
                 </div>
                 <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                  {selectedQuestions[currentQuestion].question}
+                  {randomizedQuestions[currentQuestion].question}
                 </h2>
               </div>
 
               {/* Answer Options */}
               <div className="space-y-3">
-                {selectedQuestions[currentQuestion].options.map((option, index) => (
+                {randomizedQuestions[currentQuestion].options.map((option, index) => (
                   <button
                     key={index}
                     onClick={() => handleAnswerSelect(index)}

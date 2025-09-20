@@ -70,6 +70,11 @@ export default function OpticalIllusionTest() {
 
   const handlePrevious = () => {
     if (currentIllusion > 0) {
+      // Clear the answer for the current illusion when going back
+      const newAnswers = { ...answers }
+      delete newAnswers[illusions[currentIllusion].id]
+      setAnswers(newAnswers)
+      
       setCurrentIllusion(currentIllusion - 1)
     }
   }
