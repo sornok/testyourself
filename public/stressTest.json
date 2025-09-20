@@ -1,0 +1,1102 @@
+[
+  {
+    "id": 1,
+    "question": "How often do you feel overwhelmed by your daily responsibilities?",
+    "options": [
+      {
+        "text": "Rarely or never",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes",
+        "type": "Medium"
+      },
+      {
+        "text": "Often",
+        "type": "High"
+      },
+      {
+        "text": "Almost always",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "How well do you manage your time and prioritize tasks?",
+    "options": [
+      {
+        "text": "Very well, I have excellent time management",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, with occasional challenges",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes struggle with time management",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel like I'm behind and disorganized",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "How do you typically respond to unexpected challenges or problems?",
+    "options": [
+      {
+        "text": "Stay calm and work through them systematically",
+        "type": "Low"
+      },
+      {
+        "text": "Feel slightly anxious but handle them reasonably well",
+        "type": "Medium"
+      },
+      {
+        "text": "Get stressed but eventually find a solution",
+        "type": "Medium"
+      },
+      {
+        "text": "Feel overwhelmed and struggle to cope",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "How often do you take time for yourself and engage in activities you enjoy?",
+    "options": [
+      {
+        "text": "Regularly, I make it a priority",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, when I have time",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, I'm usually too busy",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, there's always something more important",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "How well do you sleep at night?",
+    "options": [
+      {
+        "text": "Very well, I sleep soundly most nights",
+        "type": "Low"
+      },
+      {
+        "text": "Generally well, with occasional restless nights",
+        "type": "Medium"
+      },
+      {
+        "text": "Often have trouble falling or staying asleep",
+        "type": "High"
+      },
+      {
+        "text": "Frequently struggle with sleep due to worry or stress",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "How do you handle criticism or negative feedback?",
+    "options": [
+      {
+        "text": "Take it constructively and use it for improvement",
+        "type": "Low"
+      },
+      {
+        "text": "Feel a bit defensive but try to learn from it",
+        "type": "Medium"
+      },
+      {
+        "text": "Get upset but eventually process it",
+        "type": "Medium"
+      },
+      {
+        "text": "Take it very personally and dwell on it",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "How often do you feel physically tense or have muscle tightness?",
+    "options": [
+      {
+        "text": "Rarely or never",
+        "type": "Low"
+      },
+      {
+        "text": "Occasionally, especially during busy periods",
+        "type": "Medium"
+      },
+      {
+        "text": "Frequently, particularly in neck and shoulders",
+        "type": "High"
+      },
+      {
+        "text": "Almost constantly, with chronic tension",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "question": "How do you manage work-life balance?",
+    "options": [
+      {
+        "text": "Excellent balance, I set clear boundaries",
+        "type": "Low"
+      },
+      {
+        "text": "Good balance, with occasional challenges",
+        "type": "Medium"
+      },
+      {
+        "text": "Struggle to maintain balance sometimes",
+        "type": "Medium"
+      },
+      {
+        "text": "Poor balance, work often takes over",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "question": "How often do you worry about things beyond your control?",
+    "options": [
+      {
+        "text": "Rarely, I focus on what I can control",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, but I try to let go",
+        "type": "Medium"
+      },
+      {
+        "text": "Often, I find it hard to stop worrying",
+        "type": "High"
+      },
+      {
+        "text": "Constantly, worry consumes a lot of my thoughts",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "question": "How do you typically cope with stress?",
+    "options": [
+      {
+        "text": "Use healthy strategies like exercise, meditation, or talking to friends",
+        "type": "Low"
+      },
+      {
+        "text": "Mix of healthy and less healthy coping methods",
+        "type": "Medium"
+      },
+      {
+        "text": "Often use less healthy methods like overeating or avoiding problems",
+        "type": "High"
+      },
+      {
+        "text": "Struggle to find effective coping strategies",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "question": "How often do you feel irritable or easily frustrated?",
+    "options": [
+      {
+        "text": "Rarely, I'm generally patient",
+        "type": "Low"
+      },
+      {
+        "text": "Occasionally, especially when tired",
+        "type": "Medium"
+      },
+      {
+        "text": "Often, small things bother me more than they should",
+        "type": "High"
+      },
+      {
+        "text": "Frequently, I'm on edge most of the time",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "question": "How do you handle multiple deadlines or competing priorities?",
+    "options": [
+      {
+        "text": "Stay organized and tackle them systematically",
+        "type": "Low"
+      },
+      {
+        "text": "Feel some pressure but manage reasonably well",
+        "type": "Medium"
+      },
+      {
+        "text": "Get stressed but eventually get through them",
+        "type": "Medium"
+      },
+      {
+        "text": "Feel overwhelmed and struggle to prioritize",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "question": "How often do you feel like you have enough support from others?",
+    "options": [
+      {
+        "text": "Always, I have a strong support network",
+        "type": "Low"
+      },
+      {
+        "text": "Usually, I can reach out when needed",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes, but often feel alone in dealing with problems",
+        "type": "High"
+      },
+      {
+        "text": "Rarely, I feel like I have to handle everything alone",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "question": "How do you feel about your ability to relax and unwind?",
+    "options": [
+      {
+        "text": "Very good, I can relax easily when I want to",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty good, with some practice",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes difficult, my mind stays active",
+        "type": "High"
+      },
+      {
+        "text": "Very difficult, I rarely feel truly relaxed",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "question": "How often do you feel optimistic about the future?",
+    "options": [
+      {
+        "text": "Most of the time",
+        "type": "Low"
+      },
+      {
+        "text": "Usually, with occasional doubts",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes, but often worry about what's ahead",
+        "type": "High"
+      },
+      {
+        "text": "Rarely, I often feel pessimistic or anxious about the future",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "question": "How do you handle unexpected changes in your plans?",
+    "options": [
+      {
+        "text": "Adapt easily and find alternative solutions",
+        "type": "Low"
+      },
+      {
+        "text": "Feel slightly frustrated but adjust reasonably well",
+        "type": "Medium"
+      },
+      {
+        "text": "Get stressed but eventually adapt",
+        "type": "Medium"
+      },
+      {
+        "text": "Feel very upset and struggle to adjust",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "question": "How often do you experience physical symptoms of stress (headaches, stomach issues, etc.)?",
+    "options": [
+      {
+        "text": "Rarely or never",
+        "type": "Low"
+      },
+      {
+        "text": "Occasionally, especially during stressful periods",
+        "type": "Medium"
+      },
+      {
+        "text": "Frequently, with various stress-related symptoms",
+        "type": "High"
+      },
+      {
+        "text": "Almost constantly, with chronic stress-related health issues",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "question": "How well do you maintain healthy eating habits under stress?",
+    "options": [
+      {
+        "text": "Very well, I maintain good nutrition even when stressed",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, with occasional lapses",
+        "type": "Medium"
+      },
+      {
+        "text": "Often eat poorly or skip meals when stressed",
+        "type": "High"
+      },
+      {
+        "text": "Frequently use food as a coping mechanism",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "question": "How do you feel about your current stress management skills?",
+    "options": [
+      {
+        "text": "Very confident, I have effective strategies",
+        "type": "Low"
+      },
+      {
+        "text": "Somewhat confident, with room for improvement",
+        "type": "Medium"
+      },
+      {
+        "text": "Not very confident, I need better strategies",
+        "type": "High"
+      },
+      {
+        "text": "Not confident at all, I feel overwhelmed",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "question": "How often do you feel like you're in control of your life?",
+    "options": [
+      {
+        "text": "Most of the time",
+        "type": "Low"
+      },
+      {
+        "text": "Usually, with occasional challenges",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes, but often feel like things are out of control",
+        "type": "High"
+      },
+      {
+        "text": "Rarely, I often feel like life is controlling me",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "question": "How do you handle difficult conversations or conflicts?",
+    "options": [
+      {
+        "text": "Address them directly and constructively",
+        "type": "Low"
+      },
+      {
+        "text": "Handle them reasonably well, though they're not my favorite",
+        "type": "Medium"
+      },
+      {
+        "text": "Find them stressful but manage to get through them",
+        "type": "Medium"
+      },
+      {
+        "text": "Avoid them whenever possible due to stress",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "question": "How often do you feel energized and motivated?",
+    "options": [
+      {
+        "text": "Most days",
+        "type": "Low"
+      },
+      {
+        "text": "Often, with some low-energy days",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes, but often feel drained",
+        "type": "High"
+      },
+      {
+        "text": "Rarely, I usually feel exhausted or unmotivated",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "question": "How do you manage your financial stress?",
+    "options": [
+      {
+        "text": "Very well, I have good financial planning and control",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, with occasional concerns",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes struggle with financial worries",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel overwhelmed by financial stress",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "question": "How often do you engage in physical exercise or movement?",
+    "options": [
+      {
+        "text": "Regularly, it's part of my routine",
+        "type": "Low"
+      },
+      {
+        "text": "Often, when I have time",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes, but stress often gets in the way",
+        "type": "High"
+      },
+      {
+        "text": "Rarely, I'm too stressed or busy",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "question": "How do you handle technology and social media stress?",
+    "options": [
+      {
+        "text": "Very well, I have healthy boundaries with technology",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, with occasional overuse",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes get overwhelmed by constant connectivity",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel stressed by technology and social media",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "question": "How often do you feel satisfied with your achievements?",
+    "options": [
+      {
+        "text": "Often, I recognize my accomplishments",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, but I'm working on it",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, I often feel like I'm not doing enough",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, I'm always focused on what I haven't achieved",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "question": "How do you handle relationship stress?",
+    "options": [
+      {
+        "text": "Very well, I communicate openly and resolve conflicts",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, with some challenging situations",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes struggle with relationship dynamics",
+        "type": "Medium"
+      },
+      {
+        "text": "Often find relationships to be a major source of stress",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "question": "How often do you practice mindfulness or meditation?",
+    "options": [
+      {
+        "text": "Regularly, it's part of my routine",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, when I remember or have time",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, though I know I should",
+        "type": "High"
+      },
+      {
+        "text": "Never, I don't have time for it",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "question": "How do you handle perfectionism and high standards?",
+    "options": [
+      {
+        "text": "Have healthy standards without being overly perfectionist",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes set standards too high but try to manage it",
+        "type": "Medium"
+      },
+      {
+        "text": "Often struggle with perfectionist tendencies",
+        "type": "Medium"
+      },
+      {
+        "text": "Frequently stressed by perfectionist demands on myself",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "question": "How often do you feel grateful or appreciative?",
+    "options": [
+      {
+        "text": "Often, I regularly practice gratitude",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, when I remember to focus on it",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, I'm often focused on problems",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, it's hard to feel grateful when stressed",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "question": "How do you handle noise and environmental stress?",
+    "options": [
+      {
+        "text": "Very well, I can focus despite distractions",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, though some environments are challenging",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes get overwhelmed by noisy or chaotic environments",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel stressed by environmental factors",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "question": "How often do you feel connected to your purpose or meaning?",
+    "options": [
+      {
+        "text": "Often, I feel clear about my purpose",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, with periods of uncertainty",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, I often feel lost or purposeless",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, I feel disconnected from meaning",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "question": "How do you handle social obligations and commitments?",
+    "options": [
+      {
+        "text": "Very well, I balance them with my needs",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, though sometimes feel overcommitted",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes struggle to say no to requests",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel overwhelmed by too many commitments",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "question": "How often do you feel like you have enough time?",
+    "options": [
+      {
+        "text": "Often, I manage my time well",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, with busy periods",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, I often feel rushed",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, I always feel behind",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "question": "How do you handle uncertainty and ambiguity?",
+    "options": [
+      {
+        "text": "Very well, I can adapt to unclear situations",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, though I prefer clarity",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes struggle with uncertain situations",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel very stressed by uncertainty",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "question": "How often do you feel creative or inspired?",
+    "options": [
+      {
+        "text": "Often, I regularly feel creative",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, when I'm not too stressed",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, stress often blocks my creativity",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, I feel too drained to be creative",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "question": "How do you handle health concerns and medical stress?",
+    "options": [
+      {
+        "text": "Very well, I take proactive care of my health",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, though health issues can be concerning",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes worry excessively about health",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel very stressed about health matters",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "question": "How often do you feel like you're making progress toward your goals?",
+    "options": [
+      {
+        "text": "Often, I feel like I'm moving forward",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, with periods of stagnation",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, I often feel stuck",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, I feel like I'm going backwards",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "question": "How do you handle comparison with others?",
+    "options": [
+      {
+        "text": "Very well, I focus on my own journey",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, though sometimes compare myself",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes get stressed by comparing myself to others",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel stressed by constant comparison",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "question": "How often do you feel like you can ask for help when needed?",
+    "options": [
+      {
+        "text": "Often, I'm comfortable reaching out",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, though it can be difficult",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, I prefer to handle things myself",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, I feel like I have to do everything alone",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "question": "How do you handle decision-making stress?",
+    "options": [
+      {
+        "text": "Very well, I make decisions confidently",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, though some decisions are challenging",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes struggle with decision-making",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel paralyzed by important decisions",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "question": "How often do you feel like you're living authentically?",
+    "options": [
+      {
+        "text": "Often, I feel true to myself",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, with periods of questioning",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, I often feel like I'm wearing a mask",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, I feel disconnected from my true self",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "question": "How do you handle technology failures or glitches?",
+    "options": [
+      {
+        "text": "Very well, I stay patient and find solutions",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, though they can be frustrating",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes get very frustrated by tech issues",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel extremely stressed by technology problems",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "question": "How often do you feel like you have control over your environment?",
+    "options": [
+      {
+        "text": "Often, I can influence my surroundings",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, depending on the situation",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, I often feel at the mercy of circumstances",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, I feel powerless",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "question": "How do you handle seasonal or weather-related stress?",
+    "options": [
+      {
+        "text": "Very well, I adapt to different seasons",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, though some weather affects my mood",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes struggle with seasonal changes",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel very affected by weather and seasons",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "question": "How often do you feel like you're learning and growing?",
+    "options": [
+      {
+        "text": "Often, I regularly seek new experiences",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, when I'm not too overwhelmed",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, stress often prevents growth",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, I feel stagnant",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "question": "How do you handle waiting and delays?",
+    "options": [
+      {
+        "text": "Very well, I use the time productively",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, though delays can be annoying",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes get frustrated by waiting",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel very stressed by delays and waiting",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "question": "How often do you feel like you're contributing meaningfully to society?",
+    "options": [
+      {
+        "text": "Often, I feel like I'm making a difference",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, with periods of doubt",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, I often feel like my contributions don't matter",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, I feel disconnected from society",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "question": "How do you handle multitasking and juggling multiple responsibilities?",
+    "options": [
+      {
+        "text": "Very well, I can handle multiple tasks efficiently",
+        "type": "Low"
+      },
+      {
+        "text": "Pretty well, though it can be challenging",
+        "type": "Medium"
+      },
+      {
+        "text": "Sometimes struggle with juggling too many things",
+        "type": "Medium"
+      },
+      {
+        "text": "Often feel overwhelmed by multiple responsibilities",
+        "type": "High"
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "question": "How often do you feel like you're living in alignment with your values?",
+    "options": [
+      {
+        "text": "Often, I make decisions based on my values",
+        "type": "Low"
+      },
+      {
+        "text": "Sometimes, though I sometimes compromise",
+        "type": "Medium"
+      },
+      {
+        "text": "Rarely, I often feel like I'm not living my values",
+        "type": "High"
+      },
+      {
+        "text": "Almost never, I feel disconnected from what matters to me",
+        "type": "High"
+      }
+    ]
+  }
+]

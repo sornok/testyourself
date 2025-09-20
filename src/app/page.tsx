@@ -69,7 +69,7 @@ export default function Home() {
     },
     {
       id: 'math',
-      title: 'Math',
+      title: 'Math Check',
       description: 'Test your 7th-8th grade math skills with our comprehensive assessment covering arithmetic and fractions.',
       icon: '🧮',
       path: '/math',
@@ -78,7 +78,7 @@ export default function Home() {
     },
     {
       id: 'typing',
-      title: 'Typing',
+      title: 'Typing Practice',
       description: 'Test your typing speed and accuracy with our typing challenge to improve your skills and productivity.',
       icon: '⌨️',
       path: '/typing',
@@ -105,7 +105,7 @@ export default function Home() {
               },
               {
                 id: 'stress-test',
-                title: 'Stress Assessment',
+                title: 'Stress Evaluation',
                 description: 'Evaluate your stress levels and learn effective coping strategies with our comprehensive assessment.',
                 icon: '😌',
                 path: '/stress-test',
@@ -114,7 +114,7 @@ export default function Home() {
               },
               {
                 id: 'leadership-test',
-                title: 'Leadership Assessment',
+                title: 'Leadership Analysis',
                 description: 'Evaluate your leadership potential and management skills with our detailed comprehensive test.',
                 icon: '👑',
                 path: '/leadership-test',
@@ -123,7 +123,7 @@ export default function Home() {
               },
               {
                 id: 'iq-test',
-                title: 'IQ Assessment',
+                title: 'IQ Measurement',
                 description: 'Measure your cognitive abilities with logical reasoning and problem-solving comprehensive tests.',
                 icon: '🧩',
                 path: '/iq-test',
@@ -132,7 +132,7 @@ export default function Home() {
               },
               {
                 id: 'creativity-test',
-                title: 'Creativity Assessment',
+                title: 'Creativity Explorer',
                 description: 'Discover your creative potential and innovative thinking abilities with our comprehensive detailed test.',
                 icon: '🎨',
                 path: '/creativity-test',
@@ -141,7 +141,7 @@ export default function Home() {
               },
               {
                 id: 'communication-test',
-                title: 'Communication Skills',
+                title: 'Communication Mastery',
                 description: 'Evaluate your verbal and written communication abilities with our comprehensive assessment.',
                 icon: '💬',
                 path: '/communication-test',
@@ -477,7 +477,7 @@ export default function Home() {
                       {category.icon}
                     </div>
                     <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
-                      ['stress-test', 'leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
+                      ['leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'time-management-test', 'decision-making-test'].includes(category.id)
                         ? 'text-red-600 group-hover:text-red-600'
                         : 'text-sage-800 group-hover:text-sage-600'
                     }`}>
