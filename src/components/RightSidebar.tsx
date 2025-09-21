@@ -30,8 +30,8 @@ export default function RightSidebar() {
       // Step 7: Max width of ad that can be placed = sidebar_width - sidebar_padding - ad_container_padding
       const maxAdWidth = sidebarWidth - (sidebarPadding * 2) - adContainerPadding
       
-      // Minimum width needed for smallest ad (88px) + sidebar padding (32px) + container padding (16px)
-      const minRequiredWidth = 88 + 32 + 16
+      // Minimum width needed for smallest ad (120px) + sidebar padding (32px) + container padding (16px)
+      const minRequiredWidth = 120 + 32 + 16
       
       if (sidebarWidth >= minRequiredWidth) {
         setIsVisible(true)
@@ -51,20 +51,18 @@ export default function RightSidebar() {
           adContainerPadding
         })
         
-        // Standard Google AdSense sizes (all orientations)
-        const adSizes = [
-          { width: 280, height: 1050 }, // Portrait
-          { width: 280, height: 600 },  // Large Skyscraper
-          { width: 280, height: 250 },  // Medium Rectangle
-          { width: 250, height: 250 },  // Square
-          { width: 200, height: 200 },  // Small Square
-          { width: 160, height: 600 },  // Wide Skyscraper
-          { width: 120, height: 600 },  // Skyscraper
-          { width: 120, height: 240 },  // Skyscraper
-          { width: 125, height: 125 },  // Button
-          { width: 88, height: 31 },    // Micro Bar
-          { width: 320, height: 50 },   // Mobile Banner
-        ]
+             // Standard Google AdSense sizes (all orientations)
+             const adSizes = [
+               { width: 280, height: 1050 }, // Portrait
+               { width: 280, height: 600 },  // Large Skyscraper
+               { width: 280, height: 250 },  // Medium Rectangle
+               { width: 250, height: 250 },  // Square
+               { width: 200, height: 200 },  // Small Square
+               { width: 160, height: 600 },  // Wide Skyscraper
+               { width: 120, height: 600 },  // Skyscraper
+               { width: 120, height: 240 },  // Skyscraper
+               { width: 320, height: 50 },   // Mobile Banner
+             ]
         
         // Debug: Check which ads fit
         const fittingAds = adSizes.filter(ad => ad.width <= availableWidth)
@@ -100,22 +98,29 @@ export default function RightSidebar() {
             availableWidth
           })
           
-          // Repeat until no more space
-          while (verticalSpaceLeft > 0) {
-            // Step 2: Find the widest possible ad that fits in remaining vertical space
-            const fittingAds = adSizes.filter(ad => 
-              ad.width <= availableWidth && 
-              ad.height <= verticalSpaceLeft
-            )
-            
-            if (fittingAds.length === 0) {
-              console.log('📏 No more ads fit, stopping')
-              break
-            }
-            
-            // Get the widest ad that fits (largest by area)
-            const selectedAd = fittingAds
-              .sort((a, b) => (b.width * b.height) - (a.width * a.height))[0]
+               // Repeat until no more space or max 2 ads reached
+               while (verticalSpaceLeft > 0 && newAdSizes.length < 2) {
+                 // Step 2: Find the tallest possible ad that fits in remaining vertical space
+                 const fittingAds = adSizes.filter(ad =>
+                   ad.width <= availableWidth &&
+                   ad.height <= verticalSpaceLeft
+                 )
+
+                 if (fittingAds.length === 0) {
+                   console.log('📏 No more ads fit, stopping')
+                   break
+                 }
+
+                 // Get the tallest ad that fits (prioritize height over area)
+                 const selectedAd = fittingAds
+                   .sort((a, b) => b.height - a.height)[0]
+                 
+                 // If this is a very short ad and we already have one ad,
+                 // prefer to use the space for a larger single ad instead
+                 if (newAdSizes.length === 1 && selectedAd.height < 100) {
+                   console.log('📏 Skipping short ad to prefer single larger ad')
+                   break
+                 }
             
                  // Step 3: Add the ad and subtract its height from vertical space
                  // Only add margin-bottom if this is not the last ad
