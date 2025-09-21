@@ -95,6 +95,15 @@ export default function Home() {
                 category: 'Cognitive & Mental Agility'
               },
               {
+                id: 'iq-measurement',
+                title: 'IQ Measurement',
+                description: 'Discover your intelligence quotient with our comprehensive IQ test covering verbal, mathematical, spatial, logical reasoning.',
+                icon: '🎯',
+                path: '/iq-test',
+                color: 'from-blue-500 to-blue-700',
+                category: 'Cognitive & Mental Agility'
+              },
+              {
                 id: 'reaction-time',
                 title: 'Reaction Time',
                 description: 'Test your speed and accuracy with our comprehensive reaction time assessment covering visual processing.',
@@ -120,15 +129,6 @@ export default function Home() {
                 path: '/leadership-test',
                 color: 'from-yellow-500 to-yellow-700',
                 category: 'Personality & Self-Discovery'
-              },
-              {
-                id: 'iq-test',
-                title: 'IQ Measurement',
-                description: 'Measure your cognitive abilities with logical reasoning and problem-solving comprehensive tests.',
-                icon: '🧩',
-                path: '/iq-test',
-                color: 'from-blue-500 to-blue-700',
-                category: 'Cognitive & Mental Agility'
               },
               {
                 id: 'creativity-test',
