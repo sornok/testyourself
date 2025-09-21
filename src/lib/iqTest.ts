@@ -471,7 +471,7 @@ export const iqQuestions = [
   {
     id: 53,
     question: "If you look at your reflection in a mirror, which hand appears to be your right hand?",
-    options: ["Your left hand", "Your right hand", "Neither", "Both"],
+    options: ["Your left hand", "Your right hand", "Your right hand (same side)", "It depends on the mirror"],
     correct: 0,
     explanation: "In a mirror, left and right are swapped, so your actual left hand appears to be your right hand in the reflection.",
     category: "spatial",
@@ -644,7 +644,7 @@ export const iqQuestions = [
   {
     id: 72,
     question: "If it's raining and you don't have an umbrella, what's the logical conclusion?",
-    options: ["You'll get wet", "You won't go outside", "You'll find shelter", "All of the above"],
+    options: ["You'll get wet", "You won't go outside", "You'll find shelter", "You'll stay indoors"],
     correct: 0,
     explanation: "If it's raining and you don't have an umbrella, the most direct logical conclusion is that you'll get wet.",
     category: "logical",
@@ -671,7 +671,7 @@ export const iqQuestions = [
   {
     id: 75,
     question: "If you have a 3-gallon and 5-gallon jug, how can you measure exactly 4 gallons?",
-    options: ["Fill 3, pour into 5, fill 3 again", "Fill 5, pour into 3, empty 3", "Both methods work", "Neither method works"],
+    options: ["Fill 3, pour into 5, fill 3 again", "Fill 5, pour into 3, empty 3", "Either method works", "Use a measuring cup"],
     correct: 2,
     explanation: "Both methods work: Method 1 - Fill 3, pour into 5, fill 3 again gives you 1 gallon left in 3-gallon jug; Method 2 - Fill 5, pour into 3, empty 3, then pour remaining 2 gallons from 5-gallon jug into empty 3-gallon jug, then fill 5-gallon jug again and pour 1 gallon into 3-gallon jug, leaving exactly 4 gallons in the 5-gallon jug.",
     category: "logical",
@@ -696,7 +696,7 @@ export const iqQuestions = [
   {
     id: 78,
     question: "If A is not equal to B, and B is not equal to C, then A is:",
-    options: ["Equal to C", "Not equal to C", "Cannot be determined", "Both possible"],
+    options: ["Equal to C", "Not equal to C", "Cannot be determined", "Always greater than C"],
     correct: 2,
     category: "logical",
     difficulty: "medium"
