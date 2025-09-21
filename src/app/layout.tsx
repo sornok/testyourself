@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import LeftSidebar from "@/components/LeftSidebar";
+import RightSidebar from "@/components/RightSidebar";
 
 export const metadata: Metadata = {
   title: "TestYourself - Discover Yourself Through Fun Tests",
@@ -30,6 +32,8 @@ export default function RootLayout({
         <meta charSet="utf-8" />
       </head>
       <body>
+        <LeftSidebar />
+        <RightSidebar />
         {children}
       </body>
     </html>
