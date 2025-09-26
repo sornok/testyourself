@@ -268,28 +268,28 @@ export default function IQMeasurementTest() {
           {/* Header */}
           <Header onLogoClick={undefined} />
           
-          {/* Test Title and Begin Button - Side by Side */}
-          <div className="grid md:grid-cols-2 gap-2 mb-2">
-            {/* Test Title Box */}
-            <div className="text-center">
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl shadow-lg p-6 h-full">
-                <h1 className="text-xl font-bold text-blue-800 mb-3">
-                  IQ Measurement
-                </h1>
-                <p className="text-blue-600 mb-4 text-lg">
-                  Discover your intelligence quotient
-                </p>
-                
-                {/* Test Info */}
-                <div className="bg-white rounded-lg px-4 py-3 text-sm text-blue-700 shadow-lg">
-                  <div><span className="font-medium">Format:</span> Multiple choice questions</div>
-                  <div className="text-blue-500">🧠 Based on cognitive assessment principles</div>
+          {/* Test Title and Begin Button - Side by Side (Pre-test only) */}
+          {!hasBegun ? (
+            <div className="grid md:grid-cols-2 gap-2 mb-2">
+              {/* Test Title Box */}
+              <div className="text-center">
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl shadow-lg p-6 h-full">
+                  <h1 className="text-xl font-bold text-blue-800 mb-3">
+                    IQ Measurement
+                  </h1>
+                  <p className="text-blue-600 mb-4 text-lg">
+                    Discover your intelligence quotient
+                  </p>
+                  
+                  {/* Test Info */}
+                  <div className="bg-white rounded-lg px-4 py-3 text-sm text-blue-700 shadow-lg">
+                    <div><span className="font-medium">Format:</span> Multiple choice questions</div>
+                    <div className="text-blue-500">🧠 Based on cognitive assessment principles</div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Begin Button Banner */}
-            {!hasBegun ? (
+              {/* Begin Button Banner */}
               <div className="text-center">
                 <div className="bg-yellow-50 rounded-2xl shadow-lg p-4 h-full flex flex-col justify-center">
                   <h3 className="text-xl font-semibold text-yellow-800 mb-3">Ready to Begin?</h3>
@@ -304,22 +304,43 @@ export default function IQMeasurementTest() {
                   </button>
                 </div>
               </div>
-            ) : (
-              /* Progress Bar - Shows when test has begun */
-              <div className="bg-sage-50 rounded-2xl shadow-lg p-4 h-full flex flex-col justify-center">
-              <div className="flex justify-between text-sm text-sage-600 mb-2">
-                <span>Question {currentQuestion + 1} of {questions.length}</span>
-                <span>{Math.round(progress)}% Complete</span>
-              </div>
-              <div className="w-full bg-sage-200 rounded-full h-2">
-                <div 
-                  className="bg-sage-500 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${progress}%` }}
-                ></div>
-              </div>
             </div>
-            )}
-          </div>
+          ) : (
+            /* Test Title and Progress Bar - Stacked (During test) */
+            <>
+              {/* Test Title Box - Full width during test */}
+              <div className="text-center mb-2">
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl shadow-lg p-6">
+                  <h1 className="text-xl font-bold text-blue-800 mb-3">
+                    IQ Measurement
+                  </h1>
+                  <p className="text-blue-600 mb-4 text-lg">
+                    Discover your intelligence quotient
+                  </p>
+                  
+                  {/* Test Info */}
+                  <div className="bg-white rounded-lg px-4 py-3 text-sm text-blue-700 shadow-lg">
+                    <div><span className="font-medium">Format:</span> Multiple choice questions</div>
+                    <div className="text-blue-500">🧠 Based on cognitive assessment principles</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Progress Bar - Full width during test */}
+              <div className="bg-sage-50 rounded-2xl shadow-lg p-4 mb-2">
+                <div className="flex justify-between text-sm text-sage-600 mb-2">
+                  <span>Question {currentQuestion + 1} of {questions.length}</span>
+                  <span>{Math.round(progress)}% Complete</span>
+                </div>
+                <div className="w-full bg-sage-200 rounded-full h-2">
+                  <div 
+                    className="bg-sage-500 h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${progress}%` }}
+                  ></div>
+                </div>
+              </div>
+            </>
+          )}
 
           {/* Question Card - Only show when test has begun */}
           {questions.length > 0 && hasBegun && (
