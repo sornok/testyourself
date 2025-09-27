@@ -59,6 +59,15 @@ export default function Home() {
       category: 'Visual & Perception'
     },
     {
+      id: 'spatial-reasoning',
+      title: 'Spatial Reasoning',
+      description: 'Test your 3D visualization abilities and spatial thinking patterns with our comprehensive assessment.',
+      icon: '🔺',
+      path: '/spatial-reasoning-test',
+      color: 'from-cyan-400 to-cyan-600',
+      category: 'Visual & Perception'
+    },
+    {
       id: 'trivia',
       title: 'Trivia Quiz',
       description: 'Test your general knowledge with our fun trivia quiz covering various topics and challenge your intellect.',
