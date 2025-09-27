@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import Header from '@/components/Header'
@@ -10,14 +10,27 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState('all')
   const [sortBy, setSortBy] = useState('category')
   const [viewMode, setViewMode] = useState('cards')
+  const [shuffleSeed, setShuffleSeed] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const testsPerPageCards = 12
   const testsPerPageList = 12
+
+  // Reset to page 1 when view mode changes to avoid empty pages
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [viewMode])
 
   const handleLogoReset = () => {
     setActiveFilter('all')
     setSortBy('category')
     setViewMode('cards')
+    setShuffleSeed(0)
+    setCurrentPage(1)
+  }
+
+  const handleShuffle = () => {
+    setSortBy('shuffle')
+    setShuffleSeed(Math.random())
     setCurrentPage(1)
   }
 
@@ -206,12 +219,17 @@ export default function Home() {
       return a.title.localeCompare(b.title)
     } else if (sortBy === 'category') {
       return categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category)
+    } else if (sortBy === 'shuffle') {
+      // Create a simple hash from the shuffle seed and item id for consistent shuffling
+      const hashA = Math.sin((a.id.charCodeAt(0) + shuffleSeed * 1000) * 123.456)
+      const hashB = Math.sin((b.id.charCodeAt(0) + shuffleSeed * 1000) * 123.456)
+      return hashA - hashB
     }
     return 0
   })
 
   // Pagination logic
-  const testsPerPage = viewMode === 'cards' ? testsPerPageCards : testsPerPageList
+  const testsPerPage = viewMode === 'cards' ? testsPerPageCards : viewMode === 'title' ? 20 : testsPerPageList
   const totalPages = Math.ceil(filteredCategories.length / testsPerPage)
   const startIndex = (currentPage - 1) * testsPerPage
   const endIndex = startIndex + testsPerPage
@@ -340,34 +358,10 @@ export default function Home() {
 
         {/* Filter Buttons - Responsive Layout */}
         <div className="mt-2 mb-2">
-          {/* Desktop: Single line layout */}
-          <div className="hidden lg:flex justify-between items-center gap-2">
-            {/* Left: Sort Buttons */}
-            <div className="flex gap-1">
-              <button
-                onClick={() => setSortBy('category')}
-                className={`px-2 py-2 rounded-full font-medium transition-all duration-300 text-sm ${
-                  sortBy === 'category'
-                    ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
-                    : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
-                }`}
-              >
-                Category
-              </button>
-              <button
-                onClick={() => setSortBy('alphabetical')}
-                className={`px-2 py-2 rounded-full font-medium transition-all duration-300 text-sm whitespace-nowrap ${
-                  sortBy === 'alphabetical'
-                    ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
-                    : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
-                }`}
-              >
-                A-Z
-              </button>
-            </div>
-            
-            {/* Center: Filter Buttons */}
-            <div className="flex gap-2 flex-shrink-0">
+          {/* Desktop/Tablet: Two line layout (md and up) */}
+          <div className="hidden md:block">
+            {/* Line 1: Filter Categories (Full Width) */}
+            <div className="flex justify-center items-center gap-1 lg:gap-2 mb-3 flex-wrap">
               {filterOptions.map((filter) => (
                 <button
                   key={filter.id}
@@ -375,7 +369,7 @@ export default function Home() {
                     setActiveFilter(filter.id)
                     setCurrentPage(1)
                   }}
-                  className={`px-3 py-2 rounded-full font-medium transition-all duration-300 text-sm whitespace-nowrap ${
+                  className={`px-2 lg:px-3 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
                     activeFilter === filter.id
                       ? 'bg-purple-500 text-white shadow-lg'
                       : 'text-sage-600 hover:text-sage-900 border border-sage-200 hover:bg-sage-100'
@@ -386,34 +380,101 @@ export default function Home() {
               ))}
             </div>
             
-            {/* Right: View Buttons */}
-            <div className="flex gap-1">
-              <button
-                onClick={() => setViewMode('cards')}
-                className={`px-2 py-2 rounded-full font-medium transition-all duration-300 text-sm whitespace-nowrap ${
-                  viewMode === 'cards'
-                    ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
-                    : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
-                }`}
-              >
-                🔲 Cards
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`px-2 py-2 rounded-full font-medium transition-all duration-300 text-sm whitespace-nowrap ${
-                  viewMode === 'list'
-                    ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
-                    : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
-                }`}
-              >
-                📋 List
-              </button>
+            {/* Line 2: Sort (Left) and View (Right) Controls */}
+            <div className="flex justify-between items-center gap-2">
+              {/* Left: Sort Buttons */}
+              <div className="flex gap-1">
+                <button
+                  onClick={() => setSortBy('category')}
+                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm ${
+                    sortBy === 'category'
+                      ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
+                      : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
+                  }`}
+                >
+                  📂 Category
+                </button>
+                <button
+                  onClick={() => setSortBy('alphabetical')}
+                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                    sortBy === 'alphabetical'
+                      ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
+                      : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
+                  }`}
+                >
+                  🔤 A-Z
+                </button>
+                <button
+                  onClick={handleShuffle}
+                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                    sortBy === 'shuffle'
+                      ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
+                      : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
+                  }`}
+                >
+                  🎲 Shuffle
+                </button>
+              </div>
+              
+              {/* Right: View Buttons */}
+              <div className="flex gap-1">
+                <button
+                  onClick={() => setViewMode('cards')}
+                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                    viewMode === 'cards'
+                      ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
+                      : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
+                  }`}
+                >
+                  🔲 Cards
+                </button>
+                <button
+                  onClick={() => setViewMode('title')}
+                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                    viewMode === 'title'
+                      ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
+                      : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
+                  }`}
+                >
+                  🏷️ Title
+                </button>
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                    viewMode === 'list'
+                      ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
+                      : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
+                  }`}
+                >
+                  📋 List
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Mobile/Tablet: Two line layout */}
-          <div className="flex lg:hidden flex-col gap-3">
-            {/* Top line: Sort and View */}
+          {/* Mobile: Stacked layout (below md) */}
+          <div className="flex md:hidden flex-col gap-3">
+            {/* Line 1: Filter Categories (Full Width) */}
+            <div className="flex justify-center gap-1 sm:gap-2 flex-wrap pb-1 sm:pb-2 max-w-full">
+              {filterOptions.map((filter) => (
+                <button
+                  key={filter.id}
+                  onClick={() => {
+                    setActiveFilter(filter.id)
+                    setCurrentPage(1)
+                  }}
+                  className={`px-2 py-1 sm:px-3 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
+                    activeFilter === filter.id
+                      ? 'bg-purple-500 text-white shadow-lg'
+                      : 'text-sage-600 hover:text-sage-900 border border-sage-200 hover:bg-sage-100'
+                  } ${activeFilter !== filter.id ? 'bg-purple-50' : ''}`}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
+            
+            {/* Line 2: Sort (Left) and View (Right) Controls */}
             <div className="flex justify-between items-center gap-2">
               {/* Sort Buttons */}
               <div className="flex gap-1">
@@ -437,6 +498,16 @@ export default function Home() {
                 >
                   A-Z
                 </button>
+                <button
+                  onClick={handleShuffle}
+                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
+                    sortBy === 'shuffle'
+                      ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
+                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
+                  }`}
+                >
+                  🎲 Shuffle
+                </button>
               </div>
               
               {/* View Buttons */}
@@ -452,6 +523,16 @@ export default function Home() {
                   🔲 Cards
                 </button>
                 <button
+                  onClick={() => setViewMode('title')}
+                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
+                    viewMode === 'title'
+                      ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
+                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
+                  }`}
+                >
+                  🏷️ Title
+                </button>
+                <button
                   onClick={() => setViewMode('list')}
                   className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
                     viewMode === 'list'
@@ -462,32 +543,12 @@ export default function Home() {
                   📋 List
                 </button>
               </div>
-        </div>
-            
-            {/* Bottom line: Filter Buttons */}
-            <div className="flex justify-center gap-1 sm:gap-2 flex-wrap pb-1 sm:pb-2 max-w-full">
-              {filterOptions.map((filter) => (
-                <button
-                  key={filter.id}
-                  onClick={() => {
-                    setActiveFilter(filter.id)
-                    setCurrentPage(1)
-                  }}
-                  className={`px-2 py-1 sm:px-3 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
-                    activeFilter === filter.id
-                      ? 'bg-purple-500 text-white shadow-lg'
-                      : 'text-sage-600 hover:text-sage-900 border border-sage-200 hover:bg-sage-100'
-                  } ${activeFilter !== filter.id ? 'bg-purple-50' : ''}`}
-                >
-                  {filter.label}
-                </button>
-              ))}
             </div>
           </div>
         </div>
 
-        {/* Category Cards or List */}
-        {viewMode === 'cards' ? (
+        {/* Category Cards, Title, or List */}
+        {viewMode === 'cards' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             {currentTests.map((category) => (
               <Link
@@ -520,7 +581,41 @@ export default function Home() {
               </Link>
             ))}
           </div>
-        ) : (
+        )}
+        
+        {viewMode === 'title' && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+            {currentTests.map((category) => (
+              <Link
+                key={category.id}
+                href={category.path}
+                className="group block"
+              >
+                <div className="bg-purple-50 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 p-3 h-full flex flex-col cursor-pointer group relative">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className={`w-6 h-6 rounded-full ${category.color} flex items-center justify-center text-xs flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                      {category.icon}
+                    </div>
+                    <h3 className={`text-xs font-semibold transition-colors line-clamp-2 flex-1 ${
+                      ['leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'decision-making-test'].includes(category.id)
+                        ? 'text-red-600 group-hover:text-red-600'
+                        : 'text-sage-800 group-hover:text-sage-600'
+                    }`}>
+                      {category.title}
+                    </h3>
+                  </div>
+                  <div className="mt-auto">
+                    <span className="inline-block px-2 py-1 text-xs font-medium bg-sage-100 text-sage-700 rounded-full text-left w-full">
+                      {category.category}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+        
+        {viewMode === 'list' && (
           <div className="space-y-2">
             {currentTests.map((category) => (
               <Link
@@ -528,7 +623,7 @@ export default function Home() {
                 href={category.path}
                 className="group block"
               >
-                <div className="bg-purple-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-102 py-1.5 px-3 cursor-pointer group relative">
+                <div className="bg-purple-50 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-102 py-1 px-3 cursor-pointer group relative">
                   {/* Mobile/Tablet: Without description */}
                   <div className="lg:hidden">
                     <div className="flex items-center gap-2 min-w-0">
