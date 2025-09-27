@@ -77,6 +77,15 @@ export default function Home() {
       category: 'Knowledge & Trivia'
     },
     {
+      id: 'world-geography',
+      title: 'World Geography',
+      description: 'Test your global geography knowledge with 15 questions covering countries, capitals, landmarks, and flags.',
+      icon: '🌍',
+      path: '/world-geography-test',
+      color: 'from-green-400 to-green-600',
+      category: 'Knowledge & Trivia'
+    },
+    {
       id: 'math',
       title: 'Math Exam',
       description: 'Test your 7th-8th grade math skills with our comprehensive assessment covering arithmetic and fractions.',
