@@ -201,15 +201,15 @@ export default function Home() {
 
   const filterOptions = [
     { id: 'all', label: 'All Tests' },
-    { id: 'personality', label: 'Personality' },
-    { id: 'visual', label: 'Visual' },
-    { id: 'knowledge', label: 'Knowledge' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'cognitive', label: 'Cognitive' }
+    { id: 'cognitive', label: 'Cognitive & Mental Agility' },
+    { id: 'knowledge', label: 'Knowledge & Trivia' },
+    { id: 'personality', label: 'Personality & Self-Discovery' },
+    { id: 'skills', label: 'Skills & Productivity' },
+    { id: 'visual', label: 'Visual & Perception' }
   ]
 
-  // Define category order to match filter buttons
-  const categoryOrder = ['Personality & Self-Discovery', 'Visual & Perception', 'Knowledge & Trivia', 'Skills & Productivity', 'Cognitive & Mental Agility']
+  // Define category order to match filter buttons (alphabetical)
+  const categoryOrder = ['Cognitive & Mental Agility', 'Knowledge & Trivia', 'Personality & Self-Discovery', 'Skills & Productivity', 'Visual & Perception']
   
   const filteredCategories = categories.filter(category => {
     if (activeFilter === 'all') return true
@@ -359,9 +359,29 @@ export default function Home() {
         {/* Filter Buttons - Responsive Layout */}
         <div className="mt-2 mb-2">
           {/* Unified responsive control layout */}
-            {/* Line 1: Filter Categories (Full Width) */}
-            <div className="flex justify-center items-center gap-1 sm:gap-2 mb-3 flex-wrap">
-              {filterOptions.map((filter) => (
+            {/* Line 1: Filter Categories - Group 1 */}
+            <div className="flex justify-center items-center gap-1 sm:gap-[5px] mb-2 flex-wrap">
+              {filterOptions.slice(0, 3).map((filter) => (
+                <button
+                  key={filter.id}
+                  onClick={() => {
+                    setActiveFilter(filter.id)
+                    setCurrentPage(1)
+                  }}
+                  className={`px-[0.4125rem] sm:px-[0.525rem] md:px-[0.6375rem] lg:px-3 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                    activeFilter === filter.id
+                      ? 'bg-purple-500 text-white shadow-lg'
+                      : 'text-sage-600 hover:text-sage-900 border border-sage-200 hover:bg-sage-100'
+                  } ${activeFilter !== filter.id ? 'bg-purple-50' : ''}`}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
+            
+            {/* Line 2: Filter Categories - Group 2 */}
+            <div className="flex justify-center items-center gap-1 sm:gap-[5px] mb-3 flex-wrap">
+              {filterOptions.slice(3, 6).map((filter) => (
                 <button
                   key={filter.id}
                   onClick={() => {
