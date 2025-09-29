@@ -466,7 +466,7 @@ export default function Home() {
                       {category.icon}
                     </div>
                     <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
-                      ['leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'decision-making-test'].includes(category.id)
+                      ['leadership-test', 'iq-test', 'creativity-test', 'communication-test'].includes(category.id)
                         ? 'text-red-600 group-hover:text-red-600'
                         : 'text-sage-800 group-hover:text-sage-600'
                     }`}>
@@ -501,7 +501,7 @@ export default function Home() {
                       {category.icon}
                     </div>
                     <h3 className={`text-xs font-semibold transition-colors line-clamp-2 flex-1 ${
-                      ['leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'decision-making-test'].includes(category.id)
+                      ['leadership-test', 'iq-test', 'creativity-test', 'communication-test'].includes(category.id)
                         ? 'text-red-600 group-hover:text-red-600'
                         : 'text-sage-800 group-hover:text-sage-600'
                     }`}>
@@ -541,7 +541,7 @@ export default function Home() {
                       {/* Title - Flexible */}
                       <div className="flex-1 min-w-0">
                         <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
-                          ['leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'decision-making-test'].includes(category.id)
+                          ['leadership-test', 'iq-test', 'creativity-test', 'communication-test'].includes(category.id)
                             ? 'text-red-600 group-hover:text-red-600'
                             : 'text-sage-800 group-hover:text-sage-600'
                         }`}>
@@ -570,7 +570,7 @@ export default function Home() {
                     {/* Title - Left aligned */}
                     <div className="col-span-4 text-left">
                       <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
-                        ['leadership-test', 'iq-test', 'creativity-test', 'communication-test', 'decision-making-test'].includes(category.id)
+                        ['leadership-test', 'iq-test', 'creativity-test', 'communication-test'].includes(category.id)
                           ? 'text-red-600 group-hover:text-red-600'
                           : 'text-sage-800 group-hover:text-sage-600'
                       }`}>

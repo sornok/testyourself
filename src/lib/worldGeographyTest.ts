@@ -1120,30 +1120,24 @@ export const calculateWorldGeographyScore = (answers: Record<number, number>, qu
     const answerTime = answerTimes[question.id] || 0;
     totalTime += answerTime;
     
-    if (userAnswer !== undefined) {
-      if (userAnswer === question.correct) {
-        correctAnswers++;
-        
-        // Calculate speed bonus points based on response time (only for correct answers)
-        if (answerTime < 10) {
-          speedPoints += 1.2; // Very fast: 1.2 points
-        } else if (answerTime < 20) {
-          speedPoints += 1.1; // Fast: 1.1 points
-        } else {
-          speedPoints += 1.0; // Normal: 1.0 points
-        }
+    if (userAnswer !== undefined && userAnswer === question.correct) {
+      correctAnswers++;
+      
+      // Calculate speed penalty points based on response time (only for correct answers)
+      let speedMultiplier = 1.0;
+      if (answerTime < 10) {
+        speedMultiplier = 1.0; // No penalty - Lightning Fast
+      } else if (answerTime < 20) {
+        speedMultiplier = 0.9; // 10% penalty - Quick
       } else {
-        // Wrong answers get 0 speed points (speedPoints += 0 is implicit)
-        speedPoints += 0;
+        speedMultiplier = 0.8; // 20% penalty - Slow
       }
-    } else {
-      // Unanswered questions also get 0 speed points
-      speedPoints += 0;
+      speedPoints += speedMultiplier;
     }
   });
   
   const accuracy = Math.round((correctAnswers / totalQuestions) * 100);
-  const speedScore = Math.min(Math.round((speedPoints / totalQuestions) * 100), 100);
+  const speedScore = Math.min(Math.round((speedPoints / totalQuestions) * 100), accuracy); // Speed score cannot exceed test score
   const averageTime = totalTime / totalQuestions;
   
   // Determine knowledge level

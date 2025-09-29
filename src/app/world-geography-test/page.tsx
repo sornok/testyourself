@@ -140,7 +140,8 @@ export default function WorldGeographyTest() {
       const resultsData = encodeURIComponent(JSON.stringify(quizScore))
       const answersData = encodeURIComponent(JSON.stringify(finalAnswers))
       const questionsData = encodeURIComponent(JSON.stringify(questions))
-      router.push(`/results/world-geography-test?score=${quizScore.accuracy}&speed=${quizScore.speedFeedback}&correct=${quizScore.correct}&total=${quizScore.total}&results=${resultsData}&answers=${answersData}&questions=${questionsData}`)
+      const answerTimesData = encodeURIComponent(JSON.stringify(finalAnswerTimes))
+      router.push(`/results/world-geography-test?score=${quizScore.accuracy}&speed=${quizScore.speedFeedback}&correct=${quizScore.correctAnswers}&total=${quizScore.totalQuestions}&results=${resultsData}&answers=${answersData}&questions=${questionsData}&answerTimes=${answerTimesData}`)
     }, 1000)
   }
 
@@ -152,7 +153,7 @@ export default function WorldGeographyTest() {
         <Head>
           {/* Basic Meta Tags */}
           <title>World Geography - Free Online Geography Test | TestYourself</title>
-          <meta name="description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features. Get scored on accuracy and speed!" />
+          <meta name="description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features. Get scored on accuracy with speed penalty analysis!" />
           <meta name="keywords" content="world geography, geography test, countries, capitals, landmarks, flags, physical geography, global knowledge, geography quiz" />
           <meta name="author" content="TestYourself" />
           <meta name="publisher" content="TestYourself" />
@@ -164,7 +165,7 @@ export default function WorldGeographyTest() {
           
           {/* Open Graph Tags */}
           <meta property="og:title" content="World Geography - Free Online Geography Test" />
-          <meta property="og:description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features." />
+          <meta property="og:description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features with speed penalty analysis." />
           <meta property="og:image" content="https://testyourself.com/world-geography-og-image.jpg" />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
@@ -177,7 +178,7 @@ export default function WorldGeographyTest() {
           {/* Twitter Card Tags */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="World Geography - Free Online Geography Test" />
-          <meta name="twitter:description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features." />
+          <meta name="twitter:description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features with speed penalty analysis." />
           <meta name="twitter:image" content="https://testyourself.com/world-geography-og-image.jpg" />
           <meta name="twitter:image:alt" content="World Geography Test - Free Online Geography Quiz" />
         </Head>
@@ -197,19 +198,20 @@ export default function WorldGeographyTest() {
       <Head>
         {/* Basic Meta Tags */}
         <title>World Geography - Free Online Geography Test | TestYourself</title>
-        <meta name="description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features. Get scored on accuracy and speed!" />
-        <meta name="keywords" content="world geography, geography test, countries, capitals, landmarks, flags, physical geography, global knowledge, geography quiz" />
+        <meta name="description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features with speed penalty analysis!" />
+        <meta name="keywords" content="world geography, geography test, countries, capitals, landmarks, flags, physical geography, global knowledge, geography quiz, speed penalty analysis, geography assessment, world capitals quiz, geography knowledge test, free geography test, online geography quiz, geography skills assessment" />
         <meta name="author" content="TestYourself" />
         <meta name="publisher" content="TestYourself" />
         <meta name="language" content="en" />
         <meta name="revisit-after" content="7 days" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <link rel="canonical" href="https://testyourself.com/world-geography-test" />
         <link rel="alternate" hrefLang="en" href="https://testyourself.com/world-geography-test" />
         
         {/* Open Graph Tags */}
         <meta property="og:title" content="World Geography - Free Online Geography Test" />
-        <meta property="og:description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features." />
+        <meta property="og:description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features with speed penalty analysis." />
         <meta property="og:image" content="https://testyourself.com/world-geography-og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -222,7 +224,7 @@ export default function WorldGeographyTest() {
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="World Geography - Free Online Geography Test" />
-        <meta name="twitter:description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features." />
+        <meta name="twitter:description" content="Test your world geography knowledge with our free geography quiz! Answer questions about countries, capitals, landmarks, flags, and physical features with speed penalty analysis." />
         <meta name="twitter:image" content="https://testyourself.com/world-geography-og-image.jpg" />
         <meta name="twitter:image:alt" content="World Geography Test - Free Online Geography Quiz" />
         
@@ -234,7 +236,7 @@ export default function WorldGeographyTest() {
               "@context": "https://schema.org",
               "@type": "Quiz",
               "name": "World Geography - Geography Knowledge Test",
-              "description": "A comprehensive geography quiz that tests your world geography knowledge across various topics including countries, capitals, landmarks, flags, and physical features with scoring based on accuracy and speed.",
+              "description": "A comprehensive geography quiz that tests your world geography knowledge across various topics including countries, capitals, landmarks, flags, and physical features with scoring based on accuracy and speed penalty analysis.",
               "url": "https://testyourself.com/world-geography-test",
               "provider": {
                 "@type": "Organization",
@@ -256,10 +258,15 @@ export default function WorldGeographyTest() {
                 "Geographic landmarks",
                 "National flags",
                 "Physical geography",
-                "Speed and accuracy"
+                "Speed penalty analysis"
               ],
               "inLanguage": "en",
               "isAccessibleForFree": true,
+              "audience": {
+                "@type": "Audience",
+                "audienceType": "Students, Geography Enthusiasts, Travelers, Educators"
+              },
+              "keywords": "world geography, geography test, countries, capitals, landmarks, flags, physical geography, speed penalty analysis",
               "offers": {
                 "@type": "Offer",
                 "price": "0",
@@ -308,7 +315,7 @@ export default function WorldGeographyTest() {
                     "name": "How is the world geography quiz scored?",
                     "acceptedAnswer": {
                       "@type": "Answer",
-                      "text": "The world geography quiz is scored based on both accuracy and speed. You get points for correct answers, and bonus points for answering quickly. The final score reflects your geography knowledge and quick thinking abilities."
+                      "text": "The world geography quiz is scored based on both accuracy and speed. You get points for correct answers, and penalties for answering slowly. The final score reflects your geography knowledge and quick thinking abilities."
                     }
                   },
                   {
@@ -333,6 +340,22 @@ export default function WorldGeographyTest() {
                     "acceptedAnswer": {
                       "@type": "Answer",
                       "text": "The world geography quiz typically takes about 10 minutes to complete. It includes multiple choice questions across different geographic categories, and the time limit encourages quick thinking and decision-making."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "What makes this world geography test different from other geography quizzes?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "This world geography test features advanced speed penalty analysis, comprehensive coverage of 5 geography categories, balanced question selection from 150+ questions, and detailed performance analytics including category breakdown and speed analysis."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Is the world geography test suitable for educational purposes?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes, this world geography test is perfect for educational use. It's suitable for students, teachers, and geography enthusiasts. The test covers essential geography knowledge including countries, capitals, landmarks, flags, and physical geography with detailed performance feedback."
                     }
                   }
                 ]
@@ -381,9 +404,9 @@ export default function WorldGeographyTest() {
                 
                 {/* Scoring Info */}
                 <div className="bg-white rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
-                  <span className="font-medium">Scoring:</span> Correct answers + speed bonus
+                  <span className="font-medium">Scoring:</span> Correct answers (speed penalties for slow answers)
                   <br />
-                  <span className="text-green-500">⚡ Fast answers get extra points!</span>
+                  <span className="text-green-500">⚡ Answer quickly to avoid penalties!</span>
                 </div>
               </div>
 
@@ -419,9 +442,9 @@ export default function WorldGeographyTest() {
                 
                 {/* Scoring Info */}
                 <div className="bg-white rounded-lg px-4 py-3 text-sm text-green-700 shadow-lg">
-                  <span className="font-medium">Scoring:</span> Correct answers + speed bonus
+                  <span className="font-medium">Scoring:</span> Correct answers (speed penalties for slow answers)
                   <br />
-                  <span className="text-green-500">⚡ Fast answers get extra points!</span>
+                  <span className="text-green-500">⚡ Answer quickly to avoid penalties!</span>
                 </div>
               </div>
             </div>
@@ -493,13 +516,13 @@ export default function WorldGeographyTest() {
               {/* Quiz Instructions */}
               <div>
                 <h3 className="text-base font-semibold text-green-800 mb-3">Quiz Instructions</h3>
-                <div className="bg-blue-100 rounded-lg p-3 border border-gray-200">
+                <div className="bg-orange-100 rounded-lg p-3 border border-gray-200">
                   <div className="space-y-2 text-green-600 text-sm">
                     <p>• This quiz consists of {randomizedQuestions.length} questions across various geography categories</p>
                     <p>• You have 30 seconds to answer each question</p>
-                    <p>• Faster answers earn bonus points - think quickly!</p>
+                    <p>• Slow answers get penalties - think quickly!</p>
                     <p>• Choose the best answer from the multiple choice options</p>
-                    <p>• Your final score will include accuracy and speed bonuses</p>
+                    <p>• Your final score will include accuracy and speed penalties</p>
                   </div>
                 </div>
               </div>
@@ -507,11 +530,11 @@ export default function WorldGeographyTest() {
               {/* Scoring System */}
               <div>
                 <h4 className="text-base font-semibold text-green-800 mb-3">Scoring System</h4>
-                <div className="bg-green-100 rounded-lg p-3 border border-gray-200">
+                <div className="bg-purple-100 rounded-lg p-3 border border-gray-200">
                   <div className="space-y-2 text-green-700 text-sm">
                     <p>• <strong>Base Score:</strong> 1 point for each correct answer</p>
-                    <p>• <strong>Speed Bonus:</strong> Extra points for answering quickly (up to 1.2x multiplier)</p>
-                    <p>• <strong>Final Score:</strong> Base score + speed bonuses = Your geography rating</p>
+                    <p>• <strong>Speed Impact:</strong> Slow answers cut speed score (10-20s: -10%, 20+s: -20%)</p>
+                    <p>• <strong>Final Score:</strong> Base score + speed score = Your geography rating</p>
                     <p>• <strong>Perfect Score:</strong> 15/15 with fast answers = Geography Expert level!</p>
                   </div>
                 </div>
@@ -520,51 +543,53 @@ export default function WorldGeographyTest() {
             
             {/* What You'll Be Tested On - Full Width */}
             <div className="pt-3">
-              <h4 className="text-lg font-semibold text-green-800 mb-3">What You'll Be Tested On:</h4>
-              <div className="grid md:grid-cols-2 gap-3">
-                <div className="space-y-2">
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">🌍</span>
-                    <div>
-                      <p className="font-medium text-green-700">Countries & Capitals</p>
-                      <p className="text-sm text-green-600">World countries, their capitals, and basic facts</p>
+              <h4 className="text-base font-semibold text-green-800 mb-3">What You'll Be Tested On:</h4>
+              <div className="bg-yellow-50 rounded-lg p-3 border border-gray-200">
+                <div className="grid md:grid-cols-2 gap-3">
+                  <div className="space-y-2">
+                    <div className="flex items-start">
+                      <span className="text-green-600 mr-2">🌍</span>
+                      <div>
+                        <p className="font-medium text-green-700">Countries & Capitals</p>
+                        <p className="text-sm text-green-600">World countries, their capitals, and basic facts</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="text-green-600 mr-2">🏛️</span>
+                      <div>
+                        <p className="font-medium text-green-700">Famous Landmarks</p>
+                        <p className="text-sm text-green-600">Monuments, buildings, and historical sites</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="text-green-600 mr-2">🏔️</span>
+                      <div>
+                        <p className="font-medium text-green-700">Physical Geography</p>
+                        <p className="text-sm text-green-600">Mountains, rivers, deserts, and climate zones</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">🏛️</span>
-                    <div>
-                      <p className="font-medium text-green-700">Famous Landmarks</p>
-                      <p className="text-sm text-green-600">Monuments, buildings, and historical sites</p>
+                  <div className="space-y-2">
+                    <div className="flex items-start">
+                      <span className="text-green-600 mr-2">🏳️</span>
+                      <div>
+                        <p className="font-medium text-green-700">National Flags</p>
+                        <p className="text-sm text-green-600">Flag designs, colors, and symbolic meanings</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">🏔️</span>
-                    <div>
-                      <p className="font-medium text-green-700">Physical Geography</p>
-                      <p className="text-sm text-green-600">Mountains, rivers, deserts, and climate zones</p>
+                    <div className="flex items-start">
+                      <span className="text-green-600 mr-2">🗺️</span>
+                      <div>
+                        <p className="font-medium text-green-700">Continents & Regions</p>
+                        <p className="text-sm text-green-600">Geographic regions, borders, and locations</p>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">🏳️</span>
-                    <div>
-                      <p className="font-medium text-green-700">National Flags</p>
-                      <p className="text-sm text-green-600">Flag designs, colors, and symbolic meanings</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">🗺️</span>
-                    <div>
-                      <p className="font-medium text-green-700">Continents & Regions</p>
-                      <p className="text-sm text-green-600">Geographic regions, borders, and locations</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">⚡</span>
-                    <div>
-                      <p className="font-medium text-green-700">Speed Bonus</p>
-                      <p className="text-sm text-green-600">Quick answers earn extra points!</p>
+                    <div className="flex items-start">
+                      <span className="text-green-600 mr-2">⚡</span>
+                      <div>
+                        <p className="font-medium text-green-700">Speed Impact</p>
+                        <p className="text-sm text-green-600">Quick answers avoid penalties!</p>
+                      </div>
                     </div>
                   </div>
                 </div>
