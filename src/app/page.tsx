@@ -358,10 +358,9 @@ export default function Home() {
 
         {/* Filter Buttons - Responsive Layout */}
         <div className="mt-2 mb-2">
-          {/* Desktop/Tablet: Two line layout (md and up) */}
-          <div className="hidden md:block">
+          {/* Unified responsive control layout */}
             {/* Line 1: Filter Categories (Full Width) */}
-            <div className="flex justify-center items-center gap-1 lg:gap-2 mb-3 flex-wrap">
+            <div className="flex justify-center items-center gap-1 sm:gap-2 mb-3 flex-wrap">
               {filterOptions.map((filter) => (
                 <button
                   key={filter.id}
@@ -369,7 +368,7 @@ export default function Home() {
                     setActiveFilter(filter.id)
                     setCurrentPage(1)
                   }}
-                  className={`px-2 lg:px-3 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                  className={`px-[0.4125rem] sm:px-[0.525rem] md:px-[0.6375rem] lg:px-3 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
                     activeFilter === filter.id
                       ? 'bg-purple-500 text-white shadow-lg'
                       : 'text-sage-600 hover:text-sage-900 border border-sage-200 hover:bg-sage-100'
@@ -386,7 +385,7 @@ export default function Home() {
               <div className="flex gap-1">
                 <button
                   onClick={() => setSortBy('category')}
-                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm ${
+                  className={`px-[0.275rem] sm:px-[0.35rem] md:px-[0.425rem] lg:px-2 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
                     sortBy === 'category'
                       ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
                       : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
@@ -396,7 +395,7 @@ export default function Home() {
                 </button>
                 <button
                   onClick={() => setSortBy('alphabetical')}
-                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                  className={`px-[0.275rem] sm:px-[0.35rem] md:px-[0.425rem] lg:px-2 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
                     sortBy === 'alphabetical'
                       ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
                       : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
@@ -406,7 +405,7 @@ export default function Home() {
                 </button>
                 <button
                   onClick={handleShuffle}
-                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                  className={`px-[0.275rem] sm:px-[0.35rem] md:px-[0.425rem] lg:px-2 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
                     sortBy === 'shuffle'
                       ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
                       : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
@@ -420,7 +419,7 @@ export default function Home() {
               <div className="flex gap-1">
                 <button
                   onClick={() => setViewMode('cards')}
-                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                  className={`px-[0.275rem] sm:px-[0.35rem] md:px-[0.425rem] lg:px-2 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
                     viewMode === 'cards'
                       ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
                       : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
@@ -430,7 +429,7 @@ export default function Home() {
                 </button>
                 <button
                   onClick={() => setViewMode('title')}
-                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                  className={`px-[0.275rem] sm:px-[0.35rem] md:px-[0.425rem] lg:px-2 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
                     viewMode === 'title'
                       ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
                       : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
@@ -440,7 +439,7 @@ export default function Home() {
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`px-2 py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                  className={`px-[0.275rem] sm:px-[0.35rem] md:px-[0.425rem] lg:px-2 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
                     viewMode === 'list'
                       ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
                       : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
@@ -450,101 +449,6 @@ export default function Home() {
                 </button>
               </div>
             </div>
-          </div>
-
-          {/* Mobile: Stacked layout (below md) */}
-          <div className="flex md:hidden flex-col gap-3">
-            {/* Line 1: Filter Categories (Full Width) */}
-            <div className="flex justify-center gap-1 sm:gap-2 flex-wrap pb-1 sm:pb-2 max-w-full">
-              {filterOptions.map((filter) => (
-                <button
-                  key={filter.id}
-                  onClick={() => {
-                    setActiveFilter(filter.id)
-                    setCurrentPage(1)
-                  }}
-                  className={`px-2 py-1 sm:px-3 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
-                    activeFilter === filter.id
-                      ? 'bg-purple-500 text-white shadow-lg'
-                      : 'text-sage-600 hover:text-sage-900 border border-sage-200 hover:bg-sage-100'
-                  } ${activeFilter !== filter.id ? 'bg-purple-50' : ''}`}
-                >
-                  {filter.label}
-                </button>
-              ))}
-            </div>
-            
-            {/* Line 2: Sort (Left) and View (Right) Controls */}
-            <div className="flex justify-between items-center gap-2">
-              {/* Sort Buttons */}
-              <div className="flex gap-1">
-                <button
-                  onClick={() => setSortBy('category')}
-                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm ${
-                    sortBy === 'category'
-                      ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
-                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
-                  }`}
-                >
-                  Category
-                </button>
-                <button
-                  onClick={() => setSortBy('alphabetical')}
-                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
-                    sortBy === 'alphabetical'
-                      ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
-                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
-                  }`}
-                >
-                  A-Z
-                </button>
-                <button
-                  onClick={handleShuffle}
-                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
-                    sortBy === 'shuffle'
-                      ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
-                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
-                  }`}
-                >
-                  🎲 Shuffle
-                </button>
-              </div>
-              
-              {/* View Buttons */}
-              <div className="flex gap-1">
-                <button
-                  onClick={() => setViewMode('cards')}
-                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
-                    viewMode === 'cards'
-                      ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
-                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
-                  }`}
-                >
-                  🔲 Cards
-                </button>
-                <button
-                  onClick={() => setViewMode('title')}
-                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
-                    viewMode === 'title'
-                      ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
-                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
-                  }`}
-                >
-                  🏷️ Title
-                </button>
-                <button
-                  onClick={() => setViewMode('list')}
-                  className={`px-1 py-1 sm:px-2 sm:py-2 rounded-full font-medium transition-all duration-300 text-xs sm:text-sm whitespace-nowrap ${
-                    viewMode === 'list'
-                      ? 'text-sage-600 hover:text-sage-800 border border-sage-200 bg-purple-50 hover:bg-sage-50'
-                      : 'text-gray-300 hover:text-gray-400 border border-gray-200 bg-gray-100 hover:bg-gray-200'
-                  }`}
-                >
-                  📋 List
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Category Cards, Title, or List */}
