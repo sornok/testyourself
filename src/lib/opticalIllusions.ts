@@ -18,14 +18,11 @@ const loadOpticalIllusionsData = async () => {
   if (opticalIllusionsData) return opticalIllusionsData;
   
   try {
-    console.log('Loading optical illusions from /opticalIllusions.json');
     const response = await fetch('/opticalIllusions.json');
-    console.log('Response status:', response.status);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     opticalIllusionsData = await response.json();
-    console.log('Loaded optical illusions:', opticalIllusionsData?.length, 'illusions');
     return opticalIllusionsData;
   } catch (error) {
     console.error('Error loading optical illusions:', error);

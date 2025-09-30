@@ -26,18 +26,23 @@ export default function OpticalIllusionTest() {
   const [hasBegun, setHasBegun] = useState(false)
   const [illusions, setIllusions] = useState<OpticalIllusion[]>([])
   const [showResults, setShowResults] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
   useEffect(() => {
     // Load random illusions when component mounts
     const loadIllusions = async () => {
+      setIsLoading(true);
+      setError(null);
       try {
-        console.log('Loading optical illusions...');
         const randomIllusions = await getRandomOpticalIllusions(6);
-        console.log('Loaded illusions:', randomIllusions);
         setIllusions(randomIllusions);
       } catch (error) {
         console.error('Error loading optical illusions:', error);
+        setError('Failed to load optical illusions. Please refresh the page.');
+      } finally {
+        setIsLoading(false);
       }
     };
     loadIllusions();
@@ -222,6 +227,41 @@ export default function OpticalIllusionTest() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <Header onLogoClick={undefined} />
+          
+          {/* Error State */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <span className="text-red-400 text-xl">⚠️</span>
+                </div>
+                <div className="ml-3">
+                  <h3 className="text-sm font-medium text-red-800">Error Loading Test</h3>
+                  <p className="text-sm text-red-700 mt-1">{error}</p>
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="mt-2 bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700 transition-colors"
+                  >
+                    Try Again
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Loading State */}
+          {isLoading && (
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm text-blue-800">Loading optical illusions...</p>
+                </div>
+              </div>
+            </div>
+          )}
           
           {/* Test Title Box */}
           <div className="text-center mb-2">

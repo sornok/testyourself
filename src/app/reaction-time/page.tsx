@@ -64,53 +64,11 @@ export default function ReactionTimeTest() {
     };
   }, [testCompleted, showShare, showReview]);
 
-  // Debug useEffect to track state changes
-  useEffect(() => {
-    console.log('State changed:', {
-      testCompleted,
-      currentQuestion,
-      selectedQuestionsLength: selectedQuestions.length,
-      answersLength: answers.length,
-      reactionTimesLength: reactionTimes.length
-    });
-  }, [testCompleted, currentQuestion, selectedQuestions.length, answers.length, reactionTimes.length]);
 
-  // Debug sequential test
-  useEffect(() => {
-    if (selectedQuestions.length > 0 && currentQuestion < selectedQuestions.length) {
-      const currentQ = selectedQuestions[currentQuestion];
-      console.log('Current question debug:', {
-        type: currentQ.type,
-        instruction: currentQ.instruction,
-        stimulus: currentQ.stimulus,
-        sequentialOrder,
-        stimulusShown,
-        startButtonClicked,
-        targetCorner
-      });
-    }
-  }, [currentQuestion, selectedQuestions, sequentialOrder, stimulusShown, startButtonClicked, targetCorner]);
 
-  // Debug movement test rendering
-  useEffect(() => {
-    if (selectedQuestions.length > 0 && currentQuestion < selectedQuestions.length) {
-      const currentQ = selectedQuestions[currentQuestion];
-      if (currentQ.type === 'movement') {
-        console.log('Movement test debug:', {
-          type: currentQ.type,
-          targetCorner,
-          stimulusShown,
-          shouldRender: targetCorner && stimulusShown,
-          stimulus: currentQ.stimulus
-        });
-      }
-    }
-  }, [currentQuestion, selectedQuestions, targetCorner, stimulusShown]);
 
   const beginTest = () => {
     const questions = selectRandomReactionQuestions(9);
-    console.log('beginTest: Selected questions count:', questions.length);
-    console.log('beginTest: Questions:', questions.map(q => ({ id: q.id, type: q.type, instruction: q.instruction })));
     setSelectedQuestions(questions);
     setAnswers(new Array(questions.length).fill(undefined));
     setReactionTimes(new Array(questions.length).fill(undefined));
@@ -192,16 +150,12 @@ export default function ReactionTimeTest() {
     setPreviousReactionTime(reactionTime);
 
     // Auto-advance to next question
-    console.log(`Stimulus click completed. Current question: ${currentQuestion}, Total questions: ${selectedQuestions.length}`);
-    console.log(`Condition check: ${currentQuestion} < ${selectedQuestions.length - 1} = ${currentQuestion < selectedQuestions.length - 1}`);
     if (currentQuestion < selectedQuestions.length - 1) {
-      console.log(`Moving to next question: ${currentQuestion + 1}`);
       setCurrentQuestion(currentQuestion + 1);
       // Reset sequential states for next question
       setFirstNumberClicked(false);
       setFirstClickTime(null);
     } else {
-      console.log('Calling completeTest from stimulus click - THIS IS THE LAST QUESTION');
       completeTest(newAnswers.filter((answer): answer is number => answer !== undefined), newReactionTimes.filter((time): time is number => time !== undefined));
     }
   };
@@ -236,16 +190,12 @@ export default function ReactionTimeTest() {
       setPreviousReactionTime(reactionTime);
 
       // Auto-advance to next question
-      console.log(`Sequential click completed. Current question: ${currentQuestion}, Total questions: ${selectedQuestions.length}`);
-      console.log(`Condition check: ${currentQuestion} < ${selectedQuestions.length - 1} = ${currentQuestion < selectedQuestions.length - 1}`);
       if (currentQuestion < selectedQuestions.length - 1) {
-        console.log(`Moving to next question: ${currentQuestion + 1}`);
         setCurrentQuestion(currentQuestion + 1);
         // Reset sequential states for next question
         setFirstNumberClicked(false);
         setFirstClickTime(null);
       } else {
-        console.log('Calling completeTest from sequential click - THIS IS THE LAST QUESTION');
         completeTest(newAnswers.filter((answer): answer is number => answer !== undefined), newReactionTimes.filter((time): time is number => time !== undefined));
       }
     }
@@ -304,7 +254,6 @@ export default function ReactionTimeTest() {
   };
 
   const completeTest = (finalAnswers: number[], finalReactionTimes: number[]) => {
-    console.log('completeTest called with:', { finalAnswers, finalReactionTimes, selectedQuestions: selectedQuestions.length });
     const results = calculateReactionResults(finalAnswers, finalReactionTimes, selectedQuestions);
     
     // Redirect to new results format
@@ -699,7 +648,6 @@ Visit https://testyourself.com for more tests!`;
     );
   }
 
-  console.log('Render check - testCompleted:', testCompleted, 'currentQuestion:', currentQuestion, 'selectedQuestions.length:', selectedQuestions.length);
   
   if (!testCompleted) {
     const answeredQuestions = answers.filter(answer => answer !== undefined).length;

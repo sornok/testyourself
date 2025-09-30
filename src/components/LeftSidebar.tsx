@@ -33,8 +33,6 @@ export default function LeftSidebar() {
       // Minimum width needed for smallest ad (120px) + sidebar padding (32px) + container padding (16px)
       const minRequiredWidth = 120 + 32 + 16
       
-      // Debug logging
-      console.log(`Viewport: ${viewportWidth}px, Content: ${contentWidth}px, Both sidebars: ${bothSidebars}px, Sidebar width: ${sidebarWidth}px, Max ad width: ${maxAdWidth}px`)
       
       if (sidebarWidth >= minRequiredWidth) {
         setIsVisible(true)
@@ -44,15 +42,6 @@ export default function LeftSidebar() {
         const availableWidth = maxAdWidth // Use calculated max ad width
         const newAdSizes: {width: number, height: number}[] = []
         
-        // Debug logging
-        console.log('🔍 Left Sidebar Debug:', {
-          sidebarWidth,
-          availableWidth,
-          windowWidth: window.innerWidth,
-          minRequiredWidth,
-          sidebarPadding,
-          adContainerPadding
-        })
         
              // Standard Google AdSense sizes (all orientations)
              const adSizes = [
@@ -67,24 +56,14 @@ export default function LeftSidebar() {
                { width: 320, height: 50 },   // Mobile Banner
              ]
         
-        // Debug: Check which ads fit
+        // Check which ads fit
         const fittingAds = adSizes.filter(ad => ad.width <= availableWidth)
-        console.log('📏 Ads that fit:', fittingAds.map(ad => `${ad.width}×${ad.height} (${ad.width * ad.height}px²)`))
-        console.log('📏 Available width:', availableWidth)
         
         // Find the largest ad size that fits
         const bestFit = adSizes
           .filter(ad => ad.width <= availableWidth)
           .sort((a, b) => (b.width * b.height) - (a.width * a.height))[0]
         
-        console.log('✅ Selected ad:', bestFit ? `${bestFit.width}×${bestFit.height}` : 'NONE')
-        console.log('📐 Container sizing:', {
-          sidebarWidth,
-          adWidth: bestFit?.width || 0,
-          containerNeeded: (bestFit?.width || 0) + adContainerPadding,
-          actualContainerWidth: sidebarWidth,
-          canCenter: sidebarWidth >= ((bestFit?.width || 0) + adContainerPadding)
-        })
         
         if (bestFit) {
                // Greedy algorithm for vertical ad placement
@@ -96,10 +75,6 @@ export default function LeftSidebar() {
           let currentViewportHeight = window.innerHeight - marginTop - containerPadding
           let verticalSpaceLeft = currentViewportHeight
           
-          console.log('📏 Starting greedy placement:', {
-            currentViewportHeight,
-            availableWidth
-          })
           
                // Repeat until no more space or max 2 ads reached
                while (verticalSpaceLeft > 0 && newAdSizes.length < 2) {
@@ -110,7 +85,6 @@ export default function LeftSidebar() {
                  )
 
                  if (fittingAds.length === 0) {
-                   console.log('📏 No more ads fit, stopping')
                    break
                  }
 
@@ -121,7 +95,6 @@ export default function LeftSidebar() {
                  // If this is a very short ad and we already have one ad,
                  // prefer to use the space for a larger single ad instead
                  if (newAdSizes.length === 1 && selectedAd.height < 100) {
-                   console.log('📏 Skipping short ad to prefer single larger ad')
                    break
                  }
             
@@ -143,10 +116,8 @@ export default function LeftSidebar() {
                    verticalSpaceLeft -= (selectedAd.height + adMarginBottom)
                  }
             
-            console.log('📚 Added ad:', `${selectedAd.width}×${selectedAd.height}`, 'Remaining space:', verticalSpaceLeft)
           }
           
-          console.log('📏 Final ad count:', newAdSizes.length)
         }
         
         setAdSizes(newAdSizes)

@@ -33,14 +33,11 @@ const loadTypingChallengesData = async () => {
   if (typingChallengesData) return typingChallengesData;
   
   try {
-    console.log('Loading typing challenges from /typingChallenges.json');
     const response = await fetch('/typingChallenges.json');
-    console.log('Response status:', response.status);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     typingChallengesData = await response.json();
-    console.log('Loaded typing challenges:', Object.keys(typingChallengesData));
     return typingChallengesData;
   } catch (error) {
     console.error('Error loading typing challenges:', error);
