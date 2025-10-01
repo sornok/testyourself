@@ -218,7 +218,12 @@ export default function Home() {
     if (sortBy === 'alphabetical') {
       return a.title.localeCompare(b.title)
     } else if (sortBy === 'category') {
-      return categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category)
+      // Primary sort: by category, Secondary sort: alphabetical
+      const categoryDiff = categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category)
+      if (categoryDiff !== 0) {
+        return categoryDiff
+      }
+      return a.title.localeCompare(b.title)
     } else if (sortBy === 'shuffle') {
       // Create a simple hash from the shuffle seed and item id for consistent shuffling
       const hashA = Math.sin((a.id.charCodeAt(0) + shuffleSeed * 1000) * 123.456)
@@ -366,6 +371,7 @@ export default function Home() {
                   key={filter.id}
                   onClick={() => {
                     setActiveFilter(filter.id)
+                    setSortBy('alphabetical')
                     setCurrentPage(1)
                   }}
                   className={`px-[0.4125rem] sm:px-[0.525rem] md:px-[0.6375rem] lg:px-3 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
@@ -386,6 +392,7 @@ export default function Home() {
                   key={filter.id}
                   onClick={() => {
                     setActiveFilter(filter.id)
+                    setSortBy('alphabetical')
                     setCurrentPage(1)
                   }}
                   className={`px-[0.4125rem] sm:px-[0.525rem] md:px-[0.6375rem] lg:px-3 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
@@ -403,16 +410,18 @@ export default function Home() {
             <div className="flex justify-between items-center gap-2">
               {/* Left: Sort Buttons */}
               <div className="flex gap-1">
-                <button
-                  onClick={() => setSortBy('category')}
-                  className={`px-[0.275rem] sm:px-[0.35rem] md:px-[0.425rem] lg:px-2 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
-                    sortBy === 'category'
-                      ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
-                      : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
-                  }`}
-                >
-                  📂 Category
-                </button>
+                {activeFilter === 'all' && (
+                  <button
+                    onClick={() => setSortBy('category')}
+                    className={`px-[0.275rem] sm:px-[0.35rem] md:px-[0.425rem] lg:px-2 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
+                      sortBy === 'category'
+                        ? 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
+                        : 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200'
+                    }`}
+                  >
+                    📂 Category
+                  </button>
+                )}
                 <button
                   onClick={() => setSortBy('alphabetical')}
                   className={`px-[0.275rem] sm:px-[0.35rem] md:px-[0.425rem] lg:px-2 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-xs lg:text-sm whitespace-nowrap ${
@@ -486,7 +495,7 @@ export default function Home() {
                       {category.icon}
                     </div>
                     <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
-                      ['leadership-test', 'iq-test', 'creativity-test', 'communication-test'].includes(category.id)
+                      ['leadership-test', 'communication-test'].includes(category.id)
                         ? 'text-red-600 group-hover:text-red-600'
                         : 'text-sage-800 group-hover:text-sage-600'
                     }`}>
@@ -521,7 +530,7 @@ export default function Home() {
                       {category.icon}
                     </div>
                     <h3 className={`text-xs font-semibold transition-colors line-clamp-2 flex-1 ${
-                      ['leadership-test', 'iq-test', 'creativity-test', 'communication-test'].includes(category.id)
+                      ['leadership-test', 'communication-test'].includes(category.id)
                         ? 'text-red-600 group-hover:text-red-600'
                         : 'text-sage-800 group-hover:text-sage-600'
                     }`}>
@@ -561,7 +570,7 @@ export default function Home() {
                       {/* Title - Flexible */}
                       <div className="flex-1 min-w-0">
                         <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
-                          ['leadership-test', 'iq-test', 'creativity-test', 'communication-test'].includes(category.id)
+                          ['leadership-test', 'communication-test'].includes(category.id)
                             ? 'text-red-600 group-hover:text-red-600'
                             : 'text-sage-800 group-hover:text-sage-600'
                         }`}>
@@ -590,7 +599,7 @@ export default function Home() {
                     {/* Title - Left aligned */}
                     <div className="col-span-4 text-left">
                       <h3 className={`text-sm font-semibold transition-colors whitespace-nowrap overflow-hidden text-ellipsis ${
-                        ['leadership-test', 'iq-test', 'creativity-test', 'communication-test'].includes(category.id)
+                        ['leadership-test', 'communication-test'].includes(category.id)
                           ? 'text-red-600 group-hover:text-red-600'
                           : 'text-sage-800 group-hover:text-sage-600'
                       }`}>
@@ -624,7 +633,7 @@ export default function Home() {
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className={`px-3 py-2 rounded-full font-medium transition-all duration-300 text-sm ${
+              className={`px-3 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-sm ${
                 currentPage === 1
                   ? 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200 cursor-not-allowed'
                   : 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
@@ -638,7 +647,7 @@ export default function Home() {
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`px-3 py-2 rounded-full font-medium transition-all duration-300 text-sm ${
+                  className={`px-3 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-sm ${
                     currentPage === page
                       ? 'bg-purple-500 text-white shadow-lg'
                       : 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'
@@ -652,7 +661,7 @@ export default function Home() {
             <button
               onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
-              className={`px-3 py-2 rounded-full font-medium transition-all duration-300 text-sm ${
+              className={`px-3 py-[0.1375rem] sm:py-[0.175rem] md:py-[0.2125rem] lg:py-1 rounded-full font-medium transition-all duration-300 text-sm ${
                 currentPage === totalPages
                   ? 'text-gray-300 hover:text-gray-600 border border-gray-200 bg-gray-100 hover:bg-gray-200 cursor-not-allowed'
                   : 'text-sage-600 hover:text-sage-900 border border-sage-200 bg-purple-50 hover:bg-sage-100'

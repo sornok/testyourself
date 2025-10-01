@@ -563,7 +563,7 @@ export default function DecisionMakingTest() {
                 {randomizedQuestions[currentQuestion].category}
               </span>
             </div>
-            <h2 className="text-lg font-semibold text-green-800 mb-3 text-center">
+            <h2 className="text-sm font-semibold text-green-800 mb-3 text-center">
               {randomizedQuestions[currentQuestion].question}
             </h2>
             
